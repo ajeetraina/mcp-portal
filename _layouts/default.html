@@ -3,23 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}A community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources.{% endif %}">
+  <meta name="keywords" content="docker, mcp, model, context, protocol, servers, tools, community">
   <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
   
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/docker-mcp-logo.svg' | relative_url }}">
   
-  <!-- Stylesheets -->
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/tools.css' | relative_url }}">
-  
-  <!-- Meta tags -->
-  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-  <meta property="og:title" content="{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}">
-  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-  <meta property="og:image" content="{{ '/assets/images/docker-mcp-logo.svg' | absolute_url }}">
-  <meta property="og:url" content="{{ page.url | absolute_url }}">
-  <meta name="twitter:card" content="summary_large_image">
   
   {% seo %}
 </head>
@@ -32,26 +33,28 @@
   
   {% include footer.html %}
   
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+  <!-- ClipboardJS for copy functionality -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+  
+  <!-- Custom scripts -->
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
   <script src="{{ '/assets/js/filter.js' | relative_url }}"></script>
-  <script src="{{ '/assets/js/tools.js' | relative_url }}"></script>
+  
   <script>
     // Initialize clipboard.js
     document.addEventListener('DOMContentLoaded', function() {
-      // Initialize clipboard for copy buttons
       var clipboard = new ClipboardJS('.btn-copy');
       
       clipboard.on('success', function(e) {
-        var btn = e.trigger;
-        var originalText = btn.innerHTML;
+        var button = e.trigger;
+        var originalText = button.innerHTML;
         
-        // Change button text to indicate success
-        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        button.classList.add('copied');
         
-        // Revert back after 2 seconds
         setTimeout(function() {
-          btn.innerHTML = originalText;
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
         }, 2000);
         
         e.clearSelection();
