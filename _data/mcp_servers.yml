@@ -8,13 +8,14 @@
 #   tags: List of relevant tags
 #   added_date: When the entry was added (YYYY-MM-DD)
 
-# Official Reference Implementations
+# Reference Servers
+
 - name: "AWS KB Retrieval"
   description: "Retrieval from AWS Knowledge Base using Bedrock Agent Runtime for AI-assisted AWS documentation and resource management."
   github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/aws-kb-retrieval-server"
   docker_image: "mcp/aws-kb-retrieval:latest"
   website: ""
-  tags: ["official", "aws", "knowledge-base", "bedrock"]
+  tags: ["aws", "knowledge-base", "bedrock"]
   added_date: "2025-03-16"
 
 - name: "Brave Search"
@@ -22,7 +23,7 @@
   github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search"
   docker_image: "mcp/brave-search:latest"
   website: ""
-  tags: ["official", "search", "brave", "web"]
+  tags: ["search", "brave", "web"]
   added_date: "2025-03-16"
 
 - name: "EverArt"
@@ -30,7 +31,7 @@
   github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/everart"
   docker_image: "mcp/everart:latest"
   website: ""
-  tags: ["official", "ai", "image-generation", "creative"]
+  tags: ["ai", "image-generation", "creative"]
   added_date: "2025-03-16"
 
 - name: "Everything"
@@ -38,7 +39,7 @@
   github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/everything"
   docker_image: "mcp/everything:latest"
   website: ""
-  tags: ["official", "reference", "testing", "development"]
+  tags: ["reference", "testing", "development"]
   added_date: "2025-03-16"
 
 - name: "Fetch"
@@ -46,7 +47,7 @@
   github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch"
   docker_image: "mcp/fetch:latest"
   website: ""
-  tags: ["official", "web", "content", "fetch"]
+  tags: ["web", "content", "fetch"]
   added_date: "2025-03-16"
 
 - name: "Filesystem"
@@ -54,7 +55,7 @@
   github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem"
   docker_image: "mcp/filesystem:latest"
   website: ""
-  tags: ["official", "files", "security", "access-control"]
+  tags: ["files", "security", "access-control"]
   added_date: "2025-03-16"
 
 - name: "Git"
@@ -62,7 +63,7 @@
   github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/git"
   docker_image: "mcp/git:latest"
   website: ""
-  tags: ["official", "git", "version-control", "development"]
+  tags: ["git", "version-control", "development"]
   added_date: "2025-03-16"
 
 - name: "GitHub"
@@ -70,7 +71,15 @@
   github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/github"
   docker_image: "mcp/github:latest"
   website: ""
-  tags: ["official", "github", "development", "api"]
+  tags: ["github", "development", "api"]
+  added_date: "2025-03-16"
+
+- name: "GitLab"
+  description: "GitLab API integration, enabling project management and repository interaction through AI assistants."
+  github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/gitlab"
+  docker_image: "mcp/gitlab:latest"
+  website: ""
+  tags: ["gitlab", "development", "api"]
   added_date: "2025-03-16"
 
 - name: "Google Drive"
@@ -78,7 +87,7 @@
   github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/gdrive"
   docker_image: "mcp/gdrive:latest"
   website: ""
-  tags: ["official", "google", "drive", "files"]
+  tags: ["google", "drive", "files"]
   added_date: "2025-03-16"
 
 - name: "Google Maps"
@@ -86,7 +95,7 @@
   github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/google-maps"
   docker_image: "mcp/google-maps:latest"
   website: ""
-  tags: ["official", "google", "maps", "location"]
+  tags: ["google", "maps", "location"]
   added_date: "2025-03-16"
 
 - name: "Memory"
@@ -94,7 +103,7 @@
   github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/memory"
   docker_image: "mcp/memory:latest"
   website: ""
-  tags: ["official", "memory", "knowledge-graph", "persistence"]
+  tags: ["memory", "knowledge-graph", "persistence"]
   added_date: "2025-03-16"
 
 - name: "PostgreSQL"
@@ -102,7 +111,7 @@
   github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/postgres"
   docker_image: "mcp/postgres:latest"
   website: ""
-  tags: ["official", "database", "postgresql", "sql"]
+  tags: ["database", "postgresql", "sql"]
   added_date: "2025-03-16"
 
 - name: "Puppeteer"
@@ -110,7 +119,31 @@
   github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/puppeteer"
   docker_image: "mcp/puppeteer:latest"
   website: ""
-  tags: ["official", "browser", "automation", "scraping"]
+  tags: ["browser", "automation", "scraping"]
+  added_date: "2025-03-16"
+
+- name: "Redis"
+  description: "Interact with Redis key-value stores, giving AI the ability to work with Redis databases for caching and data storage."
+  github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/redis"
+  docker_image: "mcp/redis:latest"
+  website: ""
+  tags: ["database", "redis", "key-value"]
+  added_date: "2025-03-16"
+
+- name: "Sentry"
+  description: "Retrieving and analyzing issues from Sentry.io, helping AI assist with error monitoring and debugging."
+  github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/sentry"
+  docker_image: "mcp/sentry:latest"
+  website: ""
+  tags: ["monitoring", "errors", "debugging"]
+  added_date: "2025-03-16"
+
+- name: "Sequential Thinking"
+  description: "Dynamic and reflective problem-solving through thought sequences, enhancing AI reasoning capabilities."
+  github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking"
+  docker_image: "mcp/sequentialthinking:latest"
+  website: ""
+  tags: ["thinking", "reasoning", "problem-solving"]
   added_date: "2025-03-16"
 
 - name: "Slack"
@@ -118,7 +151,7 @@
   github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/slack"
   docker_image: "mcp/slack:latest"
   website: ""
-  tags: ["official", "slack", "communication", "messaging"]
+  tags: ["slack", "communication", "messaging"]
   added_date: "2025-03-16"
 
 - name: "SQLite"
@@ -126,262 +159,201 @@
   github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite"
   docker_image: "mcp/sqlite:latest"
   website: ""
-  tags: ["official", "database", "sqlite", "sql"]
+  tags: ["database", "sqlite", "sql"]
+  added_date: "2025-03-16"
+
+- name: "Time"
+  description: "Time and timezone conversion capabilities, helping AI handle time-related operations and calculations."
+  github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/time"
+  docker_image: "mcp/time:latest"
+  website: ""
+  tags: ["time", "timezone", "utility"]
   added_date: "2025-03-16"
 
 # Official Integrations
-- name: "Apify Actors"
+
+- name: "21st.dev Magic"
+  description: "Create crafted UI components inspired by the best 21st.dev design engineers for AI-assisted UI development."
+  github_url: "https://github.com/21st-dev/magic-mcp"
+  docker_image: "21stdev/magic-mcp:latest"
+  website: "https://www.21st.dev"
+  tags: ["ui", "design", "components"]
+  added_date: "2025-03-16"
+  
+- name: "AgentQL"
+  description: "Enable AI agents to get structured data from unstructured web with AgentQL's intelligent parsing capabilities."
+  github_url: "https://github.com/tinyfish-io/agentql-mcp"
+  docker_image: "agentql/mcp-server:latest"
+  website: "https://www.agentql.com"
+  tags: ["web", "data-extraction", "structured-data"]
+  added_date: "2025-03-16"
+  
+- name: "Apify"
   description: "Use 3,000+ pre-built cloud tools to extract data from websites, e-commerce, social media, search engines, maps, and more."
   github_url: "https://github.com/apify/actors-mcp-server"
   docker_image: "apify/actors-mcp-server:latest"
-  website: "https://apify.com"
-  tags: ["official", "web-scraping", "data-extraction", "api"]
+  website: "https://apify.com/apify/actors-mcp-server"
+  tags: ["web-scraping", "data-extraction", "automation"]
+  added_date: "2025-03-16"
+  
+- name: "Audiense Insights"
+  description: "Marketing insights and audience analysis covering demographic, cultural, influencer, and content engagement analysis."
+  github_url: "https://github.com/AudienseCo/mcp-audiense-insights"
+  docker_image: "audiense/mcp-insights:latest"
+  website: "https://www.audiense.com/products/audiense-insights"
+  tags: ["marketing", "audience-analysis", "insights"]
+  added_date: "2025-03-16"
+  
+- name: "Axiom"
+  description: "Query and analyze your Axiom logs, traces, and all other event data in natural language for faster troubleshooting."
+  github_url: "https://github.com/axiomhq/mcp-server-axiom"
+  docker_image: "axiomhq/mcp-server:latest"
+  website: "https://axiom.co"
+  tags: ["logs", "monitoring", "analytics"]
   added_date: "2025-03-16"
 
-- name: "Cloudflare"
-  description: "Deploy, configure and interact with resources on the Cloudflare developer platform (Workers, KV, R2, D1)."
-  github_url: "https://github.com/cloudflare/mcp-server-cloudflare"
-  docker_image: "cloudflare/mcp-server:latest"
-  website: "https://cloudflare.com"
-  tags: ["official", "cloud", "cdn", "infrastructure"]
+- name: "Bankless Onchain"
+  description: "Query Onchain data, like ERC20 tokens, transaction history, smart contract state, and more through natural language."
+  github_url: "https://github.com/bankless/onchain-mcp"
+  docker_image: "bankless/onchain-mcp:latest"
+  website: "https://www.bankless.com"
+  tags: ["blockchain", "ethereum", "web3"]
   added_date: "2025-03-16"
 
-- name: "Comet Opik"
-  description: "Query and analyze your Opik logs, traces, prompts and all other telemetry data from your LLMs in natural language."
-  github_url: "https://github.com/comet-ml/opik-mcp"
-  docker_image: "cometml/opik-mcp:latest"
-  website: "https://www.comet.com"
-  tags: ["official", "monitoring", "observability", "llm"]
+- name: "Browserbase"
+  description: "Automate browser interactions in the cloud including web navigation, data extraction, form filling, and more."
+  github_url: "https://github.com/browserbase/mcp-server-browserbase"
+  docker_image: "browserbase/mcp-server:latest"
+  website: "https://browserbase.com"
+  tags: ["browser-automation", "cloud", "scraping"]
   added_date: "2025-03-16"
 
-- name: "Exa"
-  description: "Search Engine made for AIs providing highly relevant and recent information from across the web."
-  github_url: "https://github.com/exa-labs/exa-mcp-server"
-  docker_image: "exa/mcp-server:latest"
-  website: "https://exa.ai"
-  tags: ["official", "search", "web", "rag"]
+- name: "Chroma"
+  description: "Embeddings, vector search, document storage, and full-text search with the open-source AI application database."
+  github_url: "https://github.com/chroma-core/chroma-mcp"
+  docker_image: "chromadb/mcp:latest"
+  website: "https://trychroma.com"
+  tags: ["vector-db", "embeddings", "search"]
   added_date: "2025-03-16"
 
-- name: "Grafana"
-  description: "Search dashboards, investigate incidents and query datasources in your Grafana instance with natural language."
-  github_url: "https://github.com/grafana/mcp-grafana"
-  docker_image: "grafana/mcp:latest"
-  website: "https://grafana.com"
-  tags: ["official", "monitoring", "observability", "dashboards"]
-  added_date: "2025-03-16"
-
-- name: "JetBrains"
-  description: "Work on your code with JetBrains IDEs, connecting AI assistants directly to your development environment."
-  github_url: "https://github.com/JetBrains/mcp-jetbrains"
-  docker_image: "jetbrains/mcp:latest"
-  website: "https://jetbrains.com"
-  tags: ["official", "ide", "development", "coding"]
-  added_date: "2025-03-16"
-
-- name: "Neo4j"
-  description: "Neo4j graph database server (schema + read/write-cypher) and separate graph database backed memory."
-  github_url: "https://github.com/neo4j-contrib/mcp-neo4j/"
-  docker_image: "neo4j/mcp-server:latest"
-  website: "https://neo4j.com"
-  tags: ["official", "database", "graph", "cypher"]
-  added_date: "2025-03-16"
-
-- name: "Neon"
-  description: "Interact with the Neon serverless Postgres platform for database creation and management."
-  github_url: "https://github.com/neondatabase/mcp-server-neon"
-  docker_image: "neondatabase/mcp-server:latest"
-  website: "https://neon.tech"
-  tags: ["official", "database", "postgresql", "serverless"]
-  added_date: "2025-03-16"
-
-# Browser Automation
-- name: "Playwright MCP"
-  description: "Browser automation and web scraping using Playwright for comprehensive browser control."
-  github_url: "https://github.com/executeautomation/mcp-playwright"
-  docker_image: "executeautomation/mcp-playwright:latest"
-  website: ""
-  tags: ["browser", "automation", "scraping", "testing"]
-  added_date: "2025-03-16"
-
-- name: "YouTube Transcript"
-  description: "Fetch YouTube subtitles and transcripts for AI analysis and summarization."
-  github_url: "https://github.com/kimtaeyoon83/mcp-server-youtube-transcript"
-  docker_image: "kimtaeyoon83/youtube-transcript:latest"
-  website: ""
-  tags: ["youtube", "subtitles", "transcription", "video"]
-  added_date: "2025-03-16"
-
-# Database MCP Servers
-- name: "Elasticsearch"
-  description: "MCP Server implementation that provides Elasticsearch interaction for AI assistants."
-  github_url: "https://github.com/cr7258/elasticsearch-mcp-server"
-  docker_image: "cr7258/elasticsearch-mcp:latest"
-  website: ""
-  tags: ["database", "elasticsearch", "search", "analytics"]
-  added_date: "2025-03-16"
-
-- name: "Airtable"
-  description: "Airtable database integration with schema inspection, read and write capabilities."
-  github_url: "https://github.com/domdomegg/airtable-mcp-server"
-  docker_image: "domdomegg/airtable-mcp:latest"
-  website: ""
-  tags: ["database", "airtable", "no-code", "integration"]
-  added_date: "2025-03-16"
-
-- name: "BigQuery"
-  description: "Google BigQuery database integration with schema inspection and query capabilities."
-  github_url: "https://github.com/LucasHild/mcp-server-bigquery"
-  docker_image: "lucashild/bigquery-mcp:latest"
-  website: ""
-  tags: ["database", "bigquery", "google", "analytics"]
+- name: "Chronulus AI"
+  description: "Predict anything with Chronulus AI forecasting and prediction agents to analyze trends and make projections."
+  github_url: "https://github.com/ChronulusAI/chronulus-mcp"
+  docker_image: "chronulusai/mcp:latest"
+  website: "https://www.chronulus.com"
+  tags: ["forecasting", "prediction", "ai"]
   added_date: "2025-03-16"
 
 - name: "ClickHouse"
-  description: "ClickHouse database integration with schema inspection, query capabilities and analytics."
+  description: "Query your ClickHouse database server through natural language to analyze large datasets efficiently."
   github_url: "https://github.com/ClickHouse/mcp-clickhouse"
   docker_image: "clickhouse/mcp:latest"
   website: "https://clickhouse.com"
-  tags: ["database", "clickhouse", "analytics", "sql"]
+  tags: ["database", "analytics", "sql"]
   added_date: "2025-03-16"
 
-- name: "MongoDB"
-  description: "MongoDB integration that enables LLMs to interact directly with MongoDB databases."
-  github_url: "https://github.com/QuantGeekDev/mongo-mcp"
-  docker_image: "quantgeekdev/mongo-mcp:latest"
-  website: ""
-  tags: ["database", "mongodb", "nosql", "document-db"]
+- name: "Cloudflare"
+  description: "Deploy, configure & interrogate your resources on the Cloudflare developer platform (Workers/KV/R2/D1)."
+  github_url: "https://github.com/cloudflare/mcp-server-cloudflare"
+  docker_image: "cloudflare/mcp-server:latest"
+  website: "https://cloudflare.com"
+  tags: ["cloudflare", "serverless", "platform"]
   added_date: "2025-03-16"
 
-- name: "MySQL"
-  description: "MySQL database integration with configurable access controls, schema inspection, and security guidelines."
-  github_url: "https://github.com/designcomputer/mysql_mcp_server"
-  docker_image: "designcomputer/mysql-mcp:latest"
-  website: ""
-  tags: ["database", "mysql", "sql", "relational"]
+- name: "Comet Opik"
+  description: "Query and analyze your Opik logs, traces, prompts and all other telemtry data from your LLMs in natural language."
+  github_url: "https://github.com/comet-ml/opik-mcp"
+  docker_image: "cometml/opik-mcp:latest"
+  website: "https://www.comet.com"
+  tags: ["llm-monitoring", "telemetry", "ai-observability"]
   added_date: "2025-03-16"
 
-- name: "Pinecone"
-  description: "Pinecone integration with vector search capabilities for AI memory and RAG applications."
-  github_url: "https://github.com/sirmews/mcp-pinecone"
-  docker_image: "sirmews/pinecone-mcp:latest"
-  website: ""
-  tags: ["database", "vector", "embeddings", "rag"]
+- name: "Dart"
+  description: "Interact with task, doc, and project data in Dart, an AI-native project management tool for seamless workflows."
+  github_url: "https://github.com/its-dart/dart-mcp-server"
+  docker_image: "itsdart/mcp-server:latest"
+  website: "https://itsdart.com"
+  tags: ["project-management", "ai-native", "tasks"]
   added_date: "2025-03-16"
 
-- name: "Snowflake"
-  description: "Snowflake integration implementing read and write operations as well as insight tracking."
-  github_url: "https://github.com/isaacwasserman/mcp-snowflake-server"
-  docker_image: "isaacwasserman/snowflake-mcp:latest"
-  website: ""
-  tags: ["database", "snowflake", "data-warehouse", "analytics"]
+- name: "E2B"
+  description: "Run code in secure sandboxes hosted by E2B for safe code execution and development assistance."
+  github_url: "https://github.com/e2b-dev/mcp-server"
+  docker_image: "e2b/mcp-server:latest"
+  website: "https://e2b.dev"
+  tags: ["sandbox", "code-execution", "security"]
   added_date: "2025-03-16"
 
-# Developer Tools
+- name: "EduBase"
+  description: "Interact with EduBase, a comprehensive e-learning platform with advanced quizzing, exam management, and content organization."
+  github_url: "https://github.com/EduBase/MCP"
+  docker_image: "edubase/mcp:latest"
+  website: "https://www.edubase.net"
+  tags: ["education", "e-learning", "quizzing"]
+  added_date: "2025-03-16"
+
+- name: "eSignatures"
+  description: "Contract and template management for drafting, reviewing, and sending binding contracts through AI assistance."
+  github_url: "https://github.com/esignaturescom/mcp-server-esignatures"
+  docker_image: "esignatures/mcp-server:latest"
+  website: "https://esignatures.com"
+  tags: ["contracts", "signatures", "legal"]
+  added_date: "2025-03-16"}
+
+- name: "Exa"
+  description: "Search Engine made for AIs by Exa, providing intelligent web search capabilities optimized for AI assistants."
+  github_url: "https://github.com/exa-labs/exa-mcp-server"
+  docker_image: "exa/mcp-server:latest"
+  website: "https://exa.ai"
+  tags: ["search", "ai-optimized", "web"]
+  added_date: "2025-03-16"}
+
+- name: "Fewsats"
+  description: "Enable AI Agents to purchase anything in a secure way using Fewsats payment infrastructure."
+  github_url: "https://github.com/Fewsats/fewsats-mcp"
+  docker_image: "fewsats/mcp:latest"
+  website: "https://fewsats.com"
+  tags: ["payments", "security", "e-commerce"]
+  added_date: "2025-03-16"}
+
+- name: "Financial Datasets"
+  description: "Stock market API made for AI agents to access financial data and perform market analysis."
+  github_url: "https://github.com/financial-datasets/mcp-server"
+  docker_image: "financialdatasets/mcp-server:latest"
+  website: "https://financialdatasets.ai"
+  tags: ["finance", "stocks", "market-data"]
+  added_date: "2025-03-16"}
+
+- name: "Firecrawl"
+  description: "Extract web data with Firecrawl's advanced web crawling and data extraction capabilities."
+  github_url: "https://github.com/mendableai/firecrawl-mcp-server"
+  docker_image: "firecrawl/mcp-server:latest"
+  website: "https://firecrawl.dev"
+  tags: ["web-crawling", "data-extraction", "scraping"]
+  added_date: "2025-03-16"}
+
+- name: "Fireproof"
+  description: "Immutable ledger database with live synchronization for reliable and consistent data storage."
+  github_url: "https://github.com/fireproof-storage/mcp-database-server"
+  docker_image: "fireproof/mcp-database:latest"
+  website: "https://fireproof.storage"
+  tags: ["database", "immutable", "synchronization"]
+  added_date: "2025-03-16"}
+
 - name: "Docker MCP"
-  description: "Docker container management and operations through MCP, allowing AI to control containers."
-  github_url: "https://github.com/QuantGeekDev/docker-mcp"
-  docker_image: "quantgeekdev/docker-mcp:latest"
+  description: "Container management and orchestration tools for Docker, allowing AI to manage Docker containers and resources."
+  github_url: "https://github.com/docker/mcp"
+  docker_image: "docker/mcp:latest"
+  website: "https://www.docker.com"
+  tags: ["docker", "containers", "orchestration"]
+  added_date: "2025-03-16"}
+
+- name: "Kubernetes MCP"
+  description: "Management tools for Kubernetes clusters, enabling AI to deploy and manage containerized applications at scale."
+  github_url: "https://github.com/ckreiling/mcp-server-docker"
+  docker_image: "mcp/kubernetes:latest"
   website: ""
-  tags: ["docker", "containers", "devops", "infrastructure"]
-  added_date: "2025-03-16"
+  tags: ["kubernetes", "containers", "orchestration"]
+  added_date: "2025-03-16"}
 
-- name: "Kubernetes"
-  description: "Connect to Kubernetes cluster and manage pods, deployments, and services using natural language."
-  github_url: "https://github.com/Flux159/mcp-server-kubernetes"
-  docker_image: "flux159/kubernetes-mcp:latest"
-  website: ""
-  tags: ["kubernetes", "k8s", "devops", "orchestration"]
-  added_date: "2025-03-16"
-
-- name: "OpenAPI"
-  description: "Connect any HTTP/REST API server using an Open API spec (v3) to integrate with AI assistants."
-  github_url: "https://github.com/snaggle-ai/openapi-mcp-server"
-  docker_image: "snaggleai/openapi-mcp:latest"
-  website: ""
-  tags: ["openapi", "rest", "api", "integration"]
-  added_date: "2025-03-16"
-
-# File Systems
-- name: "Obsidian"
-  description: "Read and search through your Obsidian vault or any directory containing Markdown notes."
-  github_url: "https://github.com/calclavia/mcp-obsidian"
-  docker_image: "calclavia/obsidian-mcp:latest"
-  website: ""
-  tags: ["markdown", "obsidian", "notes", "knowledge-base"]
-  added_date: "2025-03-16"
-
-- name: "Google Drive"
-  description: "Google Drive integration for listing, reading, and searching files in your Drive."
-  github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/gdrive"
-  docker_image: "mcp/gdrive:latest"
-  website: ""
-  tags: ["google", "drive", "files", "storage"]
-  added_date: "2025-03-16"
-
-# Communication
-- name: "Google Tasks"
-  description: "An MCP server to Manage Google Tasks, helping AI assistants organize your task lists."
-  github_url: "https://github.com/zcaceres/gtasks-mcp"
-  docker_image: "zcaceres/gtasks-mcp:latest"
-  website: ""
-  tags: ["google", "tasks", "productivity", "organization"]
-  added_date: "2025-03-16"
-
-- name: "iMessage"
-  description: "Secure access to your iMessage database through MCP, enabling LLMs to query and analyze conversations."
-  github_url: "https://github.com/hannesrudolph/imessage-query-fastmcp-mcp-server"
-  docker_image: "hannesrudolph/imessage-mcp:latest"
-  website: ""
-  tags: ["imessage", "chat", "messaging", "macos"]
-  added_date: "2025-03-16"
-
-# Search
-- name: "Kagi Search"
-  description: "Kagi search API integration providing high-quality search results through AI assistance."
-  github_url: "https://github.com/ac3xx/mcp-servers-kagi"
-  docker_image: "ac3xx/kagi-mcp:latest"
-  website: "https://kagi.com"
-  tags: ["search", "kagi", "web", "privacy"]
-  added_date: "2025-03-16"
-
-- name: "Tavily"
-  description: "Tavily AI search API for getting relevant search results tailored to AI use cases."
-  github_url: "https://github.com/Tomatio13/mcp-server-tavily"
-  docker_image: "tomatio13/tavily-mcp:latest"
-  website: "https://tavily.com"
-  tags: ["search", "tavily", "web", "rag"]
-  added_date: "2025-03-16"
-
-- name: "ArXiv"
-  description: "Search ArXiv research papers and browse scientific literature with AI assistance."
-  github_url: "https://github.com/blazickjp/arxiv-mcp-server"
-  docker_image: "blazickjp/arxiv-mcp:latest"
-  website: ""
-  tags: ["arxiv", "research", "papers", "science"]
-  added_date: "2025-03-16"
-
-# Version Control
-- name: "GitLab"
-  description: "GitLab platform integration for project management and CI/CD operations with AI assistance."
-  github_url: "https://github.com/modelcontextprotocol/servers/tree/main/src/gitlab"
-  docker_image: "mcp/gitlab:latest"
-  website: ""
-  tags: ["gitlab", "version-control", "ci-cd", "devops"]
-  added_date: "2025-03-16"
-
-# Other Tools
-- name: "Home Assistant"
-  description: "Access Home Assistant data and control devices (lights, switches, thermostats, etc) with AI."
-  github_url: "https://github.com/tevonsb/homeassistant-mcp"
-  docker_image: "tevonsb/homeassistant-mcp:latest"
-  website: ""
-  tags: ["home-assistant", "smart-home", "iot", "automation"]
-  added_date: "2025-03-16"
-
-- name: "Notion"
-  description: "Interact with Notion API to manage pages, databases and content with AI assistance."
-  github_url: "https://github.com/suekou/mcp-notion-server"
-  docker_image: "suekou/notion-mcp:latest"
-  website: ""
-  tags: ["notion", "productivity", "notes", "knowledge-base"]
-  added_date: "2025-03-16"]
+# Add Docker-specific MCP tools here
