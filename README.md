@@ -1,6 +1,6 @@
 # Docker MCP Community Portal
 
-A modern, community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources. This repository powers the website at [ajeetraina.github.io/mcp-community-portal](https://ajeetraina.github.io/mcp-community-portal).
+A modern, community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources. This repository powers the website at [ajeetraina.github.io/docker-mcp-portal](https://ajeetraina.github.io/docker-mcp-portal).
 
 ## About
 
