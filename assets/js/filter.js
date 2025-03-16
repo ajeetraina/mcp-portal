@@ -1,217 +1,233 @@
+/**
+ * Filter functionality for MCP servers and tools
+ */
 document.addEventListener('DOMContentLoaded', function() {
   // Elements
   const searchInput = document.getElementById('search-input');
-  const tagSelect = document.getElementById('tag-filter');
+  const tagFilter = document.getElementById('tag-filter');
   const sortSelect = document.getElementById('sort-select');
-  const mcpGrid = document.querySelector('.mcp-grid');
-  const mcpCards = document.querySelectorAll('.mcp-card');
+  const clearFiltersButton = document.getElementById('clear-filters');
   const activeFiltersContainer = document.querySelector('.active-filters');
-  const clearFiltersBtn = document.getElementById('clear-filters');
-  const copyButtons = document.querySelectorAll('.btn-copy');
   
-  // State
-  let activeFilters = {
-    search: '',
-    tags: [],
-    sort: 'newest'
-  };
+  // Find all cards (MCP servers or tools)
+  const cards = document.querySelectorAll('.mcp-card, .tool-card');
+  if (!cards.length) return; // Exit if no cards found
   
-  // Initialize tag filter options
-  if (tagSelect) {
-    const allTags = new Set();
-    
-    // Collect all available tags
-    mcpCards.forEach(card => {
-      const tags = card.getAttribute('data-tags').split(',');
-      tags.forEach(tag => allTags.add(tag.trim()));
-    });
-    
-    // Add tag options to select
-    Array.from(allTags).sort().forEach(tag => {
-      if (tag) {
-        const option = document.createElement('option');
-        option.value = tag;
-        option.textContent = tag.charAt(0).toUpperCase() + tag.slice(1);
-        tagSelect.appendChild(option);
+  // Collect all unique tags for populating the filter dropdown
+  const tagSet = new Set();
+  cards.forEach(card => {
+    const tags = card.getAttribute('data-tags')?.split(',') || [];
+    tags.forEach(tag => {
+      if (tag && tag.trim()) {
+        tagSet.add(tag.trim());
       }
     });
+  });
+  
+  // Populate tag filter if it exists
+  if (tagFilter) {
+    // Clear existing options except the first one
+    while (tagFilter.options.length > 1) {
+      tagFilter.remove(1);
+    }
+    
+    // Add sorted tags
+    Array.from(tagSet).sort().forEach(tag => {
+      const option = document.createElement('option');
+      option.value = tag;
+      option.textContent = tag.charAt(0).toUpperCase() + tag.slice(1); // Capitalize first letter
+      tagFilter.appendChild(option);
+    });
   }
+  
+  // Filter state
+  let filters = {
+    search: '',
+    tag: '',
+  };
+  
+  // Sorting state
+  let currentSort = 'newest';
   
   // Apply filters and sorting
   function applyFilters() {
-    mcpCards.forEach(card => {
-      const cardName = card.getAttribute('data-name');
-      const cardTags = card.getAttribute('data-tags').split(',');
+    let visibleCount = 0;
+    
+    // Show or hide cards based on filters
+    cards.forEach(card => {
+      const name = card.getAttribute('data-name')?.toLowerCase() || '';
+      const tags = card.getAttribute('data-tags')?.toLowerCase() || '';
+      const description = card.querySelector('.card-description')?.textContent.toLowerCase() || '';
       
-      // Default to visible
-      let isVisible = true;
+      // Check if card matches search filter
+      const matchesSearch = !filters.search || 
+        name.includes(filters.search.toLowerCase()) || 
+        tags.includes(filters.search.toLowerCase()) ||
+        description.includes(filters.search.toLowerCase());
       
-      // Apply search filter
-      if (activeFilters.search) {
-        isVisible = cardName.includes(activeFilters.search.toLowerCase());
+      // Check if card matches tag filter
+      const matchesTag = !filters.tag || tags.split(',').includes(filters.tag.toLowerCase());
+      
+      // Show or hide based on filter match
+      if (matchesSearch && matchesTag) {
+        card.style.display = '';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
       }
-      
-      // Apply tag filters
-      if (isVisible && activeFilters.tags.length > 0) {
-        isVisible = activeFilters.tags.every(tag => 
-          cardTags.includes(tag.toLowerCase())
-        );
-      }
-      
-      // Show/hide card
-      card.style.display = isVisible ? 'flex' : 'none';
     });
+    
+    // Update clear filters button visibility
+    clearFiltersButton.style.display = (filters.search || filters.tag) ? 'block' : 'none';
     
     // Update active filters display
     updateActiveFilters();
-  }
-  
-  // Apply sorting
-  function applySorting() {
-    const sortValue = activeFilters.sort;
-    const cardsArray = Array.from(mcpCards);
     
-    const sortedCards = cardsArray.sort((a, b) => {
-      if (sortValue === 'newest') {
-        const dateA = a.querySelector('.added-date').getAttribute('title');
-        const dateB = b.querySelector('.added-date').getAttribute('title');
-        return new Date(dateB) - new Date(dateA);
-      } else if (sortValue === 'oldest') {
-        const dateA = a.querySelector('.added-date').getAttribute('title');
-        const dateB = b.querySelector('.added-date').getAttribute('title');
-        return new Date(dateA) - new Date(dateB);
-      } else if (sortValue === 'a-z') {
-        const nameA = a.getAttribute('data-name');
-        const nameB = b.getAttribute('data-name');
-        return nameA.localeCompare(nameB);
-      } else if (sortValue === 'z-a') {
-        const nameA = a.getAttribute('data-name');
-        const nameB = b.getAttribute('data-name');
-        return nameB.localeCompare(nameA);
-      }
-      return 0;
-    });
+    // Apply sorting
+    applySorting();
     
-    // Reorder elements in the DOM
-    sortedCards.forEach(card => {
-      mcpGrid.appendChild(card);
-    });
+    // Add no results message if needed
+    const existingNoResults = document.querySelector('.no-results-message');
+    if (existingNoResults) {
+      existingNoResults.remove();
+    }
+    
+    if (visibleCount === 0 && (filters.search || filters.tag)) {
+      const container = cards[0].parentElement;
+      const noResults = document.createElement('div');
+      noResults.className = 'no-results-message';
+      noResults.innerHTML = `
+        <div class="empty-state">
+          <i class="fas fa-search"></i>
+          <h3>No matches found</h3>
+          <p>No items match your current filters. Try adjusting your search criteria.</p>
+          <button class="btn btn-primary" id="reset-search">Reset Filters</button>
+        </div>
+      `;
+      container.appendChild(noResults);
+      
+      // Add event listener to reset button
+      document.getElementById('reset-search').addEventListener('click', clearAllFilters);
+    }
   }
   
   // Update active filters display
   function updateActiveFilters() {
     if (!activeFiltersContainer) return;
     
-    // Clear container
     activeFiltersContainer.innerHTML = '';
     
-    // Add search filter
-    if (activeFilters.search) {
-      const filterEl = document.createElement('div');
-      filterEl.className = 'active-filter';
-      filterEl.innerHTML = `
-        Search: ${activeFilters.search}
-        <span class="filter-remove" data-type="search">×</span>
-      `;
-      activeFiltersContainer.appendChild(filterEl);
+    if (filters.search) {
+      addFilterTag(`Search: ${filters.search}`, () => {
+        filters.search = '';
+        if (searchInput) searchInput.value = '';
+        applyFilters();
+      });
     }
     
-    // Add tag filters
-    activeFilters.tags.forEach(tag => {
-      const filterEl = document.createElement('div');
-      filterEl.className = 'active-filter';
-      filterEl.innerHTML = `
-        Tag: ${tag}
-        <span class="filter-remove" data-type="tag" data-value="${tag}">×</span>
-      `;
-      activeFiltersContainer.appendChild(filterEl);
-    });
-    
-    // Show/hide clear all button
-    if (clearFiltersBtn) {
-      clearFiltersBtn.style.display = 
-        activeFilters.search || activeFilters.tags.length > 0 
-          ? 'inline-flex' 
-          : 'none';
+    if (filters.tag) {
+      addFilterTag(`Tag: ${filters.tag}`, () => {
+        filters.tag = '';
+        if (tagFilter) tagFilter.value = '';
+        applyFilters();
+      });
     }
   }
   
-  // Event handlers
-  if (searchInput) {
-    searchInput.addEventListener('input', function(e) {
-      activeFilters.search = e.target.value.trim().toLowerCase();
-      applyFilters();
-    });
+  // Add a filter tag to the active filters container
+  function addFilterTag(text, removeCallback) {
+    const tag = document.createElement('span');
+    tag.className = 'filter-tag';
+    tag.innerHTML = `${text} <i class="fas fa-times"></i>`;
+    tag.addEventListener('click', removeCallback);
+    activeFiltersContainer.appendChild(tag);
   }
   
-  if (tagSelect) {
-    tagSelect.addEventListener('change', function(e) {
-      const selectedTag = e.target.value;
-      if (selectedTag && !activeFilters.tags.includes(selectedTag)) {
-        activeFilters.tags.push(selectedTag);
-        applyFilters();
-        e.target.value = ''; // Reset select
+  // Apply sorting to visible cards
+  function applySorting() {
+    const container = cards[0].parentElement;
+    const visibleCards = Array.from(cards).filter(card => card.style.display !== 'none');
+    
+    // Sort cards based on current sort option
+    visibleCards.sort((a, b) => {
+      if (currentSort === 'newest') {
+        const dateA = a.querySelector('.added-date')?.textContent.trim() || '';
+        const dateB = b.querySelector('.added-date')?.textContent.trim() || '';
+        return dateB.localeCompare(dateA);
+      } else if (currentSort === 'oldest') {
+        const dateA = a.querySelector('.added-date')?.textContent.trim() || '';
+        const dateB = b.querySelector('.added-date')?.textContent.trim() || '';
+        return dateA.localeCompare(dateB);
+      } else if (currentSort === 'a-z') {
+        return (a.getAttribute('data-name') || '').localeCompare(b.getAttribute('data-name') || '');
+      } else if (currentSort === 'z-a') {
+        return (b.getAttribute('data-name') || '').localeCompare(a.getAttribute('data-name') || '');
       }
+      return 0;
     });
-  }
-  
-  if (sortSelect) {
-    sortSelect.addEventListener('change', function(e) {
-      activeFilters.sort = e.target.value;
-      applySorting();
-    });
-  }
-  
-  // Handle click on active filters (to remove)
-  if (activeFiltersContainer) {
-    activeFiltersContainer.addEventListener('click', function(e) {
-      if (e.target.classList.contains('filter-remove')) {
-        const type = e.target.getAttribute('data-type');
-        
-        if (type === 'search') {
-          activeFilters.search = '';
-          if (searchInput) searchInput.value = '';
-        } else if (type === 'tag') {
-          const value = e.target.getAttribute('data-value');
-          activeFilters.tags = activeFilters.tags.filter(tag => tag !== value);
-        }
-        
-        applyFilters();
-      }
+    
+    // Reorder cards in the DOM
+    visibleCards.forEach(card => {
+      container.appendChild(card);
     });
   }
   
   // Clear all filters
-  if (clearFiltersBtn) {
-    clearFiltersBtn.addEventListener('click', function() {
-      activeFilters.search = '';
-      activeFilters.tags = [];
-      if (searchInput) searchInput.value = '';
+  function clearAllFilters() {
+    filters = {
+      search: '',
+      tag: ''
+    };
+    
+    if (searchInput) searchInput.value = '';
+    if (tagFilter) tagFilter.value = '';
+    
+    applyFilters();
+  }
+  
+  // Event listeners
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      filters.search = this.value.trim();
       applyFilters();
     });
   }
   
-  // Copy to clipboard functionality
-  if (copyButtons.length > 0) {
-    copyButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        const textToCopy = this.getAttribute('data-clipboard-text');
-        
-        navigator.clipboard.writeText(textToCopy).then(() => {
-          // Show success feedback
-          const originalText = this.innerHTML;
-          this.innerHTML = '<i class="fas fa-check"></i>';
-          
-          setTimeout(() => {
-            this.innerHTML = originalText;
-          }, 2000);
-        }).catch(err => {
-          console.error('Failed to copy: ', err);
-        });
-      });
+  if (tagFilter) {
+    tagFilter.addEventListener('change', function() {
+      filters.tag = this.value;
+      applyFilters();
     });
   }
   
-  // Initial sort
-  applySorting();
+  if (sortSelect) {
+    sortSelect.addEventListener('change', function() {
+      currentSort = this.value;
+      applySorting();
+    });
+  }
+  
+  if (clearFiltersButton) {
+    clearFiltersButton.addEventListener('click', clearAllFilters);
+  }
+  
+  // Enable tag filtering from card tags
+  document.querySelectorAll('.tag').forEach(tag => {
+    tag.addEventListener('click', function() {
+      const tagValue = this.getAttribute('data-tag');
+      if (tagFilter) {
+        tagFilter.value = tagValue;
+        filters.tag = tagValue;
+        applyFilters();
+      }
+    });
+  });
+  
+  // Initialize filtering and sorting
+  applyFilters();
+  
+  // Make tags in cards interactive on hover
+  document.querySelectorAll('.tag').forEach(tag => {
+    tag.title = 'Click to filter by this tag';
+  });
 });
