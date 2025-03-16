@@ -4,31 +4,36 @@ A modern, community-driven collection of Docker Model Context Protocol (MCP) ser
 
 ## About
 
-The Docker MCP Community Portal aims to be the most comprehensive, up-to-date resource for Docker implementations of the Model Context Protocol (MCP). MCP is a protocol designed to enable large language models (LLMs) like Claude to interact with external tools and data sources, and this portal specifically focuses on Docker-related MCP servers and tools.
+The Docker MCP Community Portal aims to be the most comprehensive, up-to-date resource for Docker's integration with the Model Context Protocol (MCP). This portal showcases how Docker provides containerized MCP servers and integrates them with tools like Gordon AI.
 
-The Docker MCP Portal improves upon the traditional "awesome list" format by providing:
+## What is the Model Context Protocol (MCP) and Docker's Role?
 
-- A modern, responsive web interface
-- Filtering and search capabilities
-- Detailed information about each Docker MCP server
-- Simple contribution process through pull requests
+The Model Context Protocol (MCP) is an open protocol designed by Anthropic that enables AI assistants such as Claude to interact with external tools and data sources in a standardized way.
 
-## What is the Model Context Protocol (MCP)?
+**Docker's role with MCP includes:**
 
-The Model Context Protocol (MCP) is an open protocol that enables AI assistants such as Claude, ChatGPT, and others to interact with external tools and data sources in a structured way. In the case of Docker MCP implementations, these servers allow AI assistants to manage Docker containers, networks, volumes, images, and other Docker resources through natural language interactions.
+- **Official Container Images**: Docker has partnered with Anthropic to build and maintain container images for MCP servers, available on Docker Hub under the `mcp/` namespace
+- **Gordon AI Integration**: Docker's CLI AI assistant "Gordon" can interact with MCP servers through a `gordon-mcp.yml` configuration file (which is a Docker Compose file)
+- **Security and Isolation**: Running MCP servers as containers provides security, isolation, and resource management benefits
+- **Extensibility**: Users can leverage Docker Compose's features to extend MCP server capabilities with bind mounts, environment variables, and other Docker features
 
-Some key capabilities of Docker MCP servers include:
+## MCP Servers Available on Docker Hub
 
-- Container lifecycle management (create, start, stop, remove)
-- Image handling (build, pull, push, list)
-- Volume and network operations
-- Docker Compose workflow management
-- Resource monitoring and inspection
-- Security controls and access management
+Docker Hub hosts various MCP servers under the `mcp/` namespace, including:
+
+- **mcp/time**: Provides time-related capabilities for AI assistants
+- **mcp/fetch**: Enables web content retrieval
+- **mcp/filesystem**: Allows secure file operations with configurable access controls
+- **mcp/postgres**: Provides database interaction capabilities
+- **mcp/git**: Enables Git repository management
+- **mcp/sqlite**: Offers SQLite database interaction
+- **mcp/github**: Facilitates GitHub repository management
+
+And many more, which are cataloged and documented in this portal.
 
 ## Contributing
 
-We welcome contributions! To add your Docker MCP server or tool to the list:
+We welcome contributions! To add an MCP server or tool to the list:
 
 1. Fork this repository
 2. Add your entry to `_data/mcp_servers.yml` or `_data/mcp_tools.yml`
@@ -63,5 +68,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - All contributors who have submitted their Docker MCP implementations
 - The [Collabnix](https://collabnix.com) community
-- Docker for creating the Model Context Protocol implementation
+- Docker for creating container images for MCP servers
 - Anthropic for developing the Model Context Protocol standard
