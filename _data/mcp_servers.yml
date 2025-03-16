@@ -9,7 +9,7 @@
 #   added_date: When the entry was added (YYYY-MM-DD)
 
 - name: "Docker MCP Official"
-  description: "The official reference implementation of the Model Context Protocol by Docker, providing a standardized interface for model serving."
+  description: "The official Docker implementation of the Model Context Protocol, providing a standardized interface for AI models to interact with Docker resources and containers."
   github_url: "https://github.com/docker/mcp"
   docker_image: "docker/mcp:latest"
   website: "https://www.docker.com/blog/model-context-protocol/"
@@ -17,73 +17,73 @@
   added_date: "2025-03-01"
 
 - name: "Collabnix MCP"
-  description: "Community-driven implementation of the Model Context Protocol maintained by the Collabnix community, optimized for performance and ease of use."
+  description: "Community-driven implementation of the Model Context Protocol for Docker, maintained by the Collabnix community, optimized for performance and ease of use."
   github_url: "https://github.com/collabnix/mcp"
   docker_image: "mcp/collabnix:latest"
   website: "https://collabnix.com"
   tags: ["community", "collabnix", "optimized"]
   added_date: "2025-03-05"
 
-- name: "MCP Playground"
-  description: "Developer-focused playground for experimenting with Model Context Protocol implementations, with tools for testing and development."
-  github_url: "https://github.com/mcp/playground"
-  docker_image: "mcp/playground:latest"
+- name: "Docker Playground MCP"
+  description: "Developer-focused MCP server for experimenting with Docker interactions, featuring tools for testing and safe container experimentation."
+  github_url: "https://github.com/mcp/docker-playground"
+  docker_image: "mcp/docker-playground:latest"
   website: ""
   tags: ["development", "playground", "testing"]
   added_date: "2025-03-10"
 
-- name: "MCP Server"
-  description: "Standard server implementation of the Model Context Protocol with support for multiple model backends and scalable deployment options."
-  github_url: "https://github.com/mcp/server"
-  docker_image: "mcp/server:latest"
+- name: "Docker Management MCP"
+  description: "Model Context Protocol server designed for comprehensive Docker management with support for container lifecycle, networking, and volume operations."
+  github_url: "https://github.com/mcp/docker-management"
+  docker_image: "mcp/docker-management:latest"
   website: ""
-  tags: ["server", "backend", "scalable"]
+  tags: ["management", "orchestration", "scalable"]
   added_date: "2025-03-12"
 
-- name: "MCP Reference"
-  description: "Reference implementation of the Model Context Protocol for developers building compatible services and integrations."
-  github_url: "https://github.com/mcp/reference"
-  docker_image: "mcp/reference:latest"
+- name: "Docker CLI MCP"
+  description: "Reference implementation providing Model Context Protocol access to Docker CLI commands, ideal for AI assistants that need to execute Docker operations."
+  github_url: "https://github.com/mcp/docker-cli"
+  docker_image: "mcp/docker-cli:latest"
   website: ""
-  tags: ["reference", "development", "integration"]
+  tags: ["reference", "cli", "integration"]
   added_date: "2025-03-15"
 
-- name: "FastMCP"
-  description: "High-performance MCP server optimized for low-latency applications with up to 10x higher throughput than standard implementations."
-  github_url: "https://github.com/mcp/fast"
-  docker_image: "mcp/fast:v1.2.0"
-  website: "https://fastmcp.io"
+- name: "FastDocker MCP"
+  description: "High-performance MCP server optimized for low-latency Docker operations with up to 10x higher throughput than standard implementations."
+  github_url: "https://github.com/mcp/fast-docker"
+  docker_image: "mcp/fast-docker:v1.2.0"
+  website: "https://fastdocker.io"
   tags: ["performance", "low-latency", "optimized"]
   added_date: "2025-03-18"
 
-- name: "SecureMCP"
-  description: "Enterprise-grade MCP server with enhanced security features, access controls, and audit logging capabilities for regulated environments."
-  github_url: "https://github.com/mcp/secure"
-  docker_image: "mcp/secure:latest"
-  website: "https://securemcp.com"
+- name: "SecureDocker MCP"
+  description: "Enterprise-grade Docker MCP server with enhanced security features, access controls, and audit logging capabilities for regulated environments."
+  github_url: "https://github.com/mcp/secure-docker"
+  docker_image: "mcp/secure-docker:latest"
+  website: "https://securedocker.com"
   tags: ["security", "enterprise", "access-control", "compliance"]
   added_date: "2025-03-20"
 
-- name: "K8sMCP"
-  description: "Kubernetes-native MCP implementation designed for scalable deployments with automatic service discovery and load balancing."
-  github_url: "https://github.com/mcp/k8s"
-  docker_image: "mcp/k8s:v0.9.5"
-  website: "https://k8smcp.dev"
+- name: "Kubernetes Docker MCP"
+  description: "Kubernetes-native Docker MCP implementation designed for scalable deployments with automatic service discovery and load balancing."
+  github_url: "https://github.com/mcp/k8s-docker"
+  docker_image: "mcp/k8s-docker:v0.9.5"
+  website: "https://k8sdocker.dev"
   tags: ["kubernetes", "cloud-native", "scalable", "orchestration"]
   added_date: "2025-03-22"
 
-- name: "LightMCP"
-  description: "Lightweight MCP server implementation with minimal resource requirements, perfect for edge devices and IoT applications."
-  github_url: "https://github.com/mcp/light"
-  docker_image: "mcp/light:0.8.2"
-  website: "https://lightmcp.org"
+- name: "LightDocker MCP"
+  description: "Lightweight Docker MCP server implementation with minimal resource requirements, perfect for edge devices and IoT applications."
+  github_url: "https://github.com/mcp/light-docker"
+  docker_image: "mcp/light-docker:0.8.2"
+  website: "https://lightdocker.org"
   tags: ["lightweight", "edge", "iot", "minimal"]
   added_date: "2025-03-25"
 
-- name: "AIMCP"
-  description: "AI-focused MCP server with built-in support for common machine learning frameworks and model interoperability."
-  github_url: "https://github.com/mcp/ai"
-  docker_image: "mcp/ai:2.1"
-  website: "https://aimcp.ai"
-  tags: ["ai", "machine-learning", "frameworks", "interoperability"]
+- name: "AI-Docker MCP"
+  description: "AI-focused Docker MCP server with built-in support for ML model deployment, training workloads, and GPU resource management."
+  github_url: "https://github.com/mcp/ai-docker"
+  docker_image: "mcp/ai-docker:2.1"
+  website: "https://aidocker.ai"
+  tags: ["ai", "machine-learning", "gpu", "ml-ops"]
   added_date: "2025-03-27"
