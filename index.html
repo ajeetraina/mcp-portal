@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources.">
+  <meta name="keywords" content="docker, mcp, model, context, protocol, servers, tools, community">
+  <title>Home - Docker MCP Community Portal</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/images/docker-mcp-logo.svg">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
+  <link rel="stylesheet" href="/assets/css/home.css">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Home | Docker MCP Community Portal</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Home" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A community-driven collection of Docker Model Context Protocol servers" />
+<meta property="og:description" content="A community-driven collection of Docker Model Context Protocol servers" />
+<link rel="canonical" href="https://ajeetraina.github.io/" />
+<meta property="og:url" content="https://ajeetraina.github.io/" />
+<meta property="og:site_name" content="Docker MCP Community Portal" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Home" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","description":"A community-driven collection of Docker Model Context Protocol servers","headline":"Home","name":"Docker MCP Community Portal","url":"https://ajeetraina.github.io/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <a href="/">
+          <img src="/assets/images/docker-mcp-logo.svg" alt="Docker MCP Logo">
+          <h1>Docker MCP Community Portal</h1>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="/servers-table.html"><i class="fas fa-server"></i> Servers</a></li>
+          <li><a href="/tools.html"><i class="fas fa-tools"></i> Tools</a></li>
+          <li><a href="/docs/getting-started"><i class="fas fa-book"></i> Docs</a></li>
+          <li><a href="/docs/gordon-ai"><i class="fas fa-robot"></i> Gordon AI</a></li>
+          <li><a href="https://github.com/ajeetraina/docker-mcp-portal" target="_blank">
+            <i class="fab fa-github"></i> GitHub
+          </a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+  
+  <main>
+    <section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="hero-title">Docker Model Context Protocol</h1>
+      <p class="hero-description">
+        Explore Docker's integration with the Model Context Protocol (MCP), offering containerized MCP servers that enable AI assistants to access external tools and data sources.
+      </p>
+      <div class="hero-cta">
+        <a href="#mcp-servers" class="btn btn-primary">
+          <i class="fas fa-server"></i> Explore MCP Servers
+        </a>
+        <a href="/tools.html" class="btn btn-secondary">
+          <i class="fas fa-tools"></i> Browse MCP Tools
+        </a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="/assets/images/mcp-hero.svg" alt="Docker MCP Illustration">
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-server"></i>
+        </div>
+        <h3 class="feature-title">MCP Servers</h3>
+        <p class="feature-description">
+          Discover containerized MCP servers available on Docker Hub under the mcp/ namespace, providing AI assistants with specialized capabilities.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-tools"></i>
+        </div>
+        <h3 class="feature-title">Gordon AI</h3>
+        <p class="feature-description">
+          Learn how to use Docker's Gordon AI CLI assistant with MCP servers through simple Docker Compose configuration.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-book"></i>
+        </div>
+        <h3 class="feature-title">Documentation</h3>
+        <p class="feature-description">
+          Access comprehensive guides on configuring and using Docker-based MCP servers with various AI assistants.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-code-branch"></i>
+        </div>
+        <h3 class="feature-title">Community</h3>
+        <p class="feature-description">
+          Join the community and contribute to the growing ecosystem of Docker MCP servers and tools.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-mcp">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Docker & Model Context Protocol</h2>
+    </div>
+    <div class="about-content">
+      <p>The <strong>Model Context Protocol (MCP)</strong> is an open protocol designed by Anthropic that enables AI assistants such as Claude to interact with external tools and data sources in a standardized way.</p>
+      
+      <p><strong>Docker has partnered with Anthropic</strong> to build and maintain container images for MCP servers, available on Docker Hub under the <code>mcp/</code> namespace. This partnership brings several benefits:</p>
+      
+      <ul class="about-list">
+        <li><i class="fas fa-check"></i> <strong>Containerized MCP Servers:</strong> Run MCP servers as containers with proper isolation and security</li>
+        <li><i class="fas fa-check"></i> <strong>Gordon AI Integration:</strong> Use Docker's CLI AI assistant with MCP servers through gordon-mcp.yml</li>
+        <li><i class="fas fa-check"></i> <strong>Docker Compose Configuration:</strong> Leverage Docker Compose for easy setup with bind mounts and environment variables</li>
+        <li><i class="fas fa-check"></i> <strong>Official Repository:</strong> Access verified MCP server images from Docker Hub</li>
+        <li><i class="fas fa-check"></i> <strong>Customizable Access:</strong> Control which resources MCP servers can access through container configuration</li>
+      </ul>
+      
+      <div class="code-example">
+        <h4>Quick Start with Gordon AI:</h4>
+        <pre><code># Create gordon-mcp.yml
+services:
+  time:
+    image: mcp/time
+  fetch:
+    image: mcp/fetch
+  fs:
+    image: mcp/filesystem
+    command:
+      - /rootfs
+    volumes:
+      - .:/rootfs</code></pre>
+        <p>Then simply run: <code>docker ai 'what time is it in Tokyo?'</code></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mcp-servers" class="mcp-servers">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">MCP Servers on Docker Hub</h2>
+      <p class="section-description">
+        Browse the collection of MCP servers available as Docker containers.
+      </p>
+    </div>
+    
+    <div class="filter-container">
+      <div class="filter-row">
+        <div class="filter-group">
+          <label for="search-input" class="filter-label">Search</label>
+          <input type="text" id="search-input" class="filter-input" placeholder="Search by name...">
+        </div>
+        
+        <div class="filter-group">
+          <label for="tag-filter" class="filter-label">Filter by Tag</label>
+          <select id="tag-filter" class="filter-select">
+            <option value="">Select a tag...</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="sort-select" class="filter-label">Sort by</label>
+          <select id="sort-select" class="filter-select">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="a-z">A to Z</option>
+            <option value="z-a">Z to A</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="view-toggle">
+        <span class="active"><i class="fas fa-th-large"></i> Card View</span>
+        <a href="/servers-table.html" class="btn btn-secondary"><i class="fas fa-table"></i> Table View</a>
+      </div>
+      
+      <div class="active-filters"></div>
+      
+      <button id="clear-filters" class="btn" style="display: none;">
+        <i class="fas fa-times"></i> Clear All Filters
+      </button>
+    </div>
+    
+    <div class="mcp-grid">
+      
+        <div class="mcp-card" 
+     data-name="" 
+     data-tags="">
+  <div class="card-header">
+    <h3 class="card-title"></h3>
+    <div class="card-meta">
+      <span class="added-date" title="Added on ">
+        <i class="far fa-calendar-alt"></i> 
+      </span>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <div class="card-icon">
+      <i class="fab fa-docker"></i>
+    </div>
+    <p class="card-description"></p>
+    
+    <div class="card-tags">
+      
+    </div>
+  </div>
+  
+  <div class="card-footer">
+    <div class="card-links">
+      <a href="" class="btn btn-github" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+      
+      <a href="https://hub.docker.com/r/" class="btn btn-docker" target="_blank" rel="noopener">
+        <i class="fab fa-docker"></i> Docker Hub
+      </a>
+      
+      
+        <a href="" class="btn btn-website" target="_blank" rel="noopener">
+          <i class="fas fa-globe"></i> Website
+        </a>
+      
+    </div>
+    
+    <div class="card-copy">
+      <button class="btn btn-copy" data-clipboard-text="docker pull " title="Copy Docker pull command">
+        <i class="fas fa-copy"></i> Copy
+      </button>
+    </div>
+  </div>
+</div>
+      
+        <div class="mcp-card" 
+     data-name="" 
+     data-tags="">
+  <div class="card-header">
+    <h3 class="card-title"></h3>
+    <div class="card-meta">
+      <span class="added-date" title="Added on ">
+        <i class="far fa-calendar-alt"></i> 
+      </span>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <div class="card-icon">
+      <i class="fab fa-docker"></i>
+    </div>
+    <p class="card-description"></p>
+    
+    <div class="card-tags">
+      
+    </div>
+  </div>
+  
+  <div class="card-footer">
+    <div class="card-links">
+      <a href="" class="btn btn-github" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+      
+      <a href="https://hub.docker.com/r/" class="btn btn-docker" target="_blank" rel="noopener">
+        <i class="fab fa-docker"></i> Docker Hub
+      </a>
+      
+      
+        <a href="" class="btn btn-website" target="_blank" rel="noopener">
+          <i class="fas fa-globe"></i> Website
+        </a>
+      
+    </div>
+    
+    <div class="card-copy">
+      <button class="btn btn-copy" data-clipboard-text="docker pull " title="Copy Docker pull command">
+        <i class="fas fa-copy"></i> Copy
+      </button>
+    </div>
+  </div>
+</div>
+      
+        <div class="mcp-card" 
+     data-name="" 
+     data-tags="">
+  <div class="card-header">
+    <h3 class="card-title"></h3>
+    <div class="card-meta">
+      <span class="added-date" title="Added on ">
+        <i class="far fa-calendar-alt"></i> 
+      </span>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <div class="card-icon">
+      <i class="fab fa-docker"></i>
+    </div>
+    <p class="card-description"></p>
+    
+    <div class="card-tags">
+      
+    </div>
+  </div>
+  
+  <div class="card-footer">
+    <div class="card-links">
+      <a href="" class="btn btn-github" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+      
+      <a href="https://hub.docker.com/r/" class="btn btn-docker" target="_blank" rel="noopener">
+        <i class="fab fa-docker"></i> Docker Hub
+      </a>
+      
+      
+        <a href="" class="btn btn-website" target="_blank" rel="noopener">
+          <i class="fas fa-globe"></i> Website
+        </a>
+      
+    </div>
+    
+    <div class="card-copy">
+      <button class="btn btn-copy" data-clipboard-text="docker pull " title="Copy Docker pull command">
+        <i class="fas fa-copy"></i> Copy
+      </button>
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Want to contribute to the Docker MCP ecosystem?</h2>
+    <p>Add your MCP server or tool to this collection by submitting a pull request. We welcome all community contributions!</p>
+    <div class="cta-buttons">
+      <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" class="btn btn-primary" target="_blank">
+        <i class="fas fa-code-branch"></i> How to Contribute
+      </a>
+      <a href="https://github.com/ajeetraina/docker-mcp-portal" class="btn btn-secondary" target="_blank">
+        <i class="fab fa-github"></i> GitHub Repository
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .view-toggle {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    align-items: center;
+  }
+  
+  .view-toggle .active {
+    font-weight: 600;
+    color: var(--color-secondary);
+    background-color: var(--color-secondary-light);
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--border-radius);
+  }
+  
+  .about-mcp {
+    padding: 4rem 0;
+    background-color: var(--color-secondary-light);
+  }
+  
+  .about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+  }
+  
+  .about-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+  
+  .about-list {
+    list-style: none;
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+  }
+  
+  .about-list li {
+    margin-bottom: 0.75rem;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  
+  .about-list i {
+    position: absolute;
+    left: 0;
+    top: 0.25rem;
+    color: var(--color-primary);
+  }
+  
+  .code-example {
+    background-color: var(--color-secondary-light);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-top: 1.5rem;
+  }
+  
+  .code-example h4 {
+    margin-bottom: 1rem;
+    color: var(--color-secondary);
+  }
+  
+  .code-example pre {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    overflow-x: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .code-example code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9rem;
+  }
+  
+  .code-example p {
+    margin-bottom: 0;
+  }
+  
+  .code-example p code {
+    background-color: #f8f9fa;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+  }
+</style>
+  </main>
+  
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>Docker MCP Community Portal</h3>
+        <p>A community-driven resource for Docker Model Context Protocol.</p>
+        <p>&copy; 2025 Docker MCP Community Portal. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal" target="_blank">
+              <i class="fab fa-github"></i> GitHub Repository
+            </a>
+          </li>
+          <li>
+            <a href="https://collabnix.com" target="_blank">
+              <i class="fas fa-globe"></i> Collabnix Community
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" target="_blank">
+              <i class="fas fa-code-branch"></i> Contribute to MCP Portal
+            </a>
+          </li>
+          <li>
+            <a href="https://hub.docker.com/u/mcp" target="_blank">
+              <i class="fab fa-docker"></i> MCP on Docker Hub
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+  <!-- ClipboardJS for copy functionality -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+  
+  <!-- Custom scripts -->
+  <script src="/assets/js/filter.js"></script>
+  
+  <script>
+    // Initialize clipboard.js
+    document.addEventListener('DOMContentLoaded', function() {
+      var clipboard = new ClipboardJS('.btn-copy');
+      
+      clipboard.on('success', function(e) {
+        var button = e.trigger;
+        var originalText = button.innerHTML;
+        
+        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        button.classList.add('copied');
+        
+        setTimeout(function() {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+        
+        e.clearSelection();
+      });
+    });
+  </script>
+</body>
+</html>
