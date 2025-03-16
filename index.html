@@ -8,7 +8,7 @@ title: Home
     <div class="hero-content">
       <h1 class="hero-title">Docker Model Context Protocol</h1>
       <p class="hero-description">
-        A community-driven collection of Docker implementations for the Model Context Protocol (MCP), enabling AI assistants to interact with Docker resources through natural language.
+        Explore Docker's integration with the Model Context Protocol (MCP), offering containerized MCP servers that enable AI assistants to access external tools and data sources.
       </p>
       <div class="hero-cta">
         <a href="#mcp-servers" class="btn btn-primary">
@@ -34,7 +34,7 @@ title: Home
         </div>
         <h3 class="feature-title">MCP Servers</h3>
         <p class="feature-description">
-          Discover Docker MCP servers that let AI models manage containers, networks, volumes, and more through natural language.
+          Discover containerized MCP servers available on Docker Hub under the mcp/ namespace, providing AI assistants with specialized capabilities.
         </p>
       </div>
       
@@ -42,9 +42,9 @@ title: Home
         <div class="feature-icon">
           <i class="fas fa-tools"></i>
         </div>
-        <h3 class="feature-title">MCP Tools</h3>
+        <h3 class="feature-title">Gordon AI</h3>
         <p class="feature-description">
-          Find SDKs, extensions, and utilities to build and work with Docker MCP servers in your preferred language.
+          Learn how to use Docker's Gordon AI CLI assistant with MCP servers through simple Docker Compose configuration.
         </p>
       </div>
       
@@ -54,7 +54,7 @@ title: Home
         </div>
         <h3 class="feature-title">Documentation</h3>
         <p class="feature-description">
-          Learn about the Model Context Protocol and how Docker has implemented it to enable AI-driven container management.
+          Access comprehensive guides on configuring and using Docker-based MCP servers with various AI assistants.
         </p>
       </div>
       
@@ -64,7 +64,7 @@ title: Home
         </div>
         <h3 class="feature-title">Community</h3>
         <p class="feature-description">
-          Join the community and contribute your own Docker MCP servers and tools to expand the ecosystem.
+          Join the community and contribute to the growing ecosystem of Docker MCP servers and tools.
         </p>
       </div>
     </div>
@@ -74,19 +74,37 @@ title: Home
 <section class="about-mcp">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">What is Model Context Protocol?</h2>
+      <h2 class="section-title">Docker & Model Context Protocol</h2>
     </div>
     <div class="about-content">
-      <p>The <strong>Model Context Protocol (MCP)</strong> is an open protocol designed by Anthropic that enables AI assistants such as Claude, ChatGPT, and others to interact with external tools and data sources in a structured way.</p>
-      <p>Docker has implemented MCP to allow AI assistants to manage Docker resources through natural language conversations. With Docker MCP servers, users can:</p>
+      <p>The <strong>Model Context Protocol (MCP)</strong> is an open protocol designed by Anthropic that enables AI assistants such as Claude to interact with external tools and data sources in a standardized way.</p>
+      
+      <p><strong>Docker has partnered with Anthropic</strong> to build and maintain container images for MCP servers, available on Docker Hub under the <code>mcp/</code> namespace. This partnership brings several benefits:</p>
+      
       <ul class="about-list">
-        <li><i class="fas fa-check"></i> Manage containers with natural language commands</li>
-        <li><i class="fas fa-check"></i> Build, pull, and push Docker images via AI assistants</li>
-        <li><i class="fas fa-check"></i> Configure networks and volumes using conversational interfaces</li>
-        <li><i class="fas fa-check"></i> Monitor container performance and logs with AI-powered insights</li>
-        <li><i class="fas fa-check"></i> Troubleshoot Docker issues with AI assistance</li>
+        <li><i class="fas fa-check"></i> <strong>Containerized MCP Servers:</strong> Run MCP servers as containers with proper isolation and security</li>
+        <li><i class="fas fa-check"></i> <strong>Gordon AI Integration:</strong> Use Docker's CLI AI assistant with MCP servers through gordon-mcp.yml</li>
+        <li><i class="fas fa-check"></i> <strong>Docker Compose Configuration:</strong> Leverage Docker Compose for easy setup with bind mounts and environment variables</li>
+        <li><i class="fas fa-check"></i> <strong>Official Repository:</strong> Access verified MCP server images from Docker Hub</li>
+        <li><i class="fas fa-check"></i> <strong>Customizable Access:</strong> Control which resources MCP servers can access through container configuration</li>
       </ul>
-      <p>Docker MCP servers implement the protocol's standard mechanisms for describing tools, handling prompts, and managing resources, specifically tailored for Docker operations.</p>
+      
+      <div class="code-example">
+        <h4>Quick Start with Gordon AI:</h4>
+        <pre><code># Create gordon-mcp.yml
+services:
+  time:
+    image: mcp/time
+  fetch:
+    image: mcp/fetch
+  fs:
+    image: mcp/filesystem
+    command:
+      - /rootfs
+    volumes:
+      - .:/rootfs</code></pre>
+        <p>Then simply run: <code>docker ai 'what time is it in Tokyo?'</code></p>
+      </div>
     </div>
   </div>
 </section>
@@ -94,9 +112,9 @@ title: Home
 <section id="mcp-servers" class="mcp-servers">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Docker MCP Servers</h2>
+      <h2 class="section-title">MCP Servers on Docker Hub</h2>
       <p class="section-description">
-        Browse the collection of Docker Model Context Protocol (MCP) servers.
+        Browse the collection of MCP servers available as Docker containers.
       </p>
     </div>
     
@@ -147,8 +165,8 @@ title: Home
 
 <section class="cta-section">
   <div class="container">
-    <h2>Want to add your Docker MCP server or tool?</h2>
-    <p>Contribute to this list by submitting a pull request. We welcome all community contributions!</p>
+    <h2>Want to contribute to the Docker MCP ecosystem?</h2>
+    <p>Add your MCP server or tool to this collection by submitting a pull request. We welcome all community contributions!</p>
     <div class="cta-buttons">
       <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" class="btn btn-primary" target="_blank">
         <i class="fas fa-code-branch"></i> How to Contribute
@@ -212,5 +230,40 @@ title: Home
     left: 0;
     top: 0.25rem;
     color: var(--color-primary);
+  }
+  
+  .code-example {
+    background-color: var(--color-secondary-light);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-top: 1.5rem;
+  }
+  
+  .code-example h4 {
+    margin-bottom: 1rem;
+    color: var(--color-secondary);
+  }
+  
+  .code-example pre {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    overflow-x: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .code-example code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9rem;
+  }
+  
+  .code-example p {
+    margin-bottom: 0;
+  }
+  
+  .code-example p code {
+    background-color: #f8f9fa;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
   }
 </style>
