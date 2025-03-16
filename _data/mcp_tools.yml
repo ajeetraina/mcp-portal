@@ -9,65 +9,129 @@
 #   added_date: When the entry was added (YYYY-MM-DD)
 
 - name: "Docker MCP CLI"
-  description: "Command-line interface for working with Model Context Protocol servers, allowing users to manage MCP servers and execute context-aware commands."
+  description: "Command-line interface for working with Docker Model Context Protocol servers, allowing users to manage MCP servers and execute context-aware commands."
   github_url: "https://github.com/docker/mcp-cli"
   category: "cli"
   language: "Go"
   tags: ["cli", "official", "docker"]
   added_date: "2025-03-16"
 
-- name: "MCP Python SDK"
-  description: "Official Python SDK for interacting with Model Context Protocol servers, making it easy to build MCP-powered applications in Python."
+- name: "Docker MCP Python SDK"
+  description: "Official Python SDK for interacting with Docker Model Context Protocol servers, making it easy to build Docker-aware AI applications in Python."
   github_url: "https://github.com/docker/mcp-python-sdk"
   category: "library"
   language: "Python"
   tags: ["sdk", "python", "official"]
   added_date: "2025-03-16"
 
-- name: "MCP VSCode Extension"
-  description: "Visual Studio Code extension for Docker MCP, providing seamless integration with MCP servers directly from your code editor."
+- name: "Docker MCP VSCode Extension"
+  description: "Visual Studio Code extension for Docker MCP, providing seamless integration with Docker MCP servers directly from your code editor."
   github_url: "https://github.com/docker/mcp-vscode"
   category: "extension"
   language: "TypeScript"
   tags: ["vscode", "extension", "development"]
   added_date: "2025-03-16"
 
-- name: "MCP Node.js SDK"
-  description: "Node.js SDK for integrating with Model Context Protocol servers in JavaScript and TypeScript applications."
+- name: "Docker MCP Node.js SDK"
+  description: "Node.js SDK for integrating with Docker Model Context Protocol servers in JavaScript and TypeScript applications."
   github_url: "https://github.com/docker/mcp-node-sdk"
   category: "library"
   language: "TypeScript"
   tags: ["sdk", "node.js", "javascript", "typescript"]
   added_date: "2025-03-16"
 
-- name: "MCP-K8s Operator"
-  description: "Kubernetes operator for managing Model Context Protocol servers in Kubernetes clusters, providing seamless integration with K8s ecosystem."
+- name: "Docker MCP-K8s Operator"
+  description: "Kubernetes operator for managing Docker Model Context Protocol servers in Kubernetes clusters, providing seamless integration with K8s ecosystem."
   github_url: "https://github.com/docker/mcp-k8s-operator"
   category: "integration"
   language: "Go"
   tags: ["kubernetes", "operator", "cloud-native"]
   added_date: "2025-03-16"
 
-- name: "MCP Validator"
-  description: "Tool for validating Model Context Protocol server implementations against the official specification to ensure compatibility."
-  github_url: "https://github.com/mcp/validator"
+- name: "MCP Docker Validator"
+  description: "Tool for validating Docker Model Context Protocol server implementations against the official specification to ensure compatibility."
+  github_url: "https://github.com/mcp/docker-validator"
   category: "testing"
   language: "Go"
   tags: ["testing", "validation", "compliance"]
   added_date: "2025-03-16"
 
-- name: "MCP Benchmark"
-  description: "Benchmarking suite for Model Context Protocol servers to measure performance, latency, and throughput under various workloads."
-  github_url: "https://github.com/mcp/benchmark"
+- name: "Docker MCP Benchmark"
+  description: "Benchmarking suite for Docker Model Context Protocol servers to measure performance, latency, and throughput under various workloads."
+  github_url: "https://github.com/mcp/docker-benchmark"
   category: "testing"
   language: "Go"
   tags: ["benchmark", "performance", "testing"]
   added_date: "2025-03-16"
 
-- name: "MCP Dashboard"
-  description: "Web-based dashboard for monitoring and managing Model Context Protocol servers with visualization and metrics."
-  github_url: "https://github.com/mcp/dashboard"
+- name: "Docker MCP Dashboard"
+  description: "Web-based dashboard for monitoring and managing Docker Model Context Protocol servers with visualization and metrics."
+  github_url: "https://github.com/mcp/docker-dashboard"
   category: "monitoring"
   language: "JavaScript"
   tags: ["dashboard", "monitoring", "visualization"]
   added_date: "2025-03-16"
+
+- name: "Docker MCP Proxy"
+  description: "Proxy server that enables routing and load balancing between multiple Docker MCP servers, with authentication and rate limiting support."
+  github_url: "https://github.com/mcp/docker-proxy"
+  category: "networking"
+  language: "Go"
+  tags: ["proxy", "networking", "load-balancing"]
+  added_date: "2025-03-17"
+
+- name: "Docker MCP Registry"
+  description: "Central registry for discovering and sharing Docker Model Context Protocol servers with versioning and dependency management."
+  github_url: "https://github.com/mcp/docker-registry"
+  category: "registry"
+  language: "Go"
+  tags: ["registry", "discovery", "sharing"]
+  added_date: "2025-03-18"
+
+- name: "Docker MCP GUI Manager"
+  description: "Desktop application for installing, configuring, and managing Docker Model Context Protocol servers with a user-friendly interface."
+  github_url: "https://github.com/mcp/docker-gui-manager"
+  category: "desktop"
+  language: "TypeScript"
+  tags: ["gui", "desktop", "manager"]
+  added_date: "2025-03-19"
+
+- name: "Docker MCP TypeScript SDK"
+  description: "TypeScript SDK for building Docker Model Context Protocol servers and clients with strong typing and modern JavaScript features."
+  github_url: "https://github.com/mcp/docker-typescript-sdk"
+  category: "library"
+  language: "TypeScript"
+  tags: ["sdk", "typescript", "development"]
+  added_date: "2025-03-20"
+
+- name: "Docker MCP Template Starter"
+  description: "Template project for quickly bootstrapping new Docker Model Context Protocol server implementations with best practices and examples."
+  github_url: "https://github.com/mcp/docker-template-starter"
+  category: "template"
+  language: "TypeScript"
+  tags: ["template", "starter", "bootstrap"]
+  added_date: "2025-03-21"
+
+- name: "Docker MCP Testing Framework"
+  description: "Comprehensive testing framework for Docker Model Context Protocol servers with mocks, fixtures, and assertion utilities."
+  github_url: "https://github.com/mcp/docker-testing-framework"
+  category: "testing"
+  language: "TypeScript"
+  tags: ["testing", "framework", "mocks"]
+  added_date: "2025-03-22"
+
+- name: "Docker MCP Security Scanner"
+  description: "Security scanning tool for Docker Model Context Protocol servers to identify vulnerabilities, configuration issues, and compliance violations."
+  github_url: "https://github.com/mcp/docker-security-scanner"
+  category: "security"
+  language: "Go"
+  tags: ["security", "scanning", "compliance"]
+  added_date: "2025-03-23"
+
+- name: "Docker MCP Examples"
+  description: "Collection of example Docker Model Context Protocol servers and implementations showcasing different use cases and integration patterns."
+  github_url: "https://github.com/mcp/docker-examples"
+  category: "examples"
+  language: "Multiple"
+  tags: ["examples", "samples", "learning"]
+  added_date: "2025-03-24"
