@@ -3,59 +3,134 @@ layout: default
 title: Home
 ---
 
-<section class="page-header">
+<section class="hero">
   <div class="container">
-    <h1 class="page-title">Docker Model Context Protocol</h1>
-    <p class="page-description">
-      A community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources.
-    </p>
-  </div>
-</section>
-
-<section class="container">
-  <div class="filter-container">
-    <div class="filter-row">
-      <div class="filter-group">
-        <label for="search-input" class="filter-label">Search</label>
-        <input type="text" id="search-input" class="filter-input" placeholder="Search by name...">
-      </div>
-      
-      <div class="filter-group">
-        <label for="tag-filter" class="filter-label">Filter by Tag</label>
-        <select id="tag-filter" class="filter-select">
-          <option value="">Select a tag...</option>
-        </select>
-      </div>
-      
-      <div class="filter-group">
-        <label for="sort-select" class="filter-label">Sort by</label>
-        <select id="sort-select" class="filter-select">
-          <option value="newest">Newest First</option>
-          <option value="oldest">Oldest First</option>
-          <option value="a-z">A to Z</option>
-          <option value="z-a">Z to A</option>
-        </select>
+    <div class="hero-content">
+      <h1 class="hero-title">Docker Model Context Protocol</h1>
+      <p class="hero-description">
+        A community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources for AI/ML practitioners and developers.
+      </p>
+      <div class="hero-cta">
+        <a href="#mcp-servers" class="btn btn-primary">
+          <i class="fas fa-server"></i> Explore MCP Servers
+        </a>
+        <a href="/tools" class="btn btn-secondary">
+          <i class="fas fa-tools"></i> Browse MCP Tools
+        </a>
       </div>
     </div>
-    
-    <div class="active-filters"></div>
-    
-    <button id="clear-filters" class="btn" style="display: none;">
-      <i class="fas fa-times"></i> Clear All Filters
-    </button>
-  </div>
-  
-  <div class="mcp-grid">
-    {% for server in site.data.mcp_servers %}
-      {% include mcp_card.html server=server %}
-    {% endfor %}
+    <div class="hero-image">
+      <img src="{{ '/assets/images/mcp-hero.svg' | relative_url }}" alt="Docker MCP Illustration">
+    </div>
   </div>
 </section>
 
-<section class="container" style="margin-top: 3rem; text-align: center;">
-  <h2>Want to add your MCP server?</h2>
-  <p>Contribute to this list by submitting a pull request.</p>
-  <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" class="btn btn-primary" style="margin-top: 1rem;">
-    <i class="fas fa-code-branch"></i> Learn How to Contribute
-  </a>
+<section class="features">
+  <div class="container">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-server"></i>
+        </div>
+        <h3 class="feature-title">MCP Servers</h3>
+        <p class="feature-description">
+          Discover a variety of MCP server implementations with different optimizations and features.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-tools"></i>
+        </div>
+        <h3 class="feature-title">MCP Tools</h3>
+        <p class="feature-description">
+          Find tools and libraries to integrate MCP into your development workflow.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-book"></i>
+        </div>
+        <h3 class="feature-title">Documentation</h3>
+        <p class="feature-description">
+          Learn about the Model Context Protocol and how to use it in your projects.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-code-branch"></i>
+        </div>
+        <h3 class="feature-title">Community</h3>
+        <p class="feature-description">
+          Join the community and contribute your own MCP servers and tools.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mcp-servers" class="mcp-servers">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">MCP Servers</h2>
+      <p class="section-description">
+        Browse the collection of Docker Model Context Protocol (MCP) servers.
+      </p>
+    </div>
+    
+    <div class="filter-container">
+      <div class="filter-row">
+        <div class="filter-group">
+          <label for="search-input" class="filter-label">Search</label>
+          <input type="text" id="search-input" class="filter-input" placeholder="Search by name...">
+        </div>
+        
+        <div class="filter-group">
+          <label for="tag-filter" class="filter-label">Filter by Tag</label>
+          <select id="tag-filter" class="filter-select">
+            <option value="">Select a tag...</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="sort-select" class="filter-label">Sort by</label>
+          <select id="sort-select" class="filter-select">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="a-z">A to Z</option>
+            <option value="z-a">Z to A</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="active-filters"></div>
+      
+      <button id="clear-filters" class="btn" style="display: none;">
+        <i class="fas fa-times"></i> Clear All Filters
+      </button>
+    </div>
+    
+    <div class="mcp-grid">
+      {% for server in site.data.mcp_servers %}
+        {% include mcp_card.html server=server %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Want to add your MCP server or tool?</h2>
+    <p>Contribute to this list by submitting a pull request. We welcome all community contributions!</p>
+    <div class="cta-buttons">
+      <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" class="btn btn-primary" target="_blank">
+        <i class="fas fa-code-branch"></i> How to Contribute
+      </a>
+      <a href="https://github.com/ajeetraina/docker-mcp-portal" class="btn btn-secondary" target="_blank">
+        <i class="fab fa-github"></i> GitHub Repository
+      </a>
+    </div>
+  </div>
 </section>
