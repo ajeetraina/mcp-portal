@@ -1,0 +1,35 @@
+# Model Context Protocol Servers
+# Format:
+# - name: Name of the MCP server
+#   description: A brief description of the server's features or purpose
+#   github_url: Link to the GitHub repository
+#   docker_image: Docker image name and tag
+#   website: Optional website URL
+#   tags: List of relevant tags
+#   added_date: When the entry was added (YYYY-MM-DD)
+
+- name: "MCP Reference Implementation"
+  description: "Official reference implementation of the Model Context Protocol"
+  github_url: "https://github.com/docker/mcp-reference"
+  docker_image: "docker/mcp-reference:latest"
+  website: "https://www.docker.com/mcp"
+  tags: ["official", "reference", "docker"]
+  added_date: "2025-03-01"
+
+- name: "FastMCP"
+  description: "High-performance MCP server optimized for low-latency applications"
+  github_url: "https://github.com/example/fastmcp"
+  docker_image: "example/fastmcp:v1.2.0"
+  website: ""
+  tags: ["fast", "performance", "optimized"]
+  added_date: "2025-03-05"
+
+- name: "SecureMCP"
+  description: "MCP server with enhanced security features and access controls"
+  github_url: "https://github.com/example/securemcp"
+  docker_image: "example/securemcp:latest"
+  website: "https://securemcp.example.com"
+  tags: ["security", "enterprise", "access-control"]
+  added_date: "2025-03-10"
+
+# Add more entries following the same format
