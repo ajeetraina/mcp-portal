@@ -1,0 +1,68 @@
+---
+layout: default
+title: MCP Tools
+---
+
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title">Docker MCP Tools</h1>
+    <p class="page-description">
+      A collection of tools, libraries, and integrations for working with Docker Model Context Protocol (MCP).
+    </p>
+  </div>
+</section>
+
+<section class="container">
+  <div class="filter-container">
+    <div class="filter-row">
+      <div class="filter-group">
+        <label for="search-input" class="filter-label">Search</label>
+        <input type="text" id="search-input" class="filter-input" placeholder="Search by name...">
+      </div>
+      
+      <div class="filter-group">
+        <label for="category-filter" class="filter-label">Filter by Category</label>
+        <select id="category-filter" class="filter-select">
+          <option value="">Select a category...</option>
+          <option value="cli">CLI</option>
+          <option value="library">Library</option>
+          <option value="extension">Extension</option>
+          <option value="integration">Integration</option>
+          <option value="testing">Testing</option>
+          <option value="monitoring">Monitoring</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label for="language-filter" class="filter-label">Filter by Language</label>
+        <select id="language-filter" class="filter-select">
+          <option value="">Select a language...</option>
+          <option value="go">Go</option>
+          <option value="python">Python</option>
+          <option value="javascript">JavaScript</option>
+          <option value="typescript">TypeScript</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="active-filters"></div>
+    
+    <button id="clear-filters" class="btn" style="display: none;">
+      <i class="fas fa-times"></i> Clear All Filters
+    </button>
+  </div>
+  
+  <div class="tools-grid">
+    {% for tool in site.data.mcp_tools %}
+      {% include tool_card.html tool=tool %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="container" style="margin-top: 3rem; text-align: center;">
+  <h2>Want to add your MCP tool?</h2>
+  <p>Contribute to this list by submitting a pull request.</p>
+  <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" class="btn btn-primary" style="margin-top: 1rem;">
+    <i class="fas fa-code-branch"></i> Learn How to Contribute
+  </a>
+</section>
