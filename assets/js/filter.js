@@ -1,114 +1,159 @@
 /**
- * Filter functionality for MCP servers and tools
+ * MCP Portal Filtering System
+ * Handles filtering of MCP servers and tools by search terms and tags
  */
+
 document.addEventListener('DOMContentLoaded', function() {
-  // Elements
+  // Get filter elements
   const searchInput = document.getElementById('search-input');
   const tagFilter = document.getElementById('tag-filter');
   const sortSelect = document.getElementById('sort-select');
   const clearFiltersButton = document.getElementById('clear-filters');
   const activeFiltersContainer = document.querySelector('.active-filters');
   
-  // Find all cards (MCP servers or tools)
-  const cards = document.querySelectorAll('.mcp-card, .tool-card');
-  if (!cards.length) return; // Exit if no cards found
+  // Check if we're on the MCP servers page or tools page
+  const isMcpServersPage = document.querySelector('.mcp-grid') !== null;
+  const isToolsPage = document.querySelector('.tools-grid') !== null;
   
-  // Collect all unique tags for populating the filter dropdown
-  const tagSet = new Set();
-  cards.forEach(card => {
-    const tags = card.getAttribute('data-tags')?.split(',') || [];
-    tags.forEach(tag => {
-      if (tag && tag.trim()) {
-        tagSet.add(tag.trim());
-      }
-    });
-  });
-  
-  // Populate tag filter if it exists
-  if (tagFilter) {
-    // Clear existing options except the first one
-    while (tagFilter.options.length > 1) {
-      tagFilter.remove(1);
-    }
-    
-    // Add sorted tags
-    Array.from(tagSet).sort().forEach(tag => {
-      const option = document.createElement('option');
-      option.value = tag;
-      option.textContent = tag.charAt(0).toUpperCase() + tag.slice(1); // Capitalize first letter
-      tagFilter.appendChild(option);
-    });
+  // Exit if we're not on a page with filtering
+  if (!searchInput || (!isMcpServersPage && !isToolsPage)) {
+    return;
   }
   
-  // Filter state
+  // Get all cards depending on the page
+  const cards = isMcpServersPage 
+    ? document.querySelectorAll('.mcp-card')
+    : document.querySelectorAll('.tool-card');
+  
+  // Initialize filters object
   let filters = {
     search: '',
     tag: '',
+    sort: sortSelect ? sortSelect.value : 'newest'
   };
   
-  // Sorting state
-  let currentSort = 'newest';
+  // Initialize tag filter options
+  if (tagFilter) {
+    initializeTagOptions();
+  }
   
-  // Apply filters and sorting
+  // Apply filters function
   function applyFilters() {
-    let visibleCount = 0;
-    
-    // Show or hide cards based on filters
-    cards.forEach(card => {
-      const name = card.getAttribute('data-name')?.toLowerCase() || '';
-      const tags = card.getAttribute('data-tags')?.toLowerCase() || '';
-      const description = card.querySelector('.card-description')?.textContent.toLowerCase() || '';
-      
-      // Check if card matches search filter
-      const matchesSearch = !filters.search || 
-        name.includes(filters.search.toLowerCase()) || 
-        tags.includes(filters.search.toLowerCase()) ||
-        description.includes(filters.search.toLowerCase());
-      
-      // Check if card matches tag filter
-      const matchesTag = !filters.tag || tags.split(',').includes(filters.tag.toLowerCase());
-      
-      // Show or hide based on filter match
-      if (matchesSearch && matchesTag) {
-        card.style.display = '';
-        visibleCount++;
+    // Show/hide clear filters button
+    if (clearFiltersButton) {
+      if (filters.search || filters.tag) {
+        clearFiltersButton.style.display = 'inline-flex';
       } else {
-        card.style.display = 'none';
+        clearFiltersButton.style.display = 'none';
       }
-    });
-    
-    // Update clear filters button visibility
-    clearFiltersButton.style.display = (filters.search || filters.tag) ? 'block' : 'none';
+    }
     
     // Update active filters display
     updateActiveFilters();
     
-    // Apply sorting
-    applySorting();
+    // Filter the cards
+    filterCards();
     
-    // Add no results message if needed
-    const existingNoResults = document.querySelector('.no-results-message');
-    if (existingNoResults) {
-      existingNoResults.remove();
-    }
+    // Sort cards
+    sortCards();
     
-    if (visibleCount === 0 && (filters.search || filters.tag)) {
-      const container = cards[0].parentElement;
-      const noResults = document.createElement('div');
-      noResults.className = 'no-results-message';
-      noResults.innerHTML = `
-        <div class="empty-state">
-          <i class="fas fa-search"></i>
-          <h3>No matches found</h3>
-          <p>No items match your current filters. Try adjusting your search criteria.</p>
-          <button class="btn btn-primary" id="reset-search">Reset Filters</button>
-        </div>
-      `;
-      container.appendChild(noResults);
+    // Show empty state message if no results
+    showEmptyStateIfNeeded();
+  }
+  
+  // Initialize tag options in the tag filter dropdown
+  function initializeTagOptions() {
+    const tags = new Set();
+    
+    // Collect all tags from cards
+    cards.forEach(card => {
+      const cardTags = card.getAttribute('data-tags').split(',');
+      cardTags.forEach(tag => {
+        if (tag) tags.add(tag.trim());
+      });
+    });
+    
+    // Add tag options to select
+    tags.forEach(tag => {
+      const option = document.createElement('option');
+      option.value = tag;
+      option.textContent = tag.charAt(0).toUpperCase() + tag.slice(1);
+      tagFilter.appendChild(option);
+    });
+  }
+  
+  // Filter cards based on current filters
+  function filterCards() {
+    cards.forEach(card => {
+      const name = card.getAttribute('data-name').toLowerCase();
+      const tags = card.getAttribute('data-tags').toLowerCase();
+      let description = '';
       
-      // Add event listener to reset button
-      document.getElementById('reset-search').addEventListener('click', clearAllFilters);
+      // Get description text if it exists
+      const descElement = card.querySelector('.card-description');
+      if (descElement) {
+        description = descElement.textContent.toLowerCase();
+      }
+      
+      // Check if card matches all filters
+      const matchesSearch = !filters.search || 
+                           name.includes(filters.search.toLowerCase()) || 
+                           tags.includes(filters.search.toLowerCase()) ||
+                           description.includes(filters.search.toLowerCase());
+                           
+      const matchesTag = !filters.tag || tags.split(',').includes(filters.tag.toLowerCase());
+      
+      // Show or hide the card based on filters
+      if (matchesSearch && matchesTag) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+  
+  // Sort cards based on sort selection
+  function sortCards() {
+    if (!sortSelect) return;
+    
+    const container = isMcpServersPage ? document.querySelector('.mcp-grid') : document.querySelector('.tools-grid');
+    const cardsArray = Array.from(cards).filter(card => card.style.display !== 'none');
+    
+    switch (filters.sort) {
+      case 'newest':
+        cardsArray.sort((a, b) => {
+          const dateA = new Date(a.querySelector('.added-date').textContent.trim());
+          const dateB = new Date(b.querySelector('.added-date').textContent.trim());
+          return dateB - dateA;
+        });
+        break;
+      case 'oldest':
+        cardsArray.sort((a, b) => {
+          const dateA = new Date(a.querySelector('.added-date').textContent.trim());
+          const dateB = new Date(b.querySelector('.added-date').textContent.trim());
+          return dateA - dateB;
+        });
+        break;
+      case 'a-z':
+        cardsArray.sort((a, b) => {
+          const nameA = a.getAttribute('data-name').toLowerCase();
+          const nameB = b.getAttribute('data-name').toLowerCase();
+          return nameA.localeCompare(nameB);
+        });
+        break;
+      case 'z-a':
+        cardsArray.sort((a, b) => {
+          const nameA = a.getAttribute('data-name').toLowerCase();
+          const nameB = b.getAttribute('data-name').toLowerCase();
+          return nameB.localeCompare(nameA);
+        });
+        break;
     }
+    
+    // Append sorted cards back to container
+    cardsArray.forEach(card => {
+      container.appendChild(card);
+    });
   }
   
   // Update active filters display
@@ -118,77 +163,62 @@ document.addEventListener('DOMContentLoaded', function() {
     activeFiltersContainer.innerHTML = '';
     
     if (filters.search) {
-      addFilterTag(`Search: ${filters.search}`, () => {
+      const filterTag = createFilterTag('Search: ' + filters.search, () => {
         filters.search = '';
-        if (searchInput) searchInput.value = '';
+        searchInput.value = '';
         applyFilters();
       });
+      activeFiltersContainer.appendChild(filterTag);
     }
     
     if (filters.tag) {
-      addFilterTag(`Tag: ${filters.tag}`, () => {
+      const tagName = tagFilter.options[tagFilter.selectedIndex].text;
+      const filterTag = createFilterTag('Tag: ' + tagName, () => {
         filters.tag = '';
-        if (tagFilter) tagFilter.value = '';
+        tagFilter.value = '';
         applyFilters();
       });
+      activeFiltersContainer.appendChild(filterTag);
     }
   }
   
-  // Add a filter tag to the active filters container
-  function addFilterTag(text, removeCallback) {
+  // Create a filter tag element
+  function createFilterTag(text, removeCallback) {
     const tag = document.createElement('span');
     tag.className = 'filter-tag';
-    tag.innerHTML = `${text} <i class="fas fa-times"></i>`;
+    tag.innerHTML = text + ' <i class="fas fa-times"></i>';
     tag.addEventListener('click', removeCallback);
-    activeFiltersContainer.appendChild(tag);
+    return tag;
   }
   
-  // Apply sorting to visible cards
-  function applySorting() {
-    const container = cards[0].parentElement;
+  // Show empty state message if no results
+  function showEmptyStateIfNeeded() {
+    const container = isMcpServersPage ? document.querySelector('.mcp-grid') : document.querySelector('.tools-grid');
     const visibleCards = Array.from(cards).filter(card => card.style.display !== 'none');
     
-    // Sort cards based on current sort option
-    visibleCards.sort((a, b) => {
-      if (currentSort === 'newest') {
-        const dateA = a.querySelector('.added-date')?.textContent.trim() || '';
-        const dateB = b.querySelector('.added-date')?.textContent.trim() || '';
-        return dateB.localeCompare(dateA);
-      } else if (currentSort === 'oldest') {
-        const dateA = a.querySelector('.added-date')?.textContent.trim() || '';
-        const dateB = b.querySelector('.added-date')?.textContent.trim() || '';
-        return dateA.localeCompare(dateB);
-      } else if (currentSort === 'a-z') {
-        return (a.getAttribute('data-name') || '').localeCompare(b.getAttribute('data-name') || '');
-      } else if (currentSort === 'z-a') {
-        return (b.getAttribute('data-name') || '').localeCompare(a.getAttribute('data-name') || '');
-      }
-      return 0;
-    });
+    // Remove existing empty state message if any
+    const existingEmptyState = container.querySelector('.empty-state');
+    if (existingEmptyState) {
+      container.removeChild(existingEmptyState);
+    }
     
-    // Reorder cards in the DOM
-    visibleCards.forEach(card => {
-      container.appendChild(card);
-    });
+    // Show empty state message if no results
+    if (visibleCards.length === 0) {
+      const emptyState = document.createElement('div');
+      emptyState.className = 'empty-state';
+      emptyState.innerHTML = `
+        <i class="fas fa-search"></i>
+        <h3>No results found</h3>
+        <p>Try adjusting your search or filters</p>
+      `;
+      container.appendChild(emptyState);
+    }
   }
   
-  // Clear all filters
-  function clearAllFilters() {
-    filters = {
-      search: '',
-      tag: ''
-    };
-    
-    if (searchInput) searchInput.value = '';
-    if (tagFilter) tagFilter.value = '';
-    
-    applyFilters();
-  }
-  
-  // Event listeners
+  // Add event listeners for filters
   if (searchInput) {
     searchInput.addEventListener('input', function() {
-      filters.search = this.value.trim();
+      filters.search = this.value;
       applyFilters();
     });
   }
@@ -202,32 +232,37 @@ document.addEventListener('DOMContentLoaded', function() {
   
   if (sortSelect) {
     sortSelect.addEventListener('change', function() {
-      currentSort = this.value;
-      applySorting();
+      filters.sort = this.value;
+      applyFilters();
     });
   }
   
-  if (clearFiltersButton) {
-    clearFiltersButton.addEventListener('click', clearAllFilters);
-  }
-  
-  // Enable tag filtering from card tags
+  // Add event listeners for tag clicks
   document.querySelectorAll('.tag').forEach(tag => {
     tag.addEventListener('click', function() {
       const tagValue = this.getAttribute('data-tag');
-      if (tagFilter) {
-        tagFilter.value = tagValue;
-        filters.tag = tagValue;
-        applyFilters();
-      }
+      filters.tag = tagValue;
+      if (tagFilter) tagFilter.value = tagValue;
+      applyFilters();
     });
   });
   
-  // Initialize filtering and sorting
-  applyFilters();
+  // Clear all filters
+  if (clearFiltersButton) {
+    clearFiltersButton.addEventListener('click', function() {
+      filters = {
+        search: '',
+        tag: '',
+        sort: sortSelect ? sortSelect.value : 'newest'
+      };
+      
+      if (searchInput) searchInput.value = '';
+      if (tagFilter) tagFilter.value = '';
+      
+      applyFilters();
+    });
+  }
   
-  // Make tags in cards interactive on hover
-  document.querySelectorAll('.tag').forEach(tag => {
-    tag.title = 'Click to filter by this tag';
-  });
+  // Initialize the filters on page load
+  applyFilters();
 });
