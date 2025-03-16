@@ -5,83 +5,149 @@ title: Getting Started with Docker MCP
 
 # Getting Started with Docker MCP
 
-Welcome to the Docker Model Context Protocol (MCP) Community Portal! This guide will help you get started with MCP, understand its core concepts, and show you how to use it in your projects.
+Welcome to the Docker Model Context Protocol (MCP) Community Portal! This guide will help you understand how Docker integrates with the Model Context Protocol and show you how to get started using Docker's containerized MCP servers.
 
-## What is Docker MCP?
+## What is MCP and Docker's Role?
 
-The Docker Model Context Protocol (MCP) is a standardized interface for model serving. It provides a consistent way to interact with AI/ML models, making it easier to build, deploy, and manage model-based applications.
+The Model Context Protocol (MCP) is an open protocol designed by Anthropic that standardizes how applications provide context to large language models. MCP functions as a client-server protocol, where the client (e.g., an application like Gordon or Claude Desktop) sends requests, and the server processes those requests to deliver the necessary context to the AI.
 
-## Core Concepts
+Docker has partnered with Anthropic to build container images for the reference implementations of MCP servers, available on Docker Hub under the `mcp/` namespace.
 
-### MCP Servers
+## Using MCP Servers with Docker
 
-MCP Servers are implementations of the Model Context Protocol that handle requests to AI models. They provide a standardized API that applications can use to interact with models, regardless of the underlying model implementation.
+There are two primary ways to use Docker's MCP server containers:
 
-### Context
+### 1. With Gordon (Docker's AI CLI tool)
 
-Context is a key concept in MCP. It refers to the information that is passed to the model to influence its output. This can include conversation history, user preferences, or any other information that helps the model generate more relevant responses.
+Gordon is Docker's command-line AI assistant. When you run the `docker ai` command in your terminal, Gordon looks for a `gordon-mcp.yml` file in your working directory. This file is a Docker Compose file that configures MCP servers as Compose services for Gordon to access.
 
-### Models
+#### Simple Example with the Time Server
 
-Models are the AI/ML models that perform the actual computation. MCP provides a standard way to interact with these models, making it easier to switch between different model implementations.
+Create a `gordon-mcp.yml` file in your project directory with the following content:
 
-## Getting Started
-
-### 1. Choose an MCP Server
-
-Browse the [MCP Servers list](/) on our portal and choose one that fits your needs. Each server has different features, optimizations, and use cases.
-
-### 2. Pull the Docker Image
-
-Once you've chosen an MCP server, pull the Docker image:
-
-```bash
-docker pull mcp/server:latest
+```yaml
+services:
+  time:
+    image: mcp/time
 ```
 
-### 3. Run the MCP Server
-
-Run the MCP server as a Docker container:
+Now you can ask Gordon time-related questions:
 
 ```bash
-docker run -p 8080:8080 mcp/server:latest
+$ docker ai 'what time is it now in Tokyo?'
+
+    • Calling get_current_time
+
+  The current time in Tokyo, Japan is 11:24 AM on March 17, 2025.
 ```
 
-### 4. Interact with the MCP Server
+#### Using Multiple MCP Servers
 
-You can now interact with the MCP server using HTTP requests or by using one of the MCP client libraries available in the [Tools section](/tools).
+Gordon can work with any number of MCP servers. Here's an example that provides both web and filesystem access:
 
-## Example Request
+```yaml
+services:
+  fetch:
+    image: mcp/fetch
+  fs:
+    image: mcp/filesystem
+    command:
+      - /rootfs
+    volumes:
+      - .:/rootfs
+```
 
-Here's a simple example of how to send a request to an MCP server:
+This configuration allows Gordon to fetch web content and interact with files in your current directory.
 
-```bash
-curl -X POST http://localhost:8080/v1/generate \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "example-model",
-    "prompt": "Hello, world!",
-    "context": {
-      "history": []
-    }
-  }'
+### 2. With Claude Desktop or Other MCP Clients
+
+You can also use Docker's MCP server containers with other MCP-compatible clients like Claude Desktop:
+
+1. **Pull an MCP server container**:
+
+   ```bash
+   docker pull mcp/filesystem
+   ```
+
+2. **Run the container**:
+
+   ```bash
+   docker run -p 8080:8080 -v /path/to/files:/rootfs mcp/filesystem /rootfs
+   ```
+
+3. **Configure your MCP client** to connect to the running container.
+
+## Available MCP Servers on Docker Hub
+
+Docker provides a variety of MCP servers under the `mcp/` namespace, including:
+
+### Known Working MCP Servers with Gordon
+
+- **mcp/time**: Time and timezone capabilities
+- **mcp/fetch**: Web content retrieval
+- **mcp/filesystem**: Secure file operations
+- **mcp/postgres**: PostgreSQL database interaction
+- **mcp/git**: Git repository management
+- **mcp/sqlite**: SQLite database interaction
+- **mcp/github**: GitHub repository management 
+
+### Additional MCP Servers (May Require API Tokens)
+
+- **mcp/brave-search**: Web search capabilities
+- **mcp/gdrive**: Google Drive integration
+- **mcp/slack**: Slack messaging capabilities
+- **mcp/google-maps**: Location services
+- **mcp/gitlab**: GitLab integration
+- **mcp/everything**: Reference implementation with various tools
+- **mcp/aws-kb-retrieval-server**: AWS Knowledge Base interaction
+- **mcp/sentry**: Error tracking integration
+
+## Advanced Usage with Docker Compose
+
+Since the `gordon-mcp.yml` file is a Docker Compose file, you can use all the standard Docker Compose features to configure your MCP servers:
+
+### Environment Variables
+
+```yaml
+services:
+  github:
+    image: mcp/github
+    environment:
+      - GITHUB_TOKEN=your_token_here
+```
+
+### Volume Mounts
+
+```yaml
+services:
+  fs:
+    image: mcp/filesystem
+    command:
+      - /rootfs
+    volumes:
+      - ./projects:/rootfs/projects
+      - ./documents:/rootfs/documents
+```
+
+### Network Configuration
+
+```yaml
+services:
+  postgres:
+    image: mcp/postgres
+    networks:
+      - db_network
+
+networks:
+  db_network:
+    external: true
 ```
 
 ## Next Steps
 
-- Explore the [MCP Servers](/) list to find servers with different features and optimizations
-- Check out the [MCP Tools](/tools) section for client libraries, extensions, and other tools
-- Contribute to the MCP community by [adding your own MCP server or tool](https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md)
+Now that you understand Docker's integration with MCP, here are some suggestions for next steps:
 
-## Resources
-
-- [Docker MCP GitHub Repository](https://github.com/docker/mcp)
-- [Docker MCP Documentation](https://docs.docker.com/mcp/)
-- [Docker Blog: Introducing MCP](https://www.docker.com/blog/model-context-protocol/)
-
-## Community
-
-Join the MCP community to discuss, collaborate, and contribute to the development of MCP:
-
-- [GitHub Repository](https://github.com/ajeetraina/docker-mcp-portal)
-- [Collabnix Community](https://collabnix.com)
+1. **Explore Available Servers**: Browse our [catalog of MCP servers](/servers-table.html) to discover their capabilities
+2. **Try Different Configurations**: Experiment with different combinations of MCP servers in your `gordon-mcp.yml` file
+3. **Build Custom Solutions**: Combine MCP servers with your existing Docker workflows and infrastructure
+4. **Contribute**: If you develop your own MCP server, consider containerizing it and sharing it with the community
