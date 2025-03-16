@@ -3,19 +3,20 @@
     <div class="header-content">
       <div class="logo">
         <a href="{{ '/' | relative_url }}">
+          <img src="{{ '/assets/images/docker-mcp-logo.svg' | relative_url }}" alt="Docker MCP Logo">
           <h1>{{ site.title }}</h1>
         </a>
       </div>
       <nav class="main-nav">
         <ul>
-          <li><a href="{{ '/' | relative_url }}">Home</a></li>
-          <li><a href="{{ '/tools' | relative_url }}">Tools</a></li>
-          <li><a href="{{ '/docs/getting-started' | relative_url }}">Docs</a></li>
+          <li><a href="{{ '/' | relative_url }}"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="{{ '/tools' | relative_url }}"><i class="fas fa-tools"></i> Tools</a></li>
+          <li><a href="{{ '/docs/getting-started' | relative_url }}"><i class="fas fa-book"></i> Docs</a></li>
           <li><a href="https://github.com/ajeetraina/docker-mcp-portal" target="_blank">
             <i class="fab fa-github"></i> GitHub
           </a></li>
           <li><a href="https://collabnix.com/docker/mcp-reddit/" target="_blank">
-            Original List
+            <i class="fas fa-external-link-alt"></i> Original List
           </a></li>
         </ul>
       </nav>
