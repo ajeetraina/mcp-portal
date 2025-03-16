@@ -105,6 +105,11 @@ title: Home
         </div>
       </div>
       
+      <div class="view-toggle">
+        <span class="active"><i class="fas fa-th-large"></i> Card View</span>
+        <a href="/servers-table.html" class="btn btn-secondary"><i class="fas fa-table"></i> Table View</a>
+      </div>
+      
       <div class="active-filters"></div>
       
       <button id="clear-filters" class="btn" style="display: none;">
@@ -134,3 +139,20 @@ title: Home
     </div>
   </div>
 </section>
+
+<style>
+  .view-toggle {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    align-items: center;
+  }
+  
+  .view-toggle .active {
+    font-weight: 600;
+    color: var(--color-secondary);
+    background-color: var(--color-secondary-light);
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--border-radius);
+  }
+</style>
