@@ -1,12 +1,15 @@
 # Site settings
 title: Docker MCP Community Portal
 description: A community-driven collection of Docker Model Context Protocol servers
-baseurl: "/docker-mcp-portal" # Required for GitHub Pages project sites
+baseurl: "" # Empty for local development, set to "/docker-mcp-portal" for GitHub Pages
 url: "https://ajeetraina.github.io" # Replace with your GitHub Pages URL
 github_username: ajeetraina
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
+safe: true
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
@@ -27,6 +30,10 @@ defaults:
       path: "_docs"
     values:
       layout: "doc"
+  - scope:
+      path: "_data"
+    values:
+      layout: "none"
 
 # Exclude from processing
 exclude:
@@ -37,3 +44,10 @@ exclude:
   - .github
   - CONTRIBUTING.md
   - LICENSE
+  
+# Configure sass
+sass:
+  style: compressed
+
+# Make sure data files get processed
+data_dir: _data
