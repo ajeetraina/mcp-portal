@@ -1,0 +1,61 @@
+---
+layout: default
+title: Home
+---
+
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title">Docker Model Context Protocol</h1>
+    <p class="page-description">
+      A community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources.
+    </p>
+  </div>
+</section>
+
+<section class="container">
+  <div class="filter-container">
+    <div class="filter-row">
+      <div class="filter-group">
+        <label for="search-input" class="filter-label">Search</label>
+        <input type="text" id="search-input" class="filter-input" placeholder="Search by name...">
+      </div>
+      
+      <div class="filter-group">
+        <label for="tag-filter" class="filter-label">Filter by Tag</label>
+        <select id="tag-filter" class="filter-select">
+          <option value="">Select a tag...</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label for="sort-select" class="filter-label">Sort by</label>
+        <select id="sort-select" class="filter-select">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+          <option value="a-z">A to Z</option>
+          <option value="z-a">Z to A</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="active-filters"></div>
+    
+    <button id="clear-filters" class="btn" style="display: none;">
+      <i class="fas fa-times"></i> Clear All Filters
+    </button>
+  </div>
+  
+  <div class="mcp-grid">
+    {% for server in site.data.mcp_servers %}
+      {% include mcp_card.html server=server %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="container" style="margin-top: 3rem; text-align: center;">
+  <h2>Want to add your MCP server?</h2>
+  <p>Contribute to this list by submitting a pull request.</p>
+  <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" class="btn btn-primary" style="margin-top: 1rem;">
+    <i class="fas fa-code-branch"></i> Learn How to Contribute
+  </a>
+</section>
