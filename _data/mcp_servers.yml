@@ -298,7 +298,7 @@
   docker_image: "esignatures/mcp-server:latest"
   website: "https://esignatures.com"
   tags: ["contracts", "signatures", "legal"]
-  added_date: "2025-03-16"}
+  added_date: "2025-03-16"
 
 - name: "Exa"
   description: "Search Engine made for AIs by Exa, providing intelligent web search capabilities optimized for AI assistants."
@@ -306,7 +306,7 @@
   docker_image: "exa/mcp-server:latest"
   website: "https://exa.ai"
   tags: ["search", "ai-optimized", "web"]
-  added_date: "2025-03-16"}
+  added_date: "2025-03-16"
 
 - name: "Fewsats"
   description: "Enable AI Agents to purchase anything in a secure way using Fewsats payment infrastructure."
@@ -314,7 +314,7 @@
   docker_image: "fewsats/mcp:latest"
   website: "https://fewsats.com"
   tags: ["payments", "security", "e-commerce"]
-  added_date: "2025-03-16"}
+  added_date: "2025-03-16"
 
 - name: "Financial Datasets"
   description: "Stock market API made for AI agents to access financial data and perform market analysis."
@@ -322,7 +322,7 @@
   docker_image: "financialdatasets/mcp-server:latest"
   website: "https://financialdatasets.ai"
   tags: ["finance", "stocks", "market-data"]
-  added_date: "2025-03-16"}
+  added_date: "2025-03-16"
 
 - name: "Firecrawl"
   description: "Extract web data with Firecrawl's advanced web crawling and data extraction capabilities."
@@ -330,7 +330,7 @@
   docker_image: "firecrawl/mcp-server:latest"
   website: "https://firecrawl.dev"
   tags: ["web-crawling", "data-extraction", "scraping"]
-  added_date: "2025-03-16"}
+  added_date: "2025-03-16"
 
 - name: "Fireproof"
   description: "Immutable ledger database with live synchronization for reliable and consistent data storage."
@@ -338,7 +338,7 @@
   docker_image: "fireproof/mcp-database:latest"
   website: "https://fireproof.storage"
   tags: ["database", "immutable", "synchronization"]
-  added_date: "2025-03-16"}
+  added_date: "2025-03-16"
 
 - name: "Docker MCP"
   description: "Container management and orchestration tools for Docker, allowing AI to manage Docker containers and resources."
@@ -346,7 +346,7 @@
   docker_image: "docker/mcp:latest"
   website: "https://www.docker.com"
   tags: ["docker", "containers", "orchestration"]
-  added_date: "2025-03-16"}
+  added_date: "2025-03-16"
 
 - name: "Kubernetes MCP"
   description: "Management tools for Kubernetes clusters, enabling AI to deploy and manage containerized applications at scale."
@@ -354,6 +354,6 @@
   docker_image: "mcp/kubernetes:latest"
   website: ""
   tags: ["kubernetes", "containers", "orchestration"]
-  added_date: "2025-03-16"}
+  added_date: "2025-03-16"
 
 # Add Docker-specific MCP tools here
