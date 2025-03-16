@@ -4,19 +4,59 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/docker-mcp-logo.svg' | relative_url }}">
+  
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/tools.css' | relative_url }}">
+  
+  <!-- Meta tags -->
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <meta property="og:title" content="{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}">
+  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <meta property="og:image" content="{{ '/assets/images/docker-mcp-logo.svg' | absolute_url }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta name="twitter:card" content="summary_large_image">
+  
   {% seo %}
 </head>
 <body>
   {% include header.html %}
   
-  <main class="container">
+  <main>
     {{ content }}
   </main>
   
   {% include footer.html %}
   
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
   <script src="{{ '/assets/js/filter.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/tools.js' | relative_url }}"></script>
+  <script>
+    // Initialize clipboard.js
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize clipboard for copy buttons
+      var clipboard = new ClipboardJS('.btn-copy');
+      
+      clipboard.on('success', function(e) {
+        var btn = e.trigger;
+        var originalText = btn.innerHTML;
+        
+        // Change button text to indicate success
+        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        
+        // Revert back after 2 seconds
+        setTimeout(function() {
+          btn.innerHTML = originalText;
+        }, 2000);
+        
+        e.clearSelection();
+      });
+    });
+  </script>
 </body>
 </html>
