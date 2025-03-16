@@ -1,0 +1,38 @@
+<div class="tool-card" 
+     data-name="{{ include.tool.name | downcase }}" 
+     data-category="{{ include.tool.category | downcase }}"
+     data-tags="{{ include.tool.tags | join: ',' | downcase }}">
+  <div class="card-header">
+    <h3 class="card-title">{{ include.tool.name }}</h3>
+    <div class="card-meta">
+      <span class="tool-language">
+        <i class="fas fa-code"></i> {{ include.tool.language }}
+      </span>
+      <span class="added-date" title="Added on {{ include.tool.added_date }}">
+        <i class="far fa-calendar-alt"></i> {{ include.tool.added_date }}
+      </span>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <p class="card-description">{{ include.tool.description }}</p>
+    
+    <div class="card-category">
+      <span class="category-badge">{{ include.tool.category }}</span>
+    </div>
+    
+    <div class="card-tags">
+      {% for tag in include.tool.tags %}
+        <span class="tag" data-tag="{{ tag | downcase }}">{{ tag }}</span>
+      {% endfor %}
+    </div>
+  </div>
+  
+  <div class="card-footer">
+    <div class="card-links">
+      <a href="{{ include.tool.github_url }}" class="btn btn-github" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+    </div>
+  </div>
+</div>
