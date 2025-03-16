@@ -4,19 +4,34 @@ A modern, community-driven collection of Docker Model Context Protocol (MCP) ser
 
 ## About
 
-The Docker MCP Community Portal aims to be the most comprehensive, up-to-date resource for Docker Model Context Protocol implementations. It improves upon the traditional "awesome list" format by providing:
+The Docker MCP Community Portal aims to be the most comprehensive, up-to-date resource for Docker implementations of the Model Context Protocol (MCP). MCP is a protocol designed to enable large language models (LLMs) like Claude to interact with external tools and data sources, and this portal specifically focuses on Docker-related MCP servers and tools.
+
+The Docker MCP Portal improves upon the traditional "awesome list" format by providing:
 
 - A modern, responsive web interface
 - Filtering and search capabilities
-- Detailed information about each MCP server
+- Detailed information about each Docker MCP server
 - Simple contribution process through pull requests
+
+## What is the Model Context Protocol (MCP)?
+
+The Model Context Protocol (MCP) is an open protocol that enables AI assistants such as Claude, ChatGPT, and others to interact with external tools and data sources in a structured way. In the case of Docker MCP implementations, these servers allow AI assistants to manage Docker containers, networks, volumes, images, and other Docker resources through natural language interactions.
+
+Some key capabilities of Docker MCP servers include:
+
+- Container lifecycle management (create, start, stop, remove)
+- Image handling (build, pull, push, list)
+- Volume and network operations
+- Docker Compose workflow management
+- Resource monitoring and inspection
+- Security controls and access management
 
 ## Contributing
 
-We welcome contributions! To add your MCP server to the list:
+We welcome contributions! To add your Docker MCP server or tool to the list:
 
 1. Fork this repository
-2. Add your entry to `_data/mcp_servers.yml`
+2. Add your entry to `_data/mcp_servers.yml` or `_data/mcp_tools.yml`
 3. Submit a pull request
 
 For detailed instructions, please see [CONTRIBUTING.md](CONTRIBUTING.md).
@@ -46,6 +61,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- All contributors who have submitted their MCP implementations
+- All contributors who have submitted their Docker MCP implementations
 - The [Collabnix](https://collabnix.com) community
-- Docker for creating the Model Context Protocol
+- Docker for creating the Model Context Protocol implementation
+- Anthropic for developing the Model Context Protocol standard
