@@ -1,0 +1,208 @@
+---
+layout: default
+title: MCP Servers Table View
+---
+
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title">MCP Servers - Table View</h1>
+    <p class="page-description">
+      A tabular view of Docker Model Context Protocol servers available in the community.
+    </p>
+  </div>
+</section>
+
+<section class="container">
+  <div class="server-table-container">
+    <div class="view-toggle">
+      <a href="/" class="btn btn-secondary"><i class="fas fa-th-large"></i> Card View</a>
+      <span class="active"><i class="fas fa-table"></i> Table View</span>
+    </div>
+    
+    <table class="server-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Docker Image</th>
+          <th>Tags</th>
+          <th>Links</th>
+          <th>Added</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for server in site.data.mcp_servers %}
+          <tr>
+            <td class="server-name">{{ server.name }}</td>
+            <td class="server-description">{{ server.description }}</td>
+            <td class="server-image"><code>{{ server.docker_image }}</code>
+              <button class="btn-small btn-copy" data-clipboard-text="docker pull {{ server.docker_image }}">
+                <i class="fas fa-copy"></i>
+              </button>
+            </td>
+            <td class="server-tags">
+              {% for tag in server.tags %}
+                <span class="tag-small">{{ tag }}</span>
+              {% endfor %}
+            </td>
+            <td class="server-links">
+              <a href="{{ server.github_url }}" class="btn-small" target="_blank" rel="noopener">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://hub.docker.com/r/{{ server.docker_image | split: ':' | first }}" class="btn-small" target="_blank" rel="noopener">
+                <i class="fab fa-docker"></i>
+              </a>
+              {% if server.website != "" %}
+                <a href="{{ server.website }}" class="btn-small" target="_blank" rel="noopener">
+                  <i class="fas fa-globe"></i>
+                </a>
+              {% endif %}
+            </td>
+            <td class="server-date">{{ server.added_date }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<style>
+  .server-table-container {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+  }
+  
+  .view-toggle {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+  }
+  
+  .view-toggle .active {
+    font-weight: 600;
+    color: var(--color-secondary);
+    background-color: var(--color-secondary-light);
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--border-radius);
+  }
+
+  .server-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .server-table th {
+    text-align: left;
+    padding: 0.75rem;
+    border-bottom: 2px solid var(--color-primary);
+    color: var(--color-secondary);
+    font-weight: 600;
+  }
+
+  .server-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--color-gray);
+    vertical-align: middle;
+  }
+
+  .server-name {
+    font-weight: 600;
+    color: var(--color-secondary);
+  }
+
+  .server-description {
+    max-width: 300px;
+    color: #555;
+  }
+
+  .server-image {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .server-image code {
+    background-color: #f5f7f9;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.85rem;
+  }
+
+  .server-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  .tag-small {
+    background-color: var(--color-secondary-light);
+    padding: 0.1rem 0.5rem;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    color: var(--color-secondary);
+  }
+
+  .server-links {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .btn-small {
+    background-color: #f5f7f9;
+    color: var(--color-secondary);
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+  }
+
+  .btn-small:hover {
+    background-color: var(--color-secondary);
+    color: white;
+  }
+
+  .server-date {
+    white-space: nowrap;
+    color: #777;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 992px) {
+    .server-description {
+      max-width: 200px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .server-table {
+      font-size: 0.8rem;
+    }
+    
+    .server-table th:nth-child(2),
+    .server-table td:nth-child(2) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .server-table th:nth-child(4),
+    .server-table td:nth-child(4),
+    .server-table th:nth-child(6),
+    .server-table td:nth-child(6) {
+      display: none;
+    }
+  }
+</style>
