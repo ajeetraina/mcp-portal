@@ -15,11 +15,30 @@
   </div>
   
   <div class="card-body">
-    <p class="card-description">{{ include.tool.description }}</p>
-    
-    <div class="card-category">
-      <span class="category-badge">{{ include.tool.category }}</span>
+    <div class="tool-icon">
+      {% case include.tool.category %}
+        {% when "cli" %}
+          <i class="fas fa-terminal"></i>
+        {% when "library" %}
+          <i class="fas fa-book"></i>
+        {% when "extension" %}
+          <i class="fas fa-puzzle-piece"></i>
+        {% when "integration" %}
+          <i class="fas fa-plug"></i>
+        {% when "testing" %}
+          <i class="fas fa-vial"></i>
+        {% when "monitoring" %}
+          <i class="fas fa-chart-line"></i>
+        {% else %}
+          <i class="fas fa-tools"></i>
+      {% endcase %}
     </div>
+    
+    <div class="category-badge">
+      {{ include.tool.category }}
+    </div>
+    
+    <p class="card-description">{{ include.tool.description }}</p>
     
     <div class="card-tags">
       {% for tag in include.tool.tags %}
