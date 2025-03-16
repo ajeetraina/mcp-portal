@@ -1,0 +1,73 @@
+# Model Context Protocol Tools
+# Format:
+# - name: Name of the MCP tool
+#   description: A brief description of the tool's features or purpose
+#   github_url: Link to the GitHub repository
+#   category: Tool category (e.g., cli, integration, library, etc.)
+#   language: Programming language of the tool
+#   tags: List of relevant tags
+#   added_date: When the entry was added (YYYY-MM-DD)
+
+- name: "Docker MCP CLI"
+  description: "Command-line interface for working with Model Context Protocol servers, allowing users to manage MCP servers and execute context-aware commands."
+  github_url: "https://github.com/docker/mcp-cli"
+  category: "cli"
+  language: "Go"
+  tags: ["cli", "official", "docker"]
+  added_date: "2025-03-16"
+
+- name: "MCP Python SDK"
+  description: "Official Python SDK for interacting with Model Context Protocol servers, making it easy to build MCP-powered applications in Python."
+  github_url: "https://github.com/docker/mcp-python-sdk"
+  category: "library"
+  language: "Python"
+  tags: ["sdk", "python", "official"]
+  added_date: "2025-03-16"
+
+- name: "MCP VSCode Extension"
+  description: "Visual Studio Code extension for Docker MCP, providing seamless integration with MCP servers directly from your code editor."
+  github_url: "https://github.com/docker/mcp-vscode"
+  category: "extension"
+  language: "TypeScript"
+  tags: ["vscode", "extension", "development"]
+  added_date: "2025-03-16"
+
+- name: "MCP Node.js SDK"
+  description: "Node.js SDK for integrating with Model Context Protocol servers in JavaScript and TypeScript applications."
+  github_url: "https://github.com/docker/mcp-node-sdk"
+  category: "library"
+  language: "TypeScript"
+  tags: ["sdk", "node.js", "javascript", "typescript"]
+  added_date: "2025-03-16"
+
+- name: "MCP-K8s Operator"
+  description: "Kubernetes operator for managing Model Context Protocol servers in Kubernetes clusters, providing seamless integration with K8s ecosystem."
+  github_url: "https://github.com/docker/mcp-k8s-operator"
+  category: "integration"
+  language: "Go"
+  tags: ["kubernetes", "operator", "cloud-native"]
+  added_date: "2025-03-16"
+
+- name: "MCP Validator"
+  description: "Tool for validating Model Context Protocol server implementations against the official specification to ensure compatibility."
+  github_url: "https://github.com/mcp/validator"
+  category: "testing"
+  language: "Go"
+  tags: ["testing", "validation", "compliance"]
+  added_date: "2025-03-16"
+
+- name: "MCP Benchmark"
+  description: "Benchmarking suite for Model Context Protocol servers to measure performance, latency, and throughput under various workloads."
+  github_url: "https://github.com/mcp/benchmark"
+  category: "testing"
+  language: "Go"
+  tags: ["benchmark", "performance", "testing"]
+  added_date: "2025-03-16"
+
+- name: "MCP Dashboard"
+  description: "Web-based dashboard for monitoring and managing Model Context Protocol servers with visualization and metrics."
+  github_url: "https://github.com/mcp/dashboard"
+  category: "monitoring"
+  language: "JavaScript"
+  tags: ["dashboard", "monitoring", "visualization"]
+  added_date: "2025-03-16"
