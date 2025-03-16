@@ -19,23 +19,23 @@
 - name: "Collabnix MCP"
   description: "Community-driven implementation of the Model Context Protocol maintained by the Collabnix community, optimized for performance and ease of use."
   github_url: "https://github.com/collabnix/mcp"
-  docker_image: "collabnix/mcp:latest"
+  docker_image: "mcp/collabnix:latest"
   website: "https://collabnix.com"
   tags: ["community", "collabnix", "optimized"]
   added_date: "2025-03-05"
 
 - name: "MCP Playground"
   description: "Developer-focused playground for experimenting with Model Context Protocol implementations, with tools for testing and development."
-  github_url: "https://github.com/mcopdev/mcp-playground"
-  docker_image: "mcopdev/mcp-playground:latest"
+  github_url: "https://github.com/mcp/playground"
+  docker_image: "mcp/playground:latest"
   website: ""
   tags: ["development", "playground", "testing"]
   added_date: "2025-03-10"
 
 - name: "MCP Server"
   description: "Standard server implementation of the Model Context Protocol with support for multiple model backends and scalable deployment options."
-  github_url: "https://github.com/modelcontextprotocol/mcp-server"
-  docker_image: "modelcontextprotocol/mcp-server:latest"
+  github_url: "https://github.com/mcp/server"
+  docker_image: "mcp/server:latest"
   website: ""
   tags: ["server", "backend", "scalable"]
   added_date: "2025-03-12"
@@ -50,40 +50,40 @@
 
 - name: "FastMCP"
   description: "High-performance MCP server optimized for low-latency applications with up to 10x higher throughput than standard implementations."
-  github_url: "https://github.com/fastmcp/fastmcp"
-  docker_image: "fastmcp/server:v1.2.0"
+  github_url: "https://github.com/mcp/fast"
+  docker_image: "mcp/fast:v1.2.0"
   website: "https://fastmcp.io"
   tags: ["performance", "low-latency", "optimized"]
   added_date: "2025-03-18"
 
 - name: "SecureMCP"
   description: "Enterprise-grade MCP server with enhanced security features, access controls, and audit logging capabilities for regulated environments."
-  github_url: "https://github.com/securemcp/server"
-  docker_image: "securemcp/securemcp:latest"
+  github_url: "https://github.com/mcp/secure"
+  docker_image: "mcp/secure:latest"
   website: "https://securemcp.com"
   tags: ["security", "enterprise", "access-control", "compliance"]
   added_date: "2025-03-20"
 
 - name: "K8sMCP"
   description: "Kubernetes-native MCP implementation designed for scalable deployments with automatic service discovery and load balancing."
-  github_url: "https://github.com/k8smcp/k8smcp"
-  docker_image: "k8smcp/server:v0.9.5"
+  github_url: "https://github.com/mcp/k8s"
+  docker_image: "mcp/k8s:v0.9.5"
   website: "https://k8smcp.dev"
   tags: ["kubernetes", "cloud-native", "scalable", "orchestration"]
   added_date: "2025-03-22"
 
 - name: "LightMCP"
   description: "Lightweight MCP server implementation with minimal resource requirements, perfect for edge devices and IoT applications."
-  github_url: "https://github.com/lightmcp/lightmcp"
-  docker_image: "lightmcp/core:0.8.2"
+  github_url: "https://github.com/mcp/light"
+  docker_image: "mcp/light:0.8.2"
   website: "https://lightmcp.org"
   tags: ["lightweight", "edge", "iot", "minimal"]
   added_date: "2025-03-25"
 
 - name: "AIMCP"
   description: "AI-focused MCP server with built-in support for common machine learning frameworks and model interoperability."
-  github_url: "https://github.com/ai-mcp/server"
-  docker_image: "aimcp/server:2.1"
+  github_url: "https://github.com/mcp/ai"
+  docker_image: "mcp/ai:2.1"
   website: "https://aimcp.ai"
   tags: ["ai", "machine-learning", "frameworks", "interoperability"]
   added_date: "2025-03-27"
