@@ -25,42 +25,101 @@ title: MCP Servers Table View
           <th>Name</th>
           <th>Description</th>
           <th>Docker Image</th>
-          <th>Tags</th>
+          <th>Status</th>
           <th>Links</th>
-          <th>Added</th>
         </tr>
       </thead>
       <tbody>
-        {% for server in site.data.mcp_servers %}
-          <tr>
-            <td class="server-name">{{ server.name }}</td>
-            <td class="server-description">{{ server.description }}</td>
-            <td class="server-image"><code>{{ server.docker_image }}</code>
-              <button class="btn-small btn-copy" data-clipboard-text="docker pull {{ server.docker_image }}">
-                <i class="fas fa-copy"></i>
-              </button>
-            </td>
-            <td class="server-tags">
-              {% for tag in server.tags %}
-                <span class="tag-small">{{ tag }}</span>
-              {% endfor %}
-            </td>
-            <td class="server-links">
-              <a href="{{ server.github_url }}" class="btn-small" target="_blank" rel="noopener">
-                <i class="fab fa-github"></i>
-              </a>
-              <a href="https://hub.docker.com/r/{{ server.docker_image | split: ':' | first }}" class="btn-small" target="_blank" rel="noopener">
-                <i class="fab fa-docker"></i>
-              </a>
-              {% if server.website != "" %}
-                <a href="{{ server.website }}" class="btn-small" target="_blank" rel="noopener">
-                  <i class="fas fa-globe"></i>
+        <!-- Working Servers -->
+        {% if site.data.mcp_servers.working_servers %}
+          {% for server in site.data.mcp_servers.working_servers %}
+            <tr>
+              <td class="server-name">{{ server.name }}</td>
+              <td class="server-description">{{ server.description }}</td>
+              <td class="server-image">
+                <code>{{ server.image }}</code>
+                <button class="btn-small btn-copy" data-clipboard-text="docker pull {{ server.image }}">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </td>
+              <td class="server-status">
+                <span class="status-badge status-working">Working</span>
+              </td>
+              <td class="server-links">
+                <a href="{{ server.docs_url }}" class="btn-small" target="_blank" rel="noopener">
+                  <i class="fab fa-github"></i>
                 </a>
-              {% endif %}
-            </td>
-            <td class="server-date">{{ server.added_date }}</td>
-          </tr>
-        {% endfor %}
+                <a href="https://hub.docker.com/r/{{ server.image | split: ':' | first }}" class="btn-small" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i>
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        {% endif %}
+        
+        <!-- Untested Servers -->
+        {% if site.data.mcp_servers.untested_servers %}
+          {% for server in site.data.mcp_servers.untested_servers %}
+            <tr>
+              <td class="server-name">{{ server.name }}</td>
+              <td class="server-description">
+                {{ server.description }}
+                {% if server.requirements %}
+                  <div class="server-note"><strong>Note:</strong> {{ server.requirements }}</div>
+                {% endif %}
+              </td>
+              <td class="server-image">
+                <code>{{ server.image }}</code>
+                <button class="btn-small btn-copy" data-clipboard-text="docker pull {{ server.image }}">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </td>
+              <td class="server-status">
+                <span class="status-badge status-untested">Untested</span>
+              </td>
+              <td class="server-links">
+                <a href="{{ server.docs_url }}" class="btn-small" target="_blank" rel="noopener">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://hub.docker.com/r/{{ server.image | split: ':' | first }}" class="btn-small" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i>
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        {% endif %}
+        
+        <!-- Unsupported Servers -->
+        {% if site.data.mcp_servers.unsupported_servers %}
+          {% for server in site.data.mcp_servers.unsupported_servers %}
+            <tr>
+              <td class="server-name">{{ server.name }}</td>
+              <td class="server-description">
+                {{ server.description }}
+                {% if server.issue %}
+                  <div class="server-note server-issue"><strong>Issue:</strong> {{ server.issue }}</div>
+                {% endif %}
+              </td>
+              <td class="server-image">
+                <code>{{ server.image }}</code>
+                <button class="btn-small btn-copy" data-clipboard-text="docker pull {{ server.image }}">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </td>
+              <td class="server-status">
+                <span class="status-badge status-unsupported">Unsupported</span>
+              </td>
+              <td class="server-links">
+                <a href="{{ server.docs_url }}" class="btn-small" target="_blank" rel="noopener">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://hub.docker.com/r/{{ server.image | split: ':' | first }}" class="btn-small" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i>
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        {% endif %}
       </tbody>
     </table>
   </div>
@@ -135,6 +194,43 @@ title: MCP Servers Table View
     font-family: monospace;
     font-size: 0.85rem;
   }
+  
+  .server-note {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    background-color: #fff9e6;
+    border-left: 3px solid #ffc107;
+  }
+  
+  .server-issue {
+    background-color: #fff5f5;
+    border-left: 3px solid #dc3545;
+  }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+  
+  .status-working {
+    background-color: #e8f5e9;
+    color: #28a745;
+  }
+  
+  .status-untested {
+    background-color: #fff9e6;
+    color: #ffc107;
+  }
+  
+  .status-unsupported {
+    background-color: #fff5f5;
+    color: #dc3545;
+  }
 
   .server-tags {
     display: flex;
@@ -199,10 +295,29 @@ title: MCP Servers Table View
 
   @media (max-width: 576px) {
     .server-table th:nth-child(4),
-    .server-table td:nth-child(4),
-    .server-table th:nth-child(6),
-    .server-table td:nth-child(6) {
+    .server-table td:nth-child(4) {
       display: none;
     }
   }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const copyButtons = document.querySelectorAll('.btn-copy');
+  
+  copyButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const textToCopy = this.getAttribute('data-clipboard-text');
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        // Visual feedback
+        const originalText = this.innerHTML;
+        this.innerHTML = '<i class="fas fa-check"></i>';
+        
+        setTimeout(() => {
+          this.innerHTML = originalText;
+        }, 1500);
+      });
+    });
+  });
+});
+</script>
