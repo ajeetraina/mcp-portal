@@ -126,17 +126,18 @@ services:
         </div>
         
         <div class="filter-group">
-          <label for="tag-filter" class="filter-label">Filter by Tag</label>
-          <select id="tag-filter" class="filter-select">
-            <option value="">Select a tag...</option>
+          <label for="category-filter" class="filter-label">Filter by Category</label>
+          <select id="category-filter" class="filter-select">
+            <option value="">All Categories</option>
+            <option value="working">Working Servers</option>
+            <option value="untested">Untested Servers</option>
+            <option value="unsupported">Unsupported Servers</option>
           </select>
         </div>
         
         <div class="filter-group">
           <label for="sort-select" class="filter-label">Sort by</label>
           <select id="sort-select" class="filter-select">
-            <option value="newest">Newest First</option>
-            <option value="oldest">Oldest First</option>
             <option value="a-z">A to Z</option>
             <option value="z-a">Z to A</option>
           </select>
@@ -156,9 +157,128 @@ services:
     </div>
     
     <div class="mcp-grid">
-      {% for server in site.data.mcp_servers %}
-        {% include mcp_card.html server=server %}
-      {% endfor %}
+      <!-- Working Servers -->
+      {% if site.data.mcp_servers.working_servers %}
+        {% for server in site.data.mcp_servers.working_servers %}
+          <div class="mcp-card" data-name="{{ server.name | downcase }}" data-category="working">
+            <div class="card-header">
+              <h3 class="card-title">{{ server.name }}</h3>
+              <div class="card-meta">
+                <span class="server-status success">Working</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">{{ server.description }}</p>
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="{{ server.docs_url }}" class="btn btn-github" target="_blank" rel="noopener">
+                  <i class="fab fa-github"></i> GitHub
+                </a>
+                
+                <a href="https://hub.docker.com/r/{{ server.image }}" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull {{ server.image }}" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+      
+      <!-- Untested Servers -->
+      {% if site.data.mcp_servers.untested_servers %}
+        {% for server in site.data.mcp_servers.untested_servers %}
+          <div class="mcp-card" data-name="{{ server.name | downcase }}" data-category="untested">
+            <div class="card-header">
+              <h3 class="card-title">{{ server.name }}</h3>
+              <div class="card-meta">
+                <span class="server-status warning">Untested</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">{{ server.description }}</p>
+              {% if server.requirements %}
+                <p class="server-requirements"><strong>Note:</strong> {{ server.requirements }}</p>
+              {% endif %}
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="{{ server.docs_url }}" class="btn btn-github" target="_blank" rel="noopener">
+                  <i class="fab fa-github"></i> GitHub
+                </a>
+                
+                <a href="https://hub.docker.com/r/{{ server.image }}" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull {{ server.image }}" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+      
+      <!-- Unsupported Servers -->
+      {% if site.data.mcp_servers.unsupported_servers %}
+        {% for server in site.data.mcp_servers.unsupported_servers %}
+          <div class="mcp-card" data-name="{{ server.name | downcase }}" data-category="unsupported">
+            <div class="card-header">
+              <h3 class="card-title">{{ server.name }}</h3>
+              <div class="card-meta">
+                <span class="server-status danger">Unsupported</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">{{ server.description }}</p>
+              {% if server.issue %}
+                <p class="server-issue"><strong>Issue:</strong> {{ server.issue }}</p>
+              {% endif %}
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="{{ server.docs_url }}" class="btn btn-github" target="_blank" rel="noopener">
+                  <i class="fab fa-github"></i> GitHub
+                </a>
+                
+                <a href="https://hub.docker.com/r/{{ server.image }}" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull {{ server.image }}" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
     </div>
   </div>
 </section>
@@ -266,4 +386,160 @@ services:
     padding: 0.2rem 0.4rem;
     border-radius: 3px;
   }
+  
+  .server-status {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+  
+  .server-status.success {
+    background-color: #e8f5e9;
+    color: #28a745;
+  }
+  
+  .server-status.warning {
+    background-color: #fff9e6;
+    color: #ffc107;
+  }
+  
+  .server-status.danger {
+    background-color: #fff5f5;
+    color: #dc3545;
+  }
+  
+  .server-requirements, .server-issue {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+  
+  .server-requirements {
+    background-color: #fff9e6;
+    border-left: 3px solid #ffc107;
+  }
+  
+  .server-issue {
+    background-color: #fff5f5;
+    border-left: 3px solid #dc3545;
+  }
+
+  /* JavaScript for filtering */
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-input');
+    const categoryFilter = document.getElementById('category-filter');
+    const sortSelect = document.getElementById('sort-select');
+    const clearFiltersBtn = document.getElementById('clear-filters');
+    const activeFilters = document.querySelector('.active-filters');
+    const serverCards = document.querySelectorAll('.mcp-card');
+    
+    // Search functionality
+    searchInput.addEventListener('input', filterServers);
+    
+    // Category filter
+    categoryFilter.addEventListener('change', filterServers);
+    
+    // Sort functionality
+    sortSelect.addEventListener('change', sortServers);
+    
+    // Clear filters
+    clearFiltersBtn.addEventListener('click', clearFilters);
+    
+    function filterServers() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const category = categoryFilter.value.toLowerCase();
+      
+      // Update active filters
+      updateActiveFilters(searchTerm, category);
+      
+      serverCards.forEach(card => {
+        const cardName = card.getAttribute('data-name').toLowerCase();
+        const cardCategory = card.getAttribute('data-category').toLowerCase();
+        
+        const matchesSearch = cardName.includes(searchTerm);
+        const matchesCategory = category === '' || cardCategory === category;
+        
+        if (matchesSearch && matchesCategory) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      sortServers();
+    }
+    
+    function sortServers() {
+      const sortOption = sortSelect.value;
+      const serverGrid = document.querySelector('.mcp-grid');
+      const servers = Array.from(serverCards);
+      
+      servers.sort((a, b) => {
+        const nameA = a.getAttribute('data-name').toLowerCase();
+        const nameB = b.getAttribute('data-name').toLowerCase();
+        
+        if (sortOption === 'a-z') {
+          return nameA.localeCompare(nameB);
+        } else if (sortOption === 'z-a') {
+          return nameB.localeCompare(nameA);
+        }
+        
+        return 0;
+      });
+      
+      // Remove all current cards
+      servers.forEach(server => {
+        serverGrid.removeChild(server);
+      });
+      
+      // Add sorted cards
+      servers.forEach(server => {
+        serverGrid.appendChild(server);
+      });
+    }
+    
+    function updateActiveFilters(searchTerm, category) {
+      activeFilters.innerHTML = '';
+      let hasFilters = false;
+      
+      if (searchTerm) {
+        const searchFilter = document.createElement('span');
+        searchFilter.className = 'active-filter';
+        searchFilter.innerHTML = `Search: ${searchTerm} <i class="fas fa-times"></i>`;
+        searchFilter.addEventListener('click', () => {
+          searchInput.value = '';
+          filterServers();
+        });
+        activeFilters.appendChild(searchFilter);
+        hasFilters = true;
+      }
+      
+      if (category) {
+        const categoryFilter = document.createElement('span');
+        categoryFilter.className = 'active-filter';
+        categoryFilter.innerHTML = `Category: ${category} <i class="fas fa-times"></i>`;
+        categoryFilter.addEventListener('click', () => {
+          document.getElementById('category-filter').value = '';
+          filterServers();
+        });
+        activeFilters.appendChild(categoryFilter);
+        hasFilters = true;
+      }
+      
+      clearFiltersBtn.style.display = hasFilters ? 'block' : 'none';
+    }
+    
+    function clearFilters() {
+      searchInput.value = '';
+      categoryFilter.value = '';
+      sortSelect.value = 'a-z';
+      filterServers();
+    }
+    
+    // Initialize
+    sortServers();
+  });
 </style>
