@@ -11,6 +11,7 @@
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Lab Header Section */
@@ -25,6 +26,8 @@
   font-size: 2.2rem;
   margin-bottom: 1rem;
   font-weight: 600;
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
 .lab-description {
@@ -67,6 +70,7 @@
   background-color: #f1f8fe;
   border-left: 4px solid #2196f3;
   border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .lab-prerequisites h2 {
@@ -74,6 +78,8 @@
   margin-top: 0;
   margin-bottom: 1rem;
   font-size: 1.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .lab-prerequisites ul {
@@ -92,6 +98,7 @@
   background-color: #f1fef8;
   border-left: 4px solid #4caf50;
   border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .learning-objectives h2 {
@@ -99,6 +106,8 @@
   margin-top: 0;
   margin-bottom: 1rem;
   font-size: 1.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .learning-objectives ol {
@@ -116,6 +125,7 @@
   border: 1px solid #e9ecef;
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .lab-step-header {
@@ -143,17 +153,26 @@
 }
 
 /* Code Blocks */
-.lab-step pre, pre {
+.lab-step pre, pre, div.highlight pre {
   background-color: #282c34;
   color: #f8f8f2;
   padding: 1.2rem;
-  border-radius: 6px;
-  overflow-x: auto;
-  margin: 1.5rem 0;
+  border-radius: 0 0 6px 6px; /* Rounded at bottom only */
+  margin: 0 0 1.5rem 0; /* Remove top margin since we have code header */
   position: relative;
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
   font-size: 0.9rem;
   line-height: 1.5;
+  overflow-x: auto;
+  max-width: 100%;
+  white-space: pre;
+  word-wrap: normal;
+}
+
+/* Fix for code blocks */
+pre {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .lab-step code, code {
@@ -165,17 +184,17 @@ code.language-bash, code.language-yaml {
   color: #f8f8f2;
 }
 
-.lab-step .code-header, .code-header {
+.code-header, .lab-step .code-header {
   background-color: #1e2127;
   padding: 0.5rem 1.2rem;
   color: #d7d7d7;
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
   font-size: 0.8rem;
-  margin-bottom: -1.5rem;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   display: flex;
   justify-content: space-between;
+  margin-top: 1.5rem;
 }
 
 .lab-step .copy-button, .copy-button {
@@ -207,6 +226,7 @@ p code, li code {
   background-color: #fff8e6;
   border-left: 4px solid #ffc107;
   border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .lab-note h4 {
@@ -232,6 +252,7 @@ p code, li code {
   background-color: #e6f7ff;
   border-left: 4px solid #1890ff;
   border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .lab-tip h4 {
@@ -290,12 +311,15 @@ p code, li code {
   background-color: #f3f0ff;
   border-left: 4px solid #7c4dff;
   border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .lab-conclusion h2 {
   color: #7c4dff;
   margin-top: 0;
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
 }
 
 /* Next steps section */
@@ -307,6 +331,8 @@ p code, li code {
   color: #0db7ed;
   margin-bottom: 1rem;
   font-size: 1.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .next-steps ul {
@@ -329,8 +355,8 @@ p code, li code {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .lab-container {
-    padding: 1.5rem;
+  .lab-container, #content {
+    padding: 1rem;
   }
   
   .lab-meta {
@@ -345,6 +371,11 @@ p code, li code {
   .lab-header h1 {
     font-size: 1.8rem;
   }
+  
+  pre, .lab-step pre {
+    padding: 0.8rem;
+    font-size: 0.8rem;
+  }
 }
 
 /* Fix for plain content pages without the lab layout */
@@ -352,6 +383,7 @@ p code, li code {
   max-width: 900px;
   margin: 0 auto;
   padding: 2rem;
+  overflow-x: hidden;
 }
 
 /* Default page styles with proper spacing */
@@ -359,6 +391,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   line-height: 1.6;
   color: #333;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -366,6 +399,8 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1rem;
   font-weight: 600;
   color: #333;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 h1 {
@@ -385,11 +420,13 @@ h3 {
 
 p {
   margin-bottom: 1rem;
+  max-width: 100%;
 }
 
 ul, ol {
   padding-left: 2rem;
   margin-bottom: 1rem;
+  max-width: 100%;
 }
 
 li {
@@ -400,12 +437,13 @@ li {
 code.language-bash {
   display: block;
   padding: 1rem;
-  white-space: pre-wrap;
-  word-break: break-all;
+  white-space: pre;
+  overflow-x: auto;
   background-color: #282c34;
   color: #f8f8f2;
   border-radius: 6px;
   margin: 1rem 0;
+  max-width: 100%;
 }
 
 /* Fix spacing between sections */
@@ -430,6 +468,7 @@ h2 i, h3 i {
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
   font-size: 0.9rem;
   overflow-x: auto;
+  max-width: 100%;
 }
 
 .command-line::before {
@@ -443,6 +482,7 @@ h2 i, h3 i {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+  overflow-x: hidden;
 }
 
 /* Special header icons */
@@ -450,4 +490,65 @@ h2 .fas, h3 .fas {
   width: 24px;
   text-align: center;
   margin-right: 8px;
+}
+
+/* Fix markdown formatting for all pages */
+.markdown-body, .post-content, article, .content {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Fix code highlighting */
+.hljs, .highlight {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Force all images to stay within container */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Add boxed styling to headings */
+main h1, main h2 {
+  background-color: #f8f9fa;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border-left: 4px solid #0db7ed;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Make sure text doesn't overflow */
+p, li, td, th, h1, h2, h3, h4, h5, h6 {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Style the code output differently */
+.code-output {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.9rem;
+  overflow-x: auto;
+  color: #333;
+}
+
+/* Create a nicer scrollbar for code blocks */
+pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-track {
+  background: #1e2127;
 }
