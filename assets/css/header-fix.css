@@ -20,25 +20,17 @@
 }
 
 .logo {
-    display: flex;
-    align-items: center;
+    flex-grow: 1;
 }
 
 .logo a {
-    display: flex;
-    align-items: center;
     text-decoration: none;
-    color: #333;
-}
-
-.logo img {
-    height: 40px;
-    margin-right: 10px;
 }
 
 .logo h1 {
     font-size: 1.5rem;
     font-weight: 600;
+    color: #333;
     margin: 0;
     line-height: 1;
 }
