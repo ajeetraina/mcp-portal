@@ -143,7 +143,7 @@
 }
 
 /* Code Blocks */
-.lab-step pre {
+.lab-step pre, pre {
   background-color: #282c34;
   color: #f8f8f2;
   padding: 1.2rem;
@@ -151,14 +151,21 @@
   overflow-x: auto;
   margin: 1.5rem 0;
   position: relative;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
-.lab-step code {
+.lab-step code, code {
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
   font-size: 0.9rem;
 }
 
-.lab-step .code-header {
+code.language-bash, code.language-yaml {
+  color: #f8f8f2;
+}
+
+.lab-step .code-header, .code-header {
   background-color: #1e2127;
   padding: 0.5rem 1.2rem;
   color: #d7d7d7;
@@ -171,7 +178,7 @@
   justify-content: space-between;
 }
 
-.lab-step .copy-button {
+.lab-step .copy-button, .copy-button {
   background: transparent;
   border: none;
   color: #d7d7d7;
@@ -179,8 +186,18 @@
   font-size: 0.8rem;
 }
 
-.lab-step .copy-button:hover {
+.lab-step .copy-button:hover, .copy-button:hover {
   color: #fff;
+}
+
+/* Inline code */
+p code, li code {
+  background-color: #f0f0f0;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+  color: #e83e8c;
+  word-break: break-word;
 }
 
 /* Notes and Callouts */
@@ -328,4 +345,109 @@
   .lab-header h1 {
     font-size: 1.8rem;
   }
+}
+
+/* Fix for plain content pages without the lab layout */
+#content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Default page styles with proper spacing */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #0db7ed;
+}
+
+h2 {
+  font-size: 1.5rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #eaecef;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+ul, ol {
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* Command line specific formatting */
+code.language-bash {
+  display: block;
+  padding: 1rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+  background-color: #282c34;
+  color: #f8f8f2;
+  border-radius: 6px;
+  margin: 1rem 0;
+}
+
+/* Fix spacing between sections */
+p + h2, ul + h2, ol + h2, pre + h2 {
+  margin-top: 2rem;
+}
+
+/* Fix for section icons */
+h2 i, h3 i {
+  margin-right: 0.5rem;
+  color: #0db7ed;
+}
+
+/* Special styling for command lines */
+.command-line {
+  position: relative;
+  background-color: #282c34;
+  color: #f8f8f2;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.9rem;
+  overflow-x: auto;
+}
+
+.command-line::before {
+  content: "$";
+  color: #8BC34A;
+  margin-right: 0.5rem;
+}
+
+/* Container styles for regular pages */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Special header icons */
+h2 .fas, h3 .fas {
+  width: 24px;
+  text-align: center;
+  margin-right: 8px;
 }
