@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources.">
+  <meta name="keywords" content="docker, mcp, model, context, protocol, servers, tools, community">
+  <title>Docker MCP Community Portal</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/images/docker-mcp-logo.svg">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
+  <link rel="stylesheet" href="/assets/css/home.css">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Docker MCP Community Portal | A community-driven collection of Docker Model Context Protocol servers</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Docker MCP Community Portal" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A community-driven collection of Docker Model Context Protocol servers" />
+<meta property="og:description" content="A community-driven collection of Docker Model Context Protocol servers" />
+<link rel="canonical" href="https://ajeetraina.github.io/docs/labs/mcp-101-lab.html" />
+<meta property="og:url" content="https://ajeetraina.github.io/docs/labs/mcp-101-lab.html" />
+<meta property="og:site_name" content="Docker MCP Community Portal" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Docker MCP Community Portal" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A community-driven collection of Docker Model Context Protocol servers","headline":"Docker MCP Community Portal","url":"https://ajeetraina.github.io/docs/labs/mcp-101-lab.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <a href="/">
+          <img src="/assets/images/docker-mcp-logo.svg" alt="Docker MCP Logo">
+          <h1>Docker MCP Community Portal</h1>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="/servers-table.html"><i class="fas fa-server"></i> Servers</a></li>
+          <li><a href="/tools.html"><i class="fas fa-tools"></i> Tools</a></li>
+          <li><a href="/docs/getting-started"><i class="fas fa-book"></i> Docs</a></li>
+          <li><a href="/docs/ask-gordon"><i class="fas fa-robot"></i> Ask Gordon</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+  
+  <main>
+    <h1 id="lab-1-first-steps-with-docker-mcp-servers">Lab 1: First Steps with Docker MCP Servers</h1>
+
+<p>In this beginner-friendly hands-on lab, you’ll set up your first MCP servers with Docker and learn to interact with them using Gordon AI.</p>
+
+<p><strong>Time to complete:</strong> 30 minutes</p>
+
+<p><strong>Prerequisites:</strong></p>
+<ul>
+  <li>Docker Desktop installed</li>
+  <li>Basic command line knowledge</li>
+</ul>
+
+<h2 id="learning-objectives">Learning Objectives</h2>
+
+<p>By the end of this lab, you’ll be able to:</p>
+<ol>
+  <li>Set up multiple MCP servers using Docker Compose</li>
+  <li>Configure proper filesystem mounts and permissions</li>
+  <li>Interact with MCP servers using Gordon AI</li>
+  <li>Understand how MCP servers communicate with AI assistants</li>
+</ol>
+
+<h2 id="step-1-create-your-lab-environment">Step 1: Create Your Lab Environment</h2>
+
+<p>First, create a new directory for your lab:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>mcp-lab1
+<span class="nb">cd </span>mcp-lab1
+</code></pre></div></div>
+
+<p>Create a new file called <code class="language-plaintext highlighter-rouge">data.txt</code> with some sample content:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"This is sample text for our MCP lab experiment. The Docker MCP integration is awesome!"</span> <span class="o">&gt;</span> data.txt
+</code></pre></div></div>
+
+<h2 id="step-2-set-up-your-first-mcp-servers">Step 2: Set Up Your First MCP Servers</h2>
+
+<p>Create a file named <code class="language-plaintext highlighter-rouge">gordon-mcp.yml</code> with the following content:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">time</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/time</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">mcp-time</span>
+  
+  <span class="na">fs</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/filesystem</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">mcp-filesystem</span>
+    <span class="na">command</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">/rootfs</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">.:/rootfs</span>
+</code></pre></div></div>
+
+<p>This configuration sets up two MCP servers:</p>
+<ul>
+  <li>A time server that provides date and time information</li>
+  <li>A filesystem server that gives access to the current directory</li>
+</ul>
+
+<h2 id="step-3-interact-with-your-mcp-servers">Step 3: Interact with Your MCP Servers</h2>
+
+<p>Now let’s test our setup with some questions for Gordon AI:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Ask a time-related question</span>
+docker ai <span class="s2">"What time is it now in New York, Tokyo, and London? Show the date too."</span>
+
+<span class="c"># Ask a question that requires filesystem access</span>
+docker ai <span class="s2">"What's in the data.txt file? Count the words and tell me how many there are."</span>
+</code></pre></div></div>
+
+<p>You should see Gordon AI accessing the appropriate MCP servers to answer your questions.</p>
+
+<h2 id="step-4-extend-your-mcp-configuration">Step 4: Extend Your MCP Configuration</h2>
+
+<p>Let’s add another MCP server to our setup. Update your <code class="language-plaintext highlighter-rouge">gordon-mcp.yml</code> file:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">time</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/time</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">mcp-time</span>
+  
+  <span class="na">fs</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/filesystem</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">mcp-filesystem</span>
+    <span class="na">command</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">/rootfs</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">.:/rootfs</span>
+  
+  <span class="na">fetch</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/fetch</span>
+    <span class="na">container_name</span><span class="pi">:</span> <span class="s">mcp-fetch</span>
+</code></pre></div></div>
+
+<p>Now you can ask Gordon AI to fetch web content:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ai <span class="s2">"Fetch the Docker homepage and write a brief summary of what Docker is to a file called docker-summary.txt"</span>
+</code></pre></div></div>
+
+<h2 id="step-5-examine-container-operations">Step 5: Examine Container Operations</h2>
+
+<p>While Gordon is handling your requests, you can observe how Docker manages these MCP servers:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># List running containers</span>
+docker ps
+
+<span class="c"># View logs from a specific MCP server</span>
+docker logs mcp-fetch
+</code></pre></div></div>
+
+<p>Notice how containers are created and managed as needed for each interaction.</p>
+
+<h2 id="understanding-whats-happening">Understanding What’s Happening</h2>
+
+<p>When you run <code class="language-plaintext highlighter-rouge">docker ai</code> with your <code class="language-plaintext highlighter-rouge">gordon-mcp.yml</code> configuration:</p>
+
+<ol>
+  <li>Gordon checks the <code class="language-plaintext highlighter-rouge">gordon-mcp.yml</code> file to discover available MCP servers</li>
+  <li>When needed, Gordon starts the required MCP server containers</li>
+  <li>Gordon sends requests to the appropriate MCP servers based on your query</li>
+  <li>MCP servers process the requests and return results to Gordon</li>
+  <li>Gordon uses this context to formulate a comprehensive response</li>
+</ol>
+
+<h2 id="experiment-on-your-own">Experiment on Your Own</h2>
+
+<p>Try these additional exercises:</p>
+
+<ol>
+  <li>Create a more complex file structure and ask Gordon to navigate and summarize it</li>
+  <li>Ask Gordon to combine information from multiple sources (time + web content)</li>
+  <li>Try modifying the filesystem mount to restrict access to only certain directories</li>
+</ol>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>If you encounter issues:</p>
+
+<ul>
+  <li>Ensure Docker is running properly</li>
+  <li>Check that your <code class="language-plaintext highlighter-rouge">gordon-mcp.yml</code> file is in the current directory</li>
+  <li>Verify the syntax of your YAML file</li>
+  <li>Try restarting Docker Desktop if containers won’t start</li>
+</ul>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<p>Congratulations on completing your first MCP lab! Now you can move on to:</p>
+
+<ul>
+  <li><a href="/docs/labs/research-assistant-lab">Lab 2: Building a Research Assistant with MCP</a></li>
+  <li><a href="/docs/labs/database-operations-lab">Lab 3: Database Operations with MCP Servers</a></li>
+</ul>
+
+  </main>
+  
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>Docker MCP Community Portal</h3>
+        <p>A community-driven resource for Docker Model Context Protocol.</p>
+        <p>&copy; 2025 Docker MCP Community Portal. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal" target="_blank">
+              <i class="fab fa-github"></i> GitHub Repository
+            </a>
+          </li>
+          <li>
+            <a href="https://collabnix.com" target="_blank">
+              <i class="fas fa-globe"></i> Collabnix Community
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" target="_blank">
+              <i class="fas fa-code-branch"></i> Contribute to MCP Portal
+            </a>
+          </li>
+          <li>
+            <a href="https://hub.docker.com/u/mcp" target="_blank">
+              <i class="fab fa-docker"></i> MCP on Docker Hub
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+  <!-- ClipboardJS for copy functionality -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+  
+  <!-- Custom scripts -->
+  <script src="/assets/js/filter.js"></script>
+  
+  <script>
+    // Initialize clipboard.js
+    document.addEventListener('DOMContentLoaded', function() {
+      var clipboard = new ClipboardJS('.btn-copy');
+      
+      clipboard.on('success', function(e) {
+        var button = e.trigger;
+        var originalText = button.innerHTML;
+        
+        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        button.classList.add('copied');
+        
+        setTimeout(function() {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+        
+        e.clearSelection();
+      });
+    });
+  </script>
+</body>
+</html>
