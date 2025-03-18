@@ -228,8 +228,7 @@
   tags: ["installer", "automation", "setup"]
   added_date: "2025-03-17"
 
-# The following entries have been temporarily removed as the GitHub links are not operational
-# Will be restored when the repositories become available
+# The following entries have been modified to remove non-operational GitHub links
 
 - name: "Docker MCP CLI"
   description: "Command-line interface for working with Docker Model Context Protocol servers, allowing users to manage MCP servers and execute context-aware commands."
