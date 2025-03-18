@@ -101,7 +101,11 @@
 </style>
   
   <main>
-    <div class="page-container">
+    <link rel="stylesheet" href="/assets/css/lab-styles.css">
+<link rel="stylesheet" href="/assets/css/code-fix.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="page-container">
   <div class="page-header">
     <h1>Docker MCP Labs & Tutorials</h1>
   </div>
@@ -298,6 +302,50 @@
   </div>
 </div>
 
+<script>
+  // Add copy buttons to code blocks
+  document.addEventListener('DOMContentLoaded', function() {
+    const codeBlocks = document.querySelectorAll('pre');
+    codeBlocks.forEach(function(codeBlock, index) {
+      // Create code header
+      const header = document.createElement('div');
+      header.className = 'code-header';
+      
+      // Add file name or code type if available
+      const code = codeBlock.querySelector('code');
+      let language = '';
+      if (code && code.className) {
+        const classes = code.className.split(' ');
+        for (const cls of classes) {
+          if (cls.startsWith('language-')) {
+            language = cls.replace('language-', '');
+            break;
+          }
+        }
+      }
+      
+      header.innerHTML = `<span>${language || 'bash'}</span>`;
+      
+      // Add copy button
+      const button = document.createElement('button');
+      button.className = 'copy-button';
+      button.innerHTML = '<i class="far fa-copy"></i> Copy';
+      button.addEventListener('click', function() {
+        const text = codeBlock.querySelector('code').innerText;
+        navigator.clipboard.writeText(text).then(function() {
+          button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(function() {
+            button.innerHTML = '<i class="far fa-copy"></i> Copy';
+          }, 2000);
+        });
+      });
+      
+      header.appendChild(button);
+      codeBlock.parentNode.insertBefore(header, codeBlock);
+    });
+  });
+</script>
+
 <style>
   .page-container {
     max-width: 900px;
@@ -337,6 +385,25 @@
     height: auto;
   }
   
+  /* Code block specific styles */
+  .page-content pre, pre, div.highlight pre {
+    background-color: #282c34;
+    color: #f8f8f2;
+    padding: 1.2rem;
+    border-radius: 0 0 6px 6px; /* Rounded at bottom only */
+    margin: 0 0 1.5rem 0; /* Remove top margin since we have code header */
+    position: relative;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: pre;
+    word-wrap: normal;
+    box-sizing: border-box;
+    width: 100% !important;
+  }
+  
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .page-container {
@@ -348,6 +415,7 @@
     }
   }
 </style>
+
   </main>
   
   <footer class="site-footer">
