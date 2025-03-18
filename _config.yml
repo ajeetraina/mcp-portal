@@ -19,6 +19,9 @@ collections:
   docs:
     output: true
     permalink: /:collection/:path/
+  labs:
+    output: true
+    permalink: /labs/:path/
 
 # Default front matter
 defaults:
@@ -30,6 +33,10 @@ defaults:
       path: "_docs"
     values:
       layout: "doc"
+  - scope:
+      path: "_labs"
+    values:
+      layout: "lab"
   - scope:
       path: "_data"
     values:
