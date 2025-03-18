@@ -1,56 +1,42 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
   <style>
-    .bg { fill: linear-gradient(135deg, #2c3e50, #3498db); }
-    .container-box { fill: #3498db; opacity: 0.8; }
-    .label { fill: #fff; font-family: Arial, sans-serif; font-size: 14px; }
+    .docker-container { fill: #1E90FF; stroke: #1E90FF; stroke-width: 2; }
   </style>
   
-  <!-- Background Gradient -->
-  <rect width="100%" height="100%" fill="url(#backgroundGradient)"/>
-  <defs>
-    <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#2c3e50;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#3498db;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  
-  <!-- Docker Containers as Stacked Containers -->
+  <!-- Docker Containers as Stacked Docker-like Containers -->
   <g transform="translate(150, 150)">
-    <!-- Back Container -->
-    <rect x="-50" y="-30" width="100" height="60" rx="10" ry="10" class="container-box" opacity="0.6"/>
+    <!-- Container Shapes -->
+    <rect x="-60" y="-40" width="120" height="30" rx="5" ry="5" class="docker-container" opacity="0.6"/>
+    <rect x="-50" y="-30" width="100" height="30" rx="5" ry="5" class="docker-container" opacity="0.8"/>
+    <rect x="-40" y="-20" width="80" height="30" rx="5" ry="5" class="docker-container"/>
     
-    <!-- Middle Container -->
-    <rect x="-40" y="-20" width="100" height="60" rx="10" ry="10" class="container-box" opacity="0.8"/>
+    <!-- Docker Whale-like Details -->
+    <path d="M-35 -10 Q-25 -15 -15 -10 Q-5 -5 5 -10 Q15 -15 25 -10" 
+          fill="none" stroke="white" stroke-width="2"/>
     
-    <!-- Front Container -->
-    <rect x="-30" y="-10" width="100" height="60" rx="10" ry="10" class="container-box"/>
-    
-    <!-- Container Label -->
-    <text x="20" y="20" class="label" text-anchor="middle">Containers</text>
+    <!-- Container Text -->
+    <text x="0" y="15" text-anchor="middle" fill="white" font-size="12">Docker Containers</text>
   </g>
   
-  <!-- AI Model -->
+  <!-- Rest of the Diagram Remains the Same -->
   <g transform="translate(300, 50)">
     <rect x="-50" y="-25" width="100" height="50" rx="10" ry="10" fill="#5DADE2"/>
-    <text x="0" y="10" class="label" text-anchor="middle">AI Model</text>
+    <text x="0" y="10" fill="white" text-anchor="middle">AI Model</text>
   </g>
   
-  <!-- MCP Central Node -->
   <g transform="translate(300, 150)">
     <circle cx="0" cy="0" r="30" fill="#2C3E50"/>
-    <text x="0" y="5" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14px">MCP</text>
+    <text x="0" y="5" text-anchor="middle" fill="white">MCP</text>
   </g>
   
-  <!-- Server -->
   <g transform="translate(450, 150)">
     <rect x="-50" y="-30" width="100" height="60" rx="10" ry="10" fill="#BDC3C7"/>
-    <text x="0" y="5" class="label" text-anchor="middle">Server</text>
+    <text x="0" y="5" fill="white" text-anchor="middle">Server</text>
   </g>
   
-  <!-- Application -->
   <g transform="translate(300, 250)">
     <rect x="-50" y="-25" width="100" height="50" rx="10" ry="10" fill="#5DADE2"/>
-    <text x="0" y="10" class="label" text-anchor="middle">Application</text>
+    <text x="0" y="10" fill="white" text-anchor="middle">Application</text>
   </g>
   
   <!-- Connections -->
