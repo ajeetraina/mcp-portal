@@ -1,0 +1,59 @@
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 60%;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-text p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.5rem;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.hero-diagram {
+    flex: 1;
+    max-width: 40%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hero-diagram img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-text, .hero-diagram {
+        max-width: 100%;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+}
