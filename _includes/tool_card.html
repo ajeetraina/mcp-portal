@@ -65,9 +65,11 @@
   
   <div class="card-footer">
     <div class="card-links">
+      {% if include.tool.github_url %}
       <a href="{{ include.tool.github_url }}" class="btn btn-github" target="_blank" rel="noopener">
         <i class="fab fa-github"></i> GitHub
       </a>
+      {% endif %}
     </div>
   </div>
 </div>
