@@ -42,6 +42,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     header.appendChild(button);
     codeBlock.parentNode.insertBefore(header, codeBlock);
+    
+    // Ensure code blocks are properly contained
+    codeBlock.style.maxWidth = '100%';
+    codeBlock.style.overflowX = 'auto';
+    codeBlock.style.whiteSpace = 'pre';
+    codeBlock.style.wordWrap = 'normal';
+    
+    // Add additional styles to ensure proper box model
+    codeBlock.style.boxSizing = 'border-box';
+    
+    // Make sure any code element inside is also properly styled
+    if (code) {
+      code.style.whiteSpace = 'pre';
+      code.style.overflow = 'auto';
+      code.style.display = 'block';
+      code.style.maxWidth = '100%';
+    }
   });
 
   // Special handling for command lines
@@ -50,6 +67,28 @@ document.addEventListener('DOMContentLoaded', function() {
       if (codeElement.textContent.trim().startsWith('$')) {
         codeElement.classList.add('has-prompt');
       }
+    }
+    
+    // Ensure all code elements respect container width
+    codeElement.style.maxWidth = '100%';
+    codeElement.style.overflow = 'auto';
+  });
+  
+  // Add boxed styling to headings within content
+  document.querySelectorAll('main h1:not(.lab-step-header h1), main h2:not(.lab-step-header h2), main h3:not(.lab-step-header h3)').forEach(function(heading) {
+    // Don't apply to headings that are already styled
+    if (!heading.closest('.lab-prerequisites') && 
+        !heading.closest('.learning-objectives') && 
+        !heading.closest('.lab-conclusion') &&
+        !heading.closest('.lab-note') &&
+        !heading.closest('.lab-tip') &&
+        !heading.closest('.next-steps')) {
+      
+      heading.style.backgroundColor = '#f8f9fa';
+      heading.style.padding = '0.75rem 1rem';
+      heading.style.borderRadius = '6px';
+      heading.style.borderLeft = '4px solid #0db7ed';
+      heading.style.wordWrap = 'break-word';
     }
   });
 });
