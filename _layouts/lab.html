@@ -2,347 +2,108 @@
 layout: default
 ---
 
+<link rel="stylesheet" href="{{ '/assets/css/lab-styles.css' | relative_url }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 <div class="lab-container">
-  <div class="sidebar">
-    <div class="sidebar-content">
-      <h3>MCP Labs</h3>
-      <ul class="lab-navigation">
-        {% assign labs = site.labs | sort: 'order' %}
-        {% for lab in labs %}
-          <li {% if page.url == lab.url %}class="active"{% endif %}>
-            <a href="{{ lab.url | relative_url }}">
-              <span class="lab-number">{{ lab.order }}</span>
-              {{ lab.title }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-      
-      <div class="sidebar-footer">
-        <p>
-          <i class="fas fa-info-circle"></i> 
-          These labs are community-contributed. Found an issue? Submit a PR!
-        </p>
-      </div>
-    </div>
+  <div class="lab-header">
+    <h1>{{ page.title }}</h1>
+    <div class="lab-description">{{ page.description }}</div>
   </div>
-  
-  <div class="lab-content">
-    <div class="lab-header">
-      <h1>{{ page.title }}</h1>
-      {% if page.description %}
-        <p class="lab-description">{{ page.description }}</p>
-      {% endif %}
-      
-      <div class="lab-metadata">
-        <span class="difficulty">
-          <i class="fas fa-signal"></i> Difficulty: {{ page.difficulty | default: "Beginner" }}
-        </span>
-        <span class="duration">
-          <i class="far fa-clock"></i> Duration: {{ page.duration | default: "15 minutes" }}
-        </span>
-        {% if page.author %}
-          <span class="author">
-            <i class="fas fa-user"></i> Author: {{ page.author }}
-          </span>
-        {% endif %}
-      </div>
+
+  <div class="lab-meta">
+    {% if page.difficulty %}
+    <div class="lab-meta-item">
+      <i class="fas fa-signal"></i>
+      <span class="lab-meta-label">Difficulty:</span>
+      <span>{{ page.difficulty }}</span>
     </div>
+    {% endif %}
     
-    <div class="lab-body">
-      {% if page.prerequisites %}
-        <div class="prerequisites">
-          <h4><i class="fas fa-clipboard-check"></i> Prerequisites</h4>
-          <ul>
-            {% for prerequisite in page.prerequisites %}
-              <li>{{ prerequisite }}</li>
-            {% endfor %}
-          </ul>
-        </div>
-      {% endif %}
-      
-      {{ content }}
-      
-      {% if page.next_lab %}
-        <div class="next-lab">
-          <p>Ready for the next challenge?</p>
-          <a href="{{ page.next_lab | relative_url }}" class="btn btn-primary">
-            Continue to Next Lab <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-      {% endif %}
+    {% if page.time %}
+    <div class="lab-meta-item">
+      <i class="far fa-clock"></i>
+      <span class="lab-meta-label">Time to complete:</span>
+      <span>{{ page.time }}</span>
     </div>
+    {% endif %}
+    
+    {% if page.author %}
+    <div class="lab-meta-item">
+      <i class="fas fa-user"></i>
+      <span class="lab-meta-label">Author:</span>
+      <span>{{ page.author }}</span>
+    </div>
+    {% endif %}
+    
+    {% if page.last_updated %}
+    <div class="lab-meta-item">
+      <i class="fas fa-calendar-alt"></i>
+      <span class="lab-meta-label">Last updated:</span>
+      <span>{{ page.last_updated }}</span>
+    </div>
+    {% endif %}
+  </div>
+
+  {{ content }}
+
+  <div class="lab-nav">
+    {% if page.prev_lab %}
+    <a href="{{ page.prev_lab | relative_url }}" class="lab-nav-button lab-nav-prev">
+      <i class="fas fa-arrow-left"></i> Previous Lab
+    </a>
+    {% else %}
+    <div></div>
+    {% endif %}
+    
+    {% if page.next_lab %}
+    <a href="{{ page.next_lab | relative_url }}" class="lab-nav-button lab-nav-next">
+      Next Lab <i class="fas fa-arrow-right"></i>
+    </a>
+    {% endif %}
   </div>
 </div>
 
-<style>
-  .lab-container {
-    display: flex;
-    gap: 2rem;
-    margin: 2rem 0;
-  }
-  
-  .sidebar {
-    width: 280px;
-    flex-shrink: 0;
-    position: sticky;
-    top: 2rem;
-    align-self: flex-start;
-  }
-  
-  .sidebar-content {
-    background-color: white;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-  }
-  
-  .sidebar h3 {
-    padding: 1.5rem;
-    margin: 0;
-    background-color: var(--color-primary);
-    color: white;
-    font-weight: 600;
-  }
-  
-  .lab-navigation {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .lab-navigation li {
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-  }
-  
-  .lab-navigation li a {
-    display: block;
-    padding: 0.8rem 1.5rem;
-    color: var(--color-secondary);
-    text-decoration: none;
-    transition: background-color 0.2s;
-  }
-  
-  .lab-navigation li a:hover {
-    background-color: rgba(0,0,0,0.02);
-  }
-  
-  .lab-navigation li.active a {
-    background-color: var(--color-primary-light);
-    font-weight: 600;
-    color: var(--color-primary);
-  }
-  
-  .lab-number {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    line-height: 24px;
-    text-align: center;
-    background-color: var(--color-secondary-light);
-    color: var(--color-secondary);
-    border-radius: 50%;
-    margin-right: 0.5rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-  }
-  
-  .active .lab-number {
-    background-color: var(--color-primary);
-    color: white;
-  }
-  
-  .sidebar-footer {
-    padding: 1.5rem;
-    background-color: var(--color-secondary-light);
-    font-size: 0.85rem;
-    color: var(--color-secondary);
-  }
-  
-  .lab-content {
-    flex: 1;
-    background-color: white;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    padding: 2rem;
-  }
-  
-  .lab-header {
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    padding-bottom: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .lab-header h1 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    color: var(--color-primary);
-  }
-  
-  .lab-description {
-    font-size: 1.2rem;
-    color: var(--color-secondary);
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
-  }
-  
-  .lab-metadata {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    font-size: 0.9rem;
-    color: #666;
-  }
-  
-  .lab-metadata i {
-    color: var(--color-primary);
-    margin-right: 0.5rem;
-  }
-  
-  .lab-body {
-    line-height: 1.7;
-  }
-  
-  .lab-body h2 {
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--color-secondary);
-    font-weight: 600;
-  }
-  
-  .lab-body h3 {
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
-    color: var(--color-secondary);
-  }
-  
-  .lab-body p {
-    margin-bottom: 1.5rem;
-  }
-  
-  .lab-body img {
-    max-width: 100%;
-    height: auto;
-    border-radius: var(--border-radius);
-    margin: 1.5rem 0;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  }
-  
-  .lab-body pre {
-    background-color: #f8f9fa;
-    padding: 1rem;
-    border-radius: var(--border-radius);
-    overflow-x: auto;
-    margin: 1.5rem 0;
-  }
-  
-  .lab-body code {
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-    background-color: #f8f9fa;
-    padding: 0.2rem 0.4rem;
-    border-radius: 3px;
-    font-size: 0.9rem;
-  }
-  
-  .lab-body ul, .lab-body ol {
-    margin-bottom: 1.5rem;
-    padding-left: 1.5rem;
-  }
-  
-  .lab-body li {
-    margin-bottom: 0.5rem;
-  }
-  
-  .prerequisites {
-    background-color: var(--color-secondary-light);
-    padding: 1.5rem;
-    border-radius: var(--border-radius);
-    margin-bottom: 2rem;
-  }
-  
-  .prerequisites h4 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    color: var(--color-secondary);
-  }
-  
-  .prerequisites ul {
-    margin-bottom: 0;
-  }
-  
-  .next-lab {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(0,0,0,0.1);
-    text-align: center;
-  }
-  
-  .next-lab p {
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-  
-  .next-lab .btn {
-    padding: 0.8rem 1.5rem;
-  }
-  
-  @media (max-width: 992px) {
-    .lab-container {
-      flex-direction: column;
-    }
-    
-    .sidebar {
-      width: 100%;
-      position: static;
-      margin-bottom: 1.5rem;
-    }
-  }
-  
-  /* Styling for notes, warnings, and tips */
-  .note, .warning, .tip {
-    padding: 1.5rem;
-    border-radius: var(--border-radius);
-    margin: 1.5rem 0;
-    position: relative;
-    padding-left: 4rem;
-  }
-  
-  .note:before, .warning:before, .tip:before {
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    position: absolute;
-    left: 1.5rem;
-    top: 1.5rem;
-    font-size: 1.5rem;
-  }
-  
-  .note {
-    background-color: #e3f2fd;
-    border-left: 4px solid #2196f3;
-  }
-  
-  .note:before {
-    content: "\f05a";
-    color: #2196f3;
-  }
-  
-  .warning {
-    background-color: #fff3e0;
-    border-left: 4px solid #ff9800;
-  }
-  
-  .warning:before {
-    content: "\f071";
-    color: #ff9800;
-  }
-  
-  .tip {
-    background-color: #e8f5e9;
-    border-left: 4px solid #4caf50;
-  }
-  
-  .tip:before {
-    content: "\f0eb";
-    color: #4caf50;
-  }
-</style>
+<script>
+  // Add copy buttons to code blocks
+  document.addEventListener('DOMContentLoaded', function() {
+    const codeBlocks = document.querySelectorAll('pre');
+    codeBlocks.forEach(function(codeBlock, index) {
+      // Create code header
+      const header = document.createElement('div');
+      header.className = 'code-header';
+      
+      // Add file name or code type if available
+      const code = codeBlock.querySelector('code');
+      let language = '';
+      if (code && code.className) {
+        const classes = code.className.split(' ');
+        for (const cls of classes) {
+          if (cls.startsWith('language-')) {
+            language = cls.replace('language-', '');
+            break;
+          }
+        }
+      }
+      
+      header.innerHTML = `<span>${language || 'bash'}</span>`;
+      
+      // Add copy button
+      const button = document.createElement('button');
+      button.className = 'copy-button';
+      button.innerHTML = '<i class="far fa-copy"></i> Copy';
+      button.addEventListener('click', function() {
+        const text = codeBlock.querySelector('code').innerText;
+        navigator.clipboard.writeText(text).then(function() {
+          button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(function() {
+            button.innerHTML = '<i class="far fa-copy"></i> Copy';
+          }, 2000);
+        });
+      });
+      
+      header.appendChild(button);
+      codeBlock.parentNode.insertBefore(header, codeBlock);
+    });
+  });
+</script>
