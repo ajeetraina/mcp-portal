@@ -22,4 +22,263 @@ title: Home
   </div>
 </section>
 
-<!-- Rest of the content remains the same -->
+<section class="features">
+  <div class="container">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-server"></i>
+        </div>
+        <h3 class="feature-title">MCP Servers</h3>
+        <p class="feature-description">
+          Discover containerized MCP servers available on Docker Hub under the mcp/ namespace, providing AI assistants with specialized capabilities.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-tools"></i>
+        </div>
+        <h3 class="feature-title">Ask Gordon</h3>
+        <p class="feature-description">
+          Learn how to use Docker's Ask Gordon CLI assistant with MCP servers through simple Docker Compose configuration.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-book"></i>
+        </div>
+        <h3 class="feature-title">Documentation</h3>
+        <p class="feature-description">
+          Access comprehensive guides on configuring and using Docker-based MCP servers with various AI assistants.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-code-branch"></i>
+        </div>
+        <h3 class="feature-title">Community</h3>
+        <p class="feature-description">
+          Join the community and contribute to the growing ecosystem of Docker MCP servers and tools.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-mcp">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Docker & Model Context Protocol</h2>
+    </div>
+    <div class="about-content">
+      <p>The <strong>Model Context Protocol (MCP)</strong> is an open protocol designed by Anthropic that enables AI assistants such as Claude to interact with external tools and data sources in a standardized way.</p>
+      
+      <p><strong>Docker has partnered with Anthropic</strong> to build and maintain container images for MCP servers, available on Docker Hub under the <code>mcp/</code> namespace. This partnership brings several benefits:</p>
+      
+      <ul class="about-list">
+        <li><i class="fas fa-check"></i> <strong>Containerized MCP Servers:</strong> Run MCP servers as containers with proper isolation and security</li>
+        <li><i class="fas fa-check"></i> <strong>Ask Gordon Integration:</strong> Use Docker's CLI AI assistant with MCP servers through gordon-mcp.yml</li>
+        <li><i class="fas fa-check"></i> <strong>Docker Compose Configuration:</strong> Leverage Docker Compose for easy setup with bind mounts and environment variables</li>
+        <li><i class="fas fa-check"></i> <strong>Official Repository:</strong> Access verified MCP server images from Docker Hub</li>
+        <li><i class="fas fa-check"></i> <strong>Customizable Access:</strong> Control which resources MCP servers can access through container configuration</li>
+      </ul>
+      
+      <div class="code-example">
+        <h4>Quick Start with Ask Gordon:</h4>
+        <pre><code># Create gordon-mcp.yml
+services:
+  time:
+    image: mcp/time
+  fetch:
+    image: mcp/fetch
+  fs:
+    image: mcp/filesystem
+    command:
+      - /rootfs
+    volumes:
+      - .:/rootfs</code></pre>
+        <p>Then simply run: <code>docker ai 'what time is it in Tokyo?'</code></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mcp-servers" class="mcp-servers">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">MCP Servers on Docker Hub</h2>
+      <p class="section-description">
+        Browse the collection of MCP servers available as Docker containers.
+      </p>
+    </div>
+    
+    <div class="filter-container">
+      <div class="filter-row">
+        <div class="filter-group">
+          <label for="search-input" class="filter-label">Search</label>
+          <input type="text" id="search-input" class="filter-input" placeholder="Search by name...">
+        </div>
+        
+        <div class="filter-group">
+          <label for="category-filter" class="filter-label">Filter by Category</label>
+          <select id="category-filter" class="filter-select">
+            <option value="">All Categories</option>
+            <option value="working">Working Servers</option>
+            <option value="untested">Untested Servers</option>
+            <option value="unsupported">Unsupported Servers</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="sort-select" class="filter-label">Sort by</label>
+          <select id="sort-select" class="filter-select">
+            <option value="a-z">A to Z</option>
+            <option value="z-a">Z to A</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="view-toggle">
+        <span class="active"><i class="fas fa-th-large"></i> Card View</span>
+        <a href="{{ '/servers-table.html' | relative_url }}" class="btn btn-secondary"><i class="fas fa-table"></i> Table View</a>
+      </div>
+      
+      <div class="active-filters"></div>
+      
+      <button id="clear-filters" class="btn" style="display: none;">
+        <i class="fas fa-times"></i> Clear All Filters
+      </button>
+    </div>
+    
+    <div class="mcp-grid">
+      <!-- Working Servers -->
+      {% if site.data.mcp_servers.working_servers %}
+        {% for server in site.data.mcp_servers.working_servers %}
+          <div class="mcp-card" data-name="{{ server.name | downcase }}" data-category="working">
+            <div class="card-header">
+              <h3 class="card-title">{{ server.name }}</h3>
+              <div class="card-meta">
+                <span class="server-status success">Working</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">{{ server.description }}</p>
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/{{ server.image }}" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull {{ server.image }}" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+      
+      <!-- Untested Servers -->
+      {% if site.data.mcp_servers.untested_servers %}
+        {% for server in site.data.mcp_servers.untested_servers %}
+          <div class="mcp-card" data-name="{{ server.name | downcase }}" data-category="untested">
+            <div class="card-header">
+              <h3 class="card-title">{{ server.name }}</h3>
+              <div class="card-meta">
+                <span class="server-status warning">Untested</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">{{ server.description }}</p>
+              {% if server.requirements %}
+                <p class="server-requirements"><strong>Note:</strong> {{ server.requirements }}</p>
+              {% endif %}
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/{{ server.image }}" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull {{ server.image }}" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+      
+      <!-- Unsupported Servers -->
+      {% if site.data.mcp_servers.unsupported_servers %}
+        {% for server in site.data.mcp_servers.unsupported_servers %}
+          <div class="mcp-card" data-name="{{ server.name | downcase }}" data-category="unsupported">
+            <div class="card-header">
+              <h3 class="card-title">{{ server.name }}</h3>
+              <div class="card-meta">
+                <span class="server-status danger">Unsupported</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">{{ server.description }}</p>
+              {% if server.issue %}
+                <p class="server-issue"><strong>Issue:</strong> {{ server.issue }}</p>
+              {% endif %}
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/{{ server.image }}" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull {{ server.image }}" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Want to contribute to the Docker MCP ecosystem?</h2>
+    <p>Add your MCP server or tool to this collection by submitting a pull request. We welcome all community contributions!</p>
+    <div class="cta-buttons">
+      <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" class="btn btn-primary" target="_blank">
+        <i class="fas fa-code-branch"></i> How to Contribute
+      </a>
+      <a href="https://github.com/ajeetraina/docker-mcp-portal" class="btn btn-secondary" target="_blank">
+        <i class="fab fa-github"></i> GitHub Repository
+      </a>
+    </div>
+  </div>
+</section>
