@@ -1,0 +1,61 @@
+/* Fix for distorted images on homepage */
+
+/* Target the hero image specifically */
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+  object-fit: contain;
+  width: auto !important;
+  display: block;
+}
+
+/* Fix for the MCP diagram image */
+img[alt="Docker MCP Illustration"],
+img[src*="mcp-hero.svg"] {
+  max-width: 100%;
+  height: auto;
+  width: auto !important;
+  object-fit: contain;
+  aspect-ratio: auto;
+  display: block;
+}
+
+/* General image fixes */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix for image containers */
+.hero-image,
+.container img,
+.page-content img,
+.lab-content img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Ensure flex containers don't distort images */
+.hero .container {
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 600px;
+  min-width: 300px;
+}
+
+.hero-image {
+  flex: 1;
+  max-width: 500px;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
