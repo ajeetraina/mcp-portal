@@ -9,6 +9,24 @@ pre, pre code, div.highlight pre {
   display: block;
 }
 
+/* Code block specific styles - enhanced */
+.page-content pre, pre, div.highlight pre, .lab-step pre {
+  background-color: #282c34;
+  color: #f8f8f2;
+  padding: 1.2rem;
+  border-radius: 0 0 6px 6px; /* Rounded at bottom only */
+  margin: 0 0 1.5rem 0; /* Remove top margin since we have code header */
+  position: relative;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  max-width: 100%;
+  white-space: pre;
+  word-wrap: normal;
+  width: 100% !important; /* Force 100% width */
+}
+
 /* Make sure code content doesn't cause horizontal overflow */
 code {
   max-width: 100%;
@@ -25,7 +43,7 @@ code {
 }
 
 /* Specific fix for large code blocks */
-.page-content pre {
+.page-content pre, #content pre {
   width: 100% !important;
   box-sizing: border-box;
   overflow-x: auto;
@@ -38,4 +56,24 @@ code {
   word-wrap: normal;
   max-width: 100%;
   box-sizing: border-box;
+}
+
+/* Force code blocks to be consistent width */
+pre, code, .highlight {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* More specific selectors to override any conflicting styles */
+.page-content pre code, .lab-content pre code, #content pre code {
+  width: 100% !important;
+  max-width: 100% !important;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* Special fix for .markdown-body if used */
+.markdown-body pre, .markdown-body code {
+  max-width: 100% !important;
+  overflow-x: auto;
 }
