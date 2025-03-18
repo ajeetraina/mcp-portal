@@ -1,0 +1,331 @@
+/* Lab Styles for Docker MCP Portal */
+
+/* Main Lab Container */
+.lab-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Lab Header Section */
+.lab-header {
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #0db7ed;
+  padding-bottom: 1rem;
+}
+
+.lab-header h1 {
+  color: #0db7ed;
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.lab-description {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+/* Lab Metadata */
+.lab-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+
+.lab-meta-item {
+  display: flex;
+  align-items: center;
+}
+
+.lab-meta-item i {
+  color: #0db7ed;
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.lab-meta-label {
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+/* Prerequisites */
+.lab-prerequisites {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: #f1f8fe;
+  border-left: 4px solid #2196f3;
+  border-radius: 4px;
+}
+
+.lab-prerequisites h2 {
+  color: #2196f3;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.lab-prerequisites ul {
+  margin-bottom: 0;
+  padding-left: 1.5rem;
+}
+
+.lab-prerequisites li {
+  margin-bottom: 0.5rem;
+}
+
+/* Learning Objectives */
+.learning-objectives {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: #f1fef8;
+  border-left: 4px solid #4caf50;
+  border-radius: 4px;
+}
+
+.learning-objectives h2 {
+  color: #4caf50;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.learning-objectives ol {
+  padding-left: 1.5rem;
+  margin-bottom: 0;
+}
+
+.learning-objectives li {
+  margin-bottom: 0.5rem;
+}
+
+/* Lab Steps */
+.lab-step {
+  margin-bottom: 3rem;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.lab-step-header {
+  padding: 1rem 1.5rem;
+  background-color: #0db7ed;
+  color: white;
+  font-weight: 600;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+}
+
+.lab-step-header i {
+  margin-right: 0.75rem;
+  font-size: 1.2rem;
+}
+
+.lab-step-content {
+  padding: 1.5rem;
+  background-color: #fff;
+}
+
+.lab-step-content p {
+  margin-bottom: 1rem;
+}
+
+/* Code Blocks */
+.lab-step pre {
+  background-color: #282c34;
+  color: #f8f8f2;
+  padding: 1.2rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+.lab-step code {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.9rem;
+}
+
+.lab-step .code-header {
+  background-color: #1e2127;
+  padding: 0.5rem 1.2rem;
+  color: #d7d7d7;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.8rem;
+  margin-bottom: -1.5rem;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.lab-step .copy-button {
+  background: transparent;
+  border: none;
+  color: #d7d7d7;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.lab-step .copy-button:hover {
+  color: #fff;
+}
+
+/* Notes and Callouts */
+.lab-note {
+  padding: 1.2rem;
+  margin: 1.5rem 0;
+  background-color: #fff8e6;
+  border-left: 4px solid #ffc107;
+  border-radius: 4px;
+}
+
+.lab-note h4 {
+  margin-top: 0;
+  color: #e6a100;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.lab-note h4 i {
+  margin-right: 0.5rem;
+}
+
+.lab-note p:last-child {
+  margin-bottom: 0;
+}
+
+/* Tips */
+.lab-tip {
+  padding: 1.2rem;
+  margin: 1.5rem 0;
+  background-color: #e6f7ff;
+  border-left: 4px solid #1890ff;
+  border-radius: 4px;
+}
+
+.lab-tip h4 {
+  margin-top: 0;
+  color: #1890ff;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.lab-tip h4 i {
+  margin-right: 0.5rem;
+}
+
+.lab-tip p:last-child {
+  margin-bottom: 0;
+}
+
+/* Navigation between steps */
+.lab-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.lab-nav-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.2rem;
+  background-color: #0db7ed;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.lab-nav-button:hover {
+  background-color: #0997c4;
+}
+
+.lab-nav-next i {
+  margin-left: 0.5rem;
+}
+
+.lab-nav-prev i {
+  margin-right: 0.5rem;
+}
+
+/* Conclusion section */
+.lab-conclusion {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background-color: #f3f0ff;
+  border-left: 4px solid #7c4dff;
+  border-radius: 4px;
+}
+
+.lab-conclusion h2 {
+  color: #7c4dff;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+/* Next steps section */
+.next-steps {
+  margin-top: 2rem;
+}
+
+.next-steps h2 {
+  color: #0db7ed;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.next-steps ul {
+  padding-left: 1.5rem;
+}
+
+.next-steps li {
+  margin-bottom: 0.8rem;
+}
+
+.next-steps a {
+  color: #0db7ed;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.next-steps a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .lab-container {
+    padding: 1.5rem;
+  }
+  
+  .lab-meta {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .lab-step-header {
+    font-size: 1.1rem;
+  }
+  
+  .lab-header h1 {
+    font-size: 1.8rem;
+  }
+}
