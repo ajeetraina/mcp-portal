@@ -77,3 +77,33 @@ pre, code, .highlight {
   max-width: 100% !important;
   overflow-x: auto;
 }
+
+/* Very specific fix for tutorials page */
+body .page-container .page-content pre,
+body .page-container .page-content pre code,
+body .lab-container .lab-step-content pre,
+body .lab-container .lab-step-content pre code {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  box-sizing: border-box;
+}
+
+/* Override any inline styles */
+pre[style], code[style], pre code[style] {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+}
+
+/* Ensure code blocks in tutorials don't overflow */
+.page-container .page-content .language-python,
+.page-container .page-content .language-bash,
+.page-container .page-content .language-yaml,
+.page-container .page-content .language-dockerfile {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto;
+}
