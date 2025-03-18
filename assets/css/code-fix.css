@@ -1,0 +1,41 @@
+/* Fix for stretched code blocks */
+pre, pre code, div.highlight pre {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre;
+  word-wrap: normal;
+  box-sizing: border-box;
+  width: auto !important; /* Override any inline width */
+  display: block;
+}
+
+/* Make sure code content doesn't cause horizontal overflow */
+code {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all; /* For compatibility */
+  word-break: break-word; /* Modern browsers */
+}
+
+/* For inline code */
+:not(pre) > code {
+  white-space: normal;
+  word-break: normal;
+}
+
+/* Specific fix for large code blocks */
+.page-content pre {
+  width: 100% !important;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+/* Make sure highlight.js doesn't break layout */
+.hljs {
+  white-space: pre;
+  overflow-x: auto;
+  word-wrap: normal;
+  max-width: 100%;
+  box-sizing: border-box;
+}
