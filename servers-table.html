@@ -46,9 +46,6 @@ title: MCP Servers Table View
                 <span class="status-badge status-working">Working</span>
               </td>
               <td class="server-links">
-                <a href="{{ server.docs_url }}" class="btn-small" target="_blank" rel="noopener">
-                  <i class="fab fa-github"></i>
-                </a>
                 <a href="https://hub.docker.com/r/{{ server.image | split: ':' | first }}" class="btn-small" target="_blank" rel="noopener">
                   <i class="fab fa-docker"></i>
                 </a>
@@ -78,9 +75,6 @@ title: MCP Servers Table View
                 <span class="status-badge status-untested">Untested</span>
               </td>
               <td class="server-links">
-                <a href="{{ server.docs_url }}" class="btn-small" target="_blank" rel="noopener">
-                  <i class="fab fa-github"></i>
-                </a>
                 <a href="https://hub.docker.com/r/{{ server.image | split: ':' | first }}" class="btn-small" target="_blank" rel="noopener">
                   <i class="fab fa-docker"></i>
                 </a>
@@ -110,9 +104,6 @@ title: MCP Servers Table View
                 <span class="status-badge status-unsupported">Unsupported</span>
               </td>
               <td class="server-links">
-                <a href="{{ server.docs_url }}" class="btn-small" target="_blank" rel="noopener">
-                  <i class="fab fa-github"></i>
-                </a>
                 <a href="https://hub.docker.com/r/{{ server.image | split: ':' | first }}" class="btn-small" target="_blank" rel="noopener">
                   <i class="fab fa-docker"></i>
                 </a>
