@@ -101,13 +101,11 @@
 </style>
   
   <main>
-    <section class="page-header">
-  <div class="container">
-    <h1 class="page-title">Docker MCP Labs & Tutorials</h1>
+    <div class="page-container">
+  <div class="page-header">
+    <h1>Docker MCP Labs & Tutorials</h1>
   </div>
-</section>
-
-<section class="container">
+  
   <div class="page-content">
     <h1 id="docker-mcp-labs--tutorials">Docker MCP Labs &amp; Tutorials</h1>
 
@@ -298,7 +296,58 @@
 <p>If you have ideas for new labs or tutorials, please <a href="https://github.com/ajeetraina/docker-mcp-portal/issues/new">open an issue</a> with your suggestion!</p>
 
   </div>
-</section>
+</div>
+
+<style>
+  .page-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  .page-header {
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #0db7ed;
+    padding-bottom: 1rem;
+  }
+  
+  .page-header h1 {
+    color: #0db7ed;
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  
+  .page-content {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  /* Ensure all content stays within the container */
+  .page-content img,
+  .page-content pre,
+  .page-content table,
+  .page-content iframe {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .page-container {
+      padding: 1rem;
+    }
+    
+    .page-header h1 {
+      font-size: 1.8rem;
+    }
+  }
+</style>
   </main>
   
   <footer class="site-footer">
