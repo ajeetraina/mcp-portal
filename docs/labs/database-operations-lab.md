@@ -1,43 +1,57 @@
 ---
-layout: page
+layout: lab
 title: Lab 3: Database Operations with MCP Servers
+description: Learn how to use Docker MCP servers to interact with databases and perform various database operations through Gordon AI.
+difficulty: Intermediate
+time: 60 minutes
+author: Docker Team
+last_updated: March 18, 2025
+prev_lab: /docs/labs/research-assistant-lab
+next_lab: /docs/labs/production-deployment-lab
 ---
 
-# Lab 3: Database Operations with MCP Servers
+<div class="lab-prerequisites">
+  <h2><i class="fas fa-clipboard-list"></i> Prerequisites</h2>
+  <ul>
+    <li>Completion of <a href="/docs/labs/mcp-101-lab">Lab 1: First Steps with Docker MCP Servers</a></li>
+    <li>Docker Desktop installed</li>
+    <li>Basic SQL knowledge</li>
+  </ul>
+</div>
 
-In this hands-on lab, you'll learn how to use Docker MCP servers to interact with databases. You'll configure and use both SQLite and PostgreSQL MCP servers to perform various database operations through Gordon AI.
+<div class="learning-objectives">
+  <h2><i class="fas fa-graduation-cap"></i> Learning Objectives</h2>
+  <ol>
+    <li>Configure MCP servers to work with both SQLite and PostgreSQL databases</li>
+    <li>Perform complex database operations via natural language requests</li>
+    <li>Understand the security implications of database access via MCP</li>
+    <li>Create data analysis workflows combining multiple MCP servers</li>
+  </ol>
+</div>
 
-**Time to complete:** 60 minutes
-
-**Prerequisites:**
-- Completion of [Lab 1: First Steps with Docker MCP Servers](/docs/labs/mcp-101-lab)
-- Docker Desktop installed
-- Basic SQL knowledge
-
-## Learning Objectives
-
-By the end of this lab, you'll be able to:
-1. Configure MCP servers to work with both SQLite and PostgreSQL databases
-2. Perform complex database operations via natural language requests
-3. Understand the security implications of database access via MCP
-4. Create data analysis workflows combining multiple MCP servers
-
-## Step 1: Setting Up Your Environment
-
-Create a new directory for your database lab:
+<div class="lab-step">
+  <div class="lab-step-header">
+    <i class="fas fa-play-circle"></i> Step 1: Setting Up Your Environment
+  </div>
+  <div class="lab-step-content">
+    <p>Create a new directory for your database lab:</p>
 
 ```bash
 mkdir mcp-db-lab
 cd mcp-db-lab
 mkdir data
 ```
+  </div>
+</div>
 
-## Step 2: Create a Sample SQLite Database
-
-First, let's create a sample database for our exercises:
+<div class="lab-step">
+  <div class="lab-step-header">
+    <i class="fas fa-database"></i> Step 2: Create a Sample SQLite Database
+  </div>
+  <div class="lab-step-content">
+    <p>First, let's create a SQL script to initialize our database:</p>
 
 ```bash
-# Create a SQL script to initialize our database
 cat << EOF > data/init.sql
 CREATE TABLE employees (
     id INTEGER PRIMARY KEY,
@@ -112,10 +126,15 @@ INSERT INTO employee_projects (employee_id, project_id, role) VALUES
 (10, 3, 'Supervisor');
 EOF
 ```
+  </div>
+</div>
 
-## Step 3: Configure MCP Servers for Database Operations
-
-Create a `gordon-mcp.yml` file with SQLite MCP server configuration:
+<div class="lab-step">
+  <div class="lab-step-header">
+    <i class="fas fa-cogs"></i> Step 3: Configure MCP Servers for Database Operations
+  </div>
+  <div class="lab-step-content">
+    <p>Create a <code>gordon-mcp.yml</code> file with SQLite MCP server configuration:</p>
 
 ```yaml
 services:
@@ -133,26 +152,53 @@ services:
       - ./:/rootfs/output
 ```
 
-## Step 4: Basic SQLite Database Operations
+    <p>This configuration sets up two MCP servers:</p>
+    <ul>
+      <li>A SQLite server that can interact with SQLite databases</li>
+      <li>A filesystem server that gives access to our data directory</li>
+    </ul>
+  </div>
+</div>
 
-Let's start with some basic SQLite operations:
+<div class="lab-step">
+  <div class="lab-step-header">
+    <i class="fas fa-database"></i> Step 4: Basic SQLite Database Operations
+  </div>
+  <div class="lab-step-content">
+    <p>Let's start with some basic SQLite operations:</p>
 
 ```bash
 # Initialize the database
 docker ai "Create a new SQLite database called 'company.db' in the data directory and run the SQL commands from the init.sql file to set it up."
+```
 
+    <p>You should see Gordon AI using the SQLite MCP server to create the database. Now let's try some queries:</p>
+
+```bash
 # Basic query
 docker ai "Query the company database and list all employees in the Engineering department with their salaries."
+```
 
+    <p>You should see a list of employees in the Engineering department. Let's try a more complex query:</p>
+
+```bash
 # More complex query
 docker ai "Find the average salary by department and identify which department has the highest average salary. Format the results as a markdown table."
 ```
 
-## Step 5: Set Up PostgreSQL for Advanced Operations
+    <div class="lab-tip">
+      <h4><i class="fas fa-lightbulb"></i> Tip</h4>
+      <p>You can ask Gordon AI to format results in various ways, such as tables, lists, or even generate visualizations with descriptions.</p>
+    </div>
+  </div>
+</div>
 
-For more advanced database operations, let's add PostgreSQL to our environment.
-
-First, we'll create a PostgreSQL container with our sample data:
+<div class="lab-step">
+  <div class="lab-step-header">
+    <i class="fas fa-server"></i> Step 5: Set Up PostgreSQL for Advanced Operations
+  </div>
+  <div class="lab-step-content">
+    <p>For more advanced database operations, let's add PostgreSQL to our environment. First, we'll start a PostgreSQL container with our sample data:</p>
 
 ```bash
 # Start a PostgreSQL container
@@ -165,7 +211,7 @@ docker run -d \
   postgres:14
 ```
 
-Now, update your `gordon-mcp.yml` file to include the PostgreSQL MCP server:
+    <p>Now, update your <code>gordon-mcp.yml</code> file to include the PostgreSQL MCP server:</p>
 
 ```yaml
 services:
@@ -187,60 +233,180 @@ services:
     command: postgresql://labuser:labpassword@host.docker.internal:5432/company
 ```
 
-Now let's initialize our PostgreSQL database:
+    <p>Initialize our PostgreSQL database with the same schema:</p>
 
 ```bash
 docker ai "Connect to the PostgreSQL database and create the same schema as in our SQLite database. Use the init.sql file as reference. Then confirm the tables were created correctly."
 ```
+  </div>
+</div>
 
-## Step 6: Advanced Database Operations
+<div class="lab-step">
+  <div class="lab-step-header">
+    <i class="fas fa-chart-bar"></i> Step 6: Advanced Database Operations
+  </div>
+  <div class="lab-step-content">
+    <p>Now let's perform more complex database tasks:</p>
 
-Now let's perform more complex database tasks:
-
-### Task 1: Cross-Database Analysis
+    <h3>Task 1: Cross-Database Analysis</h3>
 
 ```bash
 docker ai "Compare the schema between our SQLite database and PostgreSQL database. Are there any differences? Which database would you recommend for our company data and why?"
 ```
 
-### Task 2: Data Analysis and Reporting
+    <h3>Task 2: Data Analysis and Reporting</h3>
 
 ```bash
 docker ai "Analyze the employee and project data in the PostgreSQL database. Which employees are working on multiple projects? Create a report showing the workload distribution across departments. Save the report as a markdown file called workload_analysis.md."
 ```
 
-### Task 3: Database Schema Improvements
+    <h3>Task 3: Database Schema Improvements</h3>
 
 ```bash
 docker ai "Suggest improvements to our database schema. What indexes, constraints, or additional tables would you recommend? Create a SQL script with your recommendations and save it to output/schema_improvements.sql."
 ```
 
-## Step 7: Building a Database Dashboard (Advanced)
+    <div class="lab-note">
+      <h4><i class="fas fa-info-circle"></i> Understanding MCP Database Operations</h4>
+      <p>When you ask Gordon AI to perform database operations:</p>
+      <ol>
+        <li>Gordon identifies the task requires database interaction</li>
+        <li>It selects the appropriate MCP server (SQLite or PostgreSQL)</li>
+        <li>The MCP server translates natural language into SQL queries</li>
+        <li>Results are returned and formatted according to your request</li>
+      </ol>
+      <p>This powerful abstraction allows non-technical users to interact with databases using natural language.</p>
+    </div>
+  </div>
+</div>
 
-For a more advanced exercise, let's create a simple dashboard for our data:
+<div class="lab-step">
+  <div class="lab-step-header">
+    <i class="fas fa-code"></i> Step 7: Building a Database Dashboard
+  </div>
+  <div class="lab-step-content">
+    <p>For a more advanced exercise, let's create a simple dashboard for our data:</p>
 
 ```bash
 docker ai "Create an HTML dashboard that shows key metrics from our company database, including department budgets, employee salary distributions, and project statuses. Use JavaScript for any interactive elements. Save the dashboard to output/company_dashboard.html."
 ```
 
-## Database Security Considerations
+    <p>Once the dashboard is created, you can open it in your browser:</p>
 
-When working with MCP servers and databases, keep these security best practices in mind:
+```bash
+# On macOS
+open output/company_dashboard.html
 
-1. **Connection Strings**: Never expose database credentials in public repositories
-2. **Access Control**: Use read-only connections when only queries are needed
-3. **Container Networks**: Consider using Docker networks to isolate database containers
-4. **Volume Mounting**: Be careful about what directories you mount to containers
+# On Linux
+xdg-open output/company_dashboard.html
 
-## Troubleshooting
+# On Windows
+start output/company_dashboard.html
+```
+  </div>
+</div>
 
-- If PostgreSQL connections fail, ensure the host.docker.internal resolution is working
-- For SQLite issues, check file permissions on the data directory
-- If queries return unexpected results, verify the database schema and data
+<div class="lab-step">
+  <div class="lab-step-header">
+    <i class="fas fa-shield-alt"></i> Step 8: Database Security Considerations
+  </div>
+  <div class="lab-step-content">
+    <p>It's important to understand the security implications of using MCP servers with databases. Here are some best practices:</p>
 
-## Next Steps
+    <ol>
+      <li><strong>Connection Strings</strong>: Never expose database credentials in public repositories</li>
+      <li><strong>Access Control</strong>: Use read-only connections when only queries are needed</li>
+      <li><strong>Container Networks</strong>: Consider using Docker networks to isolate database containers</li>
+      <li><strong>Volume Mounting</strong>: Be careful about what directories you mount to containers</li>
+    </ol>
 
-Congratulations on completing the database operations lab! Continue your learning with:
+    <p>Let's implement a more secure configuration by creating a Docker network and updating our setup:</p>
 
-- [Tutorial: Building Custom MCP Servers](/docs/tutorials/custom-mcp-server)
-- [Lab 4: Deploying MCP Servers to Production](/docs/labs/production-deployment-lab)
+```bash
+# Create a Docker network
+docker network create mcp-db-network
+
+# Stop and remove the existing PostgreSQL container
+docker stop postgres-mcp-lab
+docker rm postgres-mcp-lab
+
+# Start PostgreSQL with the new network
+docker run -d \
+  --name postgres-mcp-lab \
+  --network mcp-db-network \
+  -e POSTGRES_PASSWORD=labpassword \
+  -e POSTGRES_USER=labuser \
+  -e POSTGRES_DB=company \
+  postgres:14
+```
+
+    <p>Create a new <code>secure-gordon-mcp.yml</code> file:</p>
+
+```yaml
+services:
+  sqlite:
+    image: mcp/sqlite
+    volumes:
+      - ./data:/data:ro  # Read-only access
+  
+  fs:
+    image: mcp/filesystem
+    command:
+      - /rootfs
+    volumes:
+      - ./data:/rootfs/data:ro  # Read-only access to data
+      - ./output:/rootfs/output:rw  # Write access only to output
+  
+  postgres:
+    image: mcp/postgres
+    command: postgresql://labuser:labpassword@postgres-mcp-lab:5432/company
+    networks:
+      - mcp-db-network
+
+networks:
+  mcp-db-network:
+    external: true
+    name: mcp-db-network
+```
+
+    <p>Let's test our secure configuration:</p>
+
+```bash
+docker ai --file secure-gordon-mcp.yml "Query the PostgreSQL database to find the highest paid employee in each department."
+```
+  </div>
+</div>
+
+<div class="lab-tip">
+  <h4><i class="fas fa-lightbulb"></i> Advanced Database Tips</h4>
+  <ul>
+    <li><strong>Performance Optimization</strong>: Ask Gordon AI to generate database indexes for better performance</li>
+    <li><strong>Data Migration</strong>: Use MCP servers to help migrate data between different database systems</li>
+    <li><strong>Query Generation</strong>: Have Gordon AI generate complex queries that you can reuse in your applications</li>
+    <li><strong>Documentation</strong>: Ask for database documentation to be generated automatically</li>
+  </ul>
+</div>
+
+<div class="lab-note">
+  <h4><i class="fas fa-exclamation-triangle"></i> Troubleshooting</h4>
+  <ul>
+    <li>If PostgreSQL connections fail, ensure the host.docker.internal resolution is working</li>
+    <li>For SQLite issues, check file permissions on the data directory</li>
+    <li>If queries return unexpected results, verify the database schema and data</li>
+  </ul>
+</div>
+
+<div class="lab-conclusion">
+  <h2><i class="fas fa-flag-checkered"></i> Conclusion</h2>
+  <p>Congratulations! You've successfully learned how to use Docker MCP servers to interact with databases. You've seen how Gordon AI can translate natural language into SQL queries, perform complex data analysis, and generate reports and visualizations.</p>
+  <p>This powerful capability allows team members with varying levels of technical expertise to work with databases effectively, democratizing access to data while maintaining security and control.</p>
+</div>
+
+<div class="next-steps">
+  <h2><i class="fas fa-arrow-circle-right"></i> Next Steps</h2>
+  <p>Now that you've mastered database operations with MCP, you can continue your learning journey with:</p>
+  <ul>
+    <li><a href="/docs/labs/production-deployment-lab">Lab 4: Deploying MCP Servers to Production</a> - Learn how to deploy your MCP servers in a production environment</li>
+    <li><a href="/docs/tutorials/custom-mcp-server">Tutorial: Building Custom MCP Servers</a> - Create your own specialized MCP servers</li>
+  </ul>
+</div>
