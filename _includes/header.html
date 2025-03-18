@@ -13,9 +13,41 @@
           <li><a href="{{ '/servers-table.html' | relative_url }}"><i class="fas fa-server"></i> Servers</a></li>
           <li><a href="{{ '/tools.html' | relative_url }}"><i class="fas fa-tools"></i> Tools</a></li>
           <li><a href="{{ '/docs/labs-and-tutorials' | relative_url }}"><i class="fas fa-flask"></i> Labs</a></li>
-          <li><a href="{{ '/docs/ask-gordon' | relative_url }}"><i class="fas fa-robot"></i> Ask Gordon</a></li>
+          <li>
+            <a href="{{ '/docs/ask-gordon' | relative_url }}">
+              <i class="fas fa-robot"></i> Ask Gordon
+              <span class="new-badge">NEW</span>
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
   </div>
 </header>
+
+<style>
+.new-badge {
+  display: inline-block;
+  background-color: #FF5722;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  margin-left: 6px;
+  vertical-align: middle;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+</style>
