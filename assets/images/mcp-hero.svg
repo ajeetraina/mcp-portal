@@ -1,82 +1,61 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
-  <!-- Background elements -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
+  <style>
+    .bg { fill: linear-gradient(135deg, #2c3e50, #3498db); }
+    .container-box { fill: #3498db; opacity: 0.8; }
+    .label { fill: #fff; font-family: Arial, sans-serif; font-size: 14px; }
+  </style>
+  
+  <!-- Background Gradient -->
+  <rect width="100%" height="100%" fill="url(#backgroundGradient)"/>
   <defs>
-    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#384d54" stop-opacity="0.05"/>
-      <stop offset="100%" stop-color="#0db7ed" stop-opacity="0.1"/>
+    <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c3e50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3498db;stop-opacity:1" />
     </linearGradient>
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="2" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.2"/>
-    </filter>
   </defs>
   
-  <!-- Background -->
-  <rect width="600" height="400" fill="url(#bg-gradient)" rx="10"/>
-  
-  <!-- Connection lines -->
-  <g stroke="#0db7ed" stroke-width="2" stroke-dasharray="5 3" opacity="0.5">
-    <path d="M150,200 C200,150 250,150 300,200"/>
-    <path d="M300,200 C350,250 400,250 450,200"/>
-    <path d="M150,200 C200,250 250,250 300,200"/>
-    <path d="M300,200 C350,150 400,150 450,200"/>
-    <path d="M300,100 L300,200"/>
-    <path d="M300,300 L300,200"/>
+  <!-- Docker Containers as Stacked Containers -->
+  <g transform="translate(150, 150)">
+    <!-- Back Container -->
+    <rect x="-50" y="-30" width="100" height="60" rx="10" ry="10" class="container-box" opacity="0.6"/>
+    
+    <!-- Middle Container -->
+    <rect x="-40" y="-20" width="100" height="60" rx="10" ry="10" class="container-box" opacity="0.8"/>
+    
+    <!-- Front Container -->
+    <rect x="-30" y="-10" width="100" height="60" rx="10" ry="10" class="container-box"/>
+    
+    <!-- Container Label -->
+    <text x="20" y="20" class="label" text-anchor="middle">Containers</text>
   </g>
   
-  <!-- Docker container clusters -->
-  <g transform="translate(120, 180)" filter="url(#shadow)">
-    <!-- Docker whale logo -->
-    <path fill="#0db7ed" d="M30,30 C20,15 40,0 50,15 C60,0 80,15 70,30 C80,45 60,60 50,45 C40,60 20,45 30,30" />
-    
-    <!-- Docker containers -->
-    <rect x="0" y="35" width="20" height="20" rx="2" fill="#0db7ed" />
-    <rect x="25" y="35" width="20" height="20" rx="2" fill="#0db7ed" />
-    <rect x="50" y="35" width="20" height="20" rx="2" fill="#0db7ed" />
-    <rect x="75" y="35" width="20" height="20" rx="2" fill="#0db7ed" />
-    <rect x="0" y="60" width="20" height="20" rx="2" fill="#0db7ed" />
-    <rect x="25" y="60" width="20" height="20" rx="2" fill="#0db7ed" />
-    <rect x="50" y="60" width="20" height="20" rx="2" fill="#0db7ed" />
-    
-    <!-- Labels -->
-    <text x="50" y="100" fill="#384d54" font-family="sans-serif" font-size="14" text-anchor="middle">Docker Containers</text>
+  <!-- AI Model -->
+  <g transform="translate(300, 50)">
+    <rect x="-50" y="-25" width="100" height="50" rx="10" ry="10" fill="#5DADE2"/>
+    <text x="0" y="10" class="label" text-anchor="middle">AI Model</text>
   </g>
   
   <!-- MCP Central Node -->
-  <g transform="translate(300, 200)" filter="url(#shadow)">
-    <circle cx="0" cy="0" r="40" fill="#384d54" />
-    <text x="0" y="5" fill="white" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">MCP</text>
+  <g transform="translate(300, 150)">
+    <circle cx="0" cy="0" r="30" fill="#2C3E50"/>
+    <text x="0" y="5" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14px">MCP</text>
   </g>
   
-  <!-- AI Model Node -->
-  <g transform="translate(300, 80)" filter="url(#shadow)">
-    <rect x="-35" y="-25" width="70" height="50" rx="5" fill="#0db7ed" />
-    <text x="0" y="5" fill="white" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">AI Model</text>
+  <!-- Server -->
+  <g transform="translate(450, 150)">
+    <rect x="-50" y="-30" width="100" height="60" rx="10" ry="10" fill="#BDC3C7"/>
+    <text x="0" y="5" class="label" text-anchor="middle">Server</text>
   </g>
   
-  <!-- Application Node -->
-  <g transform="translate(300, 320)" filter="url(#shadow)">
-    <rect x="-35" y="-25" width="70" height="50" rx="5" fill="#0db7ed" />
-    <text x="0" y="5" fill="white" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Application</text>
+  <!-- Application -->
+  <g transform="translate(300, 250)">
+    <rect x="-50" y="-25" width="100" height="50" rx="10" ry="10" fill="#5DADE2"/>
+    <text x="0" y="10" class="label" text-anchor="middle">Application</text>
   </g>
   
-  <!-- Server Cluster -->
-  <g transform="translate(450, 200)" filter="url(#shadow)">
-    <!-- Server rack illustration -->
-    <rect x="-30" y="-40" width="60" height="80" rx="5" fill="#e0e0e0" stroke="#384d54" stroke-width="2" />
-    <rect x="-25" y="-35" width="50" height="10" rx="2" fill="#384d54" />
-    <rect x="-25" y="-20" width="50" height="10" rx="2" fill="#384d54" />
-    <rect x="-25" y="-5" width="50" height="10" rx="2" fill="#384d54" />
-    <rect x="-25" y="10" width="50" height="10" rx="2" fill="#384d54" />
-    <rect x="-25" y="25" width="50" height="10" rx="2" fill="#384d54" />
-    
-    <!-- Blinking lights -->
-    <circle cx="20" cy="-30" r="2" fill="#0db7ed" />
-    <circle cx="20" cy="-15" r="2" fill="#0db7ed" />
-    <circle cx="20" cy="0" r="2" fill="#0db7ed" />
-    <circle cx="20" cy="15" r="2" fill="#0db7ed" />
-    <circle cx="20" cy="30" r="2" fill="#0db7ed" />
-    
-    <!-- Label -->
-    <text x="0" y="50" fill="#384d54" font-family="sans-serif" font-size="14" text-anchor="middle">Server</text>
-  </g>
+  <!-- Connections -->
+  <line x1="180" y1="150" x2="250" y2="150" stroke="#fff" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="350" y1="80" x2="300" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="300" y1="180" x2="300" y2="220" stroke="#fff" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="350" y1="150" x2="400" y2="150" stroke="#fff" stroke-width="2" stroke-dasharray="5,5"/>
 </svg>
