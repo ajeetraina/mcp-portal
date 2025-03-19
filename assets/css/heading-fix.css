@@ -1,81 +1,53 @@
-.hero {
-    position: relative;
-    background: linear-gradient(135deg, #2c3e50, #3498db);
-    color: white;
-    padding: 4rem 0;
-    overflow: hidden;
+/* Fix for page titles with white backgrounds */
+
+/* Target all page titles */
+.page-title {
+  color: white !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  background: transparent !important;
+  -webkit-text-fill-color: white !important;
 }
 
-.hero .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-    position: relative;
-    z-index: 2;
+/* Fix specifically for the servers table view page */
+section.page-header {
+  position: relative;
 }
 
-.hero-content {
-    flex: 0 0 60%;
-    max-width: 60%;
-    padding-right: 2rem;
+section.page-header .page-title {
+  position: relative;
+  z-index: 2;
+  color: white !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  background: transparent !important;
+  -webkit-text-fill-color: white !important;
 }
 
+section.page-header .page-description {
+  position: relative;
+  z-index: 2;
+  color: white !important;
+}
+
+/* Fix for any gradient text that might be causing issues */
+h1, h2, h3, h4, h5, h6 {
+  background-clip: text !important;
+}
+
+/* Sometimes text with gradients can appear with white backgrounds */
+.gradient-text {
+  background: transparent !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+/* Fix for hero section titles */
 .hero-title {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    line-height: 1.2;
+  color: var(--color-secondary) !important;
+  background: transparent !important;
 }
 
-.hero-description {
-    font-size: 1.125rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 1.5rem;
-    max-width: 600px;
-}
-
-.hero-cta {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
-
-.hero-image {
-    flex: 0 0 40%;
-    max-width: 40%;
-    position: relative;
-    z-index: 2;
-}
-
-.hero-image img {
-    max-width: 100%;
-    height: auto;
-}
-
-@media (max-width: 992px) {
-    .hero .container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .hero-content, .hero-image {
-        max-width: 100%;
-        flex: 0 0 100%;
-        padding-right: 0;
-    }
-
-    .hero-cta {
-        justify-content: center;
-    }
-
-    .hero-title {
-        font-size: 2.5rem;
-    }
-
-    .hero-description {
-        margin: 0 auto 1.5rem;
-    }
+/* Fix for section titles */
+.section-title {
+  color: var(--color-secondary) !important;
+  background: transparent !important;
 }
