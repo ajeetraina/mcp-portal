@@ -5,15 +5,17 @@ layout: default
 <link rel="stylesheet" href="{{ '/assets/css/code-fix.css' | relative_url }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-<div class="page-container">
-  <div class="page-header">
-    <h1>{{ page.title }}</h1>
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title">{{ page.title }}</h1>
   </div>
-  
+</section>
+
+<section class="container">
   <div class="page-content">
     {{ content }}
   </div>
-</div>
+</section>
 
 <script>
   // Add copy buttons to code blocks
@@ -60,44 +62,6 @@ layout: default
 </script>
 
 <style>
-  .page-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-  }
-  
-  .page-header {
-    margin-bottom: 2rem;
-    border-bottom: 2px solid #0db7ed;
-    padding-bottom: 1rem;
-  }
-  
-  .page-header h1 {
-    color: #0db7ed;
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-  }
-  
-  .page-content {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    line-height: 1.6;
-    color: #333;
-  }
-  
-  /* Ensure all content stays within the container */
-  .page-content img,
-  .page-content pre,
-  .page-content table,
-  .page-content iframe {
-    max-width: 100%;
-    height: auto;
-  }
-  
   /* Code block specific styles */
   .page-content pre, pre, div.highlight pre {
     background-color: #282c34;
@@ -117,14 +81,33 @@ layout: default
     width: 100% !important;
   }
   
+  /* Add better styling to the page content */
+  .page-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  .page-content h1 {
+    display: none; /* Hide the duplicate title */
+  }
+  
+  /* Ensure all content stays within the container */
+  .page-content img,
+  .page-content pre,
+  .page-content table,
+  .page-content iframe {
+    max-width: 100%;
+    height: auto;
+  }
+  
   /* Responsive adjustments */
   @media (max-width: 768px) {
-    .page-container {
-      padding: 1rem;
-    }
-    
-    .page-header h1 {
-      font-size: 1.8rem;
+    .page-content {
+      padding: 1.5rem;
     }
   }
 </style>
