@@ -8,6 +8,7 @@
   object-fit: contain;
   width: auto !important;
   display: block;
+  background: transparent !important;
 }
 
 /* Fix for the MCP diagram image */
@@ -19,12 +20,23 @@ img[src*="mcp-hero.svg"] {
   object-fit: contain;
   aspect-ratio: auto;
   display: block;
+  background: transparent !important;
 }
 
 /* General image fixes */
 img {
   max-width: 100%;
   height: auto;
+  background-color: transparent !important;
+}
+
+/* SVG image specific fixes */
+svg {
+  background-color: transparent !important;
+}
+
+img[src$=".svg"] {
+  background-color: transparent !important;
 }
 
 /* Fix for image containers */
@@ -35,6 +47,7 @@ img {
   max-width: 100%;
   height: auto;
   object-fit: contain;
+  background-color: transparent !important;
 }
 
 /* Ensure flex containers don't distort images */
@@ -58,4 +71,22 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* Fix for SVG logos that need transparent backgrounds */
+.logo img,
+header img,
+footer img {
+  background-color: transparent !important;
+}
+
+/* Card and icon fixes */
+.card-icon i,
+.feature-icon i {
+  background-color: transparent !important;
+}
+
+/* Fixing SVG text rendering in dark/light modes */
+svg text {
+  fill: currentColor;
 }
