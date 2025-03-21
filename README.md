@@ -1,10 +1,10 @@
-# Docker MCP Community Portal
+# MCP Community Portal
 
-A modern, community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources. This repository powers the website at [ajeetraina.github.io/docker-mcp-portal](https://ajeetraina.github.io/docker-mcp-portal).
+A modern, community-driven collection of Model Context Protocol (MCP) servers, tools, and resources. This repository powers the website at [ajeetraina.github.io/docker-mcp-portal](https://ajeetraina.github.io/docker-mcp-portal).
 
 ## About
 
-The Docker MCP Community Portal aims to be the most comprehensive, up-to-date resource for Docker's integration with the Model Context Protocol (MCP). This portal showcases how Docker provides containerized MCP servers and integrates them with tools like Gordon AI.
+The MCP Community Portal aims to be the most comprehensive, up-to-date resource for integration with the Model Context Protocol (MCP). This portal showcases how Docker provides containerized MCP servers and integrates them with tools like Gordon AI.
 
 ## What is the Model Context Protocol (MCP) and Docker's Role?
 
@@ -66,7 +66,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- All contributors who have submitted their Docker MCP implementations
+- All contributors who have submitted their MCP implementations
 - The [Collabnix](https://collabnix.com) community
 - Docker for creating container images for MCP servers
 - Anthropic for developing the Model Context Protocol standard
