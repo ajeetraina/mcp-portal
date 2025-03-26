@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Docker MCP Labs & Tutorials
+title: MCP Labs & Tutorials
 ---
 
-# Docker MCP Labs & Tutorials
+# MCP Labs & Tutorials
 
 Welcome to our collection of hands-on labs and tutorials for Docker Model Context Protocol (MCP). Whether you're just getting started with MCP or looking to deploy production-ready solutions, we have resources to help you succeed.
 
@@ -11,7 +11,7 @@ Welcome to our collection of hands-on labs and tutorials for Docker Model Contex
 
 Before diving into the labs, you might want to familiarize yourself with these resources:
 
-- [Getting Started with Docker MCP](/docs/getting-started)
+- [Getting Started with Docker & MCP](/docs/getting-started)
 - [Ask Gordon - Docker's CLI AI Assistant](/docs/ask-gordon)
 
 ## Hands-on Labs
@@ -24,7 +24,7 @@ Our progressive labs will take you from the basics to advanced MCP implementatio
       <span class="lab-level">Beginner</span>
       <span class="lab-time">30 min</span>
     </div>
-    <h3>Lab 1: First Steps with Docker MCP Servers</h3>
+    <h3>Lab 1: First Steps with Docker & MCP Servers</h3>
     <p>Set up your first MCP servers with Docker and learn to interact with them using Gordon AI.</p>
     <a href="/docs/labs/mcp-101-lab" class="lab-button">Start Lab ➜</a>
   </div>
@@ -80,7 +80,7 @@ Our tutorials provide detailed guidance on specific MCP topics:
 
 For the best learning experience, we recommend following this sequence:
 
-1. Complete [Lab 1: First Steps with Docker MCP Servers](/docs/labs/mcp-101-lab)
+1. Complete [Lab 1: First Steps with Docker & MCP Servers](/docs/labs/mcp-101-lab)
 2. Then try [Lab 2: Building a Research Assistant](/docs/labs/research-assistant-lab)
 3. Move on to [Lab 3: Database Operations](/docs/labs/database-operations-lab)
 4. Learn how to build [Custom MCP Servers](/docs/tutorials/custom-mcp-server)
@@ -90,8 +90,8 @@ For the best learning experience, we recommend following this sequence:
 
 Check out these community resources to enhance your MCP journey:
 
-- [Docker MCP Servers Catalog](/servers-table)
-- [Docker MCP Tools](/tools-table)
+- [Docker & MCP Servers Catalog](/servers-table)
+- [MCP Tools](/tools-table)
 - [MCP Community Forum](https://forums.docker.com/c/docker-mcp/)
 
 ## Contributing New Labs
