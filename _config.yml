@@ -1,5 +1,5 @@
 # Site settings
-title: Docker MCP Community Portal
+title: MCP Community Portal
 description: A community-driven collection of Docker Model Context Protocol servers
 baseurl: "" # Empty for local development, set to "/docker-mcp-portal" for GitHub Pages
 url: "https://ajeetraina.github.io" # Replace with your GitHub Pages URL
