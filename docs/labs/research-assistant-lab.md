@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Lab 2: Building a Research Assistant with Docker MCP
+title: Lab 2 -  Building a Research Assistant with Docker MCP
 ---
 
 # Lab 2: Building a Research Assistant with Docker MCP
