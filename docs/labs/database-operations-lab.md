@@ -1,6 +1,6 @@
 ---
 layout: lab
-title: Lab 3: Database Operations with MCP Servers
+title: Lab 3 - Database Operations with MCP Servers
 description: Learn how to use Docker MCP servers to interact with databases and perform various database operations through Gordon AI.
 difficulty: Intermediate
 time: 60 minutes
