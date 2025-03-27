@@ -34,10 +34,10 @@ next_lab: /docs/labs/research-assistant-lab
   <div class="lab-step-content">
     <p>First, create a new directory for your lab:</p>
 
-```bash
-mkdir mcp-lab1
-cd mcp-lab1
-```
+  ```bash
+  mkdir mcp-lab1
+  cd mcp-lab1
+  ```
 
     <p>Create a new file called <code>data.txt</code> with some sample content:</p>
 
