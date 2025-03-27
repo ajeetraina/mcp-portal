@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Lab 4: Deploying MCP Servers to Production
+title: Lab 4 - Deploying MCP Servers to Production
 ---
 
 # Lab 4: Deploying MCP Servers to Production
