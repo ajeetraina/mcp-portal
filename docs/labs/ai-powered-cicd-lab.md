@@ -1,6 +1,6 @@
 ---
 layout: lab
-title: Lab 6: Building AI-Powered CI/CD Pipelines with MCP
+title: Lab 6 - Building AI-Powered CI/CD Pipelines with MCP
 description: Learn how to create intelligent CI/CD pipelines that leverage AI capabilities through Docker MCP servers to automate and enhance your development workflow.
 difficulty: Advanced
 time: 90 minutes
