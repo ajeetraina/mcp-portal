@@ -1,6 +1,6 @@
 ---
 layout: lab
-title: Lab 1 - First Steps with Docker & MCP Servers
+title: "Lab 1: First Steps with Docker & MCP Servers"
 description: In this beginner-friendly hands-on lab, you'll set up your first MCP servers with Docker and learn to interact with them using Gordon AI.
 difficulty: Beginner
 time: 30 minutes
@@ -34,10 +34,10 @@ next_lab: /docs/labs/research-assistant-lab
   <div class="lab-step-content">
     <p>First, create a new directory for your lab:</p>
 
-  ```bash
-  mkdir mcp-lab1
-  cd mcp-lab1
-  ```
+```bash
+mkdir mcp-lab1
+cd mcp-lab1
+```
 
     <p>Create a new file called <code>data.txt</code> with some sample content:</p>
 
