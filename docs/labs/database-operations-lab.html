@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources.">
+  <meta name="description" content="Learn how to use Docker MCP servers to interact with databases and perform various database operations through Gordon AI.">
   <meta name="keywords" content="docker, mcp, model, context, protocol, servers, tools, community">
-  <title>MCP Community Portal</title>
+  <title>Lab 3 - Database Operations with MCP Servers - MCP Community Portal</title>
   
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/docker-logo.svg">
@@ -33,20 +33,21 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>MCP Community Portal | A community-driven collection of Dockerized Model Context Protocol servers</title>
+<title>Lab 3 - Database Operations with MCP Servers | MCP Community Portal</title>
 <meta name="generator" content="Jekyll v4.3.4" />
-<meta property="og:title" content="MCP Community Portal" />
+<meta property="og:title" content="Lab 3 - Database Operations with MCP Servers" />
+<meta name="author" content="Docker Team" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="A community-driven collection of Dockerized Model Context Protocol servers" />
-<meta property="og:description" content="A community-driven collection of Dockerized Model Context Protocol servers" />
+<meta name="description" content="Learn how to use Docker MCP servers to interact with databases and perform various database operations through Gordon AI." />
+<meta property="og:description" content="Learn how to use Docker MCP servers to interact with databases and perform various database operations through Gordon AI." />
 <link rel="canonical" href="https://ajeetraina.github.io/docs/labs/database-operations-lab.html" />
 <meta property="og:url" content="https://ajeetraina.github.io/docs/labs/database-operations-lab.html" />
 <meta property="og:site_name" content="MCP Community Portal" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="MCP Community Portal" />
+<meta property="twitter:title" content="Lab 3 - Database Operations with MCP Servers" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"A community-driven collection of Dockerized Model Context Protocol servers","headline":"MCP Community Portal","url":"https://ajeetraina.github.io/docs/labs/database-operations-lab.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Docker Team"},"description":"Learn how to use Docker MCP servers to interact with databases and perform various database operations through Gordon AI.","headline":"Lab 3 - Database Operations with MCP Servers","url":"https://ajeetraina.github.io/docs/labs/database-operations-lab.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -105,7 +106,50 @@
 </style>
   
   <main>
-    <div class="lab-prerequisites">
+    <link rel="stylesheet" href="/assets/css/lab-styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="lab-container">
+  <div class="lab-header">
+    <h1>Lab 3 - Database Operations with MCP Servers</h1>
+    <div class="lab-description">Learn how to use Docker MCP servers to interact with databases and perform various database operations through Gordon AI.</div>
+  </div>
+
+  <div class="lab-meta">
+    
+    <div class="lab-meta-item">
+      <i class="fas fa-signal"></i>
+      <span class="lab-meta-label">Difficulty:</span>
+      <span>Intermediate</span>
+    </div>
+    
+    
+    
+    <div class="lab-meta-item">
+      <i class="far fa-clock"></i>
+      <span class="lab-meta-label">Time to complete:</span>
+      <span>60 minutes</span>
+    </div>
+    
+    
+    
+    <div class="lab-meta-item">
+      <i class="fas fa-user"></i>
+      <span class="lab-meta-label">Author:</span>
+      <span>Docker Team</span>
+    </div>
+    
+    
+    
+    <div class="lab-meta-item">
+      <i class="fas fa-calendar-alt"></i>
+      <span class="lab-meta-label">Last updated:</span>
+      <span>March 18, 2025</span>
+    </div>
+    
+  </div>
+
+  <div class="lab-prerequisites">
   <h2><i class="fas fa-clipboard-list"></i> Prerequisites</h2>
   <ul>
     <li>Completion of <a href="/docs/labs/mcp-101-lab">Lab 1: First Steps with Docker MCP Servers</a></li>
@@ -505,6 +549,66 @@ docker ai --file secure-gordon-mcp.yml "Query the PostgreSQL database to find th
     <li><a href="/docs/tutorials/custom-mcp-server">Tutorial: Building Custom MCP Servers</a> - Create your own specialized MCP servers</li>
   </ul>
 </div>
+
+
+  <div class="lab-nav">
+    
+    <a href="/docs/labs/research-assistant-lab" class="lab-nav-button lab-nav-prev">
+      <i class="fas fa-arrow-left"></i> Previous Lab
+    </a>
+    
+    
+    
+    <a href="/docs/labs/production-deployment-lab" class="lab-nav-button lab-nav-next">
+      Next Lab <i class="fas fa-arrow-right"></i>
+    </a>
+    
+  </div>
+</div>
+
+<script>
+  // Add copy buttons to code blocks
+  document.addEventListener('DOMContentLoaded', function() {
+    const codeBlocks = document.querySelectorAll('pre');
+    codeBlocks.forEach(function(codeBlock, index) {
+      // Create code header
+      const header = document.createElement('div');
+      header.className = 'code-header';
+      
+      // Add file name or code type if available
+      const code = codeBlock.querySelector('code');
+      let language = '';
+      if (code && code.className) {
+        const classes = code.className.split(' ');
+        for (const cls of classes) {
+          if (cls.startsWith('language-')) {
+            language = cls.replace('language-', '');
+            break;
+          }
+        }
+      }
+      
+      header.innerHTML = `<span>${language || 'bash'}</span>`;
+      
+      // Add copy button
+      const button = document.createElement('button');
+      button.className = 'copy-button';
+      button.innerHTML = '<i class="far fa-copy"></i> Copy';
+      button.addEventListener('click', function() {
+        const text = codeBlock.querySelector('code').innerText;
+        navigator.clipboard.writeText(text).then(function() {
+          button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(function() {
+            button.innerHTML = '<i class="far fa-copy"></i> Copy';
+          }, 2000);
+        });
+      });
+      
+      header.appendChild(button);
+      codeBlock.parentNode.insertBefore(header, codeBlock);
+    });
+  });
+</script>
 
   </main>
   
