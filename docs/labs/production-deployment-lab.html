@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="A community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources.">
   <meta name="keywords" content="docker, mcp, model, context, protocol, servers, tools, community">
-  <title>MCP Community Portal</title>
+  <title>Lab 4 - Deploying MCP Servers to Production - MCP Community Portal</title>
   
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/docker-logo.svg">
@@ -33,9 +33,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>MCP Community Portal | A community-driven collection of Dockerized Model Context Protocol servers</title>
+<title>Lab 4 - Deploying MCP Servers to Production | MCP Community Portal</title>
 <meta name="generator" content="Jekyll v4.3.4" />
-<meta property="og:title" content="MCP Community Portal" />
+<meta property="og:title" content="Lab 4 - Deploying MCP Servers to Production" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A community-driven collection of Dockerized Model Context Protocol servers" />
 <meta property="og:description" content="A community-driven collection of Dockerized Model Context Protocol servers" />
@@ -44,9 +44,9 @@
 <meta property="og:site_name" content="MCP Community Portal" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="MCP Community Portal" />
+<meta property="twitter:title" content="Lab 4 - Deploying MCP Servers to Production" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"A community-driven collection of Dockerized Model Context Protocol servers","headline":"MCP Community Portal","url":"https://ajeetraina.github.io/docs/labs/production-deployment-lab.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"A community-driven collection of Dockerized Model Context Protocol servers","headline":"Lab 4 - Deploying MCP Servers to Production","url":"https://ajeetraina.github.io/docs/labs/production-deployment-lab.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -105,6 +105,18 @@
 </style>
   
   <main>
+    <link rel="stylesheet" href="/assets/css/lab-styles.css">
+<link rel="stylesheet" href="/assets/css/code-fix.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title">Lab 4 - Deploying MCP Servers to Production</h1>
+  </div>
+</section>
+
+<section class="container">
+  <div class="page-content">
     <h1 id="lab-4-deploying-mcp-servers-to-production">Lab 4: Deploying MCP Servers to Production</h1>
 
 <p>In this advanced lab, you’ll learn how to deploy Docker MCP servers to a production environment with proper security, monitoring, and scaling considerations. You’ll set up a robust infrastructure that can be used in real-world enterprise settings.</p>
@@ -812,6 +824,104 @@ echo "Backup completed: </span><span class="nv">$BACKUP_DIR</span><span class="s
   <li>If MCP servers aren’t starting, check your Docker logs and resource constraints</li>
   <li>For monitoring issues, ensure Prometheus can reach all your MCP servers</li>
 </ul>
+
+  </div>
+</section>
+
+<script>
+  // Add copy buttons to code blocks
+  document.addEventListener('DOMContentLoaded', function() {
+    const codeBlocks = document.querySelectorAll('pre');
+    codeBlocks.forEach(function(codeBlock, index) {
+      // Create code header
+      const header = document.createElement('div');
+      header.className = 'code-header';
+      
+      // Add file name or code type if available
+      const code = codeBlock.querySelector('code');
+      let language = '';
+      if (code && code.className) {
+        const classes = code.className.split(' ');
+        for (const cls of classes) {
+          if (cls.startsWith('language-')) {
+            language = cls.replace('language-', '');
+            break;
+          }
+        }
+      }
+      
+      header.innerHTML = `<span>${language || 'bash'}</span>`;
+      
+      // Add copy button
+      const button = document.createElement('button');
+      button.className = 'copy-button';
+      button.innerHTML = '<i class="far fa-copy"></i> Copy';
+      button.addEventListener('click', function() {
+        const text = codeBlock.querySelector('code').innerText;
+        navigator.clipboard.writeText(text).then(function() {
+          button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(function() {
+            button.innerHTML = '<i class="far fa-copy"></i> Copy';
+          }, 2000);
+        });
+      });
+      
+      header.appendChild(button);
+      codeBlock.parentNode.insertBefore(header, codeBlock);
+    });
+  });
+</script>
+
+<style>
+  /* Code block specific styles */
+  .page-content pre, pre, div.highlight pre {
+    background-color: #282c34;
+    color: #f8f8f2;
+    padding: 1.2rem;
+    border-radius: 0 0 6px 6px; /* Rounded at bottom only */
+    margin: 0 0 1.5rem 0; /* Remove top margin since we have code header */
+    position: relative;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: pre;
+    word-wrap: normal;
+    box-sizing: border-box;
+    width: 100% !important;
+  }
+  
+  /* Add better styling to the page content */
+  .page-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  .page-content h1 {
+    display: none; /* Hide the duplicate title */
+  }
+  
+  /* Ensure all content stays within the container */
+  .page-content img,
+  .page-content pre,
+  .page-content table,
+  .page-content iframe {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .page-content {
+      padding: 1.5rem;
+    }
+  }
+</style>
 
   </main>
   
