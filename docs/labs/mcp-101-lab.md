@@ -1,6 +1,6 @@
 ---
 layout: lab
-title: "Lab 1: First Steps with Docker & MCP Servers"
+title: Lab 1: First Steps with Docker & MCP Servers
 description: In this beginner-friendly hands-on lab, you'll set up your first MCP servers with Docker and learn to interact with them using Gordon AI.
 difficulty: Beginner
 time: 30 minutes
