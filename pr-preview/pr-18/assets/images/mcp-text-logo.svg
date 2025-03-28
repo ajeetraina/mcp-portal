@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- Simple MCP text logo with no Docker branding -->
+  <rect width="120" height="120" fill="#384d54" rx="10" />
+  <text x="60" y="70" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="#0db7ed" text-anchor="middle">MCP</text>
+</svg>

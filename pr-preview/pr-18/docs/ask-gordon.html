@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources.">
+  <meta name="keywords" content="docker, mcp, model, context, protocol, servers, tools, community">
+  <title>Ask Gordon - Docker's CLI AI Assistant - MCP Community Portal</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/pr-preview/pr-18/assets/images/docker-logo.svg">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/pr-preview/pr-18/assets/css/main.css">
+  <link rel="stylesheet" href="/pr-preview/pr-18/assets/css/tools.css">
+  <link rel="stylesheet" href="/pr-preview/pr-18/assets/css/home.css">
+  <link rel="stylesheet" href="/pr-preview/pr-18/assets/css/lab-styles.css">
+  <link rel="stylesheet" href="/pr-preview/pr-18/assets/css/code-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-18/assets/css/banner-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-18/assets/css/image-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-18/assets/css/heading-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-18/assets/css/header-fix.css">
+  
+  <!-- Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Ask Gordon - Docker’s CLI AI Assistant | MCP Community Portal</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Ask Gordon - Docker’s CLI AI Assistant" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A community-driven collection of Dockerized Model Context Protocol servers" />
+<meta property="og:description" content="A community-driven collection of Dockerized Model Context Protocol servers" />
+<link rel="canonical" href="https://mcp.collabnix.com/pr-preview/pr-18/docs/ask-gordon.html" />
+<meta property="og:url" content="https://mcp.collabnix.com/pr-preview/pr-18/docs/ask-gordon.html" />
+<meta property="og:site_name" content="MCP Community Portal" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Ask Gordon - Docker’s CLI AI Assistant" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A community-driven collection of Dockerized Model Context Protocol servers","headline":"Ask Gordon - Docker’s CLI AI Assistant","url":"https://mcp.collabnix.com/pr-preview/pr-18/docs/ask-gordon.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <a href="/pr-preview/pr-18/">
+          <h1>MCP Community Portal</h1>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/pr-preview/pr-18/"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="/pr-preview/pr-18/servers-table.html"><i class="fas fa-server"></i> Servers</a></li>
+          <li><a href="/pr-preview/pr-18/tools.html"><i class="fas fa-tools"></i> Tools</a></li>
+          <li><a href="/pr-preview/pr-18/docs/labs-and-tutorials"><i class="fas fa-flask"></i> Labs</a></li>
+          <li>
+            <a href="/pr-preview/pr-18/docs/ask-gordon">
+              <i class="fas fa-robot"></i> Ask Gordon
+              <span class="new-badge">NEW</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+.new-badge {
+  display: inline-block;
+  background-color: #FF5722;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  margin-left: 6px;
+  vertical-align: middle;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+</style>
+  
+  <main>
+    <link rel="stylesheet" href="/pr-preview/pr-18/assets/css/lab-styles.css">
+<link rel="stylesheet" href="/pr-preview/pr-18/assets/css/code-fix.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title">Ask Gordon - Docker's CLI AI Assistant</h1>
+  </div>
+</section>
+
+<section class="container">
+  <div class="page-content">
+    <h1 id="ask-gordon---dockers-cli-ai-assistant">Ask Gordon - Docker’s CLI AI Assistant</h1>
+
+<p>Ask Gordon is Docker’s AI-powered command-line assistant that integrates with MCP servers to provide enhanced capabilities. This guide explains how to use Ask Gordon with various MCP servers.</p>
+
+<h2 id="what-is-ask-gordon">What is Ask Gordon?</h2>
+
+<p>Ask Gordon is an AI assistant built into the Docker CLI. It allows you to interact with Docker and perform various tasks using natural language through the <code class="language-plaintext highlighter-rouge">docker ai</code> command. When combined with MCP servers, Ask Gordon gains additional capabilities like time awareness, file access, web searches, and more.</p>
+
+<h2 id="setting-up-ask-gordon-with-mcp-servers">Setting Up Ask Gordon with MCP Servers</h2>
+
+<p>Ask Gordon uses a file named <code class="language-plaintext highlighter-rouge">gordon-mcp.yml</code> in your working directory to discover and connect to MCP servers. This is a standard Docker Compose file that defines which MCP servers Ask Gordon should use in the current context.</p>
+
+<h3 id="basic-configuration">Basic Configuration</h3>
+
+<p>Here’s a simple example of a <code class="language-plaintext highlighter-rouge">gordon-mcp.yml</code> file that adds time awareness to Ask Gordon:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">time</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/time</span>
+</code></pre></div></div>
+
+<p>With this configuration, you can ask Ask Gordon time-related questions:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker ai <span class="s1">'what time is it now in Paris?'</span>
+
+    • Calling get_current_time
+
+  The current <span class="nb">time </span><span class="k">in </span>Paris, France is 5:43 PM on March 17, 2025.
+</code></pre></div></div>
+
+<h3 id="multiple-mcp-servers">Multiple MCP Servers</h3>
+
+<p>You can include multiple MCP servers in your configuration to give Ask Gordon different capabilities:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">time</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/time</span>
+  <span class="na">fetch</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/fetch</span>
+  <span class="na">fs</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/filesystem</span>
+    <span class="na">command</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">/rootfs</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">.:/rootfs</span>
+</code></pre></div></div>
+
+<p>With this configuration, Ask Gordon can tell you the time, fetch web content, and manipulate files in your current directory.</p>
+
+<h2 id="example-use-cases">Example Use Cases</h2>
+
+<h3 id="web-content-and-file-management">Web Content and File Management</h3>
+
+<p>Ask Gordon can fetch web content and save it to a file:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker ai <span class="s1">'fetch the content from docker.com and save a summary to summary.txt'</span>
+
+    • Calling fetch ✔️
+    • Calling write_file ✔️
+  
+  I<span class="s1">'ve fetched the content from docker.com, created a summary, and saved it to summary.txt in your current directory.
+</span></code></pre></div></div>
+
+<h3 id="database-queries">Database Queries</h3>
+
+<p>With the PostgreSQL MCP server, Ask Gordon can interact with your databases:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">postgres</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/postgres</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="s">postgresql://username:password@hostname/database</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker ai <span class="s1">'what tables are in my database and how many users do I have?'</span>
+
+    • Calling get_schema ✔️
+    • Calling query ✔️
+  
+  Your database has the following tables: <span class="nb">users</span>, products, orders, and categories.
+  You currently have 1,245 <span class="nb">users </span><span class="k">in </span>your database.
+</code></pre></div></div>
+
+<h3 id="github-repository-analysis">GitHub Repository Analysis</h3>
+
+<p>Ask Gordon can help analyze and manage GitHub repositories:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">github</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/github</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">GITHUB_PERSONAL_ACCESS_TOKEN=your_token_here</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker ai <span class="s1">'what are the recent PRs in my repository and summarize them'</span>
+
+    • Calling list_pull_requests ✔️
+    • Calling get_pull_request <span class="o">(</span>multiple calls<span class="o">)</span> ✔️
+  
+  Here<span class="s1">'s a summary of your recent pull requests:
+  1. PR #42: "Add new authentication feature" - Implements OAuth2 login process
+  2. PR #41: "Fix navbar styling issues" - Resolves responsive design problems on mobile
+  3. PR #40: "Update documentation" - Improves installation and configuration docs
+</span></code></pre></div></div>
+
+<h2 id="advanced-configuration">Advanced Configuration</h2>
+
+<h3 id="resource-access-control">Resource Access Control</h3>
+
+<p>One of the benefits of using Docker containers for MCP servers is the ability to precisely control what resources Ask Gordon can access. For example, with the filesystem server, you can limit file access to specific directories:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">fs</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/filesystem</span>
+    <span class="na">command</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">/rootfs</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./public:/rootfs/public</span>
+      <span class="pi">-</span> <span class="s">./docs:/rootfs/docs</span>
+</code></pre></div></div>
+
+<p>This configuration only allows Ask Gordon to access files in the <code class="language-plaintext highlighter-rouge">./public</code> and <code class="language-plaintext highlighter-rouge">./docs</code> directories.</p>
+
+<h3 id="environment-variables">Environment Variables</h3>
+
+<p>Many MCP servers require API tokens or other configuration through environment variables:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">slack</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/slack</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">SLACK_API_TOKEN=xoxb-your-token-here</span>
+</code></pre></div></div>
+
+<h2 id="known-working-mcp-servers">Known Working MCP Servers</h2>
+
+<p>The following MCP servers have been tested and confirmed to work with Ask Gordon:</p>
+
+<ul>
+  <li><strong>mcp/time</strong>: Time and timezone operations</li>
+  <li><strong>mcp/fetch</strong>: Web content retrieval</li>
+  <li><strong>mcp/filesystem</strong>: File operations</li>
+  <li><strong>mcp/postgres</strong>: PostgreSQL database access</li>
+  <li><strong>mcp/git</strong>: Git repository management</li>
+  <li><strong>mcp/sqlite</strong>: SQLite database operations</li>
+  <li><strong>mcp/github</strong>: GitHub repository management</li>
+</ul>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<h3 id="common-issues">Common Issues</h3>
+
+<ol>
+  <li><strong>MCP Server Not Found</strong>
+    <ul>
+      <li>Ensure your <code class="language-plaintext highlighter-rouge">gordon-mcp.yml</code> file is in the current directory</li>
+      <li>Check that the image name is correct</li>
+    </ul>
+  </li>
+  <li><strong>Permission Issues</strong>
+    <ul>
+      <li>Make sure proper volume mounts and permissions are configured</li>
+    </ul>
+  </li>
+  <li><strong>API Timeout</strong>
+    <ul>
+      <li>Some API-based MCP servers may have rate limits or require authentication</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="viewing-logs">Viewing Logs</h3>
+
+<p>If you’re encountering issues, you can view the logs of the running MCP servers using Docker Compose:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker compose <span class="nt">-f</span> gordon-mcp.yml logs
+</code></pre></div></div>
+
+<p>Or for a specific service:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker compose <span class="nt">-f</span> gordon-mcp.yml logs fs
+</code></pre></div></div>
+
+<h2 id="additional-resources">Additional Resources</h2>
+
+<ul>
+  <li><a href="https://docs.docker.com/gordon/">Ask Gordon Official Documentation</a></li>
+  <li><a href="/servers-table.html">MCP Server Catalog</a></li>
+  <li><a href="https://hub.docker.com/u/mcp">Docker Hub MCP Repository</a></li>
+</ul>
+
+  </div>
+</section>
+
+<script>
+  // Add copy buttons to code blocks
+  document.addEventListener('DOMContentLoaded', function() {
+    const codeBlocks = document.querySelectorAll('pre');
+    codeBlocks.forEach(function(codeBlock, index) {
+      // Create code header
+      const header = document.createElement('div');
+      header.className = 'code-header';
+      
+      // Add file name or code type if available
+      const code = codeBlock.querySelector('code');
+      let language = '';
+      if (code && code.className) {
+        const classes = code.className.split(' ');
+        for (const cls of classes) {
+          if (cls.startsWith('language-')) {
+            language = cls.replace('language-', '');
+            break;
+          }
+        }
+      }
+      
+      header.innerHTML = `<span>${language || 'bash'}</span>`;
+      
+      // Add copy button
+      const button = document.createElement('button');
+      button.className = 'copy-button';
+      button.innerHTML = '<i class="far fa-copy"></i> Copy';
+      button.addEventListener('click', function() {
+        const text = codeBlock.querySelector('code').innerText;
+        navigator.clipboard.writeText(text).then(function() {
+          button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(function() {
+            button.innerHTML = '<i class="far fa-copy"></i> Copy';
+          }, 2000);
+        });
+      });
+      
+      header.appendChild(button);
+      codeBlock.parentNode.insertBefore(header, codeBlock);
+    });
+  });
+</script>
+
+<style>
+  /* Code block specific styles */
+  .page-content pre, pre, div.highlight pre {
+    background-color: #282c34;
+    color: #f8f8f2;
+    padding: 1.2rem;
+    border-radius: 0 0 6px 6px; /* Rounded at bottom only */
+    margin: 0 0 1.5rem 0; /* Remove top margin since we have code header */
+    position: relative;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: pre;
+    word-wrap: normal;
+    box-sizing: border-box;
+    width: 100% !important;
+  }
+  
+  /* Add better styling to the page content */
+  .page-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  .page-content h1 {
+    display: none; /* Hide the duplicate title */
+  }
+  
+  /* Ensure all content stays within the container */
+  .page-content img,
+  .page-content pre,
+  .page-content table,
+  .page-content iframe {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .page-content {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+  </main>
+  
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>Docker MCP Community Portal</h3>
+        <p>A community-driven resource for Docker Model Context Protocol.</p>
+        <p>&copy; 2025 MCP Community Portal. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal" target="_blank">
+              <i class="fab fa-github"></i> GitHub Repository
+            </a>
+          </li>
+          <li>
+            <a href="https://collabnix.com" target="_blank">
+              <i class="fas fa-globe"></i> Collabnix Community
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" target="_blank">
+              <i class="fas fa-code-branch"></i> Contribute to MCP Portal
+            </a>
+          </li>
+          <li>
+            <a href="https://hub.docker.com/u/mcp" target="_blank">
+              <i class="fab fa-docker"></i> MCP on Docker Hub
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+  <!-- ClipboardJS for copy functionality -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+  
+  <!-- Syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  
+  <!-- Custom scripts -->
+  <script src="/pr-preview/pr-18/assets/js/filter.js"></script>
+  <script src="/pr-preview/pr-18/assets/js/code-formatter.js"></script>
+  
+  <script>
+    // Initialize clipboard.js
+    document.addEventListener('DOMContentLoaded', function() {
+      var clipboard = new ClipboardJS('.btn-copy');
+      
+      clipboard.on('success', function(e) {
+        var button = e.trigger;
+        var originalText = button.innerHTML;
+        
+        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        button.classList.add('copied');
+        
+        setTimeout(function() {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+        
+        e.clearSelection();
+      });
+      
+      // Initialize syntax highlighting
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+</body>
+</html>
