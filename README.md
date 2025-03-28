@@ -48,6 +48,16 @@ When you submit a pull request, our automated system builds a preview of the sit
 
 ## Local Development
 
+### Using Docker
+
+```
+git clone https://github.com/ajeetraina/mcp-portal
+cd mcp-portal
+docker compose up -d --build
+```
+
+### Without Docker
+
 To run this site locally:
 
 1. Install [Jekyll](https://jekyllrb.com/docs/installation/)
