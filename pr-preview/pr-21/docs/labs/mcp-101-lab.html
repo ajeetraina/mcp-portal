@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="In this beginner-friendly hands-on lab, you'll set up your first MCP servers with Docker and learn to interact with them using Gordon AI.">
+  <meta name="keywords" content="docker, mcp, model, context, protocol, servers, tools, community">
+  <title>Lab 1: First Steps with Docker & MCP Servers - MCP Community Portal</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/pr-preview/pr-21/assets/images/docker-logo.svg">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/pr-preview/pr-21/assets/css/main.css">
+  <link rel="stylesheet" href="/pr-preview/pr-21/assets/css/tools.css">
+  <link rel="stylesheet" href="/pr-preview/pr-21/assets/css/home.css">
+  <link rel="stylesheet" href="/pr-preview/pr-21/assets/css/lab-styles.css">
+  <link rel="stylesheet" href="/pr-preview/pr-21/assets/css/code-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-21/assets/css/banner-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-21/assets/css/image-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-21/assets/css/heading-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-21/assets/css/header-fix.css">
+  
+  <!-- Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Lab 1: First Steps with Docker &amp; MCP Servers | MCP Community Portal</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Lab 1: First Steps with Docker &amp; MCP Servers" />
+<meta name="author" content="Docker Team" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In this beginner-friendly hands-on lab, you’ll set up your first MCP servers with Docker and learn to interact with them using Gordon AI." />
+<meta property="og:description" content="In this beginner-friendly hands-on lab, you’ll set up your first MCP servers with Docker and learn to interact with them using Gordon AI." />
+<link rel="canonical" href="https://mcp.collabnix.com/pr-preview/pr-21/docs/labs/mcp-101-lab.html" />
+<meta property="og:url" content="https://mcp.collabnix.com/pr-preview/pr-21/docs/labs/mcp-101-lab.html" />
+<meta property="og:site_name" content="MCP Community Portal" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Lab 1: First Steps with Docker &amp; MCP Servers" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Docker Team"},"description":"In this beginner-friendly hands-on lab, you’ll set up your first MCP servers with Docker and learn to interact with them using Gordon AI.","headline":"Lab 1: First Steps with Docker &amp; MCP Servers","url":"https://mcp.collabnix.com/pr-preview/pr-21/docs/labs/mcp-101-lab.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <a href="/pr-preview/pr-21/">
+          <h1>MCP Community Portal</h1>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/pr-preview/pr-21/"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="/pr-preview/pr-21/servers-table.html"><i class="fas fa-server"></i> Servers</a></li>
+          <li><a href="/pr-preview/pr-21/tools.html"><i class="fas fa-tools"></i> Tools</a></li>
+          <li><a href="/pr-preview/pr-21/docs/labs-and-tutorials"><i class="fas fa-flask"></i> Labs</a></li>
+          <li>
+            <a href="/pr-preview/pr-21/docs/ask-gordon">
+              <i class="fas fa-robot"></i> Ask Gordon
+              <span class="new-badge">NEW</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+.new-badge {
+  display: inline-block;
+  background-color: #FF5722;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  margin-left: 6px;
+  vertical-align: middle;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+</style>
+  
+  <main>
+    <link rel="stylesheet" href="/pr-preview/pr-21/assets/css/lab-styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="lab-container">
+  <div class="lab-header">
+    <h1>Lab 1: First Steps with Docker & MCP Servers</h1>
+    <div class="lab-description">In this beginner-friendly hands-on lab, you'll set up your first MCP servers with Docker and learn to interact with them using Gordon AI.</div>
+  </div>
+
+  <div class="lab-meta">
+    
+    <div class="lab-meta-item">
+      <i class="fas fa-signal"></i>
+      <span class="lab-meta-label">Difficulty:</span>
+      <span>Beginner</span>
+    </div>
+    
+    
+    
+    <div class="lab-meta-item">
+      <i class="far fa-clock"></i>
+      <span class="lab-meta-label">Time to complete:</span>
+      <span>30 minutes</span>
+    </div>
+    
+    
+    
+    <div class="lab-meta-item">
+      <i class="fas fa-user"></i>
+      <span class="lab-meta-label">Author:</span>
+      <span>Docker Team</span>
+    </div>
+    
+    
+    
+    <div class="lab-meta-item">
+      <i class="fas fa-calendar-alt"></i>
+      <span class="lab-meta-label">Last updated:</span>
+      <span>March 18, 2025</span>
+    </div>
+    
+  </div>
+
+  <div class="lab-prerequisites">
+  <h2><i class="fas fa-clipboard-list"></i> Prerequisites</h2>
+  <ul>
+    <li>Docker Desktop installed</li>
+    <li>Basic command line knowledge</li>
+  </ul>
+</div>
+
+<div class="learning-objectives">
+  <h2><i class="fas fa-graduation-cap"></i> Learning Objectives</h2>
+  <ol>
+    <li>Set up multiple MCP servers using Docker Compose</li>
+    <li>Configure proper filesystem mounts and permissions</li>
+    <li>Interact with MCP servers using Gordon AI</li>
+    <li>Understand how MCP servers communicate with AI assistants</li>
+  </ol>
+</div>
+
+<div class="lab-step">
+  <div class="lab-step-header">
+    <i class="fas fa-play-circle"></i> Step 1: Create Your Lab Environment
+  </div>
+  <div class="lab-step-content">
+    <p>First, create a new directory for your lab:</p>
+
+```bash
+mkdir mcp-lab1
+cd mcp-lab1
+```
+
+    <p>Create a new file called <code>data.txt</code> with some sample content:</p>
+
+```bash
+echo "This is sample text for our MCP lab experiment. The Docker MCP integration is awesome!" &gt; data.txt
+```
+  </div>
+</div>
+
+<div class="lab-step">
+  <div class="lab-step-header">
+    <i class="fas fa-server"></i> Step 2: Set Up Your First MCP Servers
+  </div>
+  <div class="lab-step-content">
+    <p>Create a file named <code>gordon-mcp.yml</code> with the following content:</p>
+
+```yaml
+services:
+  time:
+    image: mcp/time
+    container_name: mcp-time
+  
+  fs:
+    image: mcp/filesystem
+    container_name: mcp-filesystem
+    command:
+      - /rootfs
+    volumes:
+      - .:/rootfs
+```
+
+    <p>This configuration sets up two MCP servers:</p>
+    <ul>
+      <li>A time server that provides date and time information</li>
+      <li>A filesystem server that gives access to the current directory</li>
+    </ul>
+  </div>
+</div>
+
+<div class="lab-step">
+  <div class="lab-step-header">
+    <i class="fas fa-robot"></i> Step 3: Interact with Your MCP Servers
+  </div>
+  <div class="lab-step-content">
+    <p>Now let's test our setup with some questions for Gordon AI:</p>
+
+```bash
+# Ask a time-related question
+docker ai "What time is it now in New York, Tokyo, and London? Show the date too."
+
+# Ask a question that requires filesystem access
+docker ai "What's in the data.txt file? Count the words and tell me how many there are."
+```
+
+    <p>You should see Gordon AI accessing the appropriate MCP servers to answer your questions.</p>
+
+    <div class="lab-tip">
+      <h4><i class="fas fa-lightbulb"></i> Tip</h4>
+      <p>If you don't see any indication that Gordon is using the MCP servers, verify that your <code>gordon-mcp.yml</code> file is in the current directory and that Docker Desktop is running.</p>
+    </div>
+  </div>
+</div>
+
+<div class="lab-step">
+  <div class="lab-step-header">
+    <i class="fas fa-plus-circle"></i> Step 4: Extend Your MCP Configuration
+  </div>
+  <div class="lab-step-content">
+    <p>Let's add another MCP server to our setup. Update your <code>gordon-mcp.yml</code> file:</p>
+
+```yaml
+services:
+  time:
+    image: mcp/time
+    container_name: mcp-time
+  
+  fs:
+    image: mcp/filesystem
+    container_name: mcp-filesystem
+    command:
+      - /rootfs
+    volumes:
+      - .:/rootfs
+  
+  fetch:
+    image: mcp/fetch
+    container_name: mcp-fetch
+```
+
+    <p>Now you can ask Gordon AI to fetch web content:</p>
+
+```bash
+docker ai "Fetch the Docker homepage and write a brief summary of what Docker is to a file called docker-summary.txt"
+```
+  </div>
+</div>
+
+<div class="lab-step">
+  <div class="lab-step-header">
+    <i class="fas fa-search"></i> Step 5: Examine Container Operations
+  </div>
+  <div class="lab-step-content">
+    <p>While Gordon is handling your requests, you can observe how Docker manages these MCP servers:</p>
+
+```bash
+# List running containers
+docker ps
+
+# View logs from a specific MCP server
+docker logs mcp-fetch
+```
+
+    <p>Notice how containers are created and managed as needed for each interaction.</p>
+  </div>
+</div>
+
+<div class="lab-note">
+  <h4><i class="fas fa-info-circle"></i> Understanding What's Happening</h4>
+  <p>When you run <code>docker ai</code> with your <code>gordon-mcp.yml</code> configuration:</p>
+  <ol>
+    <li>Gordon checks the <code>gordon-mcp.yml</code> file to discover available MCP servers</li>
+    <li>When needed, Gordon starts the required MCP server containers</li>
+    <li>Gordon sends requests to the appropriate MCP servers based on your query</li>
+    <li>MCP servers process the requests and return results to Gordon</li>
+    <li>Gordon uses this context to formulate a comprehensive response</li>
+  </ol>
+</div>
+
+<div class="lab-step">
+  <div class="lab-step-header">
+    <i class="fas fa-flask"></i> Experiment on Your Own
+  </div>
+  <div class="lab-step-content">
+    <p>Try these additional exercises:</p>
+    <ol>
+      <li>Create a more complex file structure and ask Gordon to navigate and summarize it</li>
+      <li>Ask Gordon to combine information from multiple sources (time + web content)</li>
+      <li>Try modifying the filesystem mount to restrict access to only certain directories</li>
+    </ol>
+    
+    <div class="lab-tip">
+      <h4><i class="fas fa-lightbulb"></i> Challenge</h4>
+      <p>Create a new directory structure with some sample data files and ask Gordon to perform data analysis tasks on them. See if you can have Gordon generate a report combining the filesystem data with current time information.</p>
+    </div>
+  </div>
+</div>
+
+<div class="lab-note">
+  <h4><i class="fas fa-exclamation-triangle"></i> Troubleshooting</h4>
+  <p>If you encounter issues:</p>
+  <ul>
+    <li>Ensure Docker is running properly</li>
+    <li>Check that your <code>gordon-mcp.yml</code> file is in the current directory</li>
+    <li>Verify the syntax of your YAML file</li>
+    <li>Try restarting Docker Desktop if containers won't start</li>
+  </ul>
+</div>
+
+<div class="lab-conclusion">
+  <h2><i class="fas fa-flag-checkered"></i> Conclusion</h2>
+  <p>Congratulations! You've successfully set up your first MCP servers and learned how Gordon AI interacts with them. You've seen how Docker containers provide a secure and isolated environment for MCP servers, and how multiple servers can work together to enhance AI capabilities.</p>
+  <p>This foundational knowledge will be essential as you move on to more complex MCP configurations and use cases.</p>
+</div>
+
+<div class="next-steps">
+  <h2><i class="fas fa-arrow-circle-right"></i> Next Steps</h2>
+  <p>Now that you've completed your first MCP lab, you can continue your learning journey with:</p>
+  <ul>
+    <li><a href="/docs/labs/research-assistant-lab">Lab 2: Building a Research Assistant with MCP</a> - Learn how to create a powerful research assistant using multiple MCP servers</li>
+    <li><a href="/docs/labs/database-operations-lab">Lab 3: Database Operations with MCP Servers</a> - Explore how to use MCP servers for database interactions</li>
+  </ul>
+</div>
+
+
+  <div class="lab-nav">
+    
+    <div></div>
+    
+    
+    
+    <a href="/pr-preview/pr-21/docs/labs/research-assistant-lab" class="lab-nav-button lab-nav-next">
+      Next Lab <i class="fas fa-arrow-right"></i>
+    </a>
+    
+  </div>
+</div>
+
+<script>
+  // Add copy buttons to code blocks
+  document.addEventListener('DOMContentLoaded', function() {
+    const codeBlocks = document.querySelectorAll('pre');
+    codeBlocks.forEach(function(codeBlock, index) {
+      // Create code header
+      const header = document.createElement('div');
+      header.className = 'code-header';
+      
+      // Add file name or code type if available
+      const code = codeBlock.querySelector('code');
+      let language = '';
+      if (code && code.className) {
+        const classes = code.className.split(' ');
+        for (const cls of classes) {
+          if (cls.startsWith('language-')) {
+            language = cls.replace('language-', '');
+            break;
+          }
+        }
+      }
+      
+      header.innerHTML = `<span>${language || 'bash'}</span>`;
+      
+      // Add copy button
+      const button = document.createElement('button');
+      button.className = 'copy-button';
+      button.innerHTML = '<i class="far fa-copy"></i> Copy';
+      button.addEventListener('click', function() {
+        const text = codeBlock.querySelector('code').innerText;
+        navigator.clipboard.writeText(text).then(function() {
+          button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(function() {
+            button.innerHTML = '<i class="far fa-copy"></i> Copy';
+          }, 2000);
+        });
+      });
+      
+      header.appendChild(button);
+      codeBlock.parentNode.insertBefore(header, codeBlock);
+    });
+  });
+</script>
+
+  </main>
+  
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>Docker MCP Community Portal</h3>
+        <p>A community-driven resource for Docker Model Context Protocol.</p>
+        <p>&copy; 2025 MCP Community Portal. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal" target="_blank">
+              <i class="fab fa-github"></i> GitHub Repository
+            </a>
+          </li>
+          <li>
+            <a href="https://collabnix.com" target="_blank">
+              <i class="fas fa-globe"></i> Collabnix Community
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" target="_blank">
+              <i class="fas fa-code-branch"></i> Contribute to MCP Portal
+            </a>
+          </li>
+          <li>
+            <a href="https://hub.docker.com/u/mcp" target="_blank">
+              <i class="fab fa-docker"></i> MCP on Docker Hub
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+  <!-- ClipboardJS for copy functionality -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+  
+  <!-- Syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  
+  <!-- Custom scripts -->
+  <script src="/pr-preview/pr-21/assets/js/filter.js"></script>
+  <script src="/pr-preview/pr-21/assets/js/code-formatter.js"></script>
+  
+  <script>
+    // Initialize clipboard.js
+    document.addEventListener('DOMContentLoaded', function() {
+      var clipboard = new ClipboardJS('.btn-copy');
+      
+      clipboard.on('success', function(e) {
+        var button = e.trigger;
+        var originalText = button.innerHTML;
+        
+        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        button.classList.add('copied');
+        
+        setTimeout(function() {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+        
+        e.clearSelection();
+      });
+      
+      // Initialize syntax highlighting
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+</body>
+</html>
