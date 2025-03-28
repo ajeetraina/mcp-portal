@@ -28,7 +28,7 @@ Docker Hub hosts various MCP servers under the `mcp/` namespace, including:
 - **mcp/git**: Enables Git repository management
 - **mcp/sqlite**: Offers SQLite database interaction
 - **mcp/github**: Facilitates GitHub repository management
-- **mcp/kubernetes**: Enables Kubernetes cluster management
+- **mcp/kubernetes**: Enables Kubernetes cluster management and orchestration
 
 And many more, which are cataloged and documented in this portal.
 
