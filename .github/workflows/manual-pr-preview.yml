@@ -1,0 +1,75 @@
+name: Manual PR Preview Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR Number to build preview for'
+        required: true
+        type: string
+
+jobs:
+  build_preview:
+    runs-on: ubuntu-latest
+    name: Build PR Preview
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v3
+        with:
+          ref: refs/pull/${{ github.event.inputs.pr_number }}/head
+          fetch-depth: 0  # We need full history for proper versioning
+      
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+      
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+      
+      - name: Build Jekyll site
+        run: |
+          # Customize base URL for preview deployment
+          echo "url: https://ajeetraina.github.io" >> _config.yml
+          echo "baseurl: /mcp-portal/pr-preview/pr-${{ github.event.inputs.pr_number }}" >> _config.yml
+          
+          bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+      
+      - name: Deploy preview
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.PAT }}
+          publish_dir: ./_site
+          destination_dir: pr-preview/pr-${{ github.event.inputs.pr_number }}
+          keep_files: true
+          publish_branch: gh-pages
+          commit_message: "Deploy PR preview for PR #${{ github.event.inputs.pr_number }}"
+      
+      - name: Find Comment
+        uses: peter-evans/find-comment@v2
+        id: find-comment
+        with:
+          issue-number: ${{ github.event.inputs.pr_number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: PR Preview
+      
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
+          issue-number: ${{ github.event.inputs.pr_number }}
+          body: |
+            ## 🔍 PR Preview
+            
+            Your PR preview has been deployed! View it live at:
+            
+            👉 [https://ajeetraina.github.io/mcp-portal/pr-preview/pr-${{ github.event.inputs.pr_number }}/](https://ajeetraina.github.io/mcp-portal/pr-preview/pr-${{ github.event.inputs.pr_number }}/)
+            
+            This preview will update automatically when you push new changes to your PR.
+          edit-mode: replace
+          reactions: rocket
