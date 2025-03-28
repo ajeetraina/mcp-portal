@@ -1,6 +1,6 @@
 # MCP Community Portal
 
-A modern, community-driven collection of Model Context Protocol (MCP) servers, tools, and resources. This repository powers the website at [https://mcp.collabnix.com](https://mcp.collabnix.com).
+A modern, community-driven collection of Model Context Protocol (MCP) servers, tools, and resources. This repository powers the website at [mcp.collabnix.com](https://mcp.collabnix.com).
 
 ## About
 
@@ -28,6 +28,7 @@ Docker Hub hosts various MCP servers under the `mcp/` namespace, including:
 - **mcp/git**: Enables Git repository management
 - **mcp/sqlite**: Offers SQLite database interaction
 - **mcp/github**: Facilitates GitHub repository management
+- **mcp/kubernetes**: Enables Kubernetes cluster management and container orchestration
 
 And many more, which are cataloged and documented in this portal.
 
@@ -44,7 +45,7 @@ For detailed instructions, please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## PR Preview Feature
 
-When you submit a pull request, our automated system builds a preview of the site with your changes using Netlify. This allows you to see exactly how your contribution will appear on the live site before it's merged. A comment with a preview link will be automatically added to your PR once the build is complete.
+When you submit a pull request, our automated system builds a preview of the site with your changes. This allows you to see exactly how your contribution will appear on the live site before it's merged. A comment with a preview link will be automatically added to your PR once the build is complete.
 
 ## Local Development
 
