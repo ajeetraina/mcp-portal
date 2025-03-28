@@ -4,17 +4,17 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, closed]
 
+permissions:
+  contents: write
+  pull-requests: write
+  deployments: write
+  actions: write
+
 jobs:
   build_preview:
     runs-on: ubuntu-latest
     name: Build PR Preview
     if: github.event.action != 'closed'
-    permissions:
-      pull-requests: write
-      contents: write
-      deployments: write
-      statuses: write
-    
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -34,7 +34,7 @@ jobs:
       
       - name: Build Jekyll site
         run: |
-          # Customize base URL for preview deployment
+          # Create unique base URL for preview
           echo "url: https://ajeetraina.github.io" >> _config.yml
           echo "baseurl: /mcp-portal/pr-preview/pr-${{ github.event.pull_request.number }}" >> _config.yml
           
@@ -50,17 +50,48 @@ jobs:
           destination_dir: pr-preview/pr-${{ github.event.pull_request.number }}
           keep_files: true
           publish_branch: gh-pages
+          commit_message: "Deploy PR preview for PR #${{ github.event.pull_request.number }}"
       
       - name: Comment on PR
         uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: `✅ PR Preview deployed successfully!\n\n🔍 Preview your changes: [https://ajeetraina.github.io/mcp-portal/pr-preview/pr-${context.issue.number}/](https://ajeetraina.github.io/mcp-portal/pr-preview/pr-${context.issue.number}/)\n\nThis preview will update automatically when you push new changes to your PR.`
-            })
+            const issueNumber = context.issue.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            
+            // Check if we've already commented
+            const comments = await github.rest.issues.listComments({
+              owner,
+              repo,
+              issue_number: issueNumber,
+            });
+            
+            const botComment = comments.data.find(comment => 
+              comment.user.login === 'github-actions[bot]' && 
+              comment.body.includes('PR Preview deployed')
+            );
+            
+            const commentBody = `✅ PR Preview deployed successfully!\n\n🔍 Preview your changes: [https://ajeetraina.github.io/mcp-portal/pr-preview/pr-${issueNumber}/](https://ajeetraina.github.io/mcp-portal/pr-preview/pr-${issueNumber}/)\n\nThis preview will update automatically when you push new changes to your PR.`;
+            
+            if (botComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: botComment.id,
+                body: commentBody,
+              });
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: issueNumber,
+                body: commentBody,
+              });
+            }
 
   cleanup_preview:
     runs-on: ubuntu-latest
@@ -83,4 +114,5 @@ jobs:
             git push
           else
             echo "No preview directory found to clean up"
+            exit 0
           fi
