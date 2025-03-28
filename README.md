@@ -1,6 +1,6 @@
 # MCP Community Portal
 
-A modern, community-driven collection of Model Context Protocol (MCP) servers, tools, and resources. This repository powers the website at [ajeetraina.github.io/docker-mcp-portal](https://mcp.collabnix.com).
+A modern, community-driven collection of Model Context Protocol (MCP) servers, tools, and resources. This repository powers the website at [https://mcp.collabnix.com](https://mcp.collabnix.com).
 
 ## About
 
