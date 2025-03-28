@@ -44,17 +44,88 @@ For detailed instructions, please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## PR Preview Feature
 
-When you submit a pull request, our automated system builds a preview of the site with your changes using Netlify. This allows you to see exactly how your contribution will appear on the live site before it's merged. A comment with a preview link will be automatically added to your PR once the build is complete.
+When you submit a pull request, our automated system builds a preview of the site with your changes. This allows you to see exactly how your contribution will appear on the live site before it's merged. A comment with a preview link will be automatically added to your PR once the build is complete.
 
-## Local Development
+## Running Locally
 
-To run this site locally:
+### Using Docker (Recommended)
+
+The easiest way to run this website locally is using Docker, which avoids Ruby environment setup issues:
+
+1. Make sure you have [Docker](https://www.docker.com/get-started/) installed
+
+2. Clone this repository:
+   ```bash
+   git clone https://github.com/ajeetraina/mcp-portal.git
+   cd mcp-portal
+   ```
+
+3. Create a `docker-compose.yml` file in the repository root with the following content:
+   ```yaml
+   version: '3'
+   services:
+     jekyll:
+       image: jekyll/jekyll:latest
+       platform: linux/arm64  # For Apple Silicon Macs, use linux/amd64 for Intel Macs
+       command: jekyll serve --livereload
+       ports:
+         - 4000:4000
+         - 35729:35729
+       volumes:
+         - .:/srv/jekyll
+   ```
+
+4. Run the application with Docker Compose:
+   ```bash
+   docker-compose up
+   ```
+
+5. Access the site at http://localhost:4000
+
+6. When you make changes to the source files, Jekyll will automatically rebuild the site and refresh your browser.
+
+### Using Ruby and Jekyll directly
+
+If you prefer not to use Docker:
 
 1. Install [Jekyll](https://jekyllrb.com/docs/installation/)
 2. Clone this repository
 3. Run `bundle install`
 4. Run `bundle exec jekyll serve`
 5. Open `http://localhost:4000` in your browser
+
+## Troubleshooting
+
+### Platform Issues with Docker
+
+If you encounter a platform mismatch error (e.g., on Apple Silicon Macs):
+
+1. Update the `platform` field in your docker-compose.yml:
+   - For Apple Silicon (ARM64): `platform: linux/arm64`
+   - For Intel Macs (x86_64): `platform: linux/amd64`
+
+2. Alternatively, build a custom image:
+   ```yaml
+   version: '3'
+   services:
+     jekyll:
+       build: .
+       ports:
+         - 4000:4000
+       volumes:
+         - .:/srv/jekyll
+   ```
+
+   With a Dockerfile:
+   ```
+   FROM ruby:3.1-slim
+   WORKDIR /srv/jekyll
+   RUN apt-get update && apt-get install -y build-essential
+   COPY Gemfile* ./
+   RUN bundle install
+   EXPOSE 4000
+   CMD ["bundle", "exec", "jekyll", "serve", "--host", "0.0.0.0"]
+   ```
 
 ## Features
 
