@@ -62,7 +62,7 @@ When you submit a pull request, our automated system will build a preview of the
 ### How to Access Your PR Preview
 
 1. After you submit your pull request, the GitHub Actions workflow will automatically build a preview version of the site with your changes
-2. Once the build is complete (usually within 2-3 minutes), a comment will be posted on your PR with a direct link to the preview
+2. Once the build is complete (usually within 2-3 minutes), a comment will be posted on your PR with a direct link to the Netlify preview
 3. Click the link to see a live version of the site with your changes applied
 4. Every time you update your PR with new commits, the preview will be automatically updated
 
