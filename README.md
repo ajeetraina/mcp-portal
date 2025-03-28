@@ -38,20 +38,13 @@ We welcome contributions! To add an MCP server or tool to the list:
 1. Fork this repository
 2. Add your entry to `_data/mcp_servers.yml` or `_data/mcp_tools.yml`
 3. Submit a pull request
-4. Preview your changes using our PR preview system before they're merged
+4. Preview your changes with our PR preview system before they're merged
 
 For detailed instructions, please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## PR Preview Feature
 
-When you submit a pull request, our automated system builds a preview of the site with your changes. This allows you to see exactly how your contribution will appear before it's merged. 
-
-You can access the preview by:
-1. Looking for the GitHub Actions check on your PR
-2. Downloading the preview artifact
-3. Following the instructions in the automated comment on your PR
-
-This way, you can verify your changes work correctly before they're approved.
+When you submit a pull request, our automated system builds a preview of the site with your changes. This allows you to see exactly how your contribution will appear on the live site before it's merged. A comment with a preview link will be automatically added to your PR once the build is complete.
 
 ## Local Development
 
@@ -71,7 +64,7 @@ To run this site locally:
 - **One-click copy**: Copy Docker pull commands with a single click
 - **Community-driven**: Easy contribution process
 - **Mobile-friendly**: Works on all devices
-- **PR Preview**: Preview your changes before they're merged
+- **PR Preview**: See your changes live before they're merged
 
 ## License
 
