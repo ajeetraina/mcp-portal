@@ -55,11 +55,25 @@ Choose from these common tags or add new ones that accurately describe your serv
 3. Create a Pull Request against the main repository
 4. In your PR description, provide any additional context about your submission
 
+## PR Preview Feature
+
+When you submit a pull request, our automated system will build a preview of the site with your changes. This allows you and reviewers to see exactly how your contribution will look on the live site before it gets merged.
+
+### How to Access Your PR Preview
+
+1. After you submit your pull request, the GitHub Actions workflow will automatically build a preview version of the site with your changes
+2. Once the build is complete (usually within 2-3 minutes), a comment will be posted on your PR with a link to the preview
+3. Click the preview link to see a live version of the site with your changes applied
+4. Every time you update your PR with new commits, the preview will be automatically updated
+
+This preview environment makes it easier to ensure that your contribution looks correct before it's merged into the main site.
+
 ## Pull Request Review Process
 
 - Your pull request will be reviewed by maintainers
 - We'll check that your submission follows the format and guidelines
 - We may suggest changes or improvements
+- The PR preview will help us verify that your changes display correctly
 - Once approved, your MCP server will appear on the site
 
 ## Additional Contributions
