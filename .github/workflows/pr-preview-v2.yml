@@ -1,0 +1,92 @@
+name: PR Preview Deployment v2
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+
+jobs:
+  deploy_preview:
+    if: github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Configure preview settings
+        run: |
+          # Create unique preview URL path
+          echo "url: https://ajeetraina.github.io" >> _config.yml
+          echo "baseurl: /mcp-portal/pr-preview/${{ github.event.pull_request.number }}" >> _config.yml
+
+      - name: Build site with Jekyll
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
+      - name: Deploy to Netlify
+        id: netlify
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          publish-dir: './_site'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy PR Preview for PR #${{ github.event.pull_request.number }}"
+          enable-commit-comment: false
+          alias: pr-${{ github.event.pull_request.number }}
+          github-deployment-environment: pr-preview-${{ github.event.pull_request.number }}
+          github-deployment-description: "PR Preview for PR #${{ github.event.pull_request.number }}"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 5
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v2
+        id: find-comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: PR Preview
+
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## 🔍 PR Preview
+            
+            Your PR preview has been deployed! View it live at:
+            
+            👉 [${{ steps.netlify.outputs.deploy-url }}](${{ steps.netlify.outputs.deploy-url }})
+            
+            This preview will update automatically when you push new changes to your PR.
+          edit-mode: replace
+          reactions: rocket
+
+  cleanup_preview:
+    if: github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete Netlify Preview
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          alias: pr-${{ github.event.pull_request.number }}
+          delete: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
