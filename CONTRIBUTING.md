@@ -57,20 +57,16 @@ Choose from these common tags or add new ones that accurately describe your serv
 
 ## PR Preview Feature
 
-When you submit a pull request, our automated system will build a preview of the site with your changes. This allows you and reviewers to see exactly how your contribution will look before it gets merged.
+When you submit a pull request, our automated system will build a preview of the site with your changes. This allows you and reviewers to see exactly how your contribution will look before it's merged.
 
 ### How to Access Your PR Preview
 
 1. After you submit your pull request, the GitHub Actions workflow will automatically build a preview version of the site with your changes
-2. Once the build is complete (usually within 2-3 minutes), a comment will be posted on your PR with instructions on how to view the preview
-3. To view the preview:
-   - Click on the "Details" link next to the "PR Preview Deployment" check in the PR checks section
-   - On the Actions run page, scroll to the bottom and click on the artifact with your PR number
-   - Download and extract the zip file
-   - Open the `index.html` file in your browser
+2. Once the build is complete (usually within 2-3 minutes), a comment will be posted on your PR with a direct link to the preview
+3. Click the link to see a live version of the site with your changes applied
 4. Every time you update your PR with new commits, the preview will be automatically updated
 
-This preview feature makes it easier to ensure that your contribution looks correct before it's merged into the main site.
+This preview environment makes it easier to ensure that your contribution looks correct before it's merged into the main site.
 
 ## Pull Request Review Process
 
