@@ -33,8 +33,8 @@ jobs:
       - name: Build Jekyll site
         run: |
           # Customize base URL for preview deployment
-          echo "url: https://ajeetraina.github.io" >> _config.yml
-          echo "baseurl: /mcp-portal/pr-preview/pr-${{ github.event.inputs.pr_number }}" >> _config.yml
+          echo "url: https://mcp.collabnix.com" >> _config.yml
+          echo "baseurl: /pr-preview/pr-${{ github.event.inputs.pr_number }}" >> _config.yml
           
           bundle exec jekyll build
         env:
