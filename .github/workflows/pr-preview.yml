@@ -2,18 +2,21 @@ name: PR Preview Deployment
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened, closed]
 
 jobs:
   build_preview:
     runs-on: ubuntu-latest
     name: Build PR Preview
+    if: github.event.action != 'closed'
     permissions:
       pull-requests: write
     
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # We need full history for proper versioning
       
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -28,19 +31,25 @@ jobs:
       
       - name: Build Jekyll site
         run: |
-          # Build site with proper config
+          # Customize base URL for preview deployment
+          echo "url: https://ajeetraina.github.io" >> _config.yml
+          echo "baseurl: /mcp-portal/pr-preview/pr-${{ github.event.pull_request.number }}" >> _config.yml
+          
           bundle exec jekyll build
         env:
           JEKYLL_ENV: production
       
-      - name: Upload PR preview artifact
-        uses: actions/upload-artifact@v3
+      - name: Deploy preview
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: pr-preview-${{ github.event.pull_request.number }}
-          path: _site
-          retention-days: 14
+          personal_token: ${{ secrets.PAT }}
+          publish_dir: ./_site
+          destination_dir: pr-preview/pr-${{ github.event.pull_request.number }}
+          keep_files: true
+          publish_branch: gh-pages
+          commit_message: "Deploy PR preview for PR #${{ github.event.pull_request.number }}"
       
-      - name: Find PR comment
+      - name: Find Comment
         uses: peter-evans/find-comment@v2
         id: find-comment
         with:
@@ -56,13 +65,35 @@ jobs:
           body: |
             ## 🔍 PR Preview
             
-            Your PR preview has been built successfully! To view it:
+            Your PR preview has been deployed! View it live at:
             
-            1. Click on the "Details" link next to the "PR Preview Deployment" check in the PR checks section
-            2. On the Actions run page, scroll to the bottom and click on the "pr-preview-${{ github.event.pull_request.number }}" artifact
-            3. Download and extract the zip file
-            4. Open the `index.html` file in your browser
+            👉 [https://ajeetraina.github.io/mcp-portal/pr-preview/pr-${{ github.event.pull_request.number }}/](https://ajeetraina.github.io/mcp-portal/pr-preview/pr-${{ github.event.pull_request.number }}/)
             
             This preview will update automatically when you push new changes to your PR.
           edit-mode: replace
           reactions: rocket
+
+  cleanup_preview:
+    runs-on: ubuntu-latest
+    name: Cleanup PR Preview
+    if: github.event.action == 'closed'
+    steps:
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          token: ${{ secrets.PAT }}
+      
+      - name: Delete preview directory
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          
+          if [ -d "pr-preview/pr-${{ github.event.pull_request.number }}" ]; then
+            git rm -rf pr-preview/pr-${{ github.event.pull_request.number }}
+            git commit -m "Remove PR preview for #${{ github.event.pull_request.number }}"
+            git push
+          else
+            echo "No preview directory found to clean up"
+            exit 0
+          fi
