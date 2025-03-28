@@ -2,12 +2,13 @@ name: PR Preview Deployment
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened, closed]
 
 jobs:
   build_preview:
     runs-on: ubuntu-latest
     name: Build PR Preview
+    if: github.event.action != 'closed'
     permissions:
       pull-requests: write
       contents: write
@@ -41,45 +42,14 @@ jobs:
         env:
           JEKYLL_ENV: production
       
-      - name: Create deployment
-        id: deployment
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const result = await github.rest.repos.createDeployment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: context.sha,
-              environment: `pr-preview-${context.issue.number}`,
-              auto_merge: false,
-              required_contexts: [],
-              description: `PR #${context.issue.number} preview deployment`
-            });
-            return result.data.id;
-      
       - name: Deploy preview
-        id: deploy_preview
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
           destination_dir: pr-preview/pr-${{ github.event.pull_request.number }}
-          keep_files: false
+          keep_files: true
           publish_branch: gh-pages
-      
-      - name: Update deployment status
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.repos.createDeploymentStatus({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              deployment_id: ${{ steps.deployment.outputs.result }},
-              state: 'success',
-              environment_url: 'https://ajeetraina.github.io/mcp-portal/pr-preview/pr-${{ github.event.pull_request.number }}/',
-              auto_inactive: false,
-              description: 'Preview deployment successful!'
-            });
       
       - name: Comment on PR
         uses: actions/github-script@v6
@@ -97,7 +67,7 @@ jobs:
     name: Cleanup PR Preview
     if: github.event.action == 'closed'
     steps:
-      - name: Checkout
+      - name: Checkout gh-pages branch
         uses: actions/checkout@v3
         with:
           ref: gh-pages
