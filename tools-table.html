@@ -18,7 +18,7 @@ title: MCP Tools Table View
       <a href="/tools.html" class="btn btn-secondary"><i class="fas fa-th-large"></i> Card View</a>
       <span class="active"><i class="fas fa-table"></i> Table View</span>
     </div>
-    
+
     <table class="server-table">
       <thead>
         <tr>
@@ -27,6 +27,7 @@ title: MCP Tools Table View
           <th>Category</th>
           <th>Language</th>
           <th>Tags</th>
+          <th>Stars</th>
           <th>Links</th>
           <th>Added</th>
         </tr>
@@ -45,6 +46,9 @@ title: MCP Tools Table View
                 <span class="tag-small">{{ tag }}</span>
               {% endfor %}
             </td>
+            <td class="server-stars" data-github-url="{{ tool.github_url }}">
+              <span class="star-count"><i class="fas fa-star"></i> <span class="star-number"></span></span>
+            </td>
             <td class="server-links">
               <a href="{{ tool.github_url }}" class="btn-small" target="_blank" rel="noopener">
                 <i class="fab fa-github"></i>
@@ -59,6 +63,7 @@ title: MCP Tools Table View
 </section>
 
 <style>
+  /* ... (Your existing CSS) ... */
   .server-table-container {
     background-color: white;
     border-radius: var(--border-radius);
@@ -204,6 +209,18 @@ title: MCP Tools Table View
     font-size: 0.7rem;
     color: var(--color-secondary);
   }
+  
+  .server-stars {
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .star-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    color: #ffc107;
+  }
 
   .server-links {
     display: flex;
@@ -250,6 +267,10 @@ title: MCP Tools Table View
     .server-table td:nth-child(2) {
       display: none;
     }
+    .server-table th:nth-child(6),
+    .server-table td:nth-child(6) {
+      display: none;
+    }
   }
 
   @media (max-width: 576px) {
@@ -263,3 +284,39 @@ title: MCP Tools Table View
     }
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const starCells = document.querySelectorAll('.server-stars');
+
+    starCells.forEach(cell => {
+      const githubUrl = cell.dataset.githubUrl;
+      const starNumberSpan = cell.querySelector('.star-number');
+
+      if (githubUrl) {
+        fetch(`https://api.github.com/repos/${getRepoPath(githubUrl)}`)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`GitHub API request failed for ${githubUrl}`);
+            }
+            return response.json();
+          })
+          .then(data => {
+            starNumberSpan.textContent = data.stargazers_count;
+          })
+          .catch(error => {
+            console.error(error);
+            starNumberSpan.textContent = 'N/A';
+          });
+      } else {
+        starNumberSpan.textContent = 'N/A';
+      }
+    });
+  });
+
+  function getRepoPath(githubUrl) {
+    const url = new URL(githubUrl);
+    const pathParts = url.pathname.split('/').filter(part => part);
+    return `${pathParts[0]}/${pathParts[1]}`;
+  }
+</script>
