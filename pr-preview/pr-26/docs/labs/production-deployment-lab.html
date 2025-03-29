@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources.">
+  <meta name="keywords" content="docker, mcp, model, context, protocol, servers, tools, community">
+  <title>Lab 4 - Deploying MCP Servers to Production - MCP Community Portal</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/mcp-portal/pr-preview/pr-26/assets/images/docker-logo.svg">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-26/assets/css/main.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-26/assets/css/tools.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-26/assets/css/home.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-26/assets/css/lab-styles.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-26/assets/css/code-fix.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-26/assets/css/banner-fix.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-26/assets/css/image-fix.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-26/assets/css/heading-fix.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-26/assets/css/header-fix.css">
+  
+  <!-- Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Lab 4 - Deploying MCP Servers to Production | MCP Community Portal</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Lab 4 - Deploying MCP Servers to Production" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A community-driven collection of Dockerized Model Context Protocol servers" />
+<meta property="og:description" content="A community-driven collection of Dockerized Model Context Protocol servers" />
+<link rel="canonical" href="https://ajeetraina.github.io/mcp-portal/pr-preview/pr-26/docs/labs/production-deployment-lab.html" />
+<meta property="og:url" content="https://ajeetraina.github.io/mcp-portal/pr-preview/pr-26/docs/labs/production-deployment-lab.html" />
+<meta property="og:site_name" content="MCP Community Portal" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Lab 4 - Deploying MCP Servers to Production" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A community-driven collection of Dockerized Model Context Protocol servers","headline":"Lab 4 - Deploying MCP Servers to Production","url":"https://ajeetraina.github.io/mcp-portal/pr-preview/pr-26/docs/labs/production-deployment-lab.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <a href="/mcp-portal/pr-preview/pr-26/">
+          <h1>MCP Community Portal</h1>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/mcp-portal/pr-preview/pr-26/"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="/mcp-portal/pr-preview/pr-26/servers-table.html"><i class="fas fa-server"></i> Servers</a></li>
+          <li><a href="/mcp-portal/pr-preview/pr-26/tools.html"><i class="fas fa-tools"></i> Tools</a></li>
+          <li><a href="/mcp-portal/pr-preview/pr-26/docs/labs-and-tutorials"><i class="fas fa-flask"></i> Labs</a></li>
+          <li>
+            <a href="/mcp-portal/pr-preview/pr-26/docs/ask-gordon">
+              <i class="fas fa-robot"></i> Ask Gordon
+              <span class="new-badge">NEW</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+.new-badge {
+  display: inline-block;
+  background-color: #FF5722;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  margin-left: 6px;
+  vertical-align: middle;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+</style>
+  
+  <main>
+    <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-26/assets/css/lab-styles.css">
+<link rel="stylesheet" href="/mcp-portal/pr-preview/pr-26/assets/css/code-fix.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title">Lab 4 - Deploying MCP Servers to Production</h1>
+  </div>
+</section>
+
+<section class="container">
+  <div class="page-content">
+    <h1 id="lab-4-deploying-mcp-servers-to-production">Lab 4: Deploying MCP Servers to Production</h1>
+
+<p>In this advanced lab, you’ll learn how to deploy Docker MCP servers to a production environment with proper security, monitoring, and scaling considerations. You’ll set up a robust infrastructure that can be used in real-world enterprise settings.</p>
+
+<p><strong>Time to complete:</strong> 90 minutes</p>
+
+<p><strong>Prerequisites:</strong></p>
+<ul>
+  <li>Completion of previous MCP labs</li>
+  <li>Intermediate Docker and Docker Compose knowledge</li>
+  <li>Basic understanding of networking and security concepts</li>
+  <li>A cloud account (AWS, GCP, or Azure) or a server for deployment</li>
+</ul>
+
+<h2 id="learning-objectives">Learning Objectives</h2>
+
+<p>By the end of this lab, you’ll be able to:</p>
+<ol>
+  <li>Set up secure MCP server deployments for production use</li>
+  <li>Implement monitoring and logging for MCP servers</li>
+  <li>Scale MCP servers to handle production loads</li>
+  <li>Manage secrets and configuration securely</li>
+  <li>Implement proper access controls for MCP servers</li>
+</ol>
+
+<h2 id="step-1-preparing-your-production-environment">Step 1: Preparing Your Production Environment</h2>
+
+<p>Create a new directory for your production deployment:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>mcp-production
+<span class="nb">cd </span>mcp-production
+</code></pre></div></div>
+
+<p>Create a <code class="language-plaintext highlighter-rouge">.env</code> file to store sensitive configuration (this should never be committed to a repository):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># API Keys and Secrets
+GITHUB_TOKEN=your_github_token_here
+DATABASE_PASSWORD=your_secure_db_password
+
+# Configuration
+MCP_LOG_LEVEL=info
+MONITORING_ENABLED=true
+</code></pre></div></div>
+
+<h2 id="step-2-creating-a-secure-production-compose-file">Step 2: Creating a Secure Production Compose File</h2>
+
+<p>Create a <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> file with the following content:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+<span class="na">services</span><span class="pi">:</span>
+  <span class="c1"># MCP Servers</span>
+  <span class="na">time</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/time:latest</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">unless-stopped</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">mcp-internal</span>
+    <span class="na">logging</span><span class="pi">:</span> <span class="nl">&amp;logging</span>
+      <span class="na">driver</span><span class="pi">:</span> <span class="s">json-file</span>
+      <span class="na">options</span><span class="pi">:</span>
+        <span class="na">max-size</span><span class="pi">:</span> <span class="s2">"</span><span class="s">10m"</span>
+        <span class="na">max-file</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3"</span>
+    <span class="na">deploy</span><span class="pi">:</span>
+      <span class="na">resources</span><span class="pi">:</span>
+        <span class="na">limits</span><span class="pi">:</span>
+          <span class="na">cpus</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.25'</span>
+          <span class="na">memory</span><span class="pi">:</span> <span class="s">256M</span>
+    <span class="na">healthcheck</span><span class="pi">:</span>
+      <span class="na">test</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">CMD"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">curl"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">-f"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">http://localhost:8080/.well-known/mcp"</span><span class="pi">]</span>
+      <span class="na">interval</span><span class="pi">:</span> <span class="s">30s</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s">10s</span>
+      <span class="na">retries</span><span class="pi">:</span> <span class="m">3</span>
+
+  <span class="na">fetch</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/fetch:latest</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">unless-stopped</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">mcp-internal</span>
+      <span class="pi">-</span> <span class="s">mcp-external</span>
+    <span class="na">logging</span><span class="pi">:</span> <span class="nv">*logging</span>
+    <span class="na">deploy</span><span class="pi">:</span>
+      <span class="na">resources</span><span class="pi">:</span>
+        <span class="na">limits</span><span class="pi">:</span>
+          <span class="na">cpus</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.5'</span>
+          <span class="na">memory</span><span class="pi">:</span> <span class="s">512M</span>
+    <span class="na">healthcheck</span><span class="pi">:</span>
+      <span class="na">test</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">CMD"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">curl"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">-f"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">http://localhost:8080/.well-known/mcp"</span><span class="pi">]</span>
+      <span class="na">interval</span><span class="pi">:</span> <span class="s">30s</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s">10s</span>
+      <span class="na">retries</span><span class="pi">:</span> <span class="m">3</span>
+
+  <span class="na">fs</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/filesystem:latest</span>
+    <span class="na">command</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">/rootfs</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./data:/rootfs/data:ro</span>
+      <span class="pi">-</span> <span class="s">./output:/rootfs/output:rw</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">unless-stopped</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">mcp-internal</span>
+    <span class="na">logging</span><span class="pi">:</span> <span class="nv">*logging</span>
+    <span class="na">deploy</span><span class="pi">:</span>
+      <span class="na">resources</span><span class="pi">:</span>
+        <span class="na">limits</span><span class="pi">:</span>
+          <span class="na">cpus</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.25'</span>
+          <span class="na">memory</span><span class="pi">:</span> <span class="s">256M</span>
+    <span class="na">healthcheck</span><span class="pi">:</span>
+      <span class="na">test</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">CMD"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">curl"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">-f"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">http://localhost:8080/.well-known/mcp"</span><span class="pi">]</span>
+      <span class="na">interval</span><span class="pi">:</span> <span class="s">30s</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s">10s</span>
+      <span class="na">retries</span><span class="pi">:</span> <span class="m">3</span>
+
+  <span class="na">github</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/github:latest</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">unless-stopped</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">mcp-internal</span>
+      <span class="pi">-</span> <span class="s">mcp-external</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">GITHUB_TOKEN=${GITHUB_TOKEN}</span>
+    <span class="na">logging</span><span class="pi">:</span> <span class="nv">*logging</span>
+    <span class="na">deploy</span><span class="pi">:</span>
+      <span class="na">resources</span><span class="pi">:</span>
+        <span class="na">limits</span><span class="pi">:</span>
+          <span class="na">cpus</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.5'</span>
+          <span class="na">memory</span><span class="pi">:</span> <span class="s">512M</span>
+    <span class="na">healthcheck</span><span class="pi">:</span>
+      <span class="na">test</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">CMD"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">curl"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">-f"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">http://localhost:8080/.well-known/mcp"</span><span class="pi">]</span>
+      <span class="na">interval</span><span class="pi">:</span> <span class="s">30s</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s">10s</span>
+      <span class="na">retries</span><span class="pi">:</span> <span class="m">3</span>
+
+  <span class="c1"># PostgreSQL MCP Server with separate database</span>
+  <span class="na">postgres-mcp</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/postgres:latest</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="s">postgresql://mcpuser:${DATABASE_PASSWORD}@postgres-db:5432/mcpdb</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">unless-stopped</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">mcp-internal</span>
+      <span class="pi">-</span> <span class="s">db-network</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">postgres-db</span>
+    <span class="na">logging</span><span class="pi">:</span> <span class="nv">*logging</span>
+    <span class="na">deploy</span><span class="pi">:</span>
+      <span class="na">resources</span><span class="pi">:</span>
+        <span class="na">limits</span><span class="pi">:</span>
+          <span class="na">cpus</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.5'</span>
+          <span class="na">memory</span><span class="pi">:</span> <span class="s">512M</span>
+    <span class="na">healthcheck</span><span class="pi">:</span>
+      <span class="na">test</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">CMD"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">curl"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">-f"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">http://localhost:8080/.well-known/mcp"</span><span class="pi">]</span>
+      <span class="na">interval</span><span class="pi">:</span> <span class="s">30s</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s">10s</span>
+      <span class="na">retries</span><span class="pi">:</span> <span class="m">3</span>
+
+  <span class="c1"># MCP Gateway - Single entry point for AI assistants</span>
+  <span class="na">mcp-gateway</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">nginx:alpine</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">8080:80"</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./nginx/nginx.conf:/etc/nginx/nginx.conf:ro</span>
+      <span class="pi">-</span> <span class="s">./nginx/conf.d:/etc/nginx/conf.d:ro</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">mcp-internal</span>
+      <span class="pi">-</span> <span class="s">mcp-public</span>
+    <span class="na">depends_on</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">time</span>
+      <span class="pi">-</span> <span class="s">fetch</span>
+      <span class="pi">-</span> <span class="s">fs</span>
+      <span class="pi">-</span> <span class="s">github</span>
+      <span class="pi">-</span> <span class="s">postgres-mcp</span>
+    <span class="na">logging</span><span class="pi">:</span> <span class="nv">*logging</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">unless-stopped</span>
+    <span class="na">deploy</span><span class="pi">:</span>
+      <span class="na">resources</span><span class="pi">:</span>
+        <span class="na">limits</span><span class="pi">:</span>
+          <span class="na">cpus</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.5'</span>
+          <span class="na">memory</span><span class="pi">:</span> <span class="s">256M</span>
+
+  <span class="c1"># Supporting services</span>
+  <span class="na">postgres-db</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">postgres:14-alpine</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">postgres-data:/var/lib/postgresql/data</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_USER=mcpuser</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_PASSWORD=${DATABASE_PASSWORD}</span>
+      <span class="pi">-</span> <span class="s">POSTGRES_DB=mcpdb</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">db-network</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">unless-stopped</span>
+    <span class="na">logging</span><span class="pi">:</span> <span class="nv">*logging</span>
+    <span class="na">deploy</span><span class="pi">:</span>
+      <span class="na">resources</span><span class="pi">:</span>
+        <span class="na">limits</span><span class="pi">:</span>
+          <span class="na">cpus</span><span class="pi">:</span> <span class="s1">'</span><span class="s">1.0'</span>
+          <span class="na">memory</span><span class="pi">:</span> <span class="s">1G</span>
+    <span class="na">healthcheck</span><span class="pi">:</span>
+      <span class="na">test</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">CMD"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">pg_isready"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">-U"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">mcpuser"</span><span class="pi">]</span>
+      <span class="na">interval</span><span class="pi">:</span> <span class="s">30s</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s">5s</span>
+      <span class="na">retries</span><span class="pi">:</span> <span class="m">3</span>
+
+  <span class="c1"># Monitoring</span>
+  <span class="na">prometheus</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">prom/prometheus:latest</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./prometheus:/etc/prometheus</span>
+      <span class="pi">-</span> <span class="s">prometheus-data:/prometheus</span>
+    <span class="na">command</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s1">'</span><span class="s">--config.file=/etc/prometheus/prometheus.yml'</span>
+      <span class="pi">-</span> <span class="s1">'</span><span class="s">--storage.tsdb.path=/prometheus'</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">monitoring</span>
+      <span class="pi">-</span> <span class="s">mcp-internal</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">unless-stopped</span>
+    <span class="na">logging</span><span class="pi">:</span> <span class="nv">*logging</span>
+    <span class="na">deploy</span><span class="pi">:</span>
+      <span class="na">resources</span><span class="pi">:</span>
+        <span class="na">limits</span><span class="pi">:</span>
+          <span class="na">cpus</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.5'</span>
+          <span class="na">memory</span><span class="pi">:</span> <span class="s">512M</span>
+
+  <span class="na">grafana</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">grafana/grafana:latest</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./grafana:/etc/grafana/provisioning</span>
+      <span class="pi">-</span> <span class="s">grafana-data:/var/lib/grafana</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">3000:3000"</span>
+    <span class="na">networks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">monitoring</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin}</span>
+    <span class="na">restart</span><span class="pi">:</span> <span class="s">unless-stopped</span>
+    <span class="na">logging</span><span class="pi">:</span> <span class="nv">*logging</span>
+    <span class="na">deploy</span><span class="pi">:</span>
+      <span class="na">resources</span><span class="pi">:</span>
+        <span class="na">limits</span><span class="pi">:</span>
+          <span class="na">cpus</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.5'</span>
+          <span class="na">memory</span><span class="pi">:</span> <span class="s">512M</span>
+
+<span class="na">networks</span><span class="pi">:</span>
+  <span class="na">mcp-internal</span><span class="pi">:</span>
+    <span class="na">internal</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">mcp-external</span><span class="pi">:</span>
+    <span class="na">internal</span><span class="pi">:</span> <span class="no">false</span>
+  <span class="na">mcp-public</span><span class="pi">:</span>
+    <span class="na">internal</span><span class="pi">:</span> <span class="no">false</span>
+  <span class="na">db-network</span><span class="pi">:</span>
+    <span class="na">internal</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">monitoring</span><span class="pi">:</span>
+    <span class="na">internal</span><span class="pi">:</span> <span class="no">true</span>
+
+<span class="na">volumes</span><span class="pi">:</span>
+  <span class="na">postgres-data</span><span class="pi">:</span>
+  <span class="na">prometheus-data</span><span class="pi">:</span>
+  <span class="na">grafana-data</span><span class="pi">:</span>
+</code></pre></div></div>
+
+<h2 id="step-3-configuring-the-nginx-gateway">Step 3: Configuring the NGINX Gateway</h2>
+
+<p>Create the NGINX configuration files that will serve as a gateway to your MCP servers:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> nginx/conf.d
+</code></pre></div></div>
+
+<p>Create <code class="language-plaintext highlighter-rouge">nginx/nginx.conf</code>:</p>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">user</span>  <span class="s">nginx</span><span class="p">;</span>
+<span class="k">worker_processes</span>  <span class="s">auto</span><span class="p">;</span>
+
+<span class="k">error_log</span>  <span class="n">/var/log/nginx/error.log</span> <span class="s">notice</span><span class="p">;</span>
+<span class="k">pid</span>        <span class="n">/var/run/nginx.pid</span><span class="p">;</span>
+
+<span class="k">events</span> <span class="p">{</span>
+    <span class="kn">worker_connections</span>  <span class="mi">1024</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">http</span> <span class="p">{</span>
+    <span class="kn">include</span>       <span class="n">/etc/nginx/mime.types</span><span class="p">;</span>
+    <span class="kn">default_type</span>  <span class="nc">application/octet-stream</span><span class="p">;</span>
+
+    <span class="kn">log_format</span>  <span class="s">main</span>  <span class="s">'</span><span class="nv">$remote_addr</span> <span class="s">-</span> <span class="nv">$remote_user</span> <span class="s">[</span><span class="nv">$time_local</span><span class="s">]</span> <span class="s">"</span><span class="nv">$request</span><span class="s">"</span> <span class="s">'</span>
+                      <span class="s">'</span><span class="nv">$status</span> <span class="nv">$body_bytes_sent</span> <span class="s">"</span><span class="nv">$http_referer</span><span class="s">"</span> <span class="s">'</span>
+                      <span class="s">'"</span><span class="nv">$http_user_agent</span><span class="s">"</span> <span class="s">"</span><span class="nv">$http_x_forwarded_for</span><span class="s">"'</span><span class="p">;</span>
+
+    <span class="kn">access_log</span>  <span class="n">/var/log/nginx/access.log</span>  <span class="s">main</span><span class="p">;</span>
+
+    <span class="kn">sendfile</span>        <span class="no">on</span><span class="p">;</span>
+    <span class="c1">#tcp_nopush     on;</span>
+
+    <span class="kn">keepalive_timeout</span>  <span class="mi">65</span><span class="p">;</span>
+
+    <span class="c1">#gzip  on;</span>
+
+    <span class="kn">include</span> <span class="n">/etc/nginx/conf.d/*.conf</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Create <code class="language-plaintext highlighter-rouge">nginx/conf.d/default.conf</code>:</p>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">localhost</span><span class="p">;</span>
+
+    <span class="c1"># Authentication for MCP access</span>
+    <span class="kn">auth_basic</span> <span class="s">"MCP</span> <span class="s">Server</span> <span class="s">Access"</span><span class="p">;</span>
+    <span class="kn">auth_basic_user_file</span> <span class="n">/etc/nginx/.htpasswd</span><span class="p">;</span>
+
+    <span class="c1"># Time MCP server</span>
+    <span class="kn">location</span> <span class="n">/time/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://time:8080/</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Fetch MCP server</span>
+    <span class="kn">location</span> <span class="n">/fetch/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://fetch:8080/</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Filesystem MCP server</span>
+    <span class="kn">location</span> <span class="n">/fs/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://fs:8080/</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># GitHub MCP server</span>
+    <span class="kn">location</span> <span class="n">/github/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://github:8080/</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># PostgreSQL MCP server</span>
+    <span class="kn">location</span> <span class="n">/postgres/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://postgres-mcp:8080/</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Health check endpoint (no auth required)</span>
+    <span class="kn">location</span> <span class="p">=</span> <span class="n">/health</span> <span class="p">{</span>
+        <span class="kn">auth_basic</span> <span class="no">off</span><span class="p">;</span>
+        <span class="kn">return</span> <span class="mi">200</span> <span class="s">'</span><span class="p">{</span><span class="kn">"status":"healthy","timestamp":"</span><span class="nv">$time_iso8601</span><span class="s">"</span><span class="err">}</span><span class="s">'</span><span class="p">;</span>
+        <span class="kn">default_type</span> <span class="nc">application/json</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Create a password file for basic authentication:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">--rm</span> <span class="nt">-it</span> httpd:alpine htpasswd <span class="nt">-bn</span> mcp your_secure_password <span class="o">&gt;</span> nginx/.htpasswd
+</code></pre></div></div>
+
+<h2 id="step-4-setting-up-monitoring">Step 4: Setting Up Monitoring</h2>
+
+<p>Create Prometheus configuration:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> prometheus
+</code></pre></div></div>
+
+<p>Create <code class="language-plaintext highlighter-rouge">prometheus/prometheus.yml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">global</span><span class="pi">:</span>
+  <span class="na">scrape_interval</span><span class="pi">:</span> <span class="s">15s</span>
+  <span class="na">evaluation_interval</span><span class="pi">:</span> <span class="s">15s</span>
+
+<span class="na">scrape_configs</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">job_name</span><span class="pi">:</span> <span class="s1">'</span><span class="s">prometheus'</span>
+    <span class="na">static_configs</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">targets</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">localhost:9090'</span><span class="pi">]</span>
+
+  <span class="pi">-</span> <span class="na">job_name</span><span class="pi">:</span> <span class="s1">'</span><span class="s">mcp-services'</span>
+    <span class="na">metrics_path</span><span class="pi">:</span> <span class="s">/metrics</span>
+    <span class="na">static_configs</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">targets</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">time:8080'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">fetch:8080'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">fs:8080'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">github:8080'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">postgres-mcp:8080'</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<p>Set up Grafana dashboards by creating directories and configuration files:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> grafana/dashboards grafana/datasources
+</code></pre></div></div>
+
+<p>Create <code class="language-plaintext highlighter-rouge">grafana/datasources/prometheus.yml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="m">1</span>
+
+<span class="na">datasources</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Prometheus</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">prometheus</span>
+    <span class="na">access</span><span class="pi">:</span> <span class="s">proxy</span>
+    <span class="na">url</span><span class="pi">:</span> <span class="s">http://prometheus:9090</span>
+    <span class="na">isDefault</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<h2 id="step-5-deploying-your-production-environment">Step 5: Deploying Your Production Environment</h2>
+
+<p>Now that your configuration is ready, deploy the stack:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker compose up <span class="nt">-d</span>
+</code></pre></div></div>
+
+<p>Verify that all services are running:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker compose ps
+</code></pre></div></div>
+
+<p>Check the logs for any issues:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker compose logs
+</code></pre></div></div>
+
+<h2 id="step-6-testing-your-production-deployment">Step 6: Testing Your Production Deployment</h2>
+
+<p>Test the health endpoint to ensure your gateway is working:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl http://localhost:8080/health
+</code></pre></div></div>
+
+<p>Test authentication:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-u</span> mcp:your_secure_password http://localhost:8080/time/.well-known/mcp
+</code></pre></div></div>
+
+<h2 id="step-7-configuring-gordon-ai-to-use-your-production-mcp-server">Step 7: Configuring Gordon AI to Use Your Production MCP Server</h2>
+
+<p>Now you need to create a configuration that tells Gordon AI to use your production MCP servers. Create a <code class="language-plaintext highlighter-rouge">gordon-mcp.yml</code> file in your project directory:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">production-mcp-gateway</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">curlimages/curl</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">-s -X GET -f </span>
+      <span class="s">-u mcp:your_secure_password </span>
+      <span class="s">http://your-server-address:8080/time/.well-known/mcp</span>
+    <span class="na">labels</span><span class="pi">:</span>
+      <span class="na">mcp.base-url</span><span class="pi">:</span> <span class="s">http://your-server-address:8080/time/</span>
+      <span class="na">mcp.auth</span><span class="pi">:</span> <span class="s">Basic bWNwOnlvdXJfc2VjdXJlX3Bhc3N3b3Jk</span>  <span class="c1"># Base64 encoded mcp:your_secure_password</span>
+
+  <span class="na">production-mcp-fs</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">curlimages/curl</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">-s -X GET -f </span>
+      <span class="s">-u mcp:your_secure_password </span>
+      <span class="s">http://your-server-address:8080/fs/.well-known/mcp</span>
+    <span class="na">labels</span><span class="pi">:</span>
+      <span class="na">mcp.base-url</span><span class="pi">:</span> <span class="s">http://your-server-address:8080/fs/</span>
+      <span class="na">mcp.auth</span><span class="pi">:</span> <span class="s">Basic bWNwOnlvdXJfc2VjdXJlX3Bhc3N3b3Jk</span>  <span class="c1"># Base64 encoded mcp:your_secure_password</span>
+
+  <span class="na">production-mcp-github</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">curlimages/curl</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">-s -X GET -f </span>
+      <span class="s">-u mcp:your_secure_password </span>
+      <span class="s">http://your-server-address:8080/github/.well-known/mcp</span>
+    <span class="na">labels</span><span class="pi">:</span>
+      <span class="na">mcp.base-url</span><span class="pi">:</span> <span class="s">http://your-server-address:8080/github/</span>
+      <span class="na">mcp.auth</span><span class="pi">:</span> <span class="s">Basic bWNwOnlvdXJfc2VjdXJlX3Bhc3N3b3Jk</span>  <span class="c1"># Base64 encoded mcp:your_secure_password</span>
+</code></pre></div></div>
+
+<p>Replace <code class="language-plaintext highlighter-rouge">your-server-address</code> with the actual address of your server. The Base64 encoded auth string is the base64 encoding of <code class="language-plaintext highlighter-rouge">mcp:your_secure_password</code>.</p>
+
+<h2 id="step-8-load-testing-and-scaling">Step 8: Load Testing and Scaling</h2>
+
+<p>To ensure your production deployment can handle real-world load, perform load testing:</p>
+
+<ol>
+  <li>Install a load testing tool like <code class="language-plaintext highlighter-rouge">hey</code>:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># For macOS</span>
+brew <span class="nb">install </span>hey
+
+<span class="c"># For Linux</span>
+go <span class="nb">install </span>github.com/rakyll/hey@latest
+</code></pre></div></div>
+
+<ol>
+  <li>Run a basic load test against your MCP server:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hey <span class="nt">-n</span> 1000 <span class="nt">-c</span> 50 <span class="nt">-H</span> <span class="s2">"Authorization: Basic bWNwOnlvdXJfc2VjdXJlX3Bhc3N3b3Jk"</span> http://your-server-address:8080/time/.well-known/mcp
+</code></pre></div></div>
+
+<ol>
+  <li>Based on the results, you may need to scale your services horizontally. Update your Docker Compose file to include replica settings:</li>
+</ol>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">time</span><span class="pi">:</span>
+    <span class="na">deploy</span><span class="pi">:</span>
+      <span class="na">mode</span><span class="pi">:</span> <span class="s">replicated</span>
+      <span class="na">replicas</span><span class="pi">:</span> <span class="m">3</span>
+      <span class="na">resources</span><span class="pi">:</span>
+        <span class="na">limits</span><span class="pi">:</span>
+          <span class="na">cpus</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0.25'</span>
+          <span class="na">memory</span><span class="pi">:</span> <span class="s">256M</span>
+</code></pre></div></div>
+
+<h2 id="step-9-implementing-security-best-practices">Step 9: Implementing Security Best Practices</h2>
+
+<p>To ensure your production MCP servers are secure, implement these additional security measures:</p>
+
+<h3 id="add-tlsssl">Add TLS/SSL</h3>
+
+<p>Update your NGINX configuration to use HTTPS:</p>
+
+<ol>
+  <li>Generate a self-signed certificate or obtain a real one:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl req <span class="nt">-x509</span> <span class="nt">-nodes</span> <span class="nt">-days</span> 365 <span class="nt">-newkey</span> rsa:2048 <span class="nt">-keyout</span> nginx/ssl/private.key <span class="nt">-out</span> nginx/ssl/certificate.crt
+</code></pre></div></div>
+
+<ol>
+  <li>Update the NGINX configuration in <code class="language-plaintext highlighter-rouge">nginx/conf.d/default.conf</code> to include SSL:</li>
+</ol>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">your-server-address</span><span class="p">;</span>
+    <span class="kn">return</span> <span class="mi">301</span> <span class="s">https://</span><span class="nv">$host$request_uri</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">443</span> <span class="s">ssl</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">your-server-address</span><span class="p">;</span>
+
+    <span class="kn">ssl_certificate</span> <span class="n">/etc/nginx/ssl/certificate.crt</span><span class="p">;</span>
+    <span class="kn">ssl_certificate_key</span> <span class="n">/etc/nginx/ssl/private.key</span><span class="p">;</span>
+    <span class="kn">ssl_protocols</span> <span class="s">TLSv1.2</span> <span class="s">TLSv1.3</span><span class="p">;</span>
+    <span class="kn">ssl_ciphers</span> <span class="s">HIGH:!aNULL:!MD5</span><span class="p">;</span>
+
+    <span class="c1"># Rest of your configuration...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="implement-rate-limiting">Implement Rate Limiting</h3>
+
+<p>Add rate limiting to your NGINX configuration to prevent abuse:</p>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">http</span> <span class="p">{</span>
+    <span class="c1"># Rate limiting settings</span>
+    <span class="kn">limit_req_zone</span> <span class="nv">$binary_remote_addr</span> <span class="s">zone=mcp_limit:10m</span> <span class="s">rate=10r/s</span><span class="p">;</span>
+
+    <span class="kn">server</span> <span class="p">{</span>
+        <span class="c1"># Apply rate limiting to MCP endpoints</span>
+        <span class="kn">location</span> <span class="p">~</span> <span class="sr">^/(time|fetch|fs|github|postgres)/</span> <span class="p">{</span>
+            <span class="kn">limit_req</span> <span class="s">zone=mcp_limit</span> <span class="s">burst=20</span> <span class="s">nodelay</span><span class="p">;</span>
+            <span class="c1"># Rest of your proxy configuration...</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="regular-security-audits">Regular Security Audits</h3>
+
+<p>Create a script to regularly audit your deployment for security issues:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> <span class="o">&gt;</span> security-audit.sh <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+#!/bin/bash
+
+echo "=== MCP Security Audit </span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh"> ==="
+
+# Check for outdated images
+echo "</span><span class="se">\n</span><span class="sh">Checking for outdated images..."
+docker compose images
+
+# Check container security with Docker Bench for Security
+echo "</span><span class="se">\n</span><span class="sh">Running Docker security scan..."
+docker run --rm -it </span><span class="se">\</span><span class="sh">
+  --net host </span><span class="se">\</span><span class="sh">
+  --pid host </span><span class="se">\</span><span class="sh">
+  --userns host </span><span class="se">\</span><span class="sh">
+  --cap-add audit_control </span><span class="se">\</span><span class="sh">
+  -v /var/lib:/var/lib </span><span class="se">\</span><span class="sh">
+  -v /var/run/docker.sock:/var/run/docker.sock </span><span class="se">\</span><span class="sh">
+  -v /usr/lib/systemd:/usr/lib/systemd </span><span class="se">\</span><span class="sh">
+  -v /etc:/etc </span><span class="se">\</span><span class="sh">
+  docker/docker-bench-security
+
+# Check exposed ports
+echo "</span><span class="se">\n</span><span class="sh">Checking exposed ports..."
+ss -tulpn | grep LISTEN
+
+# Check for failed login attempts
+echo "</span><span class="se">\n</span><span class="sh">Checking for failed login attempts..."
+grep "Failed password" /var/log/auth.log | tail -10
+
+echo "</span><span class="se">\n</span><span class="sh">=== Audit Complete ==="
+</span><span class="no">EOF
+
+</span><span class="nb">chmod</span> +x security-audit.sh
+</code></pre></div></div>
+
+<h2 id="step-10-maintaining-and-updating-your-deployment">Step 10: Maintaining and Updating Your Deployment</h2>
+
+<p>Create a script to simplify updating your MCP servers:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> <span class="o">&gt;</span> update-mcp-servers.sh <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+#!/bin/bash
+
+echo "=== Updating MCP Servers </span><span class="si">$(</span><span class="nb">date</span><span class="si">)</span><span class="sh"> ==="
+
+# Pull the latest images
+echo "</span><span class="se">\n</span><span class="sh">Pulling latest images..."
+docker compose pull
+
+# Backup configuration
+echo "</span><span class="se">\n</span><span class="sh">Backing up configuration..."
+mkdir -p backups/</span><span class="si">$(</span><span class="nb">date</span> +%Y-%m-%d<span class="si">)</span><span class="sh">
+cp docker-compose.yml backups/</span><span class="si">$(</span><span class="nb">date</span> +%Y-%m-%d<span class="si">)</span><span class="sh">/
+cp .env backups/</span><span class="si">$(</span><span class="nb">date</span> +%Y-%m-%d<span class="si">)</span><span class="sh">/
+cp -r nginx backups/</span><span class="si">$(</span><span class="nb">date</span> +%Y-%m-%d<span class="si">)</span><span class="sh">/
+
+# Restart services with new images
+echo "</span><span class="se">\n</span><span class="sh">Restarting services..."
+docker compose down --remove-orphans
+docker compose up -d
+
+# Verify all services are running
+echo "</span><span class="se">\n</span><span class="sh">Verifying services..."
+docker compose ps
+
+# Test health endpoint
+echo "</span><span class="se">\n</span><span class="sh">Testing health endpoint..."
+curl -s http://localhost:8080/health
+
+echo "</span><span class="se">\n</span><span class="sh">=== Update Complete ==="
+</span><span class="no">EOF
+
+</span><span class="nb">chmod</span> +x update-mcp-servers.sh
+</code></pre></div></div>
+
+<h2 id="implementing-a-backup-strategy">Implementing a Backup Strategy</h2>
+
+<p>Add a backup strategy for your MCP server data:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> <span class="o">&gt;</span> backup-mcp-data.sh <span class="o">&lt;&lt;</span> <span class="sh">'</span><span class="no">EOF</span><span class="sh">'
+#!/bin/bash
+
+BACKUP_DIR="/path/to/backup/location"
+TIMESTAMP=</span><span class="si">$(</span><span class="nb">date</span> +%Y-%m-%d-%H%M<span class="si">)</span><span class="sh">
+
+# Create backup directory
+mkdir -p "</span><span class="nv">$BACKUP_DIR</span><span class="sh">/</span><span class="nv">$TIMESTAMP</span><span class="sh">"
+
+# Backup PostgreSQL database
+echo "Backing up PostgreSQL database..."
+docker compose exec postgres-db pg_dump -U mcpuser mcpdb &gt; "</span><span class="nv">$BACKUP_DIR</span><span class="sh">/</span><span class="nv">$TIMESTAMP</span><span class="sh">/mcpdb.sql"
+
+# Backup configuration files
+echo "Backing up configuration files..."
+cp -r .env docker-compose.yml nginx prometheus grafana "</span><span class="nv">$BACKUP_DIR</span><span class="sh">/</span><span class="nv">$TIMESTAMP</span><span class="sh">/"
+
+# Backup filesystem data
+echo "Backing up filesystem data..."
+tar -czf "</span><span class="nv">$BACKUP_DIR</span><span class="sh">/</span><span class="nv">$TIMESTAMP</span><span class="sh">/data.tar.gz" data output
+
+# Set proper permissions
+chmod -R 600 "</span><span class="nv">$BACKUP_DIR</span><span class="sh">/</span><span class="nv">$TIMESTAMP</span><span class="sh">"
+
+# Cleanup old backups (keep last 7 days)
+find "</span><span class="nv">$BACKUP_DIR</span><span class="sh">" -maxdepth 1 -type d -mtime +7 -exec rm -rf {} </span><span class="se">\;</span><span class="sh">
+
+echo "Backup completed: </span><span class="nv">$BACKUP_DIR</span><span class="sh">/</span><span class="nv">$TIMESTAMP</span><span class="sh">"
+</span><span class="no">EOF
+
+</span><span class="nb">chmod</span> +x backup-mcp-data.sh
+</code></pre></div></div>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Congratulations! You’ve successfully deployed a production-ready Docker MCP server environment with:</p>
+
+<ul>
+  <li><strong>Security</strong>: Authentication, network isolation, and secure secret management</li>
+  <li><strong>Monitoring</strong>: Prometheus and Grafana integration for observability</li>
+  <li><strong>High Availability</strong>: Health checks and automatic restarts</li>
+  <li><strong>Performance</strong>: Resource constraints and scaling options</li>
+  <li><strong>Maintainability</strong>: Update and backup scripts</li>
+</ul>
+
+<p>This deployment provides a robust foundation for using Docker MCP servers in real-world enterprise environments. The Gateway pattern allows you to add new MCP servers without changing client configurations, while the security measures ensure that only authorized clients can access your MCP servers.</p>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<ul>
+  <li><a href="/docs/tutorials/mcp-kubernetes">Learn about Kubernetes Deployment for MCP Servers</a></li>
+  <li><a href="/docs/admin/mcp-admin-guide">MCP Server Administration Guide</a></li>
+  <li><a href="/docs/tutorials/mcp-cicd-integration">Integrating with CI/CD Pipelines</a></li>
+</ul>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<ul>
+  <li>If your NGINX gateway isn’t routing requests properly, check the network configuration</li>
+  <li>For authentication issues, verify your Base64 encoded credentials</li>
+  <li>If MCP servers aren’t starting, check your Docker logs and resource constraints</li>
+  <li>For monitoring issues, ensure Prometheus can reach all your MCP servers</li>
+</ul>
+
+  </div>
+</section>
+
+<script>
+  // Add copy buttons to code blocks
+  document.addEventListener('DOMContentLoaded', function() {
+    const codeBlocks = document.querySelectorAll('pre');
+    codeBlocks.forEach(function(codeBlock, index) {
+      // Create code header
+      const header = document.createElement('div');
+      header.className = 'code-header';
+      
+      // Add file name or code type if available
+      const code = codeBlock.querySelector('code');
+      let language = '';
+      if (code && code.className) {
+        const classes = code.className.split(' ');
+        for (const cls of classes) {
+          if (cls.startsWith('language-')) {
+            language = cls.replace('language-', '');
+            break;
+          }
+        }
+      }
+      
+      header.innerHTML = `<span>${language || 'bash'}</span>`;
+      
+      // Add copy button
+      const button = document.createElement('button');
+      button.className = 'copy-button';
+      button.innerHTML = '<i class="far fa-copy"></i> Copy';
+      button.addEventListener('click', function() {
+        const text = codeBlock.querySelector('code').innerText;
+        navigator.clipboard.writeText(text).then(function() {
+          button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(function() {
+            button.innerHTML = '<i class="far fa-copy"></i> Copy';
+          }, 2000);
+        });
+      });
+      
+      header.appendChild(button);
+      codeBlock.parentNode.insertBefore(header, codeBlock);
+    });
+  });
+</script>
+
+<style>
+  /* Code block specific styles */
+  .page-content pre, pre, div.highlight pre {
+    background-color: #282c34;
+    color: #f8f8f2;
+    padding: 1.2rem;
+    border-radius: 0 0 6px 6px; /* Rounded at bottom only */
+    margin: 0 0 1.5rem 0; /* Remove top margin since we have code header */
+    position: relative;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: pre;
+    word-wrap: normal;
+    box-sizing: border-box;
+    width: 100% !important;
+  }
+  
+  /* Add better styling to the page content */
+  .page-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  .page-content h1 {
+    display: none; /* Hide the duplicate title */
+  }
+  
+  /* Ensure all content stays within the container */
+  .page-content img,
+  .page-content pre,
+  .page-content table,
+  .page-content iframe {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .page-content {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+  </main>
+  
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>Docker MCP Community Portal</h3>
+        <p>A community-driven resource for Docker Model Context Protocol.</p>
+        <p>&copy; 2025 MCP Community Portal. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal" target="_blank">
+              <i class="fab fa-github"></i> GitHub Repository
+            </a>
+          </li>
+          <li>
+            <a href="https://collabnix.com" target="_blank">
+              <i class="fas fa-globe"></i> Collabnix Community
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" target="_blank">
+              <i class="fas fa-code-branch"></i> Contribute to MCP Portal
+            </a>
+          </li>
+          <li>
+            <a href="https://hub.docker.com/u/mcp" target="_blank">
+              <i class="fab fa-docker"></i> MCP on Docker Hub
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+  <!-- ClipboardJS for copy functionality -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+  
+  <!-- Syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  
+  <!-- Custom scripts -->
+  <script src="/mcp-portal/pr-preview/pr-26/assets/js/filter.js"></script>
+  <script src="/mcp-portal/pr-preview/pr-26/assets/js/code-formatter.js"></script>
+  
+  <script>
+    // Initialize clipboard.js
+    document.addEventListener('DOMContentLoaded', function() {
+      var clipboard = new ClipboardJS('.btn-copy');
+      
+      clipboard.on('success', function(e) {
+        var button = e.trigger;
+        var originalText = button.innerHTML;
+        
+        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        button.classList.add('copied');
+        
+        setTimeout(function() {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+        
+        e.clearSelection();
+      });
+      
+      // Initialize syntax highlighting
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+</body>
+</html>
