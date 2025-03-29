@@ -152,11 +152,11 @@ services:
       - ./:/rootfs/output
 ```
 
-    <p>This configuration sets up two MCP servers:</p>
-    <ul>
-      <li>A SQLite server that can interact with SQLite databases</li>
-      <li>A filesystem server that gives access to our data directory</li>
-    </ul>
+<p>This configuration sets up two MCP servers:</p>
+<ul>
+  <li>A SQLite server that can interact with SQLite databases</li>
+  <li>A filesystem server that gives access to our data directory</li>
+</ul>
   </div>
 </div>
 
@@ -172,24 +172,24 @@ services:
 docker ai "Create a new SQLite database called 'company.db' in the data directory and run the SQL commands from the init.sql file to set it up."
 ```
 
-    <p>You should see Gordon AI using the SQLite MCP server to create the database. Now let's try some queries:</p>
+<p>You should see Gordon AI using the SQLite MCP server to create the database. Now let's try some queries:</p>
 
 ```bash
 # Basic query
 docker ai "Query the company database and list all employees in the Engineering department with their salaries."
 ```
 
-    <p>You should see a list of employees in the Engineering department. Let's try a more complex query:</p>
+<p>You should see a list of employees in the Engineering department. Let's try a more complex query:</p>
 
 ```bash
 # More complex query
 docker ai "Find the average salary by department and identify which department has the highest average salary. Format the results as a markdown table."
 ```
 
-    <div class="lab-tip">
-      <h4><i class="fas fa-lightbulb"></i> Tip</h4>
-      <p>You can ask Gordon AI to format results in various ways, such as tables, lists, or even generate visualizations with descriptions.</p>
-    </div>
+<div class="lab-tip">
+  <h4><i class="fas fa-lightbulb"></i> Tip</h4>
+  <p>You can ask Gordon AI to format results in various ways, such as tables, lists, or even generate visualizations with descriptions.</p>
+</div>
   </div>
 </div>
 
@@ -211,7 +211,7 @@ docker run -d \
   postgres:14
 ```
 
-    <p>Now, update your <code>gordon-mcp.yml</code> file to include the PostgreSQL MCP server:</p>
+<p>Now, update your <code>gordon-mcp.yml</code> file to include the PostgreSQL MCP server:</p>
 
 ```yaml
 services:
@@ -233,7 +233,7 @@ services:
     command: postgresql://labuser:labpassword@host.docker.internal:5432/company
 ```
 
-    <p>Initialize our PostgreSQL database with the same schema:</p>
+<p>Initialize our PostgreSQL database with the same schema:</p>
 
 ```bash
 docker ai "Connect to the PostgreSQL database and create the same schema as in our SQLite database. Use the init.sql file as reference. Then confirm the tables were created correctly."
@@ -248,35 +248,35 @@ docker ai "Connect to the PostgreSQL database and create the same schema as in o
   <div class="lab-step-content">
     <p>Now let's perform more complex database tasks:</p>
 
-    <h3>Task 1: Cross-Database Analysis</h3>
+<h3>Task 1: Cross-Database Analysis</h3>
 
 ```bash
 docker ai "Compare the schema between our SQLite database and PostgreSQL database. Are there any differences? Which database would you recommend for our company data and why?"
 ```
 
-    <h3>Task 2: Data Analysis and Reporting</h3>
+<h3>Task 2: Data Analysis and Reporting</h3>
 
 ```bash
 docker ai "Analyze the employee and project data in the PostgreSQL database. Which employees are working on multiple projects? Create a report showing the workload distribution across departments. Save the report as a markdown file called workload_analysis.md."
 ```
 
-    <h3>Task 3: Database Schema Improvements</h3>
+<h3>Task 3: Database Schema Improvements</h3>
 
 ```bash
 docker ai "Suggest improvements to our database schema. What indexes, constraints, or additional tables would you recommend? Create a SQL script with your recommendations and save it to output/schema_improvements.sql."
 ```
 
-    <div class="lab-note">
-      <h4><i class="fas fa-info-circle"></i> Understanding MCP Database Operations</h4>
-      <p>When you ask Gordon AI to perform database operations:</p>
-      <ol>
-        <li>Gordon identifies the task requires database interaction</li>
-        <li>It selects the appropriate MCP server (SQLite or PostgreSQL)</li>
-        <li>The MCP server translates natural language into SQL queries</li>
-        <li>Results are returned and formatted according to your request</li>
-      </ol>
-      <p>This powerful abstraction allows non-technical users to interact with databases using natural language.</p>
-    </div>
+<div class="lab-note">
+  <h4><i class="fas fa-info-circle"></i> Understanding MCP Database Operations</h4>
+  <p>When you ask Gordon AI to perform database operations:</p>
+  <ol>
+    <li>Gordon identifies the task requires database interaction</li>
+    <li>It selects the appropriate MCP server (SQLite or PostgreSQL)</li>
+    <li>The MCP server translates natural language into SQL queries</li>
+    <li>Results are returned and formatted according to your request</li>
+  </ol>
+  <p>This powerful abstraction allows non-technical users to interact with databases using natural language.</p>
+</div>
   </div>
 </div>
 
@@ -291,7 +291,7 @@ docker ai "Suggest improvements to our database schema. What indexes, constraint
 docker ai "Create an HTML dashboard that shows key metrics from our company database, including department budgets, employee salary distributions, and project statuses. Use JavaScript for any interactive elements. Save the dashboard to output/company_dashboard.html."
 ```
 
-    <p>Once the dashboard is created, you can open it in your browser:</p>
+<p>Once the dashboard is created, you can open it in your browser:</p>
 
 ```bash
 # On macOS
@@ -313,14 +313,14 @@ start output/company_dashboard.html
   <div class="lab-step-content">
     <p>It's important to understand the security implications of using MCP servers with databases. Here are some best practices:</p>
 
-    <ol>
-      <li><strong>Connection Strings</strong>: Never expose database credentials in public repositories</li>
-      <li><strong>Access Control</strong>: Use read-only connections when only queries are needed</li>
-      <li><strong>Container Networks</strong>: Consider using Docker networks to isolate database containers</li>
-      <li><strong>Volume Mounting</strong>: Be careful about what directories you mount to containers</li>
-    </ol>
+<ol>
+  <li><strong>Connection Strings</strong>: Never expose database credentials in public repositories</li>
+  <li><strong>Access Control</strong>: Use read-only connections when only queries are needed</li>
+  <li><strong>Container Networks</strong>: Consider using Docker networks to isolate database containers</li>
+  <li><strong>Volume Mounting</strong>: Be careful about what directories you mount to containers</li>
+</ol>
 
-    <p>Let's implement a more secure configuration by creating a Docker network and updating our setup:</p>
+<p>Let's implement a more secure configuration by creating a Docker network and updating our setup:</p>
 
 ```bash
 # Create a Docker network
@@ -340,7 +340,7 @@ docker run -d \
   postgres:14
 ```
 
-    <p>Create a new <code>secure-gordon-mcp.yml</code> file:</p>
+<p>Create a new <code>secure-gordon-mcp.yml</code> file:</p>
 
 ```yaml
 services:
@@ -369,7 +369,7 @@ networks:
     name: mcp-db-network
 ```
 
-    <p>Let's test our secure configuration:</p>
+<p>Let's test our secure configuration:</p>
 
 ```bash
 docker ai --file secure-gordon-mcp.yml "Query the PostgreSQL database to find the highest paid employee in each department."
