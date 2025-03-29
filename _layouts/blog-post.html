@@ -1,0 +1,86 @@
+---
+layout: default
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
+
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title">{{ page.title }}</h1>
+    <div class="blog-meta">
+      {% if page.author %}
+      <span class="blog-author">
+        <i class="fas fa-user"></i> {{ page.author }}
+      </span>
+      {% endif %}
+      
+      {% if page.date %}
+      <span class="blog-date">
+        <i class="fas fa-calendar-alt"></i> {{ page.date | date: "%B %d, %Y" }}
+      </span>
+      {% endif %}
+      
+      {% if page.categories and page.categories.size > 0 %}
+      <span class="blog-categories">
+        <i class="fas fa-folder"></i>
+        {% for category in page.categories %}
+        <span class="category">{{ category }}</span>{% unless forloop.last %}, {% endunless %}
+        {% endfor %}
+      </span>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <div class="blog-content">
+    {% if page.featured_image %}
+    <div class="featured-image">
+      <img src="{{ page.featured_image | relative_url }}" alt="{{ page.title }}">
+    </div>
+    {% endif %}
+    
+    <div class="blog-body">
+      {{ content }}
+    </div>
+    
+    {% if page.tags and page.tags.size > 0 %}
+    <div class="blog-tags">
+      <i class="fas fa-tags"></i>
+      {% for tag in page.tags %}
+      <span class="tag">{{ tag }}</span>{% unless forloop.last %} {% endunless %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% if page.comments %}
+<section class="container">
+  <div class="blog-comments">
+    <h2>Comments</h2>
+    <!-- Comment system integration could go here -->
+    <p>Comments are currently disabled.</p>
+  </div>
+</section>
+{% endif %}
+
+<section class="container">
+  <div class="blog-navigation">
+    <div class="blog-nav-prev">
+      {% if page.previous.url %}
+      <a href="{{ page.previous.url | relative_url }}" class="prev-post">
+        <i class="fas fa-arrow-left"></i> Previous Post: {{ page.previous.title }}
+      </a>
+      {% endif %}
+    </div>
+    
+    <div class="blog-nav-next">
+      {% if page.next.url %}
+      <a href="{{ page.next.url | relative_url }}" class="next-post">
+        Next Post: {{ page.next.title }} <i class="fas fa-arrow-right"></i>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
