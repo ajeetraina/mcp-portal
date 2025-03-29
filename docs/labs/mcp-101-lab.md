@@ -11,8 +11,13 @@ next_lab: /docs/labs/research-assistant-lab
 
 ## 🧾 Prerequisites
 
-- Docker Desktop installed  
-- Basic command line knowledge  
+- The latest version of Docker Desktop installed  
+- Enable Docker AI
+
+Under Docker Dashboard > Settings > Experimental Feature > Enable Docker AI
+
+<img width="1347" alt="image" src="https://github.com/user-attachments/assets/cb1255ef-9ba8-4d65-bded-b9525267e202" />
+
 
 ---
 
