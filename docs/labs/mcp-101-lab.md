@@ -1,5 +1,5 @@
 ---
-layout: lab
+layout: page
 title: "Lab 1: First Steps with Docker & MCP Servers"
 description: In this beginner-friendly hands-on lab, you'll set up your first MCP servers with Docker and learn to interact with them using Gordon AI.
 difficulty: Beginner
@@ -8,6 +8,14 @@ author: Docker Team
 last_updated: March 18, 2025
 next_lab: /docs/labs/research-assistant-lab
 ---
+
+# Lab 1: First Steps with Docker & MCP Servers
+
+In this beginner-friendly hands-on lab, you'll set up your first MCP servers with Docker and learn to interact with them using Gordon AI.
+
+**Time to complete:** 30 minutes
+
+**Difficulty:** Beginner
 
 ## 🧾 Prerequisites
 
@@ -183,5 +191,4 @@ This foundational knowledge will be essential as you move on to more complex MCP
 Now that you've completed your first MCP lab, you can continue your learning journey with:
 
 - [Lab 2: Building a Research Assistant with MCP](/docs/labs/research-assistant-lab) – Learn how to create a powerful research assistant using multiple MCP servers  
-- [Lab 3: Database Operations with MCP Servers](/docs/labs/database-operations-lab) – Explore how to use MCP servers for database interactions  
-```
+- [Lab 3: Database Operations with MCP Servers](/docs/labs/database-operations-lab) – Explore how to use MCP servers for database interactions
