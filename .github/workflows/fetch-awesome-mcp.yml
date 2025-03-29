@@ -1,0 +1,38 @@
+name: Fetch from Awesome MCP Servers
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Run weekly on Sunday at midnight UTC
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  fetch-awesome-mcp:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+        
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pyyaml github3.py beautifulsoup4
+          
+      - name: Run fetch script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPO_OWNER: ajeetraina
+          GITHUB_REPO_NAME: mcp-portal
+        run: python scripts/fetch_from_awesome_mcp.py
+        
+      - name: Commit changes if any
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add _data/mcp_servers.yml _data/mcp_tools.yml
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update MCP servers and tools from awesome-mcp-servers"
+          git push
