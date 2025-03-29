@@ -144,3 +144,78 @@ Let's start with some basic SQLite operations:
 # Initialize the database
 docker ai "Create a new SQLite database called 'company.db' in the data directory and run the SQL commands from the init.sql file to set it up."
 ```
+
+You should see Gordon AI using the SQLite MCP server to create the database. Now let's try some queries:
+
+```bash
+# Basic query
+docker ai "Query the company database and list all employees in the Engineering department with their salaries."
+```
+
+You should see a list of employees in the Engineering department. Let's try a more complex query:
+
+```bash
+# More complex query
+docker ai "Find the average salary by department and identify which department has the highest average salary. Format the results as a markdown table."
+```
+
+**Tip:** You can ask Gordon AI to format results in various ways, such as tables, lists, or even generate visualizations with descriptions.
+
+## Step 5: Set Up PostgreSQL for Advanced Operations
+
+For more advanced database operations, let's add PostgreSQL to our environment. First, we'll start a PostgreSQL container with our sample data:
+
+```bash
+# Start a PostgreSQL container
+docker run -d \
+  --name postgres-mcp-lab \
+  -e POSTGRES_PASSWORD=labpassword \
+  -e POSTGRES_USER=labuser \
+  -e POSTGRES_DB=company \
+  -p 5432:5432 \
+  postgres:14
+```
+
+Now, update your `gordon-mcp.yml` file to include the PostgreSQL MCP server:
+
+```yaml
+services:
+  sqlite:
+    image: mcp/sqlite
+    volumes:
+      - ./data:/data
+  
+  fs:
+    image: mcp/filesystem
+    command:
+      - /rootfs
+    volumes:
+      - ./data:/rootfs/data
+      - ./:/rootfs/output
+  
+  postgres:
+    image: mcp/postgres
+    command: postgresql://labuser:labpassword@host.docker.internal:5432/company
+```
+
+Initialize our PostgreSQL database with the same schema:
+
+```bash
+docker ai "Connect to the PostgreSQL database and create the same schema as in our SQLite database. Use the init.sql file as reference. Then confirm the tables were created correctly."
+```
+
+## Step 6: Advanced Database Operations
+
+Now let's perform more complex database tasks:
+
+### Task 1: Cross-Database Analysis
+
+```bash
+docker ai "Compare the schema between our SQLite database and PostgreSQL database. Are there any differences? Which database would you recommend for our company data and why?"
+```
+
+### Task 2: Data Analysis and Reporting
+
+```bash
+docker ai "Analyze the employee and project data in the PostgreSQL database. Which employees are working on multiple projects? Create a report showing the workload distribution across departments. Save the report as a markdown file called workload_analysis.md."
+```
