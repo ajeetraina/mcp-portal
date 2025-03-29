@@ -8,7 +8,7 @@
   <title>Connecting PostgreSQL to Claude Desktop with MCP: A Step-by-Step Guide - MCP Community Portal</title>
   
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/pr-preview/pr-36/assets/images/docker-logo.svg">
+  <link rel="icon" type="image/svg+xml" href="/mcp-portal/pr-preview/pr-36/assets/images/docker-logo.svg">
   
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -19,15 +19,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="/pr-preview/pr-36/assets/css/main.css">
-  <link rel="stylesheet" href="/pr-preview/pr-36/assets/css/tools.css">
-  <link rel="stylesheet" href="/pr-preview/pr-36/assets/css/home.css">
-  <link rel="stylesheet" href="/pr-preview/pr-36/assets/css/lab-styles.css">
-  <link rel="stylesheet" href="/pr-preview/pr-36/assets/css/code-fix.css">
-  <link rel="stylesheet" href="/pr-preview/pr-36/assets/css/banner-fix.css">
-  <link rel="stylesheet" href="/pr-preview/pr-36/assets/css/image-fix.css">
-  <link rel="stylesheet" href="/pr-preview/pr-36/assets/css/heading-fix.css">
-  <link rel="stylesheet" href="/pr-preview/pr-36/assets/css/header-fix.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-36/assets/css/main.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-36/assets/css/tools.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-36/assets/css/home.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-36/assets/css/lab-styles.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-36/assets/css/code-fix.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-36/assets/css/banner-fix.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-36/assets/css/image-fix.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-36/assets/css/heading-fix.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-36/assets/css/header-fix.css">
   
   <!-- Syntax Highlighting -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
@@ -40,15 +40,15 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Introduction" />
 <meta property="og:description" content="Introduction" />
-<link rel="canonical" href="https://mcp.collabnix.com/pr-preview/pr-36/tutorials/mcp/database/2025/03/29/postgresql-model-context-protocol-mcp-and-claude-desktop.html" />
-<meta property="og:url" content="https://mcp.collabnix.com/pr-preview/pr-36/tutorials/mcp/database/2025/03/29/postgresql-model-context-protocol-mcp-and-claude-desktop.html" />
+<link rel="canonical" href="https://ajeetraina.github.io/mcp-portal/pr-preview/pr-36/tutorials/mcp/database/2025/03/29/postgresql-model-context-protocol-mcp-and-claude-desktop.html" />
+<meta property="og:url" content="https://ajeetraina.github.io/mcp-portal/pr-preview/pr-36/tutorials/mcp/database/2025/03/29/postgresql-model-context-protocol-mcp-and-claude-desktop.html" />
 <meta property="og:site_name" content="MCP Community Portal" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-03-29T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Connecting PostgreSQL to Claude Desktop with MCP: A Step-by-Step Guide" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Ajeet Raina"},"dateModified":"2025-03-29T00:00:00+00:00","datePublished":"2025-03-29T00:00:00+00:00","description":"Introduction","headline":"Connecting PostgreSQL to Claude Desktop with MCP: A Step-by-Step Guide","mainEntityOfPage":{"@type":"WebPage","@id":"https://mcp.collabnix.com/pr-preview/pr-36/tutorials/mcp/database/2025/03/29/postgresql-model-context-protocol-mcp-and-claude-desktop.html"},"url":"https://mcp.collabnix.com/pr-preview/pr-36/tutorials/mcp/database/2025/03/29/postgresql-model-context-protocol-mcp-and-claude-desktop.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Ajeet Raina"},"dateModified":"2025-03-29T00:00:00+00:00","datePublished":"2025-03-29T00:00:00+00:00","description":"Introduction","headline":"Connecting PostgreSQL to Claude Desktop with MCP: A Step-by-Step Guide","mainEntityOfPage":{"@type":"WebPage","@id":"https://ajeetraina.github.io/mcp-portal/pr-preview/pr-36/tutorials/mcp/database/2025/03/29/postgresql-model-context-protocol-mcp-and-claude-desktop.html"},"url":"https://ajeetraina.github.io/mcp-portal/pr-preview/pr-36/tutorials/mcp/database/2025/03/29/postgresql-model-context-protocol-mcp-and-claude-desktop.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -57,19 +57,19 @@
   <div class="container">
     <div class="header-content">
       <div class="logo">
-        <a href="/pr-preview/pr-36/">
+        <a href="/mcp-portal/pr-preview/pr-36/">
           <h1>MCP Community Portal</h1>
         </a>
       </div>
       <nav class="main-nav">
         <ul>
-          <li><a href="/pr-preview/pr-36/"><i class="fas fa-home"></i> Home</a></li>
-          <li><a href="/pr-preview/pr-36/servers-table.html"><i class="fas fa-server"></i> Servers</a></li>
-          <li><a href="/pr-preview/pr-36/tools.html"><i class="fas fa-tools"></i> Tools</a></li>
-          <li><a href="/pr-preview/pr-36/docs/labs-and-tutorials"><i class="fas fa-flask"></i> Labs</a></li>
-          <li><a href="/pr-preview/pr-36/blog/"><i class="fas fa-blog"></i> Blog</a></li>
+          <li><a href="/mcp-portal/pr-preview/pr-36/"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="/mcp-portal/pr-preview/pr-36/servers-table.html"><i class="fas fa-server"></i> Servers</a></li>
+          <li><a href="/mcp-portal/pr-preview/pr-36/tools.html"><i class="fas fa-tools"></i> Tools</a></li>
+          <li><a href="/mcp-portal/pr-preview/pr-36/docs/labs-and-tutorials"><i class="fas fa-flask"></i> Labs</a></li>
+          <li><a href="/mcp-portal/pr-preview/pr-36/blog/"><i class="fas fa-blog"></i> Blog</a></li>
           <li>
-            <a href="/pr-preview/pr-36/docs/ask-gordon">
+            <a href="/mcp-portal/pr-preview/pr-36/docs/ask-gordon">
               <i class="fas fa-robot"></i> Ask Gordon
               <span class="new-badge">NEW</span>
             </a>
@@ -108,7 +108,7 @@
 </style>
   
   <main>
-    <link rel="stylesheet" href="/pr-preview/pr-36/assets/css/blog.css">
+    <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-36/assets/css/blog.css">
 
 <section class="page-header">
   <div class="container">
@@ -151,7 +151,7 @@
   <div class="blog-content">
     
     <div class="featured-image">
-      <img src="/pr-preview/pr-36/assets/images/blog/postgresql-mcp-claude.jpg" alt="Connecting PostgreSQL to Claude Desktop with MCP: A Step-by-Step Guide">
+      <img src="/mcp-portal/pr-preview/pr-36/assets/images/blog/postgresql-mcp-claude.jpg" alt="Connecting PostgreSQL to Claude Desktop with MCP: A Step-by-Step Guide">
     </div>
     
     
@@ -427,8 +427,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
   
   <!-- Custom scripts -->
-  <script src="/pr-preview/pr-36/assets/js/filter.js"></script>
-  <script src="/pr-preview/pr-36/assets/js/code-formatter.js"></script>
+  <script src="/mcp-portal/pr-preview/pr-36/assets/js/filter.js"></script>
+  <script src="/mcp-portal/pr-preview/pr-36/assets/js/code-formatter.js"></script>
   
   <script>
     // Initialize clipboard.js
