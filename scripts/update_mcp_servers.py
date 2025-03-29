@@ -7,6 +7,7 @@ This script fetches MCP server information from multiple sources:
 2. GitHub repositories with MCP-related topics
 
 It then updates the _data/mcp_servers.yml file in the GitHub repository with new servers.
+Additionally, it adds GitHub star counts for each server with a GitHub URL.
 
 Requirements:
 - praw (Python Reddit API Wrapper)
@@ -53,6 +54,7 @@ MAX_REDDIT_POSTS = 100  # Maximum number of Reddit posts to fetch
 POST_TIMEFRAME = 'week'  # 'day', 'week', 'month', 'year', 'all'
 GITHUB_SEARCH_TERMS = ['mcp-server', 'model-context-protocol', 'anthropic-mcp', 'docker-mcp']
 MAX_GITHUB_REPOS = 50  # Maximum number of repositories to fetch per search term
+GITHUB_API_RATE_LIMIT_WAIT = 60  # Seconds to wait if we hit the GitHub API rate limit
 
 # Configure Reddit API client
 def get_reddit_client():
@@ -126,7 +128,8 @@ def extract_mcp_server_info_from_reddit(post):
         'website': '',
         'tags': [],
         'added_date': datetime.now().strftime('%Y-%m-%d'),
-        'source': 'reddit'
+        'source': 'reddit',
+        'stars': 0  # Default star count
     }
     
     # Extract name from title
@@ -144,6 +147,8 @@ def extract_mcp_server_info_from_reddit(post):
     github_matches = re.findall(r'github\.com/[\w\-]+/[\w\-]+', content)
     if github_matches:
         server_info['github_url'] = f"https://{github_matches[0]}"
+        # Fetch GitHub stars for this repository
+        server_info['stars'] = get_github_stars(github_matches[0])
     
     # Extract Docker image
     docker_matches = re.findall(r'(?:docker\s+pull\s+|docker\.io/)?([\w\-\_\.\/]+:[\w\-\_\.]+)', content)
@@ -244,6 +249,17 @@ def search_github_repos(search_term, page=1):
         }
         url = f'https://api.github.com/search/repositories?q={search_term}+in:name,description,readme&sort=updated&order=desc&page={page}&per_page=30'
         response = requests.get(url, headers=headers)
+        
+        # Check for rate limiting
+        if response.status_code == 403 and 'rate limit' in response.text.lower():
+            reset_time = int(response.headers.get('X-RateLimit-Reset', 0))
+            current_time = time.time()
+            sleep_time = max(reset_time - current_time, GITHUB_API_RATE_LIMIT_WAIT)
+            logger.warning(f"GitHub API rate limit reached. Waiting for {sleep_time} seconds...")
+            time.sleep(sleep_time)
+            # Retry the request
+            return search_github_repos(search_term, page)
+        
         response.raise_for_status()
         return response.json()
     except Exception as e:
@@ -259,11 +275,59 @@ def get_repository_topics(repo_owner, repo_name):
         }
         url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/topics'
         response = requests.get(url, headers=headers)
+        
+        # Check for rate limiting
+        if response.status_code == 403 and 'rate limit' in response.text.lower():
+            reset_time = int(response.headers.get('X-RateLimit-Reset', 0))
+            current_time = time.time()
+            sleep_time = max(reset_time - current_time, GITHUB_API_RATE_LIMIT_WAIT)
+            logger.warning(f"GitHub API rate limit reached. Waiting for {sleep_time} seconds...")
+            time.sleep(sleep_time)
+            # Retry the request
+            return get_repository_topics(repo_owner, repo_name)
+        
         response.raise_for_status()
         return response.json().get('names', [])
     except Exception as e:
         logger.warning(f"Failed to get topics for {repo_owner}/{repo_name}: {e}")
         return []
+
+def get_github_stars(repo_path):
+    """Get the star count for a GitHub repository."""
+    try:
+        # Extract owner and repo from the path
+        path_parts = repo_path.split('/')
+        if len(path_parts) < 2:
+            return 0
+        
+        repo_owner, repo_name = path_parts[-2], path_parts[-1]
+        
+        headers = {
+            'Accept': 'application/vnd.github.v3+json',
+            'Authorization': f'token {os.environ.get("GITHUB_TOKEN")}'
+        }
+        url = f'https://api.github.com/repos/{repo_owner}/{repo_name}'
+        response = requests.get(url, headers=headers)
+        
+        # Check for rate limiting
+        if response.status_code == 403 and 'rate limit' in response.text.lower():
+            reset_time = int(response.headers.get('X-RateLimit-Reset', 0))
+            current_time = time.time()
+            sleep_time = max(reset_time - current_time, GITHUB_API_RATE_LIMIT_WAIT)
+            logger.warning(f"GitHub API rate limit reached. Waiting for {sleep_time} seconds...")
+            time.sleep(sleep_time)
+            # Retry the request
+            return get_github_stars(repo_path)
+            
+        if response.status_code != 200:
+            logger.warning(f"Failed to get star count for {repo_path}: {response.status_code} {response.text}")
+            return 0
+            
+        repo_data = response.json()
+        return repo_data.get('stargazers_count', 0)
+    except Exception as e:
+        logger.warning(f"Failed to get star count for {repo_path}: {e}")
+        return 0
 
 def get_docker_image_from_repo(repo_owner, repo_name):
     """Extract Docker image information from repository."""
@@ -278,6 +342,16 @@ def get_docker_image_from_repo(repo_owner, repo_name):
         for file_path in files_to_check:
             url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/contents/{file_path}'
             response = requests.get(url, headers=headers)
+            
+            # Check for rate limiting
+            if response.status_code == 403 and 'rate limit' in response.text.lower():
+                reset_time = int(response.headers.get('X-RateLimit-Reset', 0))
+                current_time = time.time()
+                sleep_time = max(reset_time - current_time, GITHUB_API_RATE_LIMIT_WAIT)
+                logger.warning(f"GitHub API rate limit reached. Waiting for {sleep_time} seconds...")
+                time.sleep(sleep_time)
+                # Continue with the next file
+                continue
             
             if response.status_code == 200:
                 content = response.text
@@ -310,7 +384,8 @@ def extract_mcp_server_info_from_github(repo_data):
         'website': repo_data.get('homepage', ''),
         'tags': [],
         'added_date': datetime.now().strftime('%Y-%m-%d'),
-        'source': 'github'
+        'source': 'github',
+        'stars': repo_data.get('stargazers_count', 0)  # Get star count directly from repo_data
     }
     
     # Get repository topics as tags
@@ -423,14 +498,44 @@ def is_new_server(server, existing_servers):
     
     return True
 
+def update_existing_servers_with_stars(existing_servers):
+    """Update existing servers with star counts if they don't have them already."""
+    servers_updated = 0
+    
+    for server in existing_servers:
+        # If the server has a GitHub URL but no star count, add it
+        if server.get('github_url') and not server.get('stars'):
+            # Extract the GitHub repository path from the URL
+            url_parts = server['github_url'].split('github.com/')
+            if len(url_parts) > 1:
+                repo_path = url_parts[1]
+                # Get the star count and update the server
+                stars = get_github_stars(repo_path)
+                server['stars'] = stars
+                servers_updated += 1
+                logger.info(f"Updated star count for {server['name']}: {stars} stars")
+                # Add a small delay to avoid rate limiting
+                time.sleep(0.5)
+    
+    logger.info(f"Updated star counts for {servers_updated} existing servers")
+    return existing_servers
+
 def update_yaml_file(repo, content_file, existing_servers, new_servers):
     """Update the YAML file with new servers and push to GitHub."""
+    # First, update existing servers with star counts if they don't have them
+    updated_existing_servers = update_existing_servers_with_stars(existing_servers)
+    
     if not new_servers:
-        logger.info("No new servers to add.")
-        return
+        # Even if there are no new servers, we might have updated star counts
+        if updated_existing_servers == existing_servers:
+            logger.info("No changes to make to the YAML file.")
+            return
+        logger.info("Updating YAML file with star counts for existing servers.")
+    else:
+        logger.info(f"Adding {len(new_servers)} new servers to the YAML file.")
     
     # Add new servers to the list
-    updated_servers = existing_servers + new_servers
+    updated_servers = updated_existing_servers + new_servers
     
     # Convert to YAML
     yaml_content = "# Model Context Protocol Servers\n"
@@ -441,14 +546,20 @@ def update_yaml_file(repo, content_file, existing_servers, new_servers):
     yaml_content += "#   docker_image: Docker image name and tag\n"
     yaml_content += "#   website: Optional website URL\n"
     yaml_content += "#   tags: List of relevant tags\n"
+    yaml_content += "#   stars: GitHub star count\n"
     yaml_content += "#   added_date: When the entry was added (YYYY-MM-DD)\n\n"
     
     # Add servers to YAML content
     yaml_content += yaml.dump(updated_servers, default_flow_style=False, sort_keys=False)
     
     try:
+        # Create commit message based on what changed
+        if new_servers:
+            commit_message = f"Add {len(new_servers)} new MCP server{'s' if len(new_servers) > 1 else ''} and update star counts"
+        else:
+            commit_message = "Update GitHub star counts for MCP servers"
+            
         # Commit the changes
-        commit_message = f"Add {len(new_servers)} new MCP server{'s' if len(new_servers) > 1 else ''}"
         repo.update_file(
             path=YAML_FILE_PATH,
             message=commit_message,
@@ -480,7 +591,7 @@ def main():
         reddit_servers = get_mcp_servers_from_reddit(reddit_client)
         for server in reddit_servers:
             if is_new_server(server, existing_servers):
-                logger.info(f"Found new MCP server from Reddit: {server['name']}")
+                logger.info(f"Found new MCP server from Reddit: {server['name']} with {server['stars']} stars")
                 all_new_servers.append(server)
     else:
         logger.info("Skipping Reddit source - client not available")
@@ -489,7 +600,7 @@ def main():
     github_servers = get_mcp_servers_from_github()
     for server in github_servers:
         if is_new_server(server, existing_servers) and is_new_server(server, all_new_servers):
-            logger.info(f"Found new MCP server from GitHub: {server['name']}")
+            logger.info(f"Found new MCP server from GitHub: {server['name']} with {server['stars']} stars")
             all_new_servers.append(server)
     
     # Update YAML file with all new servers
@@ -498,6 +609,8 @@ def main():
         update_yaml_file(github_repo, content_file, existing_servers, all_new_servers)
     else:
         logger.info("No new MCP servers found from any source")
+        # Still update star counts for existing servers
+        update_yaml_file(github_repo, content_file, existing_servers, [])
     
     logger.info("MCP server update process completed")
 
