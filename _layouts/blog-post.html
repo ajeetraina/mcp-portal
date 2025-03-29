@@ -7,28 +7,33 @@ layout: default
 <section class="page-header">
   <div class="container">
     <h1 class="page-title">{{ page.title }}</h1>
-    <div class="blog-meta">
-      {% if page.author %}
-      <span class="blog-author">
-        <i class="fas fa-user"></i> {{ page.author }}
-      </span>
-      {% endif %}
+    
+    <!-- Enhanced Author Section -->
+    {% if page.author %}
+    <div class="blog-author-banner">
+      <div class="author-profile">
+        <i class="fas fa-user-circle"></i>
+        <span class="author-name">{{ page.author }}</span>
+      </div>
       
       {% if page.date %}
-      <span class="blog-date">
-        <i class="fas fa-calendar-alt"></i> {{ page.date | date: "%B %d, %Y" }}
-      </span>
-      {% endif %}
-      
-      {% if page.categories and page.categories.size > 0 %}
-      <span class="blog-categories">
-        <i class="fas fa-folder"></i>
-        {% for category in page.categories %}
-        <span class="category">{{ category }}</span>{% unless forloop.last %}, {% endunless %}
-        {% endfor %}
-      </span>
+      <div class="publish-date">
+        <i class="fas fa-calendar-alt"></i>
+        <span>{{ page.date | date: "%B %d, %Y" }}</span>
+      </div>
       {% endif %}
     </div>
+    {% endif %}
+    
+    <!-- Categories display as tags -->
+    {% if page.categories and page.categories.size > 0 %}
+    <div class="blog-categories-banner">
+      <i class="fas fa-folder"></i>
+      {% for category in page.categories %}
+      <span class="category-label">{{ category }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
   </div>
 </section>
 
@@ -43,6 +48,22 @@ layout: default
     <div class="blog-body">
       {{ content }}
     </div>
+    
+    <!-- Author Bio Section -->
+    {% if page.author %}
+    <div class="author-bio-section">
+      <div class="author-bio-header">
+        <i class="fas fa-user-circle author-avatar"></i>
+        <div class="author-details">
+          <h3 class="author-name">About {{ page.author }}</h3>
+          <p class="author-title">MCP Contributor</p>
+        </div>
+      </div>
+      <div class="author-description">
+        <p>{{ page.author }} is a contributor to the Model Context Protocol community, sharing insights and tutorials about MCP integration with various tools and services.</p>
+      </div>
+    </div>
+    {% endif %}
     
     {% if page.tags and page.tags.size > 0 %}
     <div class="blog-tags">
