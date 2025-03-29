@@ -108,49 +108,26 @@
   
   <main>
     <link rel="stylesheet" href="/assets/css/lab-styles.css">
+<link rel="stylesheet" href="/assets/css/code-fix.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-<div class="lab-container">
-  <div class="lab-header">
-    <h1>Lab 1: First Steps with Docker & MCP Servers</h1>
-    <div class="lab-description">In this beginner-friendly hands-on lab, you'll set up your first MCP servers with Docker and learn to interact with them using Gordon AI.</div>
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title">Lab 1: First Steps with Docker & MCP Servers</h1>
   </div>
+</section>
 
-  <div class="lab-meta">
-    
-    <div class="lab-meta-item">
-      <i class="fas fa-signal"></i>
-      <span class="lab-meta-label">Difficulty:</span>
-      <span>Beginner</span>
-    </div>
-    
-    
-    
-    <div class="lab-meta-item">
-      <i class="far fa-clock"></i>
-      <span class="lab-meta-label">Time to complete:</span>
-      <span>30 minutes</span>
-    </div>
-    
-    
-    
-    <div class="lab-meta-item">
-      <i class="fas fa-user"></i>
-      <span class="lab-meta-label">Author:</span>
-      <span>Docker Team</span>
-    </div>
-    
-    
-    
-    <div class="lab-meta-item">
-      <i class="fas fa-calendar-alt"></i>
-      <span class="lab-meta-label">Last updated:</span>
-      <span>March 18, 2025</span>
-    </div>
-    
-  </div>
+<section class="container">
+  <div class="page-content">
+    <h1 id="lab-1-first-steps-with-docker--mcp-servers">Lab 1: First Steps with Docker &amp; MCP Servers</h1>
 
-  <h2 id="-prerequisites">🧾 Prerequisites</h2>
+<p>In this beginner-friendly hands-on lab, you’ll set up your first MCP servers with Docker and learn to interact with them using Gordon AI.</p>
+
+<p><strong>Time to complete:</strong> 30 minutes</p>
+
+<p><strong>Difficulty:</strong> Beginner</p>
+
+<h2 id="-prerequisites">🧾 Prerequisites</h2>
 
 <ul>
   <li>The latest version of Docker Desktop installed</li>
@@ -338,23 +315,11 @@ Create a new directory structure with some sample data files and ask Gordon to p
 
 <ul>
   <li><a href="/docs/labs/research-assistant-lab">Lab 2: Building a Research Assistant with MCP</a> – Learn how to create a powerful research assistant using multiple MCP servers</li>
-  <li><a href="/docs/labs/database-operations-lab">Lab 3: Database Operations with MCP Servers</a> – Explore how to use MCP servers for database interactions<br />
-```</li>
+  <li><a href="/docs/labs/database-operations-lab">Lab 3: Database Operations with MCP Servers</a> – Explore how to use MCP servers for database interactions</li>
 </ul>
 
-
-  <div class="lab-nav">
-    
-    <div></div>
-    
-    
-    
-    <a href="/docs/labs/research-assistant-lab" class="lab-nav-button lab-nav-next">
-      Next Lab <i class="fas fa-arrow-right"></i>
-    </a>
-    
   </div>
-</div>
+</section>
 
 <script>
   // Add copy buttons to code blocks
@@ -399,6 +364,57 @@ Create a new directory structure with some sample data files and ask Gordon to p
     });
   });
 </script>
+
+<style>
+  /* Code block specific styles */
+  .page-content pre, pre, div.highlight pre {
+    background-color: #282c34;
+    color: #f8f8f2;
+    padding: 1.2rem;
+    border-radius: 0 0 6px 6px; /* Rounded at bottom only */
+    margin: 0 0 1.5rem 0; /* Remove top margin since we have code header */
+    position: relative;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: pre;
+    word-wrap: normal;
+    box-sizing: border-box;
+    width: 100% !important;
+  }
+  
+  /* Add better styling to the page content */
+  .page-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  .page-content h1 {
+    display: none; /* Hide the duplicate title */
+  }
+  
+  /* Ensure all content stays within the container */
+  .page-content img,
+  .page-content pre,
+  .page-content table,
+  .page-content iframe {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .page-content {
+      padding: 1.5rem;
+    }
+  }
+</style>
 
   </main>
   
