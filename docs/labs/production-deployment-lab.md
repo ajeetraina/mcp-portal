@@ -50,7 +50,7 @@ MONITORING_ENABLED=true
 Create a `docker-compose.yml` file with the following content:
 
 ```yaml
-version: '3.8'
+
 
 services:
   # MCP Servers
