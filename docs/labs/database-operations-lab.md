@@ -1,33 +1,28 @@
 ---
-layout: lab
-title: "Lab 3: Database Operations with MCP Servers"
-description: Learn how to use Docker MCP servers to interact with databases and perform various database operations through Gordon AI.
-difficulty: Intermediate
-time: 60 minutes
-author: Docker Team
-last_updated: March 18, 2025
-prev_lab: /docs/labs/research-assistant-lab
-next_lab: /docs/labs/production-deployment-lab
+layout: page
+title: Lab 3 - Database Operations with MCP Servers
 ---
 
-## 🧾 Prerequisites
+# Lab 3: Database Operations with MCP Servers
 
+In this intermediate-level lab, you'll learn how to use Docker MCP servers to interact with databases and perform various database operations through Gordon AI.
+
+**Time to complete:** 60 minutes
+
+**Prerequisites:**
 - Completion of [Lab 1: First Steps with Docker MCP Servers](/docs/labs/mcp-101-lab)
 - Docker Desktop installed
 - Basic SQL knowledge
 
----
+## Learning Objectives
 
-## 🎯 Learning Objectives
-
+By the end of this lab, you'll be able to:
 1. Configure MCP servers to work with both SQLite and PostgreSQL databases
 2. Perform complex database operations via natural language requests
 3. Understand the security implications of database access via MCP
 4. Create data analysis workflows combining multiple MCP servers
 
----
-
-## ▶️ Step 1: Setting Up Your Environment
+## Step 1: Setting Up Your Environment
 
 Create a new directory for your database lab:
 
@@ -37,9 +32,7 @@ cd mcp-db-lab
 mkdir data
 ```
 
----
-
-## 💾 Step 2: Create a Sample SQLite Database
+## Step 2: Create a Sample SQLite Database
 
 First, let's create a SQL script to initialize our database:
 
@@ -119,9 +112,7 @@ INSERT INTO employee_projects (employee_id, project_id, role) VALUES
 EOF
 ```
 
----
-
-## ⚙️ Step 3: Configure MCP Servers for Database Operations
+## Step 3: Configure MCP Servers for Database Operations
 
 Create a `gordon-mcp.yml` file with SQLite MCP server configuration:
 
@@ -142,13 +133,10 @@ services:
 ```
 
 This configuration sets up two MCP servers:
-
 - A SQLite server that can interact with SQLite databases
 - A filesystem server that gives access to our data directory
 
----
-
-## 💾 Step 4: Basic SQLite Database Operations
+## Step 4: Basic SQLite Database Operations
 
 Let's start with some basic SQLite operations:
 
@@ -171,12 +159,9 @@ You should see a list of employees in the Engineering department. Let's try a mo
 docker ai "Find the average salary by department and identify which department has the highest average salary. Format the results as a markdown table."
 ```
 
-> 💡 **Tip**  
-> You can ask Gordon AI to format results in various ways, such as tables, lists, or even generate visualizations with descriptions.
+**Tip:** You can ask Gordon AI to format results in various ways, such as tables, lists, or even generate visualizations with descriptions.
 
----
-
-## 🖥️ Step 5: Set Up PostgreSQL for Advanced Operations
+## Step 5: Set Up PostgreSQL for Advanced Operations
 
 For more advanced database operations, let's add PostgreSQL to our environment. First, we'll start a PostgreSQL container with our sample data:
 
@@ -219,9 +204,7 @@ Initialize our PostgreSQL database with the same schema:
 docker ai "Connect to the PostgreSQL database and create the same schema as in our SQLite database. Use the init.sql file as reference. Then confirm the tables were created correctly."
 ```
 
----
-
-## 📊 Step 6: Advanced Database Operations
+## Step 6: Advanced Database Operations
 
 Now let's perform more complex database tasks:
 
@@ -243,18 +226,16 @@ docker ai "Analyze the employee and project data in the PostgreSQL database. Whi
 docker ai "Suggest improvements to our database schema. What indexes, constraints, or additional tables would you recommend? Create a SQL script with your recommendations and save it to output/schema_improvements.sql."
 ```
 
-> ℹ️ **Understanding MCP Database Operations**  
-> When you ask Gordon AI to perform database operations:
-> 1. Gordon identifies the task requires database interaction
-> 2. It selects the appropriate MCP server (SQLite or PostgreSQL)
-> 3. The MCP server translates natural language into SQL queries
-> 4. Results are returned and formatted according to your request
->
-> This powerful abstraction allows non-technical users to interact with databases using natural language.
+**Understanding MCP Database Operations:**  
+When you ask Gordon AI to perform database operations:
+1. Gordon identifies the task requires database interaction
+2. It selects the appropriate MCP server (SQLite or PostgreSQL)
+3. The MCP server translates natural language into SQL queries
+4. Results are returned and formatted according to your request
 
----
+This powerful abstraction allows non-technical users to interact with databases using natural language.
 
-## 💻 Step 7: Building a Database Dashboard
+## Step 7: Building a Database Dashboard
 
 For a more advanced exercise, let's create a simple dashboard for our data:
 
@@ -275,9 +256,7 @@ xdg-open output/company_dashboard.html
 start output/company_dashboard.html
 ```
 
----
-
-## 🔒 Step 8: Database Security Considerations
+## Step 8: Database Security Considerations
 
 It's important to understand the security implications of using MCP servers with databases. Here are some best practices:
 
@@ -341,34 +320,20 @@ Let's test our secure configuration:
 docker ai --file secure-gordon-mcp.yml "Query the PostgreSQL database to find the highest paid employee in each department."
 ```
 
----
-
-## 💡 Advanced Database Tips
+## Advanced Database Tips
 
 - **Performance Optimization**: Ask Gordon AI to generate database indexes for better performance
 - **Data Migration**: Use MCP servers to help migrate data between different database systems
 - **Query Generation**: Have Gordon AI generate complex queries that you can reuse in your applications
 - **Documentation**: Ask for database documentation to be generated automatically
 
----
-
-## ⚠️ Troubleshooting
+## Troubleshooting
 
 - If PostgreSQL connections fail, ensure the host.docker.internal resolution is working
 - For SQLite issues, check file permissions on the data directory
 - If queries return unexpected results, verify the database schema and data
 
----
-
-## 🏁 Conclusion
-
-Congratulations! You've successfully learned how to use Docker MCP servers to interact with databases. You've seen how Gordon AI can translate natural language into SQL queries, perform complex data analysis, and generate reports and visualizations.
-
-This powerful capability allows team members with varying levels of technical expertise to work with databases effectively, democratizing access to data while maintaining security and control.
-
----
-
-## 👉 Next Steps
+## Next Steps
 
 Now that you've mastered database operations with MCP, you can continue your learning journey with:
 
