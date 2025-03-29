@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Learn how to use Docker MCP servers to interact with databases and perform various database operations through Gordon AI.">
+  <meta name="description" content="A community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources.">
   <meta name="keywords" content="docker, mcp, model, context, protocol, servers, tools, community">
-  <title>Lab 3: Database Operations with MCP Servers - MCP Community Portal</title>
+  <title>Lab 3 - Database Operations with MCP Servers - MCP Community Portal</title>
   
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/images/docker-logo.svg">
@@ -33,21 +33,20 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
   
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Lab 3: Database Operations with MCP Servers | MCP Community Portal</title>
+<title>Lab 3 - Database Operations with MCP Servers | MCP Community Portal</title>
 <meta name="generator" content="Jekyll v4.3.4" />
-<meta property="og:title" content="Lab 3: Database Operations with MCP Servers" />
-<meta name="author" content="Docker Team" />
+<meta property="og:title" content="Lab 3 - Database Operations with MCP Servers" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Learn how to use Docker MCP servers to interact with databases and perform various database operations through Gordon AI." />
-<meta property="og:description" content="Learn how to use Docker MCP servers to interact with databases and perform various database operations through Gordon AI." />
+<meta name="description" content="A community-driven collection of Dockerized Model Context Protocol servers" />
+<meta property="og:description" content="A community-driven collection of Dockerized Model Context Protocol servers" />
 <link rel="canonical" href="https://ajeetraina.github.io/docs/labs/database-operations-lab.html" />
 <meta property="og:url" content="https://ajeetraina.github.io/docs/labs/database-operations-lab.html" />
 <meta property="og:site_name" content="MCP Community Portal" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Lab 3: Database Operations with MCP Servers" />
+<meta property="twitter:title" content="Lab 3 - Database Operations with MCP Servers" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Docker Team"},"description":"Learn how to use Docker MCP servers to interact with databases and perform various database operations through Gordon AI.","headline":"Lab 3: Database Operations with MCP Servers","url":"https://ajeetraina.github.io/docs/labs/database-operations-lab.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"A community-driven collection of Dockerized Model Context Protocol servers","headline":"Lab 3 - Database Operations with MCP Servers","url":"https://ajeetraina.github.io/docs/labs/database-operations-lab.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -107,60 +106,33 @@
   
   <main>
     <link rel="stylesheet" href="/assets/css/lab-styles.css">
+<link rel="stylesheet" href="/assets/css/code-fix.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-<div class="lab-container">
-  <div class="lab-header">
-    <h1>Lab 3: Database Operations with MCP Servers</h1>
-    <div class="lab-description">Learn how to use Docker MCP servers to interact with databases and perform various database operations through Gordon AI.</div>
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title">Lab 3 - Database Operations with MCP Servers</h1>
   </div>
+</section>
 
-  <div class="lab-meta">
-    
-    <div class="lab-meta-item">
-      <i class="fas fa-signal"></i>
-      <span class="lab-meta-label">Difficulty:</span>
-      <span>Intermediate</span>
-    </div>
-    
-    
-    
-    <div class="lab-meta-item">
-      <i class="far fa-clock"></i>
-      <span class="lab-meta-label">Time to complete:</span>
-      <span>60 minutes</span>
-    </div>
-    
-    
-    
-    <div class="lab-meta-item">
-      <i class="fas fa-user"></i>
-      <span class="lab-meta-label">Author:</span>
-      <span>Docker Team</span>
-    </div>
-    
-    
-    
-    <div class="lab-meta-item">
-      <i class="fas fa-calendar-alt"></i>
-      <span class="lab-meta-label">Last updated:</span>
-      <span>March 18, 2025</span>
-    </div>
-    
-  </div>
+<section class="container">
+  <div class="page-content">
+    <h1 id="lab-3-database-operations-with-mcp-servers">Lab 3: Database Operations with MCP Servers</h1>
 
-  <h2 id="-prerequisites">🧾 Prerequisites</h2>
+<p>In this intermediate-level lab, you’ll learn how to use Docker MCP servers to interact with databases and perform various database operations through Gordon AI.</p>
 
+<p><strong>Time to complete:</strong> 60 minutes</p>
+
+<p><strong>Prerequisites:</strong></p>
 <ul>
   <li>Completion of <a href="/docs/labs/mcp-101-lab">Lab 1: First Steps with Docker MCP Servers</a></li>
   <li>Docker Desktop installed</li>
   <li>Basic SQL knowledge</li>
 </ul>
 
-<hr />
+<h2 id="learning-objectives">Learning Objectives</h2>
 
-<h2 id="-learning-objectives">🎯 Learning Objectives</h2>
-
+<p>By the end of this lab, you’ll be able to:</p>
 <ol>
   <li>Configure MCP servers to work with both SQLite and PostgreSQL databases</li>
   <li>Perform complex database operations via natural language requests</li>
@@ -168,9 +140,7 @@
   <li>Create data analysis workflows combining multiple MCP servers</li>
 </ol>
 
-<hr />
-
-<h2 id="️-step-1-setting-up-your-environment">▶️ Step 1: Setting Up Your Environment</h2>
+<h2 id="step-1-setting-up-your-environment">Step 1: Setting Up Your Environment</h2>
 
 <p>Create a new directory for your database lab:</p>
 
@@ -179,9 +149,7 @@
 <span class="nb">mkdir </span>data
 </code></pre></div></div>
 
-<hr />
-
-<h2 id="-step-2-create-a-sample-sqlite-database">💾 Step 2: Create a Sample SQLite Database</h2>
+<h2 id="step-2-create-a-sample-sqlite-database">Step 2: Create a Sample SQLite Database</h2>
 
 <p>First, let’s create a SQL script to initialize our database:</p>
 
@@ -260,9 +228,7 @@ INSERT INTO employee_projects (employee_id, project_id, role) VALUES
 </span><span class="no">EOF
 </span></code></pre></div></div>
 
-<hr />
-
-<h2 id="️-step-3-configure-mcp-servers-for-database-operations">⚙️ Step 3: Configure MCP Servers for Database Operations</h2>
+<h2 id="step-3-configure-mcp-servers-for-database-operations">Step 3: Configure MCP Servers for Database Operations</h2>
 
 <p>Create a <code class="language-plaintext highlighter-rouge">gordon-mcp.yml</code> file with SQLite MCP server configuration:</p>
 
@@ -282,15 +248,12 @@ INSERT INTO employee_projects (employee_id, project_id, role) VALUES
 </code></pre></div></div>
 
 <p>This configuration sets up two MCP servers:</p>
-
 <ul>
   <li>A SQLite server that can interact with SQLite databases</li>
   <li>A filesystem server that gives access to our data directory</li>
 </ul>
 
-<hr />
-
-<h2 id="-step-4-basic-sqlite-database-operations">💾 Step 4: Basic SQLite Database Operations</h2>
+<h2 id="step-4-basic-sqlite-database-operations">Step 4: Basic SQLite Database Operations</h2>
 
 <p>Let’s start with some basic SQLite operations:</p>
 
@@ -310,14 +273,9 @@ docker ai <span class="s2">"Query the company database and list all employees in
 docker ai <span class="s2">"Find the average salary by department and identify which department has the highest average salary. Format the results as a markdown table."</span>
 </code></pre></div></div>
 
-<blockquote>
-  <p>💡 <strong>Tip</strong><br />
-You can ask Gordon AI to format results in various ways, such as tables, lists, or even generate visualizations with descriptions.</p>
-</blockquote>
+<p><strong>Tip:</strong> You can ask Gordon AI to format results in various ways, such as tables, lists, or even generate visualizations with descriptions.</p>
 
-<hr />
-
-<h2 id="️-step-5-set-up-postgresql-for-advanced-operations">🖥️ Step 5: Set Up PostgreSQL for Advanced Operations</h2>
+<h2 id="step-5-set-up-postgresql-for-advanced-operations">Step 5: Set Up PostgreSQL for Advanced Operations</h2>
 
 <p>For more advanced database operations, let’s add PostgreSQL to our environment. First, we’ll start a PostgreSQL container with our sample data:</p>
 
@@ -357,9 +315,7 @@ docker run <span class="nt">-d</span> <span class="se">\</span>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ai <span class="s2">"Connect to the PostgreSQL database and create the same schema as in our SQLite database. Use the init.sql file as reference. Then confirm the tables were created correctly."</span>
 </code></pre></div></div>
 
-<hr />
-
-<h2 id="-step-6-advanced-database-operations">📊 Step 6: Advanced Database Operations</h2>
+<h2 id="step-6-advanced-database-operations">Step 6: Advanced Database Operations</h2>
 
 <p>Now let’s perform more complex database tasks:</p>
 
@@ -378,22 +334,18 @@ docker run <span class="nt">-d</span> <span class="se">\</span>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ai <span class="s2">"Suggest improvements to our database schema. What indexes, constraints, or additional tables would you recommend? Create a SQL script with your recommendations and save it to output/schema_improvements.sql."</span>
 </code></pre></div></div>
 
-<blockquote>
-  <p>ℹ️ <strong>Understanding MCP Database Operations</strong><br />
+<p><strong>Understanding MCP Database Operations:</strong><br />
 When you ask Gordon AI to perform database operations:</p>
-  <ol>
-    <li>Gordon identifies the task requires database interaction</li>
-    <li>It selects the appropriate MCP server (SQLite or PostgreSQL)</li>
-    <li>The MCP server translates natural language into SQL queries</li>
-    <li>Results are returned and formatted according to your request</li>
-  </ol>
+<ol>
+  <li>Gordon identifies the task requires database interaction</li>
+  <li>It selects the appropriate MCP server (SQLite or PostgreSQL)</li>
+  <li>The MCP server translates natural language into SQL queries</li>
+  <li>Results are returned and formatted according to your request</li>
+</ol>
 
-  <p>This powerful abstraction allows non-technical users to interact with databases using natural language.</p>
-</blockquote>
+<p>This powerful abstraction allows non-technical users to interact with databases using natural language.</p>
 
-<hr />
-
-<h2 id="-step-7-building-a-database-dashboard">💻 Step 7: Building a Database Dashboard</h2>
+<h2 id="step-7-building-a-database-dashboard">Step 7: Building a Database Dashboard</h2>
 
 <p>For a more advanced exercise, let’s create a simple dashboard for our data:</p>
 
@@ -412,9 +364,7 @@ xdg-open output/company_dashboard.html
 start output/company_dashboard.html
 </code></pre></div></div>
 
-<hr />
-
-<h2 id="-step-8-database-security-considerations">🔒 Step 8: Database Security Considerations</h2>
+<h2 id="step-8-database-security-considerations">Step 8: Database Security Considerations</h2>
 
 <p>It’s important to understand the security implications of using MCP servers with databases. Here are some best practices:</p>
 
@@ -477,9 +427,7 @@ docker run <span class="nt">-d</span> <span class="se">\</span>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ai <span class="nt">--file</span> secure-gordon-mcp.yml <span class="s2">"Query the PostgreSQL database to find the highest paid employee in each department."</span>
 </code></pre></div></div>
 
-<hr />
-
-<h2 id="-advanced-database-tips">💡 Advanced Database Tips</h2>
+<h2 id="advanced-database-tips">Advanced Database Tips</h2>
 
 <ul>
   <li><strong>Performance Optimization</strong>: Ask Gordon AI to generate database indexes for better performance</li>
@@ -488,9 +436,7 @@ docker run <span class="nt">-d</span> <span class="se">\</span>
   <li><strong>Documentation</strong>: Ask for database documentation to be generated automatically</li>
 </ul>
 
-<hr />
-
-<h2 id="️-troubleshooting">⚠️ Troubleshooting</h2>
+<h2 id="troubleshooting">Troubleshooting</h2>
 
 <ul>
   <li>If PostgreSQL connections fail, ensure the host.docker.internal resolution is working</li>
@@ -498,17 +444,7 @@ docker run <span class="nt">-d</span> <span class="se">\</span>
   <li>If queries return unexpected results, verify the database schema and data</li>
 </ul>
 
-<hr />
-
-<h2 id="-conclusion">🏁 Conclusion</h2>
-
-<p>Congratulations! You’ve successfully learned how to use Docker MCP servers to interact with databases. You’ve seen how Gordon AI can translate natural language into SQL queries, perform complex data analysis, and generate reports and visualizations.</p>
-
-<p>This powerful capability allows team members with varying levels of technical expertise to work with databases effectively, democratizing access to data while maintaining security and control.</p>
-
-<hr />
-
-<h2 id="-next-steps">👉 Next Steps</h2>
+<h2 id="next-steps">Next Steps</h2>
 
 <p>Now that you’ve mastered database operations with MCP, you can continue your learning journey with:</p>
 
@@ -517,21 +453,8 @@ docker run <span class="nt">-d</span> <span class="se">\</span>
   <li><a href="/docs/tutorials/custom-mcp-server">Tutorial: Building Custom MCP Servers</a> - Create your own specialized MCP servers</li>
 </ul>
 
-
-  <div class="lab-nav">
-    
-    <a href="/docs/labs/research-assistant-lab" class="lab-nav-button lab-nav-prev">
-      <i class="fas fa-arrow-left"></i> Previous Lab
-    </a>
-    
-    
-    
-    <a href="/docs/labs/production-deployment-lab" class="lab-nav-button lab-nav-next">
-      Next Lab <i class="fas fa-arrow-right"></i>
-    </a>
-    
   </div>
-</div>
+</section>
 
 <script>
   // Add copy buttons to code blocks
@@ -576,6 +499,57 @@ docker run <span class="nt">-d</span> <span class="se">\</span>
     });
   });
 </script>
+
+<style>
+  /* Code block specific styles */
+  .page-content pre, pre, div.highlight pre {
+    background-color: #282c34;
+    color: #f8f8f2;
+    padding: 1.2rem;
+    border-radius: 0 0 6px 6px; /* Rounded at bottom only */
+    margin: 0 0 1.5rem 0; /* Remove top margin since we have code header */
+    position: relative;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: pre;
+    word-wrap: normal;
+    box-sizing: border-box;
+    width: 100% !important;
+  }
+  
+  /* Add better styling to the page content */
+  .page-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  .page-content h1 {
+    display: none; /* Hide the duplicate title */
+  }
+  
+  /* Ensure all content stays within the container */
+  .page-content img,
+  .page-content pre,
+  .page-content table,
+  .page-content iframe {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .page-content {
+      padding: 1.5rem;
+    }
+  }
+</style>
 
   </main>
   
