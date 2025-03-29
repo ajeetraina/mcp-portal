@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources.">
+  <meta name="keywords" content="docker, mcp, model, context, protocol, servers, tools, community">
+  <title>Connecting PostgreSQL to Claude Desktop with MCP: A Step-by-Step Guide - MCP Community Portal</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/mcp-portal/pr-preview/pr-29/assets/images/docker-logo.svg">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-29/assets/css/main.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-29/assets/css/tools.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-29/assets/css/home.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-29/assets/css/lab-styles.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-29/assets/css/code-fix.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-29/assets/css/banner-fix.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-29/assets/css/image-fix.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-29/assets/css/heading-fix.css">
+  <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-29/assets/css/header-fix.css">
+  
+  <!-- Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Connecting PostgreSQL to Claude Desktop with MCP: A Step-by-Step Guide | MCP Community Portal</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Connecting PostgreSQL to Claude Desktop with MCP: A Step-by-Step Guide" />
+<meta name="author" content="Ajeet Raina" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction" />
+<meta property="og:description" content="Introduction" />
+<link rel="canonical" href="https://ajeetraina.github.io/mcp-portal/pr-preview/pr-29/tutorials/mcp/database/2025/03/29/postgresql-model-context-protocol-mcp-and-claude-desktop.html" />
+<meta property="og:url" content="https://ajeetraina.github.io/mcp-portal/pr-preview/pr-29/tutorials/mcp/database/2025/03/29/postgresql-model-context-protocol-mcp-and-claude-desktop.html" />
+<meta property="og:site_name" content="MCP Community Portal" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-03-29T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Connecting PostgreSQL to Claude Desktop with MCP: A Step-by-Step Guide" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Ajeet Raina"},"dateModified":"2025-03-29T00:00:00+00:00","datePublished":"2025-03-29T00:00:00+00:00","description":"Introduction","headline":"Connecting PostgreSQL to Claude Desktop with MCP: A Step-by-Step Guide","mainEntityOfPage":{"@type":"WebPage","@id":"https://ajeetraina.github.io/mcp-portal/pr-preview/pr-29/tutorials/mcp/database/2025/03/29/postgresql-model-context-protocol-mcp-and-claude-desktop.html"},"url":"https://ajeetraina.github.io/mcp-portal/pr-preview/pr-29/tutorials/mcp/database/2025/03/29/postgresql-model-context-protocol-mcp-and-claude-desktop.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <a href="/mcp-portal/pr-preview/pr-29/">
+          <h1>MCP Community Portal</h1>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/mcp-portal/pr-preview/pr-29/"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="/mcp-portal/pr-preview/pr-29/servers-table.html"><i class="fas fa-server"></i> Servers</a></li>
+          <li><a href="/mcp-portal/pr-preview/pr-29/tools.html"><i class="fas fa-tools"></i> Tools</a></li>
+          <li><a href="/mcp-portal/pr-preview/pr-29/docs/labs-and-tutorials"><i class="fas fa-flask"></i> Labs</a></li>
+          <li><a href="/mcp-portal/pr-preview/pr-29/blog/"><i class="fas fa-blog"></i> Blog</a></li>
+          <li>
+            <a href="/mcp-portal/pr-preview/pr-29/docs/ask-gordon">
+              <i class="fas fa-robot"></i> Ask Gordon
+              <span class="new-badge">NEW</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+.new-badge {
+  display: inline-block;
+  background-color: #FF5722;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  margin-left: 6px;
+  vertical-align: middle;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+</style>
+  
+  <main>
+    <link rel="stylesheet" href="/mcp-portal/pr-preview/pr-29/assets/css/blog.css">
+
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title">Connecting PostgreSQL to Claude Desktop with MCP: A Step-by-Step Guide</h1>
+    
+    <!-- Enhanced Author Section -->
+    
+    <div class="blog-author-banner">
+      <div class="author-profile">
+        <i class="fas fa-user-circle"></i>
+        <span class="author-name">Ajeet Raina</span>
+      </div>
+      
+      
+      <div class="publish-date">
+        <i class="fas fa-calendar-alt"></i>
+        <span>March 29, 2025</span>
+      </div>
+      
+    </div>
+    
+    
+    <!-- Categories display as tags -->
+    
+    <div class="blog-categories-banner">
+      <i class="fas fa-folder"></i>
+      
+      <span class="category-label">Tutorials</span>
+      
+      <span class="category-label">MCP</span>
+      
+      <span class="category-label">Database</span>
+      
+    </div>
+    
+  </div>
+</section>
+
+<section class="container">
+  <div class="blog-content">
+    
+    <div class="featured-image">
+      <img src="/mcp-portal/pr-preview/pr-29/assets/images/blog/postgresql-mcp-claude.jpg" alt="Connecting PostgreSQL to Claude Desktop with MCP: A Step-by-Step Guide">
+    </div>
+    
+    
+    <div class="blog-body">
+      <h2 id="introduction">Introduction</h2>
+
+<p>The Model Context Protocol (MCP) is revolutionizing how AI assistants interact with external tools and services. In this tutorial, we’ll explore how to connect PostgreSQL databases to Claude Desktop using the PostgreSQL MCP Server, enabling Claude to directly query and analyze your database without writing a single line of code. This powerful integration opens up new possibilities for data analysis, database administration, and AI-assisted exploration of your data.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>Before we begin, make sure you have the following installed:</p>
+
+<ul>
+  <li>Docker Desktop</li>
+  <li>Claude Desktop application</li>
+  <li>A PostgreSQL database (either local or remote)</li>
+  <li>Basic knowledge of SQL and database concepts</li>
+</ul>
+
+<h2 id="step-1-understanding-the-postgresql-mcp-server">Step 1: Understanding the PostgreSQL MCP Server</h2>
+
+<p>The PostgreSQL MCP Server acts as a bridge between Claude Desktop and your PostgreSQL database. It allows Claude to:</p>
+
+<ul>
+  <li>Execute SQL queries against your database</li>
+  <li>Create, read, update, and delete data</li>
+  <li>Analyze tables, indexes, and other database objects</li>
+  <li>Generate data visualizations and reports</li>
+</ul>
+
+<p>All of this happens through natural language requests, with the MCP server handling the translation between your instructions and the actual SQL queries.</p>
+
+<h2 id="step-2-creating-the-mcp-configuration-file">Step 2: Creating the MCP Configuration File</h2>
+
+<p>First, create a new file named <code class="language-plaintext highlighter-rouge">gordon-mcp.yml</code> with the following content:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">postgres</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/postgres</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="s">postgresql://username:password@host:port/database</span>
+</code></pre></div></div>
+
+<p>Replace the following placeholders:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">username</code>: Your PostgreSQL username</li>
+  <li><code class="language-plaintext highlighter-rouge">password</code>: Your PostgreSQL password</li>
+  <li><code class="language-plaintext highlighter-rouge">host</code>: The hostname or IP address of your PostgreSQL server</li>
+  <li><code class="language-plaintext highlighter-rouge">port</code>: The port number (usually 5432)</li>
+  <li><code class="language-plaintext highlighter-rouge">database</code>: The name of your database</li>
+</ul>
+
+<blockquote>
+  <p><strong>Security Note</strong>: Never commit this file with real credentials to a public repository. Consider using environment variables or a secrets manager for production environments.</p>
+</blockquote>
+
+<h2 id="step-3-starting-the-mcp-server">Step 3: Starting the MCP Server</h2>
+
+<p>Open a terminal and navigate to the directory containing your <code class="language-plaintext highlighter-rouge">gordon-mcp.yml</code> file. Start Claude Desktop and ensure it’s properly configured to use MCP servers.</p>
+
+<p>When Claude Desktop starts up, it will automatically detect the MCP configuration file and connect to the PostgreSQL MCP server, which in turn connects to your database.</p>
+
+<h2 id="step-4-interacting-with-your-database">Step 4: Interacting with Your Database</h2>
+
+<p>Now you can start interacting with your PostgreSQL database through Claude. Here are some examples of what you can ask:</p>
+
+<h3 id="basic-data-queries">Basic Data Queries</h3>
+
+<p>You can ask Claude to query your database using natural language:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Show me the top 10 customers by total purchase amount.
+</code></pre></div></div>
+
+<p>Claude will use the PostgreSQL MCP server to translate this into an appropriate SQL query, execute it, and return the results.</p>
+
+<h3 id="schema-analysis">Schema Analysis</h3>
+
+<p>You can ask Claude to analyze your database schema:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>What tables exist in the database and how are they related?
+</code></pre></div></div>
+
+<p>Claude will retrieve the schema information and present it in an easy-to-understand format.</p>
+
+<h3 id="data-visualization">Data Visualization</h3>
+
+<p>Claude can even generate data visualizations based on your database:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Create a bar chart showing monthly sales for the past year.
+</code></pre></div></div>
+
+<p>The PostgreSQL MCP server will execute the necessary queries, and Claude will format the data into a visual representation.</p>
+
+<h2 id="step-5-advanced-postgresql-operations">Step 5: Advanced PostgreSQL Operations</h2>
+
+<p>The PostgreSQL MCP server isn’t limited to simple queries. You can also perform more advanced operations:</p>
+
+<h3 id="performance-analysis">Performance Analysis</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Identify slow-running queries in my database and suggest improvements.
+</code></pre></div></div>
+
+<p>Claude can analyze query performance and provide optimization suggestions.</p>
+
+<h3 id="schema-design">Schema Design</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I need to store user profile data including name, email, and preferences. Suggest a normalized table structure.
+</code></pre></div></div>
+
+<p>Claude can help design database schemas based on your requirements.</p>
+
+<h3 id="data-transformation">Data Transformation</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Convert all datetime fields in the orders table to UTC timezone.
+</code></pre></div></div>
+
+<p>Claude can generate and execute the SQL needed for data transformations.</p>
+
+<h2 id="security-considerations">Security Considerations</h2>
+
+<p>When connecting Claude to your PostgreSQL database, consider these security best practices:</p>
+
+<ol>
+  <li><strong>Create a read-only user</strong> for query-only access where appropriate</li>
+  <li><strong>Limit database access</strong> to only the necessary tables and schemas</li>
+  <li><strong>Use connection pooling</strong> to manage database connections efficiently</li>
+  <li><strong>Monitor query logs</strong> to track what’s being executed</li>
+  <li><strong>Use a secure connection string</strong> with proper authentication</li>
+</ol>
+
+<h2 id="example-analyzing-e-commerce-data">Example: Analyzing E-Commerce Data</h2>
+
+<p>Let’s walk through a practical example. Imagine you have an e-commerce database with tables for customers, products, orders, and order_items.</p>
+
+<p>You could ask Claude:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>What products have the highest profit margin but aren't selling well in the last quarter?
+</code></pre></div></div>
+
+<p>Claude would work with the PostgreSQL MCP server to:</p>
+
+<ol>
+  <li>Join the relevant tables</li>
+  <li>Calculate profit margins</li>
+  <li>Compare with sales volumes</li>
+  <li>Filter for the last quarter</li>
+  <li>Return the results in a readable format</li>
+</ol>
+
+<p>This type of complex analysis would normally require writing complex SQL queries, but with Claude and MCP, you can simply ask for what you need in plain language.</p>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>If you encounter issues with your PostgreSQL MCP connection:</p>
+
+<ul>
+  <li><strong>Connection errors</strong>: Verify your PostgreSQL server is running and accessible</li>
+  <li><strong>Authentication failures</strong>: Double-check your username and password</li>
+  <li><strong>Permission denied</strong>: Ensure your PostgreSQL user has appropriate permissions</li>
+  <li><strong>Query timeout</strong>: Consider optimizing your database or breaking queries into smaller parts</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Connecting PostgreSQL to Claude Desktop using the MCP server transforms how you interact with your databases. Instead of writing complex SQL queries or building custom interfaces, you can simply have a conversation with Claude about your data. This makes database analysis more accessible, faster, and more intuitive.</p>
+
+<p>As MCP technology continues to evolve, we can expect even more powerful integrations between AI assistants and database systems. The PostgreSQL MCP server is just the beginning of a new paradigm in AI-assisted data analysis.</p>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<p>Now that you’ve connected PostgreSQL to Claude Desktop using MCP, consider exploring these related topics:</p>
+
+<ul>
+  <li><a href="/docs/tutorials/custom-mcp-server">Building custom MCP servers</a> for specialized database operations</li>
+  <li><a href="/docs/tutorials/mcp-data-visualization">Creating data visualization dashboards</a> with Claude and MCP</li>
+  <li><a href="/docs/labs/advanced-mcp-combinations">Combining database operations with other MCP servers</a> for powerful workflows</li>
+</ul>
+
+    </div>
+    
+    <!-- Author Bio Section -->
+    
+    <div class="author-bio-section">
+      <div class="author-bio-header">
+        <i class="fas fa-user-circle author-avatar"></i>
+        <div class="author-details">
+          <h3 class="author-name">About Ajeet Raina</h3>
+          <p class="author-title">MCP Contributor</p>
+        </div>
+      </div>
+      <div class="author-description">
+        <p>Ajeet Raina is a contributor to the Model Context Protocol community, sharing insights and tutorials about MCP integration with various tools and services.</p>
+      </div>
+    </div>
+    
+    
+    
+    <div class="blog-tags">
+      <i class="fas fa-tags"></i>
+      
+      <span class="tag">postgresql</span>
+      
+      <span class="tag">model-context-protocol</span>
+      
+      <span class="tag">mcp</span>
+      
+      <span class="tag">claude</span>
+      
+      <span class="tag">ai</span>
+      
+      <span class="tag">database</span>
+      
+    </div>
+    
+  </div>
+</section>
+
+
+
+<section class="container">
+  <div class="blog-navigation">
+    <div class="blog-nav-prev">
+      
+    </div>
+    
+    <div class="blog-nav-next">
+      
+    </div>
+  </div>
+</section>
+  </main>
+  
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>Docker MCP Community Portal</h3>
+        <p>A community-driven resource for Docker Model Context Protocol.</p>
+        <p>&copy; 2025 MCP Community Portal. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal" target="_blank">
+              <i class="fab fa-github"></i> GitHub Repository
+            </a>
+          </li>
+          <li>
+            <a href="https://collabnix.com" target="_blank">
+              <i class="fas fa-globe"></i> Collabnix Community
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" target="_blank">
+              <i class="fas fa-code-branch"></i> Contribute to MCP Portal
+            </a>
+          </li>
+          <li>
+            <a href="https://hub.docker.com/u/mcp" target="_blank">
+              <i class="fab fa-docker"></i> MCP on Docker Hub
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+  <!-- ClipboardJS for copy functionality -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+  
+  <!-- Syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  
+  <!-- Custom scripts -->
+  <script src="/mcp-portal/pr-preview/pr-29/assets/js/filter.js"></script>
+  <script src="/mcp-portal/pr-preview/pr-29/assets/js/code-formatter.js"></script>
+  
+  <script>
+    // Initialize clipboard.js
+    document.addEventListener('DOMContentLoaded', function() {
+      var clipboard = new ClipboardJS('.btn-copy');
+      
+      clipboard.on('success', function(e) {
+        var button = e.trigger;
+        var originalText = button.innerHTML;
+        
+        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        button.classList.add('copied');
+        
+        setTimeout(function() {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+        
+        e.clearSelection();
+      });
+      
+      // Initialize syntax highlighting
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+</body>
+</html>
