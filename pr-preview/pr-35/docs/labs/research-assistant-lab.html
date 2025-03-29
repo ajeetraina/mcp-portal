@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources.">
+  <meta name="keywords" content="docker, mcp, model, context, protocol, servers, tools, community">
+  <title>Lab 2 -  Building a Research Assistant with Docker MCP - MCP Community Portal</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/pr-preview/pr-35/assets/images/docker-logo.svg">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/pr-preview/pr-35/assets/css/main.css">
+  <link rel="stylesheet" href="/pr-preview/pr-35/assets/css/tools.css">
+  <link rel="stylesheet" href="/pr-preview/pr-35/assets/css/home.css">
+  <link rel="stylesheet" href="/pr-preview/pr-35/assets/css/lab-styles.css">
+  <link rel="stylesheet" href="/pr-preview/pr-35/assets/css/code-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-35/assets/css/banner-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-35/assets/css/image-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-35/assets/css/heading-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-35/assets/css/header-fix.css">
+  
+  <!-- Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Lab 2 - Building a Research Assistant with Docker MCP | MCP Community Portal</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Lab 2 - Building a Research Assistant with Docker MCP" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A community-driven collection of Dockerized Model Context Protocol servers" />
+<meta property="og:description" content="A community-driven collection of Dockerized Model Context Protocol servers" />
+<link rel="canonical" href="https://mcp.collabnix.com/pr-preview/pr-35/docs/labs/research-assistant-lab.html" />
+<meta property="og:url" content="https://mcp.collabnix.com/pr-preview/pr-35/docs/labs/research-assistant-lab.html" />
+<meta property="og:site_name" content="MCP Community Portal" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Lab 2 - Building a Research Assistant with Docker MCP" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A community-driven collection of Dockerized Model Context Protocol servers","headline":"Lab 2 - Building a Research Assistant with Docker MCP","url":"https://mcp.collabnix.com/pr-preview/pr-35/docs/labs/research-assistant-lab.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <a href="/pr-preview/pr-35/">
+          <h1>MCP Community Portal</h1>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/pr-preview/pr-35/"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="/pr-preview/pr-35/servers-table.html"><i class="fas fa-server"></i> Servers</a></li>
+          <li><a href="/pr-preview/pr-35/tools.html"><i class="fas fa-tools"></i> Tools</a></li>
+          <li><a href="/pr-preview/pr-35/docs/labs-and-tutorials"><i class="fas fa-flask"></i> Labs</a></li>
+          <li><a href="/pr-preview/pr-35/blog/"><i class="fas fa-blog"></i> Blog</a></li>
+          <li><a href="/pr-preview/pr-35/community/"><i class="fas fa-users"></i> Community</a></li>
+          <li>
+            <a href="/pr-preview/pr-35/docs/ask-gordon">
+              <i class="fas fa-robot"></i> Ask Gordon
+              <span class="new-badge">NEW</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+.new-badge {
+  display: inline-block;
+  background-color: #FF5722;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  margin-left: 6px;
+  vertical-align: middle;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+</style>
+  
+  <main>
+    <link rel="stylesheet" href="/pr-preview/pr-35/assets/css/lab-styles.css">
+<link rel="stylesheet" href="/pr-preview/pr-35/assets/css/code-fix.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title">Lab 2 -  Building a Research Assistant with Docker MCP</h1>
+  </div>
+</section>
+
+<section class="container">
+  <div class="page-content">
+    <h1 id="lab-2-building-a-research-assistant-with-docker-mcp">Lab 2: Building a Research Assistant with Docker MCP</h1>
+
+<p>In this intermediate-level lab, you’ll create a powerful research assistant by configuring multiple Docker MCP servers working together. This lab simulates a practical real-world use case for AI assistants with MCP capabilities.</p>
+
+<p><strong>Time to complete:</strong> 45-60 minutes</p>
+
+<p><strong>Prerequisites:</strong></p>
+<ul>
+  <li>Completion of <a href="/docs/labs/mcp-101-lab">Lab 1: First Steps with Docker MCP Servers</a></li>
+  <li>Docker Desktop installed</li>
+  <li>GitHub account (optional but recommended for full functionality)</li>
+</ul>
+
+<h2 id="learning-objectives">Learning Objectives</h2>
+
+<p>By the end of this lab, you’ll be able to:</p>
+<ol>
+  <li>Set up an integrated environment with multiple MCP servers</li>
+  <li>Configure secure access to web content and local files</li>
+  <li>Create a practical research workflow using Gordon AI</li>
+  <li>Understand how to structure complex queries for MCP-enabled AI assistants</li>
+</ol>
+
+<h2 id="step-1-set-up-your-research-environment">Step 1: Set Up Your Research Environment</h2>
+
+<p>Create a new directory for your research assistant project:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>research-assistant
+<span class="nb">cd </span>research-assistant
+<span class="nb">mkdir </span>research-data
+<span class="nb">mkdir </span>research-output
+</code></pre></div></div>
+
+<h2 id="step-2-configure-your-research-assistant-mcp-servers">Step 2: Configure Your Research Assistant MCP Servers</h2>
+
+<p>Create a <code class="language-plaintext highlighter-rouge">gordon-mcp.yml</code> file with the following content:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">time</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/time</span>
+  
+  <span class="na">fetch</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/fetch</span>
+  
+  <span class="na">fs</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/filesystem</span>
+    <span class="na">command</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">/rootfs</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./research-data:/rootfs/data:ro</span>
+      <span class="pi">-</span> <span class="s">./research-output:/rootfs/output:rw</span>
+  
+  <span class="na">sqlite</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/sqlite</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./research-data:/data</span>
+</code></pre></div></div>
+
+<p>Note how we’re using read-only (<code class="language-plaintext highlighter-rouge">ro</code>) access for research data and write access (<code class="language-plaintext highlighter-rouge">rw</code>) only for the output directory, implementing security best practices.</p>
+
+<h2 id="step-3-prepare-research-materials">Step 3: Prepare Research Materials</h2>
+
+<p>Let’s create some initial research data:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create a sample dataset</span>
+<span class="nb">cat</span> <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh"> &gt; research-data/climate_data.csv
+Year,Global_Temp_Anomaly,CO2_PPM,Sea_Level_Change_mm
+1980,0.27,338.80,0
+1985,0.13,345.90,10
+1990,0.45,354.35,20
+1995,0.45,360.80,30
+2000,0.42,369.40,40
+2005,0.68,378.80,52
+2010,0.72,389.90,65
+2015,0.90,400.80,82
+2020,1.02,412.50,95
+</span><span class="no">EOF
+
+</span><span class="c"># Create research notes</span>
+<span class="nb">cat</span> <span class="o">&lt;&lt;</span> <span class="no">EOF</span><span class="sh"> &gt; research-data/research_notes.txt
+Climate Research Project
+=======================
+
+Key Questions:
+1. How has global temperature changed over the past 40 years?
+2. What is the correlation between CO2 levels and temperature?
+3. What are recent trends in sea level rise?
+4. What policy implications arise from this data?
+
+Next steps: Need to gather more recent data and prepare visualization.
+</span><span class="no">EOF
+</span></code></pre></div></div>
+
+<h2 id="step-4-create-a-sqlite-database-for-research-data">Step 4: Create a SQLite Database for Research Data</h2>
+
+<p>Let’s prepare a query to set up a database that Gordon can interact with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ai <span class="s2">"Create a SQLite database script that will create a climate_research database with a table for the data in research-data/climate_data.csv. Save this script to research-data/setup_database.sql"</span>
+</code></pre></div></div>
+
+<p>Now execute the script to create the SQLite database:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ai <span class="s2">"Use the SQLite MCP server to execute the setup_database.sql script and create the database. Then confirm the data was loaded correctly by querying and showing the first few rows."</span>
+</code></pre></div></div>
+
+<h2 id="step-5-perform-research-tasks">Step 5: Perform Research Tasks</h2>
+
+<p>Now let’s put our research assistant to work with some complex tasks:</p>
+
+<h3 id="task-1-data-analysis">Task 1: Data Analysis</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ai <span class="s2">"Analyze the climate data in our SQLite database. Calculate the average temperature increase per decade, the correlation between CO2 and temperature, and the average rate of sea level rise. Create a summary with your findings and save it to output/climate_analysis.md."</span>
+</code></pre></div></div>
+
+<h3 id="task-2-web-research-integration">Task 2: Web Research Integration</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ai <span class="s2">"Look up the latest IPCC report summary on climate change online. Compare their findings with our data analysis. Are our trends consistent with their reports? Create a comparison document in output/ipcc_comparison.md."</span>
+</code></pre></div></div>
+
+<h3 id="task-3-research-query">Task 3: Research Query</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ai <span class="s2">"Based on our climate data and the IPCC reports, what are the projected sea level rises by 2050 if current trends continue? Create a brief report with your analysis and save it to output/sea_level_projection.md."</span>
+</code></pre></div></div>
+
+<h2 id="step-6-research-collaboration-optional-github-integration">Step 6: Research Collaboration (Optional GitHub Integration)</h2>
+
+<p>If you have a GitHub account, you can add GitHub integration to your research assistant:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="c1"># Previous services...</span>
+  
+  <span class="na">github</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/github</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">GITHUB_TOKEN=your_personal_access_token</span>  <span class="c1"># Replace with your PAT</span>
+</code></pre></div></div>
+
+<p>Now you can ask Gordon to help with GitHub tasks:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ai <span class="s2">"Create a new GitHub repository called climate-research, add all our research output files to it, and commit them with appropriate commit messages."</span>
+</code></pre></div></div>
+
+<h2 id="understanding-the-architecture">Understanding the Architecture</h2>
+
+<p>Your research assistant is powered by several MCP servers working together:</p>
+
+<ol>
+  <li><strong>Filesystem MCP</strong>: Provides secure access to your research data and output directories</li>
+  <li><strong>SQLite MCP</strong>: Enables database operations for structured data analysis</li>
+  <li><strong>Fetch MCP</strong>: Allows the assistant to gather additional information from the web</li>
+  <li><strong>Time MCP</strong>: Provides temporal context for your research</li>
+  <li><strong>GitHub MCP</strong> (optional): Enables collaboration and version control</li>
+</ol>
+
+<p>This architecture demonstrates how Docker containers provide both the flexibility and security required for AI assistants that need to interact with multiple systems.</p>
+
+<h2 id="advanced-research-workflows">Advanced Research Workflows</h2>
+
+<p>Try these additional research assistant tasks:</p>
+
+<ol>
+  <li><strong>Literature Review</strong>: Ask Gordon to search for recent climate research papers and summarize their findings</li>
+  <li><strong>Data Visualization</strong>: Request code to visualize the climate data trends</li>
+  <li><strong>Policy Analysis</strong>: Ask for policy recommendations based on the research findings</li>
+</ol>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<ul>
+  <li>If SQLite operations fail, check the database path and permissions</li>
+  <li>For web fetch issues, ensure your internet connection is working</li>
+  <li>If GitHub integration isn’t working, verify your personal access token has the correct permissions</li>
+</ul>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<p>Congratulations on building your research assistant! Continue to:</p>
+
+<ul>
+  <li><a href="/docs/labs/database-operations-lab">Lab 3: Database Operations with MCP Servers</a></li>
+  <li><a href="/docs/tutorials/custom-mcp-server">Tutorial: Building Custom MCP Servers</a></li>
+</ul>
+
+  </div>
+</section>
+
+<script>
+  // Add copy buttons to code blocks
+  document.addEventListener('DOMContentLoaded', function() {
+    const codeBlocks = document.querySelectorAll('pre');
+    codeBlocks.forEach(function(codeBlock, index) {
+      // Create code header
+      const header = document.createElement('div');
+      header.className = 'code-header';
+      
+      // Add file name or code type if available
+      const code = codeBlock.querySelector('code');
+      let language = '';
+      if (code && code.className) {
+        const classes = code.className.split(' ');
+        for (const cls of classes) {
+          if (cls.startsWith('language-')) {
+            language = cls.replace('language-', '');
+            break;
+          }
+        }
+      }
+      
+      header.innerHTML = `<span>${language || 'bash'}</span>`;
+      
+      // Add copy button
+      const button = document.createElement('button');
+      button.className = 'copy-button';
+      button.innerHTML = '<i class="far fa-copy"></i> Copy';
+      button.addEventListener('click', function() {
+        const text = codeBlock.querySelector('code').innerText;
+        navigator.clipboard.writeText(text).then(function() {
+          button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(function() {
+            button.innerHTML = '<i class="far fa-copy"></i> Copy';
+          }, 2000);
+        });
+      });
+      
+      header.appendChild(button);
+      codeBlock.parentNode.insertBefore(header, codeBlock);
+    });
+  });
+</script>
+
+<style>
+  /* Code block specific styles */
+  .page-content pre, pre, div.highlight pre {
+    background-color: #282c34;
+    color: #f8f8f2;
+    padding: 1.2rem;
+    border-radius: 0 0 6px 6px; /* Rounded at bottom only */
+    margin: 0 0 1.5rem 0; /* Remove top margin since we have code header */
+    position: relative;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: pre;
+    word-wrap: normal;
+    box-sizing: border-box;
+    width: 100% !important;
+  }
+  
+  /* Add better styling to the page content */
+  .page-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+  
+  .page-content h1 {
+    display: none; /* Hide the duplicate title */
+  }
+  
+  /* Ensure all content stays within the container */
+  .page-content img,
+  .page-content pre,
+  .page-content table,
+  .page-content iframe {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .page-content {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+  </main>
+  
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>Docker MCP Community Portal</h3>
+        <p>A community-driven resource for Docker Model Context Protocol.</p>
+        <p>&copy; 2025 MCP Community Portal. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal" target="_blank">
+              <i class="fab fa-github"></i> GitHub Repository
+            </a>
+          </li>
+          <li>
+            <a href="https://collabnix.com" target="_blank">
+              <i class="fas fa-globe"></i> Collabnix Community
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" target="_blank">
+              <i class="fas fa-code-branch"></i> Contribute to MCP Portal
+            </a>
+          </li>
+          <li>
+            <a href="https://hub.docker.com/u/mcp" target="_blank">
+              <i class="fab fa-docker"></i> MCP on Docker Hub
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+  <!-- ClipboardJS for copy functionality -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+  
+  <!-- Syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  
+  <!-- Custom scripts -->
+  <script src="/pr-preview/pr-35/assets/js/filter.js"></script>
+  <script src="/pr-preview/pr-35/assets/js/code-formatter.js"></script>
+  
+  <script>
+    // Initialize clipboard.js
+    document.addEventListener('DOMContentLoaded', function() {
+      var clipboard = new ClipboardJS('.btn-copy');
+      
+      clipboard.on('success', function(e) {
+        var button = e.trigger;
+        var originalText = button.innerHTML;
+        
+        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        button.classList.add('copied');
+        
+        setTimeout(function() {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+        
+        e.clearSelection();
+      });
+      
+      // Initialize syntax highlighting
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+</body>
+</html>
