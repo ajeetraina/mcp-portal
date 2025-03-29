@@ -2,10 +2,14 @@
 """
 MCP Server Updater Script
 
-This script fetches MCP server information from GitHub by searching for repositories
-with MCP-related topics and updates the _data/mcp_servers.yml file in the GitHub repository.
+This script fetches MCP server information from multiple sources:
+1. Posts from the r/mcp subreddit
+2. GitHub repositories with MCP-related topics
+
+It then updates the _data/mcp_servers.yml file in the GitHub repository with new servers.
 
 Requirements:
+- praw (Python Reddit API Wrapper)
 - pyyaml
 - github3.py
 - requests
@@ -14,6 +18,9 @@ Usage:
 python update_mcp_servers.py
 
 Environment variables:
+- REDDIT_CLIENT_ID: Reddit API client ID
+- REDDIT_CLIENT_SECRET: Reddit API client secret
+- REDDIT_USER_AGENT: Reddit API user agent (e.g., "script:mcp-updater:v1.0 (by u/username)")
 - GITHUB_TOKEN: GitHub personal access token
 - GITHUB_REPO_OWNER: GitHub repository owner (username)
 - GITHUB_REPO_NAME: GitHub repository name
@@ -41,8 +48,30 @@ logger = logging.getLogger('mcp-updater')
 # Constants
 YAML_FILE_PATH = '_data/mcp_servers.yml'
 REPO_BRANCH = 'main'
-SEARCH_TERMS = ['mcp-server', 'model-context-protocol', 'anthropic-mcp', 'docker-mcp']
-MAX_REPOS = 50  # Maximum number of repositories to fetch per search term
+SUBREDDIT_NAME = 'mcp'
+MAX_REDDIT_POSTS = 100  # Maximum number of Reddit posts to fetch
+POST_TIMEFRAME = 'week'  # 'day', 'week', 'month', 'year', 'all'
+GITHUB_SEARCH_TERMS = ['mcp-server', 'model-context-protocol', 'anthropic-mcp', 'docker-mcp']
+MAX_GITHUB_REPOS = 50  # Maximum number of repositories to fetch per search term
+
+# Configure Reddit API client
+def get_reddit_client():
+    """Initialize and return the Reddit API client."""
+    try:
+        # Try to import praw - if it's not available, we'll just skip Reddit sources
+        import praw
+        
+        return praw.Reddit(
+            client_id=os.environ.get('REDDIT_CLIENT_ID'),
+            client_secret=os.environ.get('REDDIT_CLIENT_SECRET'),
+            user_agent=os.environ.get('REDDIT_USER_AGENT')
+        )
+    except ImportError:
+        logger.warning("PRAW (Python Reddit API Wrapper) is not installed. Reddit sources will be skipped.")
+        return None
+    except Exception as e:
+        logger.warning(f"Failed to initialize Reddit client: {e}. Reddit sources will be skipped.")
+        return None
 
 # Configure GitHub API client
 def get_github_client():
@@ -70,6 +99,142 @@ def get_existing_servers(repo):
         logger.error(f"Failed to fetch existing servers: {e}")
         return [], None
 
+# Reddit-specific functions
+def extract_mcp_server_info_from_reddit(post):
+    """
+    Extract MCP server information from a Reddit post.
+    Returns a dictionary with server details or None if parsing fails.
+    """
+    # Skip posts that don't look like MCP server announcements
+    title_patterns = [
+        r'new\s+mcp\s+server',
+        r'mcp\s+implementation',
+        r'mcp\s+server\s+release',
+        r'released\s+mcp',
+        r'docker\s+mcp'
+    ]
+    
+    if not any(re.search(pattern, post.title, re.IGNORECASE) for pattern in title_patterns):
+        return None
+    
+    # Default values
+    server_info = {
+        'name': None,
+        'description': None,
+        'github_url': None,
+        'docker_image': None,
+        'website': '',
+        'tags': [],
+        'added_date': datetime.now().strftime('%Y-%m-%d'),
+        'source': 'reddit'
+    }
+    
+    # Extract name from title
+    name_match = re.search(r'(?:released|announcing|new):\s*([^:]+)', post.title, re.IGNORECASE)
+    if name_match:
+        server_info['name'] = name_match.group(1).strip()
+    else:
+        # Use the first part of the title as the name
+        server_info['name'] = post.title.split(' - ')[0].strip()
+    
+    # Parse the post content
+    content = post.selftext
+    
+    # Extract GitHub URL
+    github_matches = re.findall(r'github\.com/[\w\-]+/[\w\-]+', content)
+    if github_matches:
+        server_info['github_url'] = f"https://{github_matches[0]}"
+    
+    # Extract Docker image
+    docker_matches = re.findall(r'(?:docker\s+pull\s+|docker\.io/)?([\w\-\_\.\/]+:[\w\-\_\.]+)', content)
+    if docker_matches:
+        server_info['docker_image'] = docker_matches[0]
+    
+    # Extract website
+    website_matches = re.findall(r'(?:website|homepage|site):\s*(https?://[\w\-\.]+\.\w+(?:/[\w\-\._~:/\?#\[\]@!\$&\'\(\)\*\+,;=]+)?)', content, re.IGNORECASE)
+    if website_matches:
+        server_info['website'] = website_matches[0]
+    
+    # Extract description - use post title or first paragraph
+    if post.selftext:
+        # Use the first paragraph that's not too short
+        paragraphs = [p.strip() for p in post.selftext.split('\n\n') if len(p.strip()) > 30]
+        if paragraphs:
+            server_info['description'] = paragraphs[0][:250]  # Limit to 250 chars
+        else:
+            server_info['description'] = post.title
+    else:
+        server_info['description'] = post.title
+    
+    # Extract tags
+    tag_patterns = [
+        r'(?:tags|keywords):\s*([\w\s,\-\_]+)',
+        r'#([\w\-\_]+)'
+    ]
+    for pattern in tag_patterns:
+        tag_matches = re.findall(pattern, content, re.IGNORECASE)
+        if tag_matches:
+            for match in tag_matches:
+                tags = [tag.strip().lower() for tag in re.split(r'[,\s]+', match) if tag.strip()]
+                server_info['tags'].extend(tags)
+    
+    # If no tags were found, add some default ones
+    if not server_info['tags']:
+        # Add 'reddit' and 'community' tags by default
+        server_info['tags'].append('reddit')
+        server_info['tags'].append('community')
+        
+        # Add some tags based on name and description
+        combined_text = (server_info['name'] + ' ' + server_info['description']).lower()
+        
+        if any(term in combined_text for term in ['fast', 'speed', 'quick', 'performance']):
+            server_info['tags'].append('performance')
+            
+        if any(term in combined_text for term in ['secure', 'security', 'authentication']):
+            server_info['tags'].append('security')
+            
+        if any(term in combined_text for term in ['kubernetes', 'k8s']):
+            server_info['tags'].append('kubernetes')
+            
+        if any(term in combined_text for term in ['light', 'lightweight', 'minimal']):
+            server_info['tags'].append('lightweight')
+    
+    # Remove duplicates
+    server_info['tags'] = list(set(server_info['tags']))
+    
+    # Ensure we have required fields
+    if not server_info['github_url'] or not server_info['docker_image']:
+        logger.warning(f"Missing required fields for Reddit post: {post.title}")
+        return None
+    
+    return server_info
+
+def get_mcp_servers_from_reddit(reddit_client):
+    """Fetch MCP servers from Reddit r/mcp subreddit."""
+    if not reddit_client:
+        return []
+
+    try:
+        subreddit = reddit_client.subreddit(SUBREDDIT_NAME)
+        posts = list(subreddit.top(time_filter=POST_TIMEFRAME, limit=MAX_REDDIT_POSTS))
+        posts.extend(list(subreddit.new(limit=MAX_REDDIT_POSTS)))
+        
+        logger.info(f"Fetched {len(posts)} posts from r/{SUBREDDIT_NAME}")
+        
+        # Process posts
+        reddit_servers = []
+        for post in posts:
+            server_info = extract_mcp_server_info_from_reddit(post)
+            if server_info:
+                reddit_servers.append(server_info)
+                
+        logger.info(f"Found {len(reddit_servers)} potential MCP servers from Reddit")
+        return reddit_servers
+    except Exception as e:
+        logger.error(f"Error fetching from Reddit: {e}")
+        return []
+
+# GitHub-specific functions
 def search_github_repos(search_term, page=1):
     """Search GitHub repositories with the given search term."""
     try:
@@ -131,7 +296,7 @@ def get_docker_image_from_repo(repo_owner, repo_name):
         logger.warning(f"Failed to get Docker image for {repo_owner}/{repo_name}: {e}")
         return f"{repo_owner}/{repo_name}:latest"
 
-def extract_mcp_server_info(repo_data):
+def extract_mcp_server_info_from_github(repo_data):
     """
     Extract MCP server information from a GitHub repository.
     Returns a dictionary with server details.
@@ -144,7 +309,8 @@ def extract_mcp_server_info(repo_data):
         'docker_image': None,
         'website': repo_data.get('homepage', ''),
         'tags': [],
-        'added_date': datetime.now().strftime('%Y-%m-%d')
+        'added_date': datetime.now().strftime('%Y-%m-%d'),
+        'source': 'github'
     }
     
     # Get repository topics as tags
@@ -196,6 +362,50 @@ def is_relevant_mcp_server(repo_data):
     
     return False
 
+def get_mcp_servers_from_github():
+    """Fetch MCP servers from GitHub repositories."""
+    all_repos = []
+    for term in GITHUB_SEARCH_TERMS:
+        logger.info(f"Searching GitHub for: {term}")
+        page = 1
+        while page <= 3:  # Limit to 3 pages for each search term
+            search_results = search_github_repos(term, page)
+            repos = search_results.get('items', [])
+            if not repos:
+                break
+                
+            all_repos.extend(repos)
+            logger.info(f"Found {len(repos)} repositories for '{term}' on page {page}")
+            
+            # Check if we need to paginate
+            if len(repos) < 30:
+                break
+                
+            page += 1
+            time.sleep(1)  # Avoid rate limiting
+    
+    # Remove duplicates based on repository ID
+    unique_repos = {}
+    for repo in all_repos:
+        if repo['id'] not in unique_repos:
+            unique_repos[repo['id']] = repo
+    
+    all_repos = list(unique_repos.values())
+    logger.info(f"Found {len(all_repos)} unique repositories")
+    
+    # Process repositories
+    github_servers = []
+    for repo_data in all_repos:
+        # Only process repositories that are likely MCP servers
+        if is_relevant_mcp_server(repo_data):
+            server_info = extract_mcp_server_info_from_github(repo_data)
+            if server_info:
+                github_servers.append(server_info)
+    
+    logger.info(f"Found {len(github_servers)} potential MCP servers from GitHub")
+    return github_servers
+
+# Common functions
 def is_new_server(server, existing_servers):
     """Check if the server is new and not already in the list."""
     for existing in existing_servers:
@@ -254,59 +464,40 @@ def main():
     """Main function to update MCP servers."""
     logger.info("Starting MCP server update process")
     
-    # Initialize API client
-    repo = get_github_client()
+    # Initialize API clients
+    reddit_client = get_reddit_client()
+    github_repo = get_github_client()
     
     # Get existing servers
-    existing_servers, content_file = get_existing_servers(repo)
+    existing_servers, content_file = get_existing_servers(github_repo)
     logger.info(f"Found {len(existing_servers)} existing MCP servers")
     
-    # Search for MCP-related repositories
-    all_repos = []
-    for term in SEARCH_TERMS:
-        logger.info(f"Searching GitHub for: {term}")
-        page = 1
-        while page <= 3:  # Limit to 3 pages for each search term
-            search_results = search_github_repos(term, page)
-            repos = search_results.get('items', [])
-            if not repos:
-                break
-                
-            all_repos.extend(repos)
-            logger.info(f"Found {len(repos)} repositories for '{term}' on page {page}")
-            
-            # Check if we need to paginate
-            if len(repos) < 30:
-                break
-                
-            page += 1
-            time.sleep(1)  # Avoid rate limiting
+    # Get potential servers from all sources
+    all_new_servers = []
     
-    # Remove duplicates based on repository ID
-    unique_repos = {}
-    for repo in all_repos:
-        if repo['id'] not in unique_repos:
-            unique_repos[repo['id']] = repo
-    
-    all_repos = list(unique_repos.values())
-    logger.info(f"Found {len(all_repos)} unique repositories")
-    
-    # Process repositories
-    new_servers = []
-    for repo_data in all_repos:
-        # Only process repositories that are likely MCP servers
-        if is_relevant_mcp_server(repo_data):
-            server_info = extract_mcp_server_info(repo_data)
-            if server_info and is_new_server(server_info, existing_servers):
-                logger.info(f"Found new MCP server: {server_info['name']}")
-                new_servers.append(server_info)
-    
-    # Update YAML file
-    if new_servers:
-        logger.info(f"Found {len(new_servers)} new MCP servers to add")
-        update_yaml_file(repo, content_file, existing_servers, new_servers)
+    # 1. Get servers from Reddit
+    if reddit_client:
+        reddit_servers = get_mcp_servers_from_reddit(reddit_client)
+        for server in reddit_servers:
+            if is_new_server(server, existing_servers):
+                logger.info(f"Found new MCP server from Reddit: {server['name']}")
+                all_new_servers.append(server)
     else:
-        logger.info("No new MCP servers found")
+        logger.info("Skipping Reddit source - client not available")
+    
+    # 2. Get servers from GitHub
+    github_servers = get_mcp_servers_from_github()
+    for server in github_servers:
+        if is_new_server(server, existing_servers) and is_new_server(server, all_new_servers):
+            logger.info(f"Found new MCP server from GitHub: {server['name']}")
+            all_new_servers.append(server)
+    
+    # Update YAML file with all new servers
+    if all_new_servers:
+        logger.info(f"Found {len(all_new_servers)} total new MCP servers to add")
+        update_yaml_file(github_repo, content_file, existing_servers, all_new_servers)
+    else:
+        logger.info("No new MCP servers found from any source")
     
     logger.info("MCP server update process completed")
 
