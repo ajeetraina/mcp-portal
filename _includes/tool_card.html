@@ -1,6 +1,7 @@
 <div class="tool-card" 
      data-name="{{ include.tool.name | downcase }}" 
      data-category="{{ include.tool.category | downcase }}"
+     data-language="{{ include.tool.language | downcase }}"
      data-tags="{{ include.tool.tags | join: ',' | downcase }}">
   <div class="card-header">
     <h3 class="card-title">{{ include.tool.name }}</h3>
@@ -11,6 +12,11 @@
       <span class="added-date" title="Added on {{ include.tool.added_date }}">
         <i class="far fa-calendar-alt"></i> {{ include.tool.added_date }}
       </span>
+      {% if include.tool.github_url %}
+      <span class="github-stars" data-github-url="{{ include.tool.github_url }}">
+        <i class="fas fa-star"></i> <span class="stars-count">...</span>
+      </span>
+      {% endif %}
     </div>
   </div>
   
