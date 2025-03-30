@@ -90,8 +90,8 @@ document.addEventListener('DOMContentLoaded', function() {
   function filterCards() {
     cards.forEach(card => {
       const name = card.getAttribute('data-name').toLowerCase();
-      const tags = card.getAttribute('data-tags').toLowerCase();
-      const category = card.getAttribute('data-category').toLowerCase();
+      const tags = card.getAttribute('data-tags')?.toLowerCase() || '';
+      const category = card.getAttribute('data-category')?.toLowerCase() || '';
       const language = card.getAttribute('data-language')?.toLowerCase() || '';
       
       let description = '';
@@ -131,15 +131,15 @@ document.addEventListener('DOMContentLoaded', function() {
     switch (filters.sort) {
       case 'newest':
         cardsArray.sort((a, b) => {
-          const dateA = new Date(a.querySelector('.added-date').textContent.trim());
-          const dateB = new Date(b.querySelector('.added-date').textContent.trim());
+          const dateA = new Date(a.querySelector('.added-date')?.textContent.trim() || '2025-01-01');
+          const dateB = new Date(b.querySelector('.added-date')?.textContent.trim() || '2025-01-01');
           return dateB - dateA;
         });
         break;
       case 'oldest':
         cardsArray.sort((a, b) => {
-          const dateA = new Date(a.querySelector('.added-date').textContent.trim());
-          const dateB = new Date(b.querySelector('.added-date').textContent.trim());
+          const dateA = new Date(a.querySelector('.added-date')?.textContent.trim() || '2025-01-01');
+          const dateB = new Date(b.querySelector('.added-date')?.textContent.trim() || '2025-01-01');
           return dateA - dateB;
         });
         break;
@@ -163,6 +163,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const starsA = parseInt(a.getAttribute('data-stars') || '0');
             const starsB = parseInt(b.getAttribute('data-stars') || '0');
             return starsB - starsA;
+          });
+        }
+        break;
+      case 'downloads':
+        if (isMcpServersPage) {
+          cardsArray.sort((a, b) => {
+            const downloadsA = parseInt(a.getAttribute('data-downloads') || '0');
+            const downloadsB = parseInt(b.getAttribute('data-downloads') || '0');
+            return downloadsB - downloadsA;
           });
         }
         break;
