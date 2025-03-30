@@ -26,6 +26,7 @@ title: MCP Servers Table View
           <th>Description</th>
           <th>Docker Image</th>
           <th>Status</th>
+          <th>Downloads</th>
           <th>Links</th>
         </tr>
       </thead>
@@ -44,6 +45,9 @@ title: MCP Servers Table View
               </td>
               <td class="server-status">
                 <span class="status-badge status-working">Working</span>
+              </td>
+              <td class="server-downloads">
+                <span class="downloads-badge"><i class="fas fa-download"></i> <span class="downloads-count">...</span></span>
               </td>
               <td class="server-links">
                 <a href="https://hub.docker.com/r/{{ server.image | split: ':' | first }}" class="btn-small" target="_blank" rel="noopener">
@@ -74,6 +78,9 @@ title: MCP Servers Table View
               <td class="server-status">
                 <span class="status-badge status-untested">Untested</span>
               </td>
+              <td class="server-downloads">
+                <span class="downloads-badge"><i class="fas fa-download"></i> <span class="downloads-count">...</span></span>
+              </td>
               <td class="server-links">
                 <a href="https://hub.docker.com/r/{{ server.image | split: ':' | first }}" class="btn-small" target="_blank" rel="noopener">
                   <i class="fab fa-docker"></i>
@@ -102,6 +109,9 @@ title: MCP Servers Table View
               </td>
               <td class="server-status">
                 <span class="status-badge status-unsupported">Unsupported</span>
+              </td>
+              <td class="server-downloads">
+                <span class="downloads-badge"><i class="fas fa-download"></i> <span class="downloads-count">...</span></span>
               </td>
               <td class="server-links">
                 <a href="https://hub.docker.com/r/{{ server.image | split: ':' | first }}" class="btn-small" target="_blank" rel="noopener">
@@ -291,24 +301,3 @@ title: MCP Servers Table View
     }
   }
 </style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const copyButtons = document.querySelectorAll('.btn-copy');
-  
-  copyButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const textToCopy = this.getAttribute('data-clipboard-text');
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        // Visual feedback
-        const originalText = this.innerHTML;
-        this.innerHTML = '<i class="fas fa-check"></i>';
-        
-        setTimeout(() => {
-          this.innerHTML = originalText;
-        }, 1500);
-      });
-    });
-  });
-});
-</script>
