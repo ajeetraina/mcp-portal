@@ -1,12 +1,14 @@
 /**
  * MCP Portal Filtering System
- * Handles filtering of MCP servers and tools by search terms and tags
+ * Handles filtering of MCP servers and tools by search terms, tags, categories, and languages
  */
 
 document.addEventListener('DOMContentLoaded', function() {
   // Get filter elements
   const searchInput = document.getElementById('search-input');
   const tagFilter = document.getElementById('tag-filter');
+  const categoryFilter = document.getElementById('category-filter');
+  const languageFilter = document.getElementById('language-filter');
   const sortSelect = document.getElementById('sort-select');
   const clearFiltersButton = document.getElementById('clear-filters');
   const activeFiltersContainer = document.querySelector('.active-filters');
@@ -29,6 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
   let filters = {
     search: '',
     tag: '',
+    category: '',
+    language: '',
     sort: sortSelect ? sortSelect.value : 'newest'
   };
   
@@ -41,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function applyFilters() {
     // Show/hide clear filters button
     if (clearFiltersButton) {
-      if (filters.search || filters.tag) {
+      if (filters.search || filters.tag || filters.category || filters.language) {
         clearFiltersButton.style.display = 'inline-flex';
       } else {
         clearFiltersButton.style.display = 'none';
@@ -87,6 +91,9 @@ document.addEventListener('DOMContentLoaded', function() {
     cards.forEach(card => {
       const name = card.getAttribute('data-name').toLowerCase();
       const tags = card.getAttribute('data-tags').toLowerCase();
+      const category = card.getAttribute('data-category').toLowerCase();
+      const language = card.getAttribute('data-language')?.toLowerCase() || '';
+      
       let description = '';
       
       // Get description text if it exists
@@ -102,9 +109,11 @@ document.addEventListener('DOMContentLoaded', function() {
                            description.includes(filters.search.toLowerCase());
                            
       const matchesTag = !filters.tag || tags.split(',').includes(filters.tag.toLowerCase());
+      const matchesCategory = !filters.category || category === filters.category.toLowerCase();
+      const matchesLanguage = !filters.language || language.includes(filters.language.toLowerCase());
       
       // Show or hide the card based on filters
-      if (matchesSearch && matchesTag) {
+      if (matchesSearch && matchesTag && matchesCategory && matchesLanguage) {
         card.style.display = '';
       } else {
         card.style.display = 'none';
@@ -148,6 +157,15 @@ document.addEventListener('DOMContentLoaded', function() {
           return nameB.localeCompare(nameA);
         });
         break;
+      case 'stars':
+        if (isToolsPage) {
+          cardsArray.sort((a, b) => {
+            const starsA = parseInt(a.getAttribute('data-stars') || '0');
+            const starsB = parseInt(b.getAttribute('data-stars') || '0');
+            return starsB - starsA;
+          });
+        }
+        break;
     }
     
     // Append sorted cards back to container
@@ -176,6 +194,26 @@ document.addEventListener('DOMContentLoaded', function() {
       const filterTag = createFilterTag('Tag: ' + tagName, () => {
         filters.tag = '';
         tagFilter.value = '';
+        applyFilters();
+      });
+      activeFiltersContainer.appendChild(filterTag);
+    }
+    
+    if (filters.category && categoryFilter) {
+      const categoryName = categoryFilter.options[categoryFilter.selectedIndex].text;
+      const filterTag = createFilterTag('Category: ' + categoryName, () => {
+        filters.category = '';
+        categoryFilter.value = '';
+        applyFilters();
+      });
+      activeFiltersContainer.appendChild(filterTag);
+    }
+    
+    if (filters.language && languageFilter) {
+      const languageName = languageFilter.options[languageFilter.selectedIndex].text;
+      const filterTag = createFilterTag('Language: ' + languageName, () => {
+        filters.language = '';
+        languageFilter.value = '';
         applyFilters();
       });
       activeFiltersContainer.appendChild(filterTag);
@@ -230,6 +268,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
+  if (categoryFilter) {
+    categoryFilter.addEventListener('change', function() {
+      filters.category = this.value;
+      applyFilters();
+    });
+  }
+  
+  if (languageFilter) {
+    languageFilter.addEventListener('change', function() {
+      filters.language = this.value;
+      applyFilters();
+    });
+  }
+  
   if (sortSelect) {
     sortSelect.addEventListener('change', function() {
       filters.sort = this.value;
@@ -253,11 +305,15 @@ document.addEventListener('DOMContentLoaded', function() {
       filters = {
         search: '',
         tag: '',
+        category: '',
+        language: '',
         sort: sortSelect ? sortSelect.value : 'newest'
       };
       
       if (searchInput) searchInput.value = '';
       if (tagFilter) tagFilter.value = '';
+      if (categoryFilter) categoryFilter.value = '';
+      if (languageFilter) languageFilter.value = '';
       
       applyFilters();
     });
