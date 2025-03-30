@@ -35,6 +35,9 @@ function fetchDockerHubDownloads() {
           downloadsElement.setAttribute('title', `${pullCount.toLocaleString()} Docker Hub pulls`);
           downloadsElement.innerHTML = `<i class="fas fa-download"></i> <span class="downloads-count">${formatDownloads(pullCount)}</span>`;
           cardMeta.appendChild(downloadsElement);
+          
+          // Add data attribute for sorting
+          card.setAttribute('data-downloads', pullCount);
         }
       }).catch(error => {
         console.error('Error fetching Docker Hub pulls:', error);
@@ -55,41 +58,23 @@ function fetchDockerHubDownloads() {
       
       if (imagePath) {
         fetchImageData(imagePath).then(pullCount => {
-          // Check if there's already a downloads column
+          // Find the downloads cell
           let downloadsCell = row.querySelector('.server-downloads');
           
-          // If no downloads cell exists, create one after the status cell
-          if (!downloadsCell) {
-            const statusCell = row.querySelector('.server-status');
-            if (statusCell) {
-              downloadsCell = document.createElement('td');
-              downloadsCell.className = 'server-downloads';
-              statusCell.insertAdjacentElement('afterend', downloadsCell);
-            }
-          }
-          
-          // Add the download count
+          // If found, update its content
           if (downloadsCell) {
             downloadsCell.innerHTML = `<span class="downloads-badge" title="${pullCount.toLocaleString()} Docker Hub pulls">
               <i class="fas fa-download"></i> ${formatDownloads(pullCount)}
             </span>`;
+            
+            // Add data attribute to the row for sorting
+            row.setAttribute('data-downloads', pullCount);
           }
         }).catch(error => {
           console.error('Error fetching Docker Hub pulls:', error);
         });
       }
     });
-    
-    // Add header for downloads column if it doesn't exist
-    const headerRow = document.querySelector('.server-table thead tr');
-    if (headerRow && !headerRow.querySelector('th:nth-child(5)').textContent.includes('Downloads')) {
-      const statusHeader = headerRow.querySelector('th:nth-child(4)');
-      if (statusHeader) {
-        const downloadHeader = document.createElement('th');
-        downloadHeader.textContent = 'Downloads';
-        statusHeader.insertAdjacentElement('afterend', downloadHeader);
-      }
-    }
   }
 }
 
