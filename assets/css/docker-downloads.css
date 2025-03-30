@@ -1,0 +1,46 @@
+/**
+ * Docker Hub Downloads Styling
+ */
+
+.docker-downloads {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #2496ed; /* Docker blue */
+  font-weight: 500;
+  margin-left: 0.5rem;
+  cursor: help;
+}
+
+.docker-downloads i {
+  font-size: 0.9em;
+}
+
+.downloads-count {
+  font-size: 0.9em;
+}
+
+/* Styling for the downloads badge in table view */
+.downloads-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background-color: #e6f2ff;
+  color: #2496ed;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.server-downloads {
+  white-space: nowrap;
+}
+
+/* Make sure Docker downloads show on mobile */
+@media (max-width: 768px) {
+  .server-table th.downloads-header,
+  .server-table td.server-downloads {
+    display: table-cell !important;
+  }
+}
