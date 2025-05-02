@@ -82,7 +82,7 @@ jobs:
     if: github.event.action == 'closed'
     steps:
       - name: Checkout gh-pages branch
-        uses: actions/checkout@v2  # Using v2 which has fewer issues with permissions
+        uses: actions/checkout@v2
         with:
           ref: gh-pages
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -93,7 +93,7 @@ jobs:
           git config --global user.email "actions@github.com"
           
           if [ -d "pr-preview/pr-${{ github.event.pull_request.number }}" ]; then
-            git rm -rf pr-preview/pr-${{ github.event.pull_request.number }}
+            git rm -rf "pr-preview/pr-${{ github.event.pull_request.number }}"
             git commit -m "Remove PR preview for #${{ github.event.pull_request.number }}"
             git push
           else
