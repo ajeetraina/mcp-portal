@@ -4,13 +4,16 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, closed]
 
+# Add top-level permissions
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   build_preview:
     runs-on: ubuntu-latest
     name: Build PR Preview
     if: github.event.action != 'closed'
-    permissions:
-      pull-requests: write
     
     steps:
       - name: Checkout
@@ -42,7 +45,7 @@ jobs:
       - name: Deploy preview
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.PAT }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
           destination_dir: pr-preview/pr-${{ github.event.pull_request.number }}
           keep_files: true
@@ -79,10 +82,10 @@ jobs:
     if: github.event.action == 'closed'
     steps:
       - name: Checkout gh-pages branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2  # Using v2 which has fewer issues with permissions
         with:
           ref: gh-pages
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Delete preview directory
         run: |
