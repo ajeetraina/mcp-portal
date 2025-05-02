@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 4: Business Process Automation with MCP | Model Context Protocol Portal</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <style>
+        :root {
+            --color-primary: #5551ff;
+            --color-beginner: #4CAF50;
+            --color-intermediate: #2196F3;
+            --color-advanced: #9C27B0;
+            --color-expert: #F44336;
+            --color-text: #333;
+            --color-text-light: #666;
+            --color-background: #fff;
+            --color-card: #f8f8f8;
+            --color-card-border: #eaeaea;
+            --color-note: #FFF9C4;
+            --color-note-border: #FFC107;
+            --color-code-bg: #f5f7ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-background);
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background-color: var(--color-card);
+            padding: 2rem;
+            border-right: 1px solid var(--color-card-border);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .content {
+            flex: 1;
+            padding: 2rem;
+            margin-left: 280px;
+            max-width: calc(100% - 280px);
+        }
+
+        .nav-logo {
+            display: block;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .nav-logo h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-primary);
+        }
+
+        .nav-logo p {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        .nav-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-section h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .nav-items {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: background-color 0.2s;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(85, 81, 255, 0.1);
+        }
+
+        .nav-link.active {
+            background-color: var(--color-primary);
+            color: white;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: var(--color-text);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--color-card-border);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 1.75rem 0 0.75rem;
+            color: var(--color-text);
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.5rem;
+            color: var(--color-text);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul, ol {
+            margin: 0 0 1rem 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.9em;
+            background-color: var(--color-code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+        }
+
+        pre {
+            background-color: var(--color-code-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--color-card-border);
+            padding-left: 1rem;
+            margin-left: 0;
+            margin-bottom: 1.5rem;
+            color: var(--color-text-light);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            border: 1px solid var(--color-card-border);
+        }
+
+        th {
+            background-color: var(--color-card);
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .note {
+            background-color: var(--color-note);
+            border: 1px solid var(--color-note-border);
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .note-title {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .banner {
+            background-color: var(--color-intermediate);
+            color: white;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 2rem;
+        }
+
+        .banner h2 {
+            color: white;
+            border-bottom: none;
+            margin: 0 0 0.5rem 0;
+            padding: 0;
+        }
+
+        .banner p {
+            margin-bottom: 0;
+        }
+
+        .footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--color-card-border);
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+        }
+
+        .lab-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--color-card-border);
+        }
+
+        .lab-nav a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--color-primary);
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .lab-nav a:hover {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .lab-nav-prev:before {
+            content: "← ";
+        }
+
+        .lab-nav-next:after {
+            content: " →";
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 240px;
+            }
+            
+            .content {
+                margin-left: 240px;
+                max-width: calc(100% - 240px);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid var(--color-card-border);
+                padding: 1rem;
+            }
+            
+            .content {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 1rem;
+            }
+            
+            .nav-logo {
+                margin-bottom: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="nav-logo">
+                <a href="/">
+                    <h2>MCP Portal</h2>
+                    <p>Model Context Protocol</p>
+                </a>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Getting Started</h3>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="../01-getting-started/index.html" class="nav-link">Lab 1: Getting Started</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../02-custom-mcp-server/index.html" class="nav-link">Lab 2: Custom MCP Server</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Intermediate</h3>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="../03-database-integration/index.html" class="nav-link">Lab 3: Database Integration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../04-business-automation/index.html" class="nav-link active">Lab 4: Business Automation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../05-rag-document-qa/index.html" class="nav-link">Lab 5: RAG Document Q&A</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Advanced</h3>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="../06-multimodal-ai/index.html" class="nav-link">Lab 6: Multimodal AI</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../07-building-ai-agents/index.html" class="nav-link">Lab 7: Building AI Agents</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Resources</h3>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Learning Roadmap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/ajeetraina/mcp-portal" class="nav-link">GitHub Repository</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/ajeetraina/mcp-portal/discussions" class="nav-link">Community Discussions</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        
+        <main class="content">
+            <div class="banner">
+                <h2>Intermediate Level</h2>
+                <p>Estimated Time: 150 minutes</p>
+            </div>
+
+            <div id="lab-content">
+                <h1>Lab 4: Business Process Automation with MCP</h1>
+                <p>This lab demonstrates how to create an AI-powered customer support system using MCP to integrate Claude with CRM, ticketing, and analytics services.</p>
+
+                <h2 id="prerequisites">Prerequisites</h2>
+                <ul>
+                    <li>Docker and Docker Compose</li>
+                    <li>Basic understanding of business workflows</li>
+                    <li>Familiarity with RESTful APIs</li>
+                </ul>
+
+                <h2 id="project-overview">Project Overview</h2>
+                <p>You'll build a system that:</p>
+                <ul>
+                    <li>Retrieves and analyzes customer support tickets</li>
+                    <li>Updates CRM records</li>
+                    <li>Generates appropriate responses</li>
+                    <li>Tracks resolution metrics</li>
+                </ul>
+
+                <h2 id="step1">Step 1: Project Setup</h2>
+                <p>Create a directory structure for your services:</p>
+                <pre><code class="language-bash">mkdir -p mcp-business-automation/{config,services/{crm,ticket-system,analytics,support-server}}</code></pre>
+
+                <h2 id="step2">Step 2: Service Implementation</h2>
+                <p>For this lab, we'll implement three mock services (CRM, ticketing, analytics) and one MCP server that coordinates between them.</p>
+
+                <h3>Key Components</h3>
+                <ol>
+                    <li><strong>CRM Service</strong>: Stores customer information and notes</li>
+                    <li><strong>Ticket System</strong>: Manages support tickets and responses</li>
+                    <li><strong>Analytics Service</strong>: Analyzes sentiment and categorizes tickets</li>
+                    <li><strong>Support Server</strong>: Integrates all services and exposes MCP endpoints</li>
+                </ol>
+
+                <h2 id="step3">Step 3: Docker Compose Configuration</h2>
+                <p>Create a <code>docker-compose.yml</code> file:</p>
+                <pre><code class="language-yaml">version: '3'
+services:
+  crm:
+    build: ./services/crm
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./data/crm:/app
+  
+  ticket-system:
+    build: ./services/ticket-system
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./data/ticket-system:/app
+  
+  analytics:
+    build: ./services/analytics
+    ports:
+      - "5003:5003"
+  
+  support-server:
+    build: ./services/support-server
+    ports:
+      - "5000:5000"
+    depends_on:
+      - crm
+      - ticket-system
+      - analytics
+  
+  mcp-proxy:
+    image: anthropic/mcp-proxy:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - MCP_API_KEY=${MCP_API_KEY}
+      - CLAUDE_API_KEY=${CLAUDE_API_KEY}
+    volumes:
+      - ./config:/app/config
+    depends_on:
+      - support-server</code></pre>
+
+                <h2 id="step4">Step 4: MCP Server Configuration</h2>
+                <p>Create a <code>config/tools.json</code> file:</p>
+                <pre><code class="language-json">{
+  "tools": [
+    {
+      "name": "support",
+      "service": "support-server:5000",
+      "description": "Manages customer support tickets, including retrieving ticket details, analyzing sentiment, responding to tickets, and updating status",
+      "schema": {
+        "type": "object",
+        "functions": [
+          {
+            "name": "handle_ticket",
+            "description": "Retrieve and analyze a customer support ticket",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "ticket_id": {
+                  "type": "string",
+                  "description": "ID of the ticket to retrieve and analyze"
+                }
+              },
+              "required": ["ticket_id"]
+            },
+            "path": "/support/handle-ticket"
+          },
+          {
+            "name": "respond_to_ticket",
+            "description": "Add a response to a ticket and optionally update its status",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "ticket_id": {
+                  "type": "string",
+                  "description": "ID of the ticket to respond to"
+                },
+                "response": {
+                  "type": "string",
+                  "description": "The response text to add to the ticket"
+                },
+                "update_status": {
+                  "type": "string",
+                  "enum": ["open", "in_progress", "resolved", "closed"],
+                  "description": "Optionally update the ticket status"
+                },
+                "add_customer_note": {
+                  "type": "boolean",
+                  "description": "Whether to add a note to the customer's CRM record",
+                  "default": false
+                }
+              },
+              "required": ["ticket_id", "response"]
+            },
+            "path": "/support/respond-to-ticket"
+          }
+        ]
+      }
+    }
+  ]
+}</code></pre>
+
+                <h2 id="step5">Step 5: Support Server Implementation</h2>
+                <p>Create a <code>services/support-server/app.py</code> file (key sections):</p>
+                <pre><code class="language-python">from flask import Flask, request, jsonify
+import requests
+
+app = Flask(__name__)
+
+# Service URLs
+CRM_URL = "http://crm:5001"
+TICKET_URL = "http://ticket-system:5002"
+ANALYTICS_URL = "http://analytics:5003"
+
+@app.route('/support/handle-ticket', methods=['POST'])
+def handle_ticket():
+    data = request.json
+    ticket_id = data.get('ticket_id')
+    
+    # Get ticket details
+    ticket_response = requests.get(f"{TICKET_URL}/tickets/{ticket_id}")
+    ticket = ticket_response.json()
+    
+    # Get customer details
+    customer_id = ticket.get('customer_id')
+    customer_response = requests.get(f"{CRM_URL}/customers/{customer_id}")
+    customer = customer_response.json()
+    
+    # Analyze sentiment
+    sentiment_response = requests.post(
+        f"{ANALYTICS_URL}/analyze/sentiment", 
+        json={"text": ticket.get('description', '')}
+    )
+    sentiment_data = sentiment_response.json()
+    
+    # Categorize ticket
+    category_response = requests.post(
+        f"{ANALYTICS_URL}/analyze/categorize", 
+        json={"text": ticket.get('description', '')}
+    )
+    category_data = category_response.json()
+    
+    # Return combined data
+    return jsonify({
+        "ticket": ticket,
+        "customer": customer,
+        "analysis": {
+            "sentiment": sentiment_data.get("sentiment"),
+            "category": category_data.get("primary_category")
+        }
+    })
+
+@app.route('/support/respond-to-ticket', methods=['POST'])
+def respond_to_ticket():
+    data = request.json
+    ticket_id = data.get('ticket_id')
+    response_text = data.get('response')
+    update_status = data.get('update_status')
+    add_customer_note = data.get('add_customer_note', False)
+    
+    # Add response to ticket
+    requests.post(
+        f"{TICKET_URL}/tickets/{ticket_id}/respond", 
+        json={"response": response_text}
+    )
+    
+    # Update ticket status if requested
+    if update_status:
+        requests.put(
+            f"{TICKET_URL}/tickets/{ticket_id}/status",
+            json={"status": update_status}
+        )
+    
+    # Add note to customer CRM if requested
+    if add_customer_note:
+        # Get customer_id from ticket
+        ticket_response = requests.get(f"{TICKET_URL}/tickets/{ticket_id}")
+        ticket = ticket_response.json()
+        customer_id = ticket.get('customer_id')
+        
+        # Add note
+        note = f"Ticket {ticket_id} - Response: {response_text[:100]}..."
+        requests.post(
+            f"{CRM_URL}/customers/{customer_id}/notes",
+            json={"note": note}
+        )
+    
+    return jsonify({"success": True})</code></pre>
+
+                <div class="note">
+                    <span class="note-title">Implementation Note</span>
+                    <p>This lab focuses on the architecture and design of the system. To create a fully functioning implementation, you would need to create the individual microservices (CRM, ticket system, and analytics). For simplicity, you could implement them as mock services that return predefined responses.</p>
+                </div>
+
+                <h2 id="step6">Step 6: Testing the Workflow</h2>
+                <p>Create a simple test script:</p>
+                <pre><code class="language-python">import requests
+import json
+
+API_KEY = "your_claude_api_key"
+MCP_URL = "http://localhost:8080/v1/messages"
+
+headers = {
+    "x-api-key": API_KEY,
+    "Content-Type": "application/json"
+}
+
+# First, get the ticket details and analysis
+conversation = {
+    "model": "claude-3-opus-20240229",
+    "messages": [
+        {"role": "user", "content": "Can you help me handle customer support ticket TKT-1001? Analyze it and draft a response."}
+    ],
+    "tools": [
+        {
+            "name": "support",
+            "description": "Manages customer support tickets, including retrieving ticket details, analyzing sentiment, responding to tickets, and updating status"
+        }
+    ]
+}
+
+response = requests.post(MCP_URL, headers=headers, json=conversation)
+result = response.json()
+print(json.dumps(result, indent=2))</code></pre>
+
+                <h2 id="step7">Step 7: Example Workflow</h2>
+                <ol>
+                    <li>Claude calls the <code>handle_ticket</code> function to retrieve ticket details, customer information, and analysis</li>
+                    <li>Claude generates an appropriate response based on the ticket type and sentiment</li>
+                    <li>Claude calls the <code>respond_to_ticket</code> function to post the response and update the ticket status</li>
+                    <li>The support server coordinates between the CRM, ticketing, and analytics services</li>
+                </ol>
+
+                <h2 id="business-applications">Business Applications</h2>
+                <p>This automated customer support system demonstrates how MCP enables AI to:</p>
+                <ol>
+                    <li><strong>Reduce Response Time</strong>: Automate first-level support responses</li>
+                    <li><strong>Ensure Consistency</strong>: Apply the same high-quality standards to all tickets</li>
+                    <li><strong>Knowledge Integration</strong>: Pull information from multiple business systems</li>
+                    <li><strong>Intelligent Routing</strong>: Categorize and route complex issues to specialists</li>
+                    <li><strong>Data-Driven Insights</strong>: Track sentiment and resolution metrics over time</li>
+                </ol>
+
+                <h2 id="next-steps">Next Steps</h2>
+                <ul>
+                    <li>Integrate with real CRM systems like Salesforce or HubSpot</li>
+                    <li>Add knowledge base search functionality</li>
+                    <li>Implement ticket prioritization algorithms</li>
+                    <li>Create a notification system for unresolved tickets</li>
+                    <li>Build a dashboard to visualize support metrics</li>
+                </ul>
+            </div>
+            
+            <div class="lab-nav">
+                <a href="../03-database-integration/index.html" class="lab-nav-prev">Lab 3: Database Integration</a>
+                <a href="../05-rag-document-qa/index.html" class="lab-nav-next">Lab 5: RAG Document Q&A</a>
+            </div>
+            
+            <footer class="footer">
+                <p>Model Context Protocol (MCP) Portal</p>
+                <p>Repository: <a href="https://github.com/ajeetraina/mcp-portal">github.com/ajeetraina/mcp-portal</a></p>
+            </footer>
+        </main>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Highlight code blocks
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+            
+            // Set active nav link
+            const currentPath = window.location.pathname;
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (currentPath.includes(link.getAttribute('href'))) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
