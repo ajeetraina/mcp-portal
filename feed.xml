@@ -1,4 +1,96 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://ajeetraina.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ajeetraina.github.io/" rel="alternate" type="text/html" /><updated>2025-05-02T16:53:28+00:00</updated><id>https://ajeetraina.github.io/feed.xml</id><title type="html">MCP Community Portal</title><subtitle>A community-driven collection of Dockerized Model Context Protocol servers</subtitle><entry><title type="html">GitHub MCP Server, Docker, and Claude Desktop</title><link href="https://ajeetraina.github.io/tutorials/mcp/github/2025/04/09/github-mcp-server-docker-and-claude-desktop.html" rel="alternate" type="text/html" title="GitHub MCP Server, Docker, and Claude Desktop" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-04-09T00:00:00+00:00</updated><id>https://ajeetraina.github.io/tutorials/mcp/github/2025/04/09/github-mcp-server-docker-and-claude-desktop</id><content type="html" xml:base="https://ajeetraina.github.io/tutorials/mcp/github/2025/04/09/github-mcp-server-docker-and-claude-desktop.html"><![CDATA[<p>In today’s fast-paced dynamic development landscape, managing repositories and performing file operations on GitHub can often become a tedious chore. What if you could automate and simplify these tasks with just a single tool? This brings us to GitHub MCP Server.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://ajeetraina.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ajeetraina.github.io/" rel="alternate" type="text/html" /><updated>2025-05-02T16:53:56+00:00</updated><id>https://ajeetraina.github.io/feed.xml</id><title type="html">MCP Community Portal</title><subtitle>A community-driven collection of Dockerized Model Context Protocol servers</subtitle><entry><title type="html">Introduction to Model Context Protocol (MCP)</title><link href="https://ajeetraina.github.io/getting-started/2025/05/01/introduction-to-mcp.html" rel="alternate" type="text/html" title="Introduction to Model Context Protocol (MCP)" /><published>2025-05-01T00:00:00+00:00</published><updated>2025-05-01T00:00:00+00:00</updated><id>https://ajeetraina.github.io/getting-started/2025/05/01/introduction-to-mcp</id><content type="html" xml:base="https://ajeetraina.github.io/getting-started/2025/05/01/introduction-to-mcp.html"><![CDATA[<p>The Model Context Protocol (MCP) is changing how AI assistants interact with external tools and services. In this introductory guide, we’ll explore what MCP is, how it works, and why it’s transforming AI applications.</p>
+
+<h2 id="what-is-mcp">What is MCP?</h2>
+
+<p>Model Context Protocol (MCP) is an open protocol designed by Anthropic that enables AI assistants to interact with external tools and data sources in a standardized way. At its core, MCP provides a structured communication framework between AI models and various tools, allowing models like Claude to access real-time information, execute actions, and deliver more useful responses.</p>
+
+<p>Think of MCP as a bridge connecting AI models to an ecosystem of specialized tools—web browsers, database connectors, image generators, and much more. This connectivity vastly extends what an AI assistant can do beyond its pre-trained knowledge.</p>
+
+<h2 id="how-mcp-works">How MCP Works</h2>
+
+<p>MCP operates on a simple but powerful client-server architecture:</p>
+
+<ol>
+  <li><strong>The Tool Provider</strong>: Defines capabilities by exposing a JSON schema that describes what a tool can do</li>
+  <li><strong>The AI Assistant</strong>: Claude or another LLM discovers available tools and decides when to use them</li>
+  <li><strong>The Communication Protocol</strong>: Standardized messages between the AI and tools</li>
+  <li><strong>The Results Integration</strong>: How the AI incorporates tool responses into its answers</li>
+</ol>
+
+<p>This architecture allows AI to maintain context while leveraging specialized external resources when needed.</p>
+
+<h2 id="core-components-of-mcp">Core Components of MCP</h2>
+
+<p>An MCP implementation typically consists of:</p>
+
+<ul>
+  <li><strong>MCP Servers</strong>: Docker containers or services that implement specific functionalities</li>
+  <li><strong>Tool Definitions</strong>: JSON Schema descriptions of what each tool can do</li>
+  <li><strong>Authentication</strong>: Methods to secure communication between components</li>
+  <li><strong>Response Handlers</strong>: Code that processes and incorporates tool outputs</li>
+</ul>
+
+<p>Docker has partnered with Anthropic to build and maintain container images for MCP servers, available on Docker Hub under the <code class="language-plaintext highlighter-rouge">mcp/</code> namespace. This containerization approach makes MCP tools easy to deploy, scale, and secure.</p>
+
+<h2 id="why-mcp-matters">Why MCP Matters</h2>
+
+<p>The introduction of MCP represents a significant advancement in AI capabilities for several reasons:</p>
+
+<ul>
+  <li><strong>Current Information</strong>: AI can access real-time data instead of relying solely on training data</li>
+  <li><strong>Specialized Capabilities</strong>: Models can leverage purpose-built tools for specific tasks</li>
+  <li><strong>Reduced Hallucination</strong>: Access to factual data sources reduces incorrect responses</li>
+  <li><strong>Complex Workflows</strong>: AI can orchestrate multi-step processes using different tools</li>
+  <li><strong>Customization</strong>: Developers can extend AI capabilities in domain-specific ways</li>
+</ul>
+
+<p>These benefits make MCP-enabled AI assistants far more practical for real-world applications where accuracy, specialization, and up-to-date information are essential.</p>
+
+<h2 id="mcp-vs-other-approaches">MCP vs. Other Approaches</h2>
+
+<p>Before MCP, developers had several approaches to extending AI capabilities:</p>
+
+<ul>
+  <li><strong>Custom APIs</strong>: Building one-off integrations between models and services</li>
+  <li><strong>Prompt Engineering</strong>: Crafting elaborate prompts that guide AI behavior</li>
+  <li><strong>Retrieval-Augmented Generation (RAG)</strong>: Adding document retrieval to enhance responses</li>
+  <li><strong>Function Calling</strong>: Model-specific approaches to tool usage</li>
+</ul>
+
+<p>MCP builds upon these approaches but provides a more standardized, extensible framework that works across different models and services. It’s designed as an open protocol rather than a proprietary solution.</p>
+
+<h2 id="getting-started-with-mcp">Getting Started with MCP</h2>
+
+<p>Ready to start experimenting with MCP? Here’s a simple example using Docker:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># docker-compose.yml</span>
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">time</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/time</span>
+  <span class="na">fetch</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/fetch</span>
+  <span class="na">fs</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/filesystem</span>
+    <span class="na">command</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">/rootfs</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">.:/rootfs</span>
+</code></pre></div></div>
+
+<p>With this configuration, you can use Docker’s Ask Gordon or another Claude interface to interact with these MCP tools. For example, you could ask “What time is it in Tokyo?” and the AI would use the time tool to give you the current time.</p>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<p>As you begin exploring MCP, consider these next steps:</p>
+
+<ol>
+  <li><a href="/labs/01-getting-started/README.html">Try our Getting Started Lab</a> for a hands-on introduction</li>
+  <li><a href="/categories/mcp-servers/">Explore available MCP servers</a> to see what tools you can use</li>
+  <li><a href="/labs/02-custom-mcp-server/README.html">Learn how to build custom MCP servers</a> for specialized needs</li>
+  <li><a href="https://github.com/ajeetraina/mcp-portal/discussions">Join our community discussions</a> to share ideas and ask questions</li>
+</ol>
+
+<p>MCP is still evolving, and the community is actively developing new tools, patterns, and applications. We’re excited to see what you’ll build with this powerful protocol!</p>]]></content><author><name>Ajeet Singh Raina</name></author><category term="getting-started" /><category term="introduction" /><category term="basics" /><category term="tutorial" /><summary type="html"><![CDATA[The Model Context Protocol (MCP) is changing how AI assistants interact with external tools and services. In this introductory guide, we’ll explore what MCP is, how it works, and why it’s transforming AI applications.]]></summary></entry><entry><title type="html">GitHub MCP Server, Docker, and Claude Desktop</title><link href="https://ajeetraina.github.io/tutorials/mcp/github/2025/04/09/github-mcp-server-docker-and-claude-desktop.html" rel="alternate" type="text/html" title="GitHub MCP Server, Docker, and Claude Desktop" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-04-09T00:00:00+00:00</updated><id>https://ajeetraina.github.io/tutorials/mcp/github/2025/04/09/github-mcp-server-docker-and-claude-desktop</id><content type="html" xml:base="https://ajeetraina.github.io/tutorials/mcp/github/2025/04/09/github-mcp-server-docker-and-claude-desktop.html"><![CDATA[<p>In today’s fast-paced dynamic development landscape, managing repositories and performing file operations on GitHub can often become a tedious chore. What if you could automate and simplify these tasks with just a single tool? This brings us to GitHub MCP Server.</p>
 
 <h2 id="what-is-github-mcp-server">What is GitHub MCP Server?</h2>
 
