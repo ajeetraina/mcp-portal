@@ -11,11 +11,31 @@ title: Home
         Explore Docker's integration with the Model Context Protocol (MCP), offering containerized MCP servers that enable AI assistants to access external tools and data sources.
       </p>
       <div class="hero-cta">
-        <a href="#mcp-servers" class="btn btn-primary">
+        <a href="{{ '/categories/getting-started' | relative_url }}" class="btn btn-primary">
+          <i class="fas fa-book-open"></i> Documentation Portal
+        </a>
+        <a href="#mcp-servers" class="btn btn-secondary">
           <i class="fas fa-server"></i> Explore MCP Servers
         </a>
         <a href="{{ '/tools.html' | relative_url }}" class="btn btn-secondary">
           <i class="fas fa-tools"></i> Browse MCP Tools
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- New Documentation Banner Section -->
+<section class="docs-banner">
+  <div class="container">
+    <div class="docs-banner-content">
+      <div class="docs-banner-text">
+        <h2><i class="fas fa-book-open"></i> New Documentation Portal</h2>
+        <p>Explore our newly launched documentation portal with comprehensive guides, tutorials, and best practices for MCP. Browse content by categories and access all labs from a convenient sidebar navigation.</p>
+      </div>
+      <div class="docs-banner-actions">
+        <a href="{{ '/categories/getting-started' | relative_url }}" class="btn btn-light">
+          <i class="fas fa-arrow-right"></i> Browse Documentation
         </a>
       </div>
     </div>
@@ -283,3 +303,102 @@ services:
     </div>
   </div>
 </section>
+
+<style>
+  /* Documentation Banner Styles */
+  .docs-banner {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 2rem 0;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .docs-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M149.5 149.5C168.6 130.3 180 104.3 180 75.5C180 34.3 146.7 1 105.5 1C64.3 1 31 34.3 31 75.5C31 116.7 64.3 150 105.5 150C123.2 150 139.6 145.3 153.3 137" stroke="rgba(255,255,255,0.1)" stroke-width="2" fill="none"/></svg>');
+    background-position: center;
+    background-repeat: repeat;
+    opacity: 0.15;
+    z-index: 0;
+  }
+  
+  .docs-banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .docs-banner-text {
+    flex: 1;
+  }
+  
+  .docs-banner-text h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .docs-banner-text p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 700px;
+    line-height: 1.6;
+  }
+  
+  .docs-banner-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .btn-light {
+    background-color: white;
+    color: var(--color-primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-light:hover {
+    background-color: #f8f9fa;
+    color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  @media (max-width: 768px) {
+    .docs-banner-content {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .docs-banner-text h2 {
+      justify-content: center;
+    }
+    
+    .docs-banner-text p {
+      margin: 0 auto 1.5rem;
+    }
+    
+    .docs-banner-actions {
+      justify-content: center;
+    }
+  }
+</style>
