@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources.">
+  <meta name="keywords" content="docker, mcp, model, context, protocol, servers, tools, community">
+  <title>Introduction to Model Context Protocol (MCP) - MCP Community Portal</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/pr-preview/pr-40/assets/images/docker-logo.svg">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/pr-preview/pr-40/assets/css/main.css">
+  <link rel="stylesheet" href="/pr-preview/pr-40/assets/css/tools.css">
+  <link rel="stylesheet" href="/pr-preview/pr-40/assets/css/home.css">
+  <link rel="stylesheet" href="/pr-preview/pr-40/assets/css/lab-styles.css">
+  <link rel="stylesheet" href="/pr-preview/pr-40/assets/css/code-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-40/assets/css/banner-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-40/assets/css/image-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-40/assets/css/heading-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-40/assets/css/header-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-40/assets/css/github-stars.css">
+  <link rel="stylesheet" href="/pr-preview/pr-40/assets/css/docker-downloads.css">
+  <link rel="stylesheet" href="/pr-preview/pr-40/assets/css/sidebar.css">
+  <link rel="stylesheet" href="/pr-preview/pr-40/assets/css/content-fix.css">
+  
+  <!-- Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Introduction to Model Context Protocol (MCP) | MCP Community Portal</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Introduction to Model Context Protocol (MCP)" />
+<meta name="author" content="Ajeet Singh Raina" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The Model Context Protocol (MCP) is changing how AI assistants interact with external tools and services. In this introductory guide, we’ll explore what MCP is, how it works, and why it’s transforming AI applications." />
+<meta property="og:description" content="The Model Context Protocol (MCP) is changing how AI assistants interact with external tools and services. In this introductory guide, we’ll explore what MCP is, how it works, and why it’s transforming AI applications." />
+<link rel="canonical" href="https://mcp.collabnix.com/pr-preview/pr-40/getting-started/2025/05/01/introduction-to-mcp.html" />
+<meta property="og:url" content="https://mcp.collabnix.com/pr-preview/pr-40/getting-started/2025/05/01/introduction-to-mcp.html" />
+<meta property="og:site_name" content="MCP Community Portal" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-05-01T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Introduction to Model Context Protocol (MCP)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Ajeet Singh Raina"},"dateModified":"2025-05-01T00:00:00+00:00","datePublished":"2025-05-01T00:00:00+00:00","description":"The Model Context Protocol (MCP) is changing how AI assistants interact with external tools and services. In this introductory guide, we’ll explore what MCP is, how it works, and why it’s transforming AI applications.","headline":"Introduction to Model Context Protocol (MCP)","mainEntityOfPage":{"@type":"WebPage","@id":"https://mcp.collabnix.com/pr-preview/pr-40/getting-started/2025/05/01/introduction-to-mcp.html"},"url":"https://mcp.collabnix.com/pr-preview/pr-40/getting-started/2025/05/01/introduction-to-mcp.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <a href="/pr-preview/pr-40/">
+          <h1>MCP Community Portal</h1>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/pr-preview/pr-40/"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="/pr-preview/pr-40/categories/getting-started"><i class="fas fa-rocket"></i> Getting Started</a></li>
+          <li><a href="/pr-preview/pr-40/categories/mcp-servers"><i class="fas fa-server"></i> Servers</a></li>
+          <li><a href="/pr-preview/pr-40/categories/mcp-tools"><i class="fas fa-tools"></i> Tools</a></li>
+          <li><a href="/pr-preview/pr-40/labs/01-getting-started/README.html"><i class="fas fa-flask"></i> Labs</a></li>
+          <li><a href="/pr-preview/pr-40/blog/"><i class="fas fa-blog"></i> Blog</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+  
+  <div class="main-container">
+    <aside class="sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-header">
+          <h3>Categories</h3>
+        </div>
+        <div class="sidebar-nav">
+          <ul class="sidebar-menu">
+            
+              <li class="menu-item ">
+                <a href="/pr-preview/pr-40/categories/getting-started/">
+                  <i class="fas fa-rocket"></i>
+                  Getting Started
+                </a>
+                
+              </li>
+            
+              <li class="menu-item ">
+                <a href="/pr-preview/pr-40/categories/mcp-servers/">
+                  <i class="fas fa-server"></i>
+                  MCP Servers
+                </a>
+                
+                  <ul class="submenu">
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-40/categories/mcp-servers/working/">Working Servers</a>
+                      </li>
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-40/categories/mcp-servers/untested/">Untested Servers</a>
+                      </li>
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-40/categories/mcp-servers/unsupported/">Unsupported Servers</a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li class="menu-item ">
+                <a href="/pr-preview/pr-40/categories/mcp-tools/">
+                  <i class="fas fa-tools"></i>
+                  MCP Tools
+                </a>
+                
+                  <ul class="submenu">
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-40/categories/mcp-tools/authentication/">Authentication</a>
+                      </li>
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-40/categories/mcp-tools/data-processing/">Data Processing</a>
+                      </li>
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-40/categories/mcp-tools/external-apis/">External APIs</a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li class="menu-item ">
+                <a href="/pr-preview/pr-40/categories/use-cases/">
+                  <i class="fas fa-lightbulb"></i>
+                  Use Cases
+                </a>
+                
+              </li>
+            
+              <li class="menu-item ">
+                <a href="/pr-preview/pr-40/categories/deployment/">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                  Deployment
+                </a>
+                
+                  <ul class="submenu">
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-40/categories/deployment/docker-compose/">Docker Compose</a>
+                      </li>
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-40/categories/deployment/kubernetes/">Kubernetes</a>
+                      </li>
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-40/categories/deployment/cloud/">Cloud Services</a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li class="menu-item ">
+                <a href="/pr-preview/pr-40/categories/tutorials/">
+                  <i class="fas fa-book"></i>
+                  Tutorials
+                </a>
+                
+              </li>
+            
+              <li class="menu-item ">
+                <a href="/pr-preview/pr-40/categories/advanced/">
+                  <i class="fas fa-graduation-cap"></i>
+                  Advanced Topics
+                </a>
+                
+                  <ul class="submenu">
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-40/categories/advanced/security/">Security</a>
+                      </li>
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-40/categories/advanced/performance/">Performance</a>
+                      </li>
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-40/categories/advanced/scaling/">Scaling</a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+          </ul>
+        </div>
+        
+        <div class="sidebar-header">
+          <h3>Labs</h3>
+        </div>
+        <div class="sidebar-nav">
+          <ul class="sidebar-menu">
+            <li class="menu-item">
+              <a href="/pr-preview/pr-40/labs/01-getting-started/README.html">
+                <i class="fas fa-rocket"></i>
+                Getting Started with MCP
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/pr-preview/pr-40/labs/02-custom-mcp-server/README.html">
+                <i class="fas fa-wrench"></i>
+                Building Custom MCP Servers
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/pr-preview/pr-40/labs/03-database-integration/README.html">
+                <i class="fas fa-database"></i>
+                Database Integration
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/pr-preview/pr-40/labs/04-business-automation/README.html">
+                <i class="fas fa-cogs"></i>
+                Business Process Automation
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/pr-preview/pr-40/labs/05-rag-document-qa/README.html">
+                <i class="fas fa-search"></i>
+                RAG Document Q&A
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/pr-preview/pr-40/labs/06-multimodal-ai/README.html">
+                <i class="fas fa-image"></i>
+                Multimodal AI Applications
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/pr-preview/pr-40/labs/07-building-ai-agents/README.html">
+                <i class="fas fa-robot"></i>
+                Building AI Agents
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/pr-preview/pr-40/labs/08-ask-gordon/README.html">
+                <i class="fas fa-robot"></i>
+                Ask Gordon
+                <span class="menu-badge">NEW</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+    
+    <main class="content-with-sidebar">
+      <article class="post">
+  <header class="post-header">
+    <h1 class="post-title">Introduction to Model Context Protocol (MCP)</h1>
+    <div class="post-meta">
+      <time class="post-date" datetime="2025-05-01 00:00:00 +0000">
+        May 01, 2025
+      </time>
+      
+      
+        <span class="post-author">
+          <i class="fas fa-user"></i> Ajeet Singh Raina
+        </span>
+      
+      
+      
+        <span class="post-categories">
+          <i class="fas fa-folder"></i>
+          
+            <a href="/pr-preview/pr-40/categories/getting-started">getting-started</a>
+          
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <p>The Model Context Protocol (MCP) is changing how AI assistants interact with external tools and services. In this introductory guide, we’ll explore what MCP is, how it works, and why it’s transforming AI applications.</p>
+
+<h2 id="what-is-mcp">What is MCP?</h2>
+
+<p>Model Context Protocol (MCP) is an open protocol designed by Anthropic that enables AI assistants to interact with external tools and data sources in a standardized way. At its core, MCP provides a structured communication framework between AI models and various tools, allowing models like Claude to access real-time information, execute actions, and deliver more useful responses.</p>
+
+<p>Think of MCP as a bridge connecting AI models to an ecosystem of specialized tools—web browsers, database connectors, image generators, and much more. This connectivity vastly extends what an AI assistant can do beyond its pre-trained knowledge.</p>
+
+<h2 id="how-mcp-works">How MCP Works</h2>
+
+<p>MCP operates on a simple but powerful client-server architecture:</p>
+
+<ol>
+  <li><strong>The Tool Provider</strong>: Defines capabilities by exposing a JSON schema that describes what a tool can do</li>
+  <li><strong>The AI Assistant</strong>: Claude or another LLM discovers available tools and decides when to use them</li>
+  <li><strong>The Communication Protocol</strong>: Standardized messages between the AI and tools</li>
+  <li><strong>The Results Integration</strong>: How the AI incorporates tool responses into its answers</li>
+</ol>
+
+<p>This architecture allows AI to maintain context while leveraging specialized external resources when needed.</p>
+
+<h2 id="core-components-of-mcp">Core Components of MCP</h2>
+
+<p>An MCP implementation typically consists of:</p>
+
+<ul>
+  <li><strong>MCP Servers</strong>: Docker containers or services that implement specific functionalities</li>
+  <li><strong>Tool Definitions</strong>: JSON Schema descriptions of what each tool can do</li>
+  <li><strong>Authentication</strong>: Methods to secure communication between components</li>
+  <li><strong>Response Handlers</strong>: Code that processes and incorporates tool outputs</li>
+</ul>
+
+<p>Docker has partnered with Anthropic to build and maintain container images for MCP servers, available on Docker Hub under the <code class="language-plaintext highlighter-rouge">mcp/</code> namespace. This containerization approach makes MCP tools easy to deploy, scale, and secure.</p>
+
+<h2 id="why-mcp-matters">Why MCP Matters</h2>
+
+<p>The introduction of MCP represents a significant advancement in AI capabilities for several reasons:</p>
+
+<ul>
+  <li><strong>Current Information</strong>: AI can access real-time data instead of relying solely on training data</li>
+  <li><strong>Specialized Capabilities</strong>: Models can leverage purpose-built tools for specific tasks</li>
+  <li><strong>Reduced Hallucination</strong>: Access to factual data sources reduces incorrect responses</li>
+  <li><strong>Complex Workflows</strong>: AI can orchestrate multi-step processes using different tools</li>
+  <li><strong>Customization</strong>: Developers can extend AI capabilities in domain-specific ways</li>
+</ul>
+
+<p>These benefits make MCP-enabled AI assistants far more practical for real-world applications where accuracy, specialization, and up-to-date information are essential.</p>
+
+<h2 id="mcp-vs-other-approaches">MCP vs. Other Approaches</h2>
+
+<p>Before MCP, developers had several approaches to extending AI capabilities:</p>
+
+<ul>
+  <li><strong>Custom APIs</strong>: Building one-off integrations between models and services</li>
+  <li><strong>Prompt Engineering</strong>: Crafting elaborate prompts that guide AI behavior</li>
+  <li><strong>Retrieval-Augmented Generation (RAG)</strong>: Adding document retrieval to enhance responses</li>
+  <li><strong>Function Calling</strong>: Model-specific approaches to tool usage</li>
+</ul>
+
+<p>MCP builds upon these approaches but provides a more standardized, extensible framework that works across different models and services. It’s designed as an open protocol rather than a proprietary solution.</p>
+
+<h2 id="getting-started-with-mcp">Getting Started with MCP</h2>
+
+<p>Ready to start experimenting with MCP? Here’s a simple example using Docker:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># docker-compose.yml</span>
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">time</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/time</span>
+  <span class="na">fetch</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/fetch</span>
+  <span class="na">fs</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/filesystem</span>
+    <span class="na">command</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">/rootfs</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">.:/rootfs</span>
+</code></pre></div></div>
+
+<p>With this configuration, you can use Docker’s Ask Gordon or another Claude interface to interact with these MCP tools. For example, you could ask “What time is it in Tokyo?” and the AI would use the time tool to give you the current time.</p>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<p>As you begin exploring MCP, consider these next steps:</p>
+
+<ol>
+  <li><a href="/labs/01-getting-started/README.html">Try our Getting Started Lab</a> for a hands-on introduction</li>
+  <li><a href="/categories/mcp-servers/">Explore available MCP servers</a> to see what tools you can use</li>
+  <li><a href="/labs/02-custom-mcp-server/README.html">Learn how to build custom MCP servers</a> for specialized needs</li>
+  <li><a href="https://github.com/ajeetraina/mcp-portal/discussions">Join our community discussions</a> to share ideas and ask questions</li>
+</ol>
+
+<p>MCP is still evolving, and the community is actively developing new tools, patterns, and applications. We’re excited to see what you’ll build with this powerful protocol!</p>
+
+  </div>
+  
+  
+    <div class="post-tags">
+      <i class="fas fa-tags"></i>
+      
+        <span class="post-tag">introduction</span>
+      
+        <span class="post-tag">basics</span>
+      
+        <span class="post-tag">tutorial</span>
+      
+    </div>
+  
+  
+  <div class="post-share">
+    <span class="share-label">Share:</span>
+    <div class="share-buttons">
+      <a href="https://twitter.com/intent/tweet?text=Introduction%20to%20Model%20Context%20Protocol%20(MCP)&url=https://mcp.collabnix.com/pr-preview/pr-40/getting-started/2025/05/01/introduction-to-mcp.html" target="_blank" rel="noopener" class="share-twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://mcp.collabnix.com/pr-preview/pr-40/getting-started/2025/05/01/introduction-to-mcp.html&title=Introduction%20to%20Model%20Context%20Protocol%20(MCP)" target="_blank" rel="noopener" class="share-linkedin">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://mcp.collabnix.com/pr-preview/pr-40/getting-started/2025/05/01/introduction-to-mcp.html" target="_blank" rel="noopener" class="share-facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </div>
+  </div>
+  
+  <div class="post-navigation">
+    <div class="post-navigation-previous">
+      
+        <a href="/pr-preview/pr-40/tutorials/mcp/github/2025/04/09/github-mcp-server-docker-and-claude-desktop.html" class="prev-post">
+          <i class="fas fa-arrow-left"></i>
+          <span>
+            <small>Previous</small>
+            <strong>GitHub MCP Server, Docker, and Claude Desktop</strong>
+          </span>
+        </a>
+      
+    </div>
+    
+    <div class="post-navigation-next">
+      
+    </div>
+  </div>
+</article>
+
+<style>
+  /* Post styles */
+  .post {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .post-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-gray);
+  }
+  
+  .post-title {
+    font-size: 2.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  
+  .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  .post-meta a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  
+  .post-meta a:hover {
+    text-decoration: underline;
+  }
+  
+  .post-meta i {
+    margin-right: 0.4rem;
+  }
+  
+  .post-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 3rem;
+  }
+  
+  .post-content h2 {
+    font-size: 1.8rem;
+    margin: 2.5rem 0 1.25rem;
+    color: var(--color-secondary);
+  }
+  
+  .post-content h3 {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+    color: var(--color-secondary);
+  }
+  
+  .post-content h4 {
+    font-size: 1.25rem;
+    margin: 1.75rem 0 0.75rem;
+    color: var(--color-secondary);
+  }
+  
+  .post-content p {
+    margin-bottom: 1.5rem;
+  }
+  
+  .post-content ul, .post-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+  }
+  
+  .post-content li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .post-content blockquote {
+    border-left: 4px solid var(--color-primary);
+    padding: 0.75rem 1.5rem;
+    margin: 1.5rem 0;
+    background-color: var(--color-primary-light);
+    font-style: italic;
+  }
+  
+  .post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    margin: 1.5rem 0;
+  }
+  
+  .post-content pre {
+    background-color: #282c34;
+    border-radius: var(--border-radius);
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+  }
+  
+  .post-content code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9em;
+  }
+  
+  .post-content p code {
+    background-color: #f1f1f1;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    color: var(--color-secondary);
+  }
+  
+  .post-content a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  
+  .post-content a:hover {
+    text-decoration: underline;
+  }
+  
+  .post-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+  
+  .post-content th, .post-content td {
+    padding: 0.75rem;
+    border: 1px solid var(--color-gray);
+  }
+  
+  .post-content th {
+    background-color: var(--color-secondary-light);
+    font-weight: 600;
+    text-align: left;
+  }
+  
+  .post-content tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+  
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    margin: 2rem 0;
+  }
+  
+  .post-tag {
+    background-color: rgba(13, 183, 237, 0.1);
+    color: var(--color-primary);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  
+  .post-share {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--color-secondary-light);
+    border-radius: var(--border-radius);
+  }
+  
+  .share-label {
+    font-weight: 600;
+    margin-right: 1rem;
+    color: var(--color-secondary);
+  }
+  
+  .share-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .share-buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: white;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  
+  .share-buttons a:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+  
+  .share-twitter {
+    background-color: #1da1f2;
+  }
+  
+  .share-linkedin {
+    background-color: #0077b5;
+  }
+  
+  .share-facebook {
+    background-color: #4267B2;
+  }
+  
+  .post-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-gray);
+  }
+  
+  .post-navigation a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 1rem;
+    background-color: white;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-gray);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    max-width: 48%;
+    color: var(--color-text);
+  }
+  
+  .post-navigation a:hover {
+    background-color: var(--color-secondary-light);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+  }
+  
+  .post-navigation span {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .post-navigation small {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .post-navigation strong {
+    font-weight: 600;
+    color: var(--color-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+  }
+  
+  .post-navigation-previous a i {
+    margin-right: 0.75rem;
+  }
+  
+  .post-navigation-next a i {
+    margin-left: 0.75rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .post-title {
+      font-size: 2rem;
+    }
+    
+    .post-navigation {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .post-navigation a {
+      max-width: 100%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .post-title {
+      font-size: 1.75rem;
+    }
+    
+    .post-content {
+      font-size: 1rem;
+    }
+  }
+</style>
+    </main>
+  </div>
+  
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>Docker MCP Community Portal</h3>
+        <p>A community-driven resource for Docker Model Context Protocol.</p>
+        <p>&copy; 2025 MCP Community Portal. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal" target="_blank">
+              <i class="fab fa-github"></i> GitHub Repository
+            </a>
+          </li>
+          <li>
+            <a href="https://collabnix.com" target="_blank">
+              <i class="fas fa-globe"></i> Collabnix Community
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" target="_blank">
+              <i class="fas fa-code-branch"></i> Contribute to MCP Portal
+            </a>
+          </li>
+          <li>
+            <a href="https://hub.docker.com/u/mcp" target="_blank">
+              <i class="fab fa-docker"></i> MCP on Docker Hub
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+  <!-- ClipboardJS for copy functionality -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+  
+  <!-- Syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  
+  <!-- Custom scripts -->
+  <script src="/pr-preview/pr-40/assets/js/filter.js"></script>
+  <script src="/pr-preview/pr-40/assets/js/github-stars.js"></script>
+  <script src="/pr-preview/pr-40/assets/js/docker-downloads.js"></script>
+  <script src="/pr-preview/pr-40/assets/js/code-formatter.js"></script>
+  <script src="/pr-preview/pr-40/assets/js/sidebar.js"></script>
+  
+  <script>
+    // Initialize clipboard.js
+    document.addEventListener('DOMContentLoaded', function() {
+      var clipboard = new ClipboardJS('.btn-copy');
+      
+      clipboard.on('success', function(e) {
+        var button = e.trigger;
+        var originalText = button.innerHTML;
+        
+        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        button.classList.add('copied');
+        
+        setTimeout(function() {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+        
+        e.clearSelection();
+      });
+      
+      // Initialize syntax highlighting
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+<style>
+  .menu-badge {
+    display: inline-block;
+    background-color: #FF5722;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    margin-left: 6px;
+    vertical-align: middle;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+</style>
+</body>
+</html>

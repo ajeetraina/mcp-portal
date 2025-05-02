@@ -1,0 +1,84 @@
+/**
+ * GitHub Stars Styling
+ */
+
+.github-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #f1c40f;
+  font-weight: 500;
+  margin-left: 0.5rem;
+  cursor: help;
+}
+
+.github-stars i {
+  font-size: 0.9em;
+}
+
+.stars-count {
+  font-size: 0.9em;
+}
+
+/* Add star icon styling for sorting option */
+#sort-select option[value="stars"]::before {
+  content: "\f005";
+  font-family: "Font Awesome 5 Free";
+  margin-right: 0.5rem;
+  color: #f1c40f;
+}
+
+/* Active filter tag styling */
+.filter-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-secondary-light);
+  color: var(--color-secondary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-tag:hover {
+  background-color: var(--color-secondary);
+  color: white;
+}
+
+.filter-tag i {
+  font-size: 0.7rem;
+}
+
+/* Empty state styling */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  text-align: center;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--border-radius);
+  margin: 2rem 0;
+}
+
+.empty-state i {
+  font-size: 3rem;
+  color: var(--color-secondary);
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.empty-state p {
+  color: var(--color-text-muted);
+}
