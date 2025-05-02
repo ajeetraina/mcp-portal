@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 1: Getting Started with MCP | Model Context Protocol Portal</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <style>
+        :root {
+            --color-primary: #5551ff;
+            --color-beginner: #4CAF50;
+            --color-intermediate: #2196F3;
+            --color-advanced: #9C27B0;
+            --color-expert: #F44336;
+            --color-text: #333;
+            --color-text-light: #666;
+            --color-background: #fff;
+            --color-card: #f8f8f8;
+            --color-card-border: #eaeaea;
+            --color-note: #FFF9C4;
+            --color-note-border: #FFC107;
+            --color-code-bg: #f5f7ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-background);
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background-color: var(--color-card);
+            padding: 2rem;
+            border-right: 1px solid var(--color-card-border);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .content {
+            flex: 1;
+            padding: 2rem;
+            margin-left: 280px;
+            max-width: calc(100% - 280px);
+        }
+
+        .nav-logo {
+            display: block;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .nav-logo h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-primary);
+        }
+
+        .nav-logo p {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        .nav-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-section h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .nav-items {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: background-color 0.2s;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(85, 81, 255, 0.1);
+        }
+
+        .nav-link.active {
+            background-color: var(--color-primary);
+            color: white;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: var(--color-text);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--color-card-border);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 1.75rem 0 0.75rem;
+            color: var(--color-text);
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.5rem;
+            color: var(--color-text);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul, ol {
+            margin: 0 0 1rem 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.9em;
+            background-color: var(--color-code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+        }
+
+        pre {
+            background-color: var(--color-code-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--color-card-border);
+            padding-left: 1rem;
+            margin-left: 0;
+            margin-bottom: 1.5rem;
+            color: var(--color-text-light);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            border: 1px solid var(--color-card-border);
+        }
+
+        th {
+            background-color: var(--color-card);
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .note {
+            background-color: var(--color-note);
+            border: 1px solid var(--color-note-border);
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .note-title {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .banner {
+            background-color: var(--color-beginner);
+            color: white;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 2rem;
+        }
+
+        .banner h2 {
+            color: white;
+            border-bottom: none;
+            margin: 0 0 0.5rem 0;
+            padding: 0;
+        }
+
+        .banner p {
+            margin-bottom: 0;
+        }
+
+        .footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--color-card-border);
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+        }
+
+        .lab-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--color-card-border);
+        }
+
+        .lab-nav a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--color-primary);
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .lab-nav a:hover {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .lab-nav-prev:before {
+            content: "← ";
+        }
+
+        .lab-nav-next:after {
+            content: " →";
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 240px;
+            }
+            
+            .content {
+                margin-left: 240px;
+                max-width: calc(100% - 240px);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid var(--color-card-border);
+                padding: 1rem;
+            }
+            
+            .content {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 1rem;
+            }
+            
+            .nav-logo {
+                margin-bottom: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="nav-logo">
+                <a href="/">
+                    <h2>MCP Portal</h2>
+                    <p>Model Context Protocol</p>
+                </a>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Getting Started</h3>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="../01-getting-started/index.html" class="nav-link active">Lab 1: Getting Started</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../02-custom-mcp-server/index.html" class="nav-link">Lab 2: Custom MCP Server</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Intermediate</h3>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="../03-database-integration/index.html" class="nav-link">Lab 3: Database Integration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../04-business-automation/index.html" class="nav-link">Lab 4: Business Automation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../05-rag-document-qa/index.html" class="nav-link">Lab 5: RAG Document Q&A</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Advanced</h3>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="../06-multimodal-ai/index.html" class="nav-link">Lab 6: Multimodal AI</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../07-building-ai-agents/index.html" class="nav-link">Lab 7: Building AI Agents</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Resources</h3>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Learning Roadmap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/ajeetraina/mcp-portal" class="nav-link">GitHub Repository</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/ajeetraina/mcp-portal/discussions" class="nav-link">Community Discussions</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        
+        <main class="content">
+            <div class="banner">
+                <h2>Beginner Level</h2>
+                <p>Estimated Time: 45 minutes</p>
+            </div>
+
+            <div id="lab-content">
+                <h1>Lab 1: Getting Started with MCP</h1>
+                <p>This lab introduces you to the Model Context Protocol (MCP) and helps you set up your first MCP server.</p>
+
+                <h2 id="prerequisites">Prerequisites</h2>
+                <ul>
+                    <li>Docker installed on your machine</li>
+                    <li>Basic familiarity with command line interfaces</li>
+                    <li>A text editor of your choice</li>
+                </ul>
+
+                <h2 id="introduction">Introduction</h2>
+                <p>Model Context Protocol (MCP) enables AI models like Claude to interact with external tools and services. In this lab, you'll:</p>
+                <ol>
+                    <li>Set up a basic MCP environment</li>
+                    <li>Run your first MCP servers</li>
+                    <li>Create a simple interaction between Claude and your tools</li>
+                </ol>
+
+                <h2 id="step1">Step 1: Setting Up Your Environment</h2>
+                <p>Create a new directory for your MCP project:</p>
+                <pre><code class="language-bash">mkdir my-first-mcp
+cd my-first-mcp</code></pre>
+
+                <p>Create a <code>docker-compose.yml</code> file:</p>
+                <pre><code class="language-yaml">version: '3'
+services:
+  mcp:
+    image: anthropic/mcp-proxy:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - MCP_API_KEY=${MCP_API_KEY}
+      - CLAUDE_API_KEY=${CLAUDE_API_KEY}
+    volumes:
+      - ./config:/app/config</code></pre>
+
+                <p>Create a basic configuration file in <code>config/tools.json</code>:</p>
+                <pre><code class="language-json">{
+  "tools": [
+    {
+      "name": "time",
+      "service": "time",
+      "description": "Gets the current date and time",
+      "schema": {
+        "type": "function",
+        "function": {
+          "name": "time",
+          "description": "Gets the current date and time",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "timezone": {
+                "type": "string",
+                "description": "Optional timezone (e.g., 'UTC', 'America/New_York')"
+              }
+            },
+            "required": []
+          }
+        }
+      }
+    }
+  ]
+}</code></pre>
+
+                <h2 id="step2">Step 2: Running Your First MCP Server</h2>
+                <p>Start the services:</p>
+                <pre><code class="language-bash">export MCP_API_KEY=your_mcp_api_key
+export CLAUDE_API_KEY=your_claude_api_key
+docker-compose up -d</code></pre>
+
+                <p>Verify that the server is running:</p>
+                <pre><code class="language-bash">curl http://localhost:8080/healthz</code></pre>
+
+                <p>You should see a response indicating the server is healthy.</p>
+
+                <h2 id="step3">Step 3: Creating Your First MCP Conversation</h2>
+                <p>Now, you can use the MCP server in your application. Here's a simple Python example:</p>
+                <pre><code class="language-python">import requests
+import json
+
+API_KEY = "your_claude_api_key"
+MCP_URL = "http://localhost:8080/v1/messages"
+
+headers = {
+    "x-api-key": API_KEY,
+    "Content-Type": "application/json"
+}
+
+conversation = {
+    "model": "claude-3-opus-20240229",
+    "messages": [
+        {"role": "user", "content": "What time is it right now?"}
+    ],
+    "tools": [
+        {
+            "name": "time",
+            "description": "Gets the current date and time"
+        }
+    ]
+}
+
+response = requests.post(MCP_URL, headers=headers, json=conversation)
+result = response.json()
+print(json.dumps(result, indent=2))</code></pre>
+
+                <h2 id="next-steps">Next Steps</h2>
+                <ul>
+                    <li>Try adding more tools to your configuration</li>
+                    <li>Experiment with different queries to Claude that would trigger tool use</li>
+                    <li>Move on to Lab 2 to learn about more advanced MCP features</li>
+                </ul>
+
+                <h2 id="troubleshooting">Troubleshooting</h2>
+                <ul>
+                    <li>If you encounter connection issues, ensure Docker is running properly</li>
+                    <li>Check that your API keys are correctly set in your environment</li>
+                    <li>Verify that the ports are correctly exposed in your docker-compose file</li>
+                </ul>
+
+                <div class="note">
+                    <span class="note-title">Tip</span>
+                    <p>For deeper understanding of the MCP protocol, you can inspect the network traffic between your client and the MCP server using tools like Postman or the Network tab in your browser's developer tools.</p>
+                </div>
+            </div>
+            
+            <div class="lab-nav">
+                <span></span>
+                <a href="../02-custom-mcp-server/index.html" class="lab-nav-next">Lab 2: Building a Custom MCP Server</a>
+            </div>
+            
+            <footer class="footer">
+                <p>Model Context Protocol (MCP) Portal</p>
+                <p>Repository: <a href="https://github.com/ajeetraina/mcp-portal">github.com/ajeetraina/mcp-portal</a></p>
+            </footer>
+        </main>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Highlight code blocks
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+            
+            // Set active nav link
+            const currentPath = window.location.pathname;
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (currentPath.includes(link.getAttribute('href'))) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
