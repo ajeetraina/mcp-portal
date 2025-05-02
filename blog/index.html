@@ -1,0 +1,212 @@
+---
+layout: with-sidebar
+title: MCP Blog
+---
+
+<div class="blog-container">
+  <header class="blog-header">
+    <h1 class="blog-title">MCP Community Blog</h1>
+    <p class="blog-description">Latest news, tutorials, and insights about the Model Context Protocol ecosystem</p>
+  </header>
+  
+  <div class="blog-content">
+    <div class="post-grid">
+      {% for post in site.posts %}
+        <div class="post-card">
+          <div class="post-card-header">
+            <h3 class="post-card-title">
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h3>
+            <time class="post-card-date" datetime="{{ post.date }}">
+              {{ post.date | date: "%B %d, %Y" }}
+            </time>
+            {% if post.author %}
+              <span class="post-card-author">
+                <i class="fas fa-user"></i> {{ post.author }}
+              </span>
+            {% endif %}
+          </div>
+          <div class="post-card-excerpt">
+            {{ post.excerpt | strip_html | truncatewords: 30 }}
+          </div>
+          <div class="post-card-footer">
+            <a href="{{ post.url | relative_url }}" class="post-card-link">Read more</a>
+            {% if post.categories.size > 0 %}
+              <div class="post-card-categories">
+                <i class="fas fa-folder"></i>
+                {% for category in post.categories %}
+                  <a href="{{ '/categories/' | append: category | downcase | relative_url }}" class="post-category">{{ category }}</a>{% unless forloop.last %}, {% endunless %}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Blog Styles */
+  .blog-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .blog-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-gray);
+  }
+  
+  .blog-title {
+    font-size: 2.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 0.75rem;
+  }
+  
+  .blog-description {
+    font-size: 1.15rem;
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .post-card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+  }
+  
+  .post-card-header {
+    padding: 1.5rem 1.5rem 0.75rem;
+  }
+  
+  .post-card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+  
+  .post-card-title a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .post-card-title a:hover {
+    color: var(--color-primary);
+  }
+  
+  .post-card-date {
+    display: block;
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 0.5rem;
+  }
+  
+  .post-card-author {
+    display: block;
+    font-size: 0.85rem;
+    color: #555;
+  }
+  
+  .post-card-author i {
+    margin-right: 0.3rem;
+    color: var(--color-primary);
+  }
+  
+  .post-card-excerpt {
+    padding: 0 1.5rem;
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+  
+  .post-card-footer {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid var(--color-gray);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    background-color: var(--color-secondary-light);
+  }
+  
+  .post-card-link {
+    color: var(--color-primary);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .post-card-link:hover {
+    text-decoration: underline;
+  }
+  
+  .post-card-link::after {
+    content: '\f054';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .post-card-categories {
+    font-size: 0.85rem;
+    color: #666;
+  }
+  
+  .post-card-categories i {
+    margin-right: 0.3rem;
+    color: var(--color-primary);
+  }
+  
+  .post-category {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  
+  .post-category:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .blog-title {
+      font-size: 2rem;
+    }
+    
+    .post-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .blog-title {
+      font-size: 1.75rem;
+    }
+    
+    .blog-description {
+      font-size: 1rem;
+    }
+  }
+</style>
