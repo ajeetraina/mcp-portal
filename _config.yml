@@ -1,8 +1,8 @@
 # Site settings
 title: MCP Community Portal
 description: A community-driven collection of Dockerized Model Context Protocol servers
-baseurl: "" # Empty for local development, set to "/docker-mcp-portal" for GitHub Pages
-url: "https://ajeetraina.github.io" # Replace with your GitHub Pages URL
+baseurl: "" # Empty for local development
+url: "https://mcp.collabnix.com" # Production URL
 github_username: ajeetraina
 
 # Build settings
@@ -19,6 +19,9 @@ collections:
   docs:
     output: true
     permalink: /:collection/:path/
+  labs:
+    output: true
+    permalink: /:collection/:path/
 
 # Default front matter
 defaults:
@@ -27,13 +30,17 @@ defaults:
     values:
       layout: "default"
   - scope:
-      path: "_docs"
+      path: "categories"
     values:
-      layout: "doc"
+      layout: "category"
   - scope:
-      path: "_data"
+      path: "_posts"
     values:
-      layout: "none"
+      layout: "post"
+  - scope:
+      path: "labs"
+    values:
+      layout: "with-sidebar"
 
 # Exclude from processing
 exclude:
