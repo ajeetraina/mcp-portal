@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1600 3000" width="1600" height="3000">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1600 2800" width="1600" height="2800">
   <!-- Background -->
-  <rect width="1600" height="3000" fill="#f9f9f9" />
+  <rect width="1600" height="2800" fill="#f9f9f9" />
   
   <!-- Title Section -->
   <g id="title-section">
@@ -15,7 +15,7 @@
   </g>
 
   <!-- Path Lines -->
-  <path d="M800,220 L800,2800" stroke="#ddd" stroke-width="10" stroke-dasharray="15,15" />
+  <path d="M800,220 L800,2750" stroke="#ddd" stroke-width="10" stroke-dasharray="15,15" />
 
   <!-- Day 0: Introduction Section -->
   <g id="day0">
