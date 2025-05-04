@@ -59,7 +59,7 @@
     <!-- Benefits & Use Cases -->
     <rect x="1100" y="440" width="300" height="180" rx="10" fill="#fff" stroke="#ccc" stroke-width="2" />
     <text x="1250" y="480" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#333" text-anchor="middle">
-      Benefits & Use Cases
+      Benefits &amp; Use Cases
     </text>
     <text x="1250" y="520" font-family="Arial, sans-serif" font-size="18" fill="#555" text-anchor="middle">
       Why use MCP?
@@ -102,7 +102,7 @@
       Development Setup
     </text>
     <text x="800" y="940" font-family="Arial, sans-serif" font-size="18" fill="#555" text-anchor="middle">
-      Environment & Tools
+      Environment &amp; Tools
     </text>
     <rect x="690" y="970" width="220" height="50" rx="5" fill="#e8f0fe" />
     <text x="800" y="1000" font-family="Arial, sans-serif" font-size="16" fill="#555" text-anchor="middle">
@@ -115,7 +115,7 @@
       Client-Server Basics
     </text>
     <text x="1250" y="940" font-family="Arial, sans-serif" font-size="18" fill="#555" text-anchor="middle">
-      Connection & Lifecycle
+      Connection &amp; Lifecycle
     </text>
     <rect x="1140" y="970" width="220" height="50" rx="5" fill="#e8f0fe" />
     <text x="1250" y="1000" font-family="Arial, sans-serif" font-size="16" fill="#555" text-anchor="middle">
@@ -155,7 +155,7 @@
       Resource Management
     </text>
     <text x="800" y="1360" font-family="Arial, sans-serif" font-size="18" fill="#555" text-anchor="middle">
-      Data Access & Retrieval
+      Data Access &amp; Retrieval
     </text>
     <rect x="690" y="1390" width="220" height="50" rx="5" fill="#e8f0fe" />
     <text x="800" y="1420" font-family="Arial, sans-serif" font-size="16" fill="#555" text-anchor="middle">
@@ -168,7 +168,7 @@
       Tool Implementations
     </text>
     <text x="1250" y="1360" font-family="Arial, sans-serif" font-size="18" fill="#555" text-anchor="middle">
-      Define & Execute Actions
+      Define &amp; Execute Actions
     </text>
     <rect x="1140" y="1390" width="220" height="50" rx="5" fill="#e8f0fe" />
     <text x="1250" y="1420" font-family="Arial, sans-serif" font-size="16" fill="#555" text-anchor="middle">
@@ -195,7 +195,7 @@
       Database Integration
     </text>
     <text x="350" y="1780" font-family="Arial, sans-serif" font-size="18" fill="#555" text-anchor="middle">
-      SQL & NoSQL Databases
+      SQL &amp; NoSQL Databases
     </text>
     <rect x="240" y="1810" width="220" height="50" rx="5" fill="#e8f0fe" />
     <text x="350" y="1840" font-family="Arial, sans-serif" font-size="16" fill="#555" text-anchor="middle">
@@ -208,7 +208,7 @@
       RAG Implementation
     </text>
     <text x="800" y="1780" font-family="Arial, sans-serif" font-size="18" fill="#555" text-anchor="middle">
-      Document Q&A Systems
+      Document Q&amp;A Systems
     </text>
     <rect x="690" y="1810" width="220" height="50" rx="5" fill="#e8f0fe" />
     <text x="800" y="1840" font-family="Arial, sans-serif" font-size="16" fill="#555" text-anchor="middle">
@@ -218,7 +218,7 @@
     <!-- Error Handling & Security -->
     <rect x="1100" y="1700" width="300" height="180" rx="10" fill="#fff" stroke="#ccc" stroke-width="2" />
     <text x="1250" y="1740" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#333" text-anchor="middle">
-      Error Handling & Security
+      Error Handling &amp; Security
     </text>
     <text x="1250" y="1780" font-family="Arial, sans-serif" font-size="18" fill="#555" text-anchor="middle">
       Robust Implementation
@@ -248,7 +248,7 @@
       Multimodal AI
     </text>
     <text x="350" y="2200" font-family="Arial, sans-serif" font-size="18" fill="#555" text-anchor="middle">
-      Image Generation & Analysis
+      Image Generation &amp; Analysis
     </text>
     <rect x="240" y="2230" width="220" height="50" rx="5" fill="#e8f0fe" />
     <text x="350" y="2260" font-family="Arial, sans-serif" font-size="16" fill="#555" text-anchor="middle">
@@ -274,7 +274,7 @@
       Performance Optimization
     </text>
     <text x="1250" y="2200" font-family="Arial, sans-serif" font-size="18" fill="#555" text-anchor="middle">
-      Scaling & Efficiency
+      Scaling &amp; Efficiency
     </text>
     <rect x="1140" y="2230" width="220" height="50" rx="5" fill="#e8f0fe" />
     <text x="1250" y="2260" font-family="Arial, sans-serif" font-size="16" fill="#555" text-anchor="middle">
