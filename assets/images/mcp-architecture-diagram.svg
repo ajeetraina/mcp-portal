@@ -41,7 +41,7 @@
   
   <!-- External Services Box -->
   <rect x="200" y="380" width="500" height="120" rx="10" ry="10" fill="#f1c40f" opacity="0.2" stroke="#f1c40f" stroke-width="2" />
-  <text x="450" y="410" font-family="Inter, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#333">External Services & Resources</text>
+  <text x="450" y="410" font-family="Inter, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#333">External Services &amp; Resources</text>
   
   <!-- External Services Icons -->
   <rect x="240" y="430" width="80" height="50" rx="5" ry="5" fill="#2980b9" opacity="0.8" />
