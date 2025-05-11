@@ -1,0 +1,450 @@
+---
+layout: default
+title: MCP by Country
+---
+
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-title">MCP by Country</h1>
+    <p class="page-description">
+      Explore country-specific MCP implementations, tools, and regulations across the globe.
+    </p>
+  </div>
+</section>
+
+<section class="container">
+  <div class="filter-container">
+    <div class="filter-row">
+      <div class="filter-group">
+        <label for="search-input" class="filter-label">Search Countries</label>
+        <input type="text" id="search-input" class="filter-input" placeholder="Search by country name...">
+      </div>
+      
+      <div class="filter-group">
+        <label for="region-filter" class="filter-label">Filter by Region</label>
+        <select id="region-filter" class="filter-select">
+          <option value="">All Regions</option>
+          <option value="North America">North America</option>
+          <option value="South America">South America</option>
+          <option value="Europe">Europe</option>
+          <option value="Asia">Asia</option>
+          <option value="Africa">Africa</option>
+          <option value="Oceania">Oceania</option>
+          <option value="Middle East">Middle East</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label for="support-level-filter" class="filter-label">Support Level</label>
+        <select id="support-level-filter" class="filter-select">
+          <option value="">All Support Levels</option>
+          <option value="full">Full Support</option>
+          <option value="partial">Partial Support</option>
+          <option value="community">Community Support</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="active-filters"></div>
+    
+    <button id="clear-filters" class="btn" style="display: none;">
+      <i class="fas fa-times"></i> Clear All Filters
+    </button>
+  </div>
+  
+  <div class="countries-grid">
+    {% for country in site.data.country_info %}
+      <div class="country-card" 
+           data-name="{{ country.name | downcase }}" 
+           data-region="{{ country.region | downcase }}"
+           data-support="{{ country.support_level | downcase }}">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="flag-icon flag-icon-{{ country.flag_icon }}"></i> 
+            {{ country.name }}
+          </h3>
+          <div class="card-meta">
+            <span class="country-region">
+              <i class="fas fa-globe-americas"></i> {{ country.region }}
+            </span>
+            <span class="support-level support-{{ country.support_level }}">
+              <i class="fas fa-check-circle"></i> {{ country.support_level | capitalize }} Support
+            </span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <p class="card-description">{{ country.description }}</p>
+          
+          {% if country.regulations %}
+          <div class="country-regulations">
+            <h4><i class="fas fa-gavel"></i> Regulations</h4>
+            <p>{{ country.regulations }}</p>
+          </div>
+          {% endif %}
+          
+          {% if country.custom_tools %}
+          <div class="country-tools">
+            <h4><i class="fas fa-tools"></i> Country-Specific Tools</h4>
+            <ul>
+              {% for tool in country.custom_tools %}
+                <li>{{ tool }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+          
+          <div class="tool-availability">
+            <h4><i class="fas fa-laptop-code"></i> Available Tools</h4>
+            <div class="tool-count">
+              {% assign tool_count = 0 %}
+              {% for tool_entry in site.data.mcp_tools_country %}
+                {% if tool_entry.countries contains country.code %}
+                  {% assign tool_count = tool_count | plus: 1 %}
+                {% endif %}
+              {% endfor %}
+              <span class="badge">{{ tool_count }}</span> MCP tools available
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="card-links">
+            {% if country.community_link %}
+            <a href="{{ country.community_link }}" class="btn btn-primary" target="_blank" rel="noopener">
+              <i class="fas fa-users"></i> Community
+            </a>
+            {% endif %}
+            <a href="{{ '/country/' | append: country.code | downcase | relative_url }}" class="btn btn-secondary">
+              <i class="fas fa-info-circle"></i> Details
+            </a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="container country-map-section">
+  <h2>Global MCP Adoption</h2>
+  <div id="world-map" class="world-map">
+    <!-- Map will be populated by JavaScript -->
+  </div>
+  <div class="map-legend">
+    <span class="legend-item full"><i class="fas fa-square"></i> Full Support</span>
+    <span class="legend-item partial"><i class="fas fa-square"></i> Partial Support</span>
+    <span class="legend-item community"><i class="fas fa-square"></i> Community Support</span>
+  </div>
+</section>
+
+<style>
+  /* Country cards grid layout */
+  .countries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  
+  .country-card {
+    background-color: var(--color-card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .country-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-hover);
+  }
+  
+  .card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    background: linear-gradient(to right, var(--color-primary-light), var(--color-primary));
+    color: white;
+  }
+  
+  .card-title {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+  }
+  
+  .card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+    flex: 1;
+  }
+  
+  .card-description {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  .country-regulations,
+  .country-tools,
+  .tool-availability {
+    margin-top: 1.5rem;
+  }
+  
+  .country-regulations h4,
+  .country-tools h4,
+  .tool-availability h4 {
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-secondary);
+  }
+  
+  .country-tools ul {
+    list-style-type: none;
+    padding-left: 0.5rem;
+  }
+  
+  .country-tools li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .country-tools li:before {
+    content: "?";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: bold;
+  }
+  
+  .card-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.02);
+  }
+  
+  .card-links {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  /* Support level styling */
+  .support-level {
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  
+  .support-full {
+    background-color: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+  }
+  
+  .support-partial {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #d39e00;
+  }
+  
+  .support-community {
+    background-color: rgba(23, 162, 184, 0.2);
+    color: #17a2b8;
+  }
+  
+  .tool-count .badge {
+    background-color: var(--color-secondary);
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  
+  /* World map section */
+  .country-map-section {
+    margin: 4rem 0;
+    text-align: center;
+  }
+  
+  .world-map {
+    height: 400px;
+    margin: 2rem 0;
+    background-color: #f8f9fa;
+    border-radius: var(--border-radius);
+  }
+  
+  .map-legend {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .legend-item.full i {
+    color: #28a745;
+  }
+  
+  .legend-item.partial i {
+    color: #ffc107;
+  }
+  
+  .legend-item.community i {
+    color: #17a2b8;
+  }
+  
+  /* Flag icons */
+  .flag-icon {
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Filter functionality
+    const searchInput = document.getElementById('search-input');
+    const regionFilter = document.getElementById('region-filter');
+    const supportFilter = document.getElementById('support-level-filter');
+    const clearFiltersBtn = document.getElementById('clear-filters');
+    const countryCards = document.querySelectorAll('.country-card');
+    const activeFiltersContainer = document.querySelector('.active-filters');
+    
+    let activeFilters = {
+      search: '',
+      region: '',
+      support: ''
+    };
+    
+    function updateFilters() {
+      // Update active filters display
+      activeFiltersContainer.innerHTML = '';
+      let hasActiveFilters = false;
+      
+      if (activeFilters.search) {
+        const filterTag = document.createElement('span');
+        filterTag.className = 'filter-tag';
+        filterTag.innerHTML = `
+          <i class="fas fa-search"></i> "${activeFilters.search}"
+          <button class="remove-filter" data-type="search"><i class="fas fa-times"></i></button>
+        `;
+        activeFiltersContainer.appendChild(filterTag);
+        hasActiveFilters = true;
+      }
+      
+      if (activeFilters.region) {
+        const filterTag = document.createElement('span');
+        filterTag.className = 'filter-tag';
+        filterTag.innerHTML = `
+          <i class="fas fa-globe-americas"></i> Region: ${activeFilters.region}
+          <button class="remove-filter" data-type="region"><i class="fas fa-times"></i></button>
+        `;
+        activeFiltersContainer.appendChild(filterTag);
+        hasActiveFilters = true;
+      }
+      
+      if (activeFilters.support) {
+        const filterTag = document.createElement('span');
+        filterTag.className = 'filter-tag';
+        filterTag.innerHTML = `
+          <i class="fas fa-check-circle"></i> Support: ${activeFilters.support.charAt(0).toUpperCase() + activeFilters.support.slice(1)}
+          <button class="remove-filter" data-type="support"><i class="fas fa-times"></i></button>
+        `;
+        activeFiltersContainer.appendChild(filterTag);
+        hasActiveFilters = true;
+      }
+      
+      clearFiltersBtn.style.display = hasActiveFilters ? 'block' : 'none';
+      
+      // Filter the cards
+      countryCards.forEach(card => {
+        const name = card.dataset.name || '';
+        const region = card.dataset.region || '';
+        const support = card.dataset.support || '';
+        
+        const matchesSearch = !activeFilters.search || name.includes(activeFilters.search.toLowerCase());
+        const matchesRegion = !activeFilters.region || region === activeFilters.region.toLowerCase();
+        const matchesSupport = !activeFilters.support || support === activeFilters.support.toLowerCase();
+        
+        if (matchesSearch && matchesRegion && matchesSupport) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      // Add event listeners to remove filter buttons
+      document.querySelectorAll('.remove-filter').forEach(button => {
+        button.addEventListener('click', function() {
+          const filterType = this.dataset.type;
+          activeFilters[filterType] = '';
+          
+          // Reset the corresponding filter control
+          if (filterType === 'search') {
+            searchInput.value = '';
+          } else if (filterType === 'region') {
+            regionFilter.value = '';
+          } else if (filterType === 'support') {
+            supportFilter.value = '';
+          }
+          
+          updateFilters();
+        });
+      });
+    }
+    
+    // Event listeners
+    searchInput.addEventListener('input', function() {
+      activeFilters.search = this.value.trim();
+      updateFilters();
+    });
+    
+    regionFilter.addEventListener('change', function() {
+      activeFilters.region = this.value;
+      updateFilters();
+    });
+    
+    supportFilter.addEventListener('change', function() {
+      activeFilters.support = this.value;
+      updateFilters();
+    });
+    
+    clearFiltersBtn.addEventListener('click', function() {
+      activeFilters = {
+        search: '',
+        region: '',
+        support: ''
+      };
+      
+      searchInput.value = '';
+      regionFilter.value = '';
+      supportFilter.value = '';
+      
+      updateFilters();
+    });
+    
+    // Initialize
+    updateFilters();
+    
+    // TODO: Add world map visualization with a library like jVectorMap
+    // This would typically be added after including the necessary libraries
+  });
+</script>
