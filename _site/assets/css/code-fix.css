@@ -1,0 +1,201 @@
+/* Fix for stretched code blocks */
+pre, pre code, div.highlight pre {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre;
+  word-wrap: normal;
+  box-sizing: border-box;
+  width: auto !important; /* Override any inline width */
+  display: block;
+}
+
+/* Code block specific styles - enhanced */
+.page-content pre, pre, div.highlight pre, .lab-step pre {
+  background-color: #282c34;
+  color: #f8f8f2;
+  padding: 1.2rem;
+  border-radius: 0 0 6px 6px; /* Rounded at bottom only */
+  margin: 0 0 1.5rem 0; /* Remove top margin since we have code header */
+  position: relative;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  max-width: 100%;
+  white-space: pre;
+  word-wrap: normal;
+  width: 100% !important; /* Force 100% width */
+}
+
+/* Make sure code content doesn't cause horizontal overflow */
+code {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all; /* For compatibility */
+  word-break: break-word; /* Modern browsers */
+}
+
+/* For inline code */
+:not(pre) > code {
+  white-space: normal;
+  word-break: normal;
+}
+
+/* Specific fix for large code blocks */
+.page-content pre, #content pre {
+  width: 100% !important;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+/* Make sure highlight.js doesn't break layout */
+.hljs {
+  white-space: pre;
+  overflow-x: auto;
+  word-wrap: normal;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Force code blocks to be consistent width */
+pre, code, .highlight {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* More specific selectors to override any conflicting styles */
+.page-content pre code, .lab-content pre code, #content pre code {
+  width: 100% !important;
+  max-width: 100% !important;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* Special fix for .markdown-body if used */
+.markdown-body pre, .markdown-body code {
+  max-width: 100% !important;
+  overflow-x: auto;
+}
+
+/* Very specific fix for tutorials page */
+body .page-container .page-content pre,
+body .page-container .page-content pre code,
+body .lab-container .lab-step-content pre,
+body .lab-container .lab-step-content pre code {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  box-sizing: border-box;
+}
+
+/* Override any inline styles */
+pre[style], code[style], pre code[style] {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+}
+
+/* Ensure code blocks in tutorials don't overflow */
+.page-container .page-content .language-python,
+.page-container .page-content .language-bash,
+.page-container .page-content .language-yaml,
+.page-container .page-content .language-dockerfile {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto;
+}
+
+/* Fix for improper formatting of code blocks in the lab */
+.lab-step-content pre,
+.lab-content pre,
+.page-content pre {
+  display: block;
+  padding: 1.2rem;
+  overflow-x: auto;
+  background-color: #282c34;
+  color: #f8f8f2;
+  border-radius: 0 0 6px 6px;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+/* Fix for code blocks that aren't being formatted correctly */
+.lab-step-content pre code,
+.lab-content pre code,
+.page-content pre code {
+  display: block;
+  overflow-x: auto;
+  white-space: pre;
+  padding: 0;
+  background-color: transparent;
+  border-radius: 0;
+  color: #f8f8f2;
+  width: 100% !important;
+}
+
+/* Make sure the lab structure is displayed correctly */
+.lab-prerequisites,
+.learning-objectives {
+  display: block !important;
+  margin-bottom: 2rem !important;
+  padding: 1.5rem !important;
+  border-radius: 4px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+  width: 100% !important;
+}
+
+.lab-prerequisites {
+  background-color: #f1f8fe !important;
+  border-left: 4px solid #2196f3 !important;
+}
+
+.learning-objectives {
+  background-color: #f1fef8 !important;
+  border-left: 4px solid #4caf50 !important;
+}
+
+.lab-tip {
+  padding: 1.2rem !important;
+  margin: 1.5rem 0 !important;
+  background-color: #e6f7ff !important;
+  border-left: 4px solid #1890ff !important;
+  border-radius: 4px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+  display: block !important;
+}
+
+/* Fix for the lab step headers */
+.lab-step {
+  margin-bottom: 3rem !important;
+  border: 1px solid #e9ecef !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+  display: block !important;
+}
+
+.lab-step-header {
+  padding: 1rem 1.5rem !important;
+  background-color: #0db7ed !important;
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 1.3rem !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.lab-step-content {
+  padding: 1.5rem !important;
+  background-color: #fff !important;
+  display: block !important;
+}
+
+/* Make sure code languages are properly displayed */
+code.language-bash, code.language-yaml, code.language-python {
+  color: #f8f8f2 !important;
+}
