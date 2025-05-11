@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - Global MCP Server Directory</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">MCP Portal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/roadmap/">Learning Roadmap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/directory/">Global MCP Server Directory</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/docs/">Documentation</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="container mt-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/directory/">Directory</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Search Results</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Search Header -->
+    <header class="container mt-4">
+        <h1>Search Results</h1>
+        <div class="search-container my-4">
+            <input type="text" id="search-input" class="form-control" placeholder="Search for MCP servers by country or category...">
+        </div>
+        <p class="lead" id="search-summary">Showing results for "<span id="search-term"></span>"</p>
+    </header>
+
+    <!-- Search Results -->
+    <section class="container my-5">
+        <!-- Countries Section -->
+        <div id="country-results" class="mb-5">
+            <h2 class="mb-3">Countries</h2>
+            <div class="row" id="country-results-content">
+                <!-- Country results will be dynamically inserted here -->
+                <div class="col-12">
+                    <div class="alert alert-secondary">No countries match your search.</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Servers Section -->
+        <div id="server-results" class="mb-5">
+            <h2 class="mb-3">MCP Servers</h2>
+            <div class="row" id="server-results-content">
+                <!-- Server results will be dynamically inserted here -->
+                <div class="col-12">
+                    <div class="alert alert-secondary">No servers match your search.</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Categories Section -->
+        <div id="category-results" class="mb-5">
+            <h2 class="mb-3">Categories</h2>
+            <div class="row" id="category-results-content">
+                <!-- Category results will be dynamically inserted here -->
+                <div class="col-12">
+                    <div class="alert alert-secondary">No categories match your search.</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- No Results Section -->
+        <div id="no-results" class="text-center py-5" style="display: none;">
+            <div class="alert alert-info">
+                <h3>No results found</h3>
+                <p>No MCP servers, countries, or categories match your search term "<span id="no-results-term"></span>".</p>
+                <p>Try a different search term or <a href="/directory/">browse all servers</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <p class="mb-0">Global MCP Server Directory &copy; 2025 | <a href="https://github.com/ajeetraina/mcp-portal" class="text-white">GitHub</a></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/search.js"></script>
+    <script>
+        // Handle displaying search results
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get search results from sessionStorage
+            const searchResults = JSON.parse(sessionStorage.getItem('searchResults') || '{"countries":[],"servers":[],"categories":[]}');
+            const searchTerm = sessionStorage.getItem('searchTerm') || '';
+            
+            // Display search term
+            document.getElementById('search-term').textContent = searchTerm;
+            document.getElementById('no-results-term').textContent = searchTerm;
+            document.getElementById('search-input').value = searchTerm;
+            
+            // Check if we have any results
+            const hasResults = searchResults.countries.length > 0 || 
+                              searchResults.servers.length > 0 || 
+                              searchResults.categories.length > 0;
+            
+            if (!hasResults) {
+                // Show no results message
+                document.getElementById('country-results').style.display = 'none';
+                document.getElementById('server-results').style.display = 'none';
+                document.getElementById('category-results').style.display = 'none';
+                document.getElementById('no-results').style.display = 'block';
+                return;
+            }
+            
+            // Display country results
+            if (searchResults.countries.length > 0) {
+                const countryContent = document.getElementById('country-results-content');
+                countryContent.innerHTML = '';
+                
+                searchResults.countries.forEach(country => {
+                    const countryCard = document.createElement('div');
+                    countryCard.className = 'col-md-4 mb-4';
+                    countryCard.innerHTML = `
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">${getCountryFlag(country.code)} ${country.name}</h5>
+                                <p><strong>Servers:</strong> ${country.servers.length}</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="countries/${country.code}.html" class="btn btn-sm btn-primary">View Servers</a>
+                            </div>
+                        </div>
+                    `;
+                    countryContent.appendChild(countryCard);
+                });
+            } else {
+                document.getElementById('country-results').style.display = 'none';
+            }
+            
+            // Display server results
+            if (searchResults.servers.length > 0) {
+                const serverContent = document.getElementById('server-results-content');
+                serverContent.innerHTML = '';
+                
+                searchResults.servers.forEach(server => {
+                    const serverCard = document.createElement('div');
+                    serverCard.className = 'col-md-4 mb-4';
+                    serverCard.innerHTML = `
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">${server.name}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">${getCountryFlag(server.countryCode)} ${server.countryName}</h6>
+                                <span class="badge bg-info mb-2">${server.category}</span>
+                                <p class="card-text">${truncateText(server.description, 120)}</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="countries/${server.countryCode}.html#${server.id}" class="btn btn-sm btn-primary">View Details</a>
+                            </div>
+                        </div>
+                    `;
+                    serverContent.appendChild(serverCard);
+                });
+            } else {
+                document.getElementById('server-results').style.display = 'none';
+            }
+            
+            // Display category results
+            if (searchResults.categories.length > 0) {
+                const categoryContent = document.getElementById('category-results-content');
+                categoryContent.innerHTML = '';
+                
+                searchResults.categories.forEach(category => {
+                    const categoryCard = document.createElement('div');
+                    categoryCard.className = 'col-md-4 mb-4';
+                    categoryCard.innerHTML = `
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">${category.icon} ${category.name}</h5>
+                                <p class="card-text">${category.description}</p>
+                                <p><strong>Servers:</strong> ${category.count}</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="categories/${category.id}.html" class="btn btn-sm btn-primary">View Category</a>
+                            </div>
+                        </div>
+                    `;
+                    categoryContent.appendChild(categoryCard);
+                });
+            } else {
+                document.getElementById('category-results').style.display = 'none';
+            }
+        });
+        
+        // Helper functions
+        function getCountryFlag(countryCode) {
+            // This is a simple function to get a flag emoji from a country code
+            const flagOffset = 127397; // Offset to convert ASCII to regional indicator symbols
+            const emoji = Array.from(countryCode.toUpperCase())
+                .map(char => String.fromCodePoint(char.charCodeAt(0) + flagOffset))
+                .join('');
+            return emoji;
+        }
+        
+        function truncateText(text, maxLength) {
+            if (text.length <= maxLength) {
+                return text;
+            }
+            return text.substring(0, maxLength - 3) + '...';
+        }
+        
+        // Function to update search results display - called from search.js
+        function updateSearchResultsDisplay(results, searchTerm) {
+            // Update the sessionStorage and reload the page to show the results
+            sessionStorage.setItem('searchResults', JSON.stringify(results));
+            sessionStorage.setItem('searchTerm', searchTerm);
+            
+            // Reload the current page to refresh the results
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>

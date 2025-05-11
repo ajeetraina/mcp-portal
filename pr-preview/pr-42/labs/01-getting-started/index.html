@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started with MCP - Lab 01</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <style>
+        :root {
+            --color-primary: #5551ff;
+            --color-secondary: #4CAF50;
+            --color-text: #333;
+            --color-text-light: #666;
+            --color-background: #fff;
+            --color-card: #f8f8f8;
+            --color-card-border: #eaeaea;
+            --color-code-bg: #f5f5f5;
+            --color-note: #e1f5fe;
+            --color-note-border: #039be5;
+            --color-warning: #fff8e1;
+            --color-warning-border: #ffc107;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-background);
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background-color: var(--color-card);
+            padding: 2rem;
+            border-right: 1px solid var(--color-card-border);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .content {
+            flex: 1;
+            padding: 2rem;
+            margin-left: 280px;
+            max-width: calc(100% - 280px);
+        }
+
+        .nav-logo {
+            display: block;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .nav-logo h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-primary);
+        }
+
+        .nav-logo p {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        .nav-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-section h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .nav-items {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: background-color 0.2s;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(85, 81, 255, 0.1);
+        }
+
+        .nav-link.active {
+            background-color: var(--color-primary);
+            color: white;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--color-text);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--color-card-border);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 2rem 0 1rem;
+            color: var(--color-text);
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--color-text);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--color-text-light);
+        }
+
+        pre {
+            background-color: var(--color-code-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        code {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .note {
+            background-color: var(--color-note);
+            border-left: 4px solid var(--color-note-border);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .note h4 {
+            margin-top: 0;
+            color: #0277bd;
+        }
+
+        .warning {
+            background-color: var(--color-warning);
+            border-left: 4px solid var(--color-warning-border);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning h4 {
+            margin-top: 0;
+            color: #ff8f00;
+        }
+
+        .step {
+            background-color: var(--color-card);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .step h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 2rem auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .diagram {
+            max-width: 700px;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--color-card-border);
+        }
+
+        .nav-link {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--color-card-border);
+        }
+
+        .image-caption {
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            margin-top: -1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .banner {
+            background-color: var(--color-secondary);
+            color: white;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 2rem;
+        }
+
+        .banner h2 {
+            color: white;
+            border-bottom: none;
+            margin: 0 0 0.5rem 0;
+            padding: 0;
+        }
+
+        .banner p {
+            margin-bottom: 0;
+        }
+
+        .lab-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--color-card-border);
+        }
+
+        .lab-nav a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--color-primary);
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .lab-nav a:hover {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .lab-nav-prev:before {
+            content: "← ";
+        }
+
+        .lab-nav-next:after {
+            content: " →";
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 240px;
+            }
+            
+            .content {
+                margin-left: 240px;
+                max-width: calc(100% - 240px);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid var(--color-card-border);
+                padding: 1rem;
+            }
+            
+            .content {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 1rem;
+            }
+            
+            .nav-logo {
+                margin-bottom: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="nav-logo">
+                <a href="/">
+                    <h2>MCP Portal</h2>
+                    <p>Model Context Protocol</p>
+                </a>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Getting Started</h3>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="../01-getting-started/index.html" class="nav-link active">Lab 1: Getting Started</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../02-custom-mcp-server/index.html" class="nav-link">Lab 2: Custom MCP Server</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Intermediate</h3>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="../03-database-integration/index.html" class="nav-link">Lab 3: Database Integration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../04-business-automation/index.html" class="nav-link">Lab 4: Business Automation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../05-rag-document-qa/index.html" class="nav-link">Lab 5: RAG Document Q&A</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Advanced</h3>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="../06-multimodal-ai/index.html" class="nav-link">Lab 6: Multimodal AI</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../07-building-ai-agents/index.html" class="nav-link">Lab 7: Building AI Agents</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Resources</h3>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Learning Roadmap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/ajeetraina/mcp-portal" class="nav-link">GitHub Repository</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/ajeetraina/mcp-portal/discussions" class="nav-link">Community Discussions</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        
+        <main class="content">
+            <div class="banner">
+                <h2>Beginner Level</h2>
+                <p>Estimated Time: 60 minutes</p>
+            </div>
+
+            <h1>Getting Started with MCP</h1>
+            <p class="subtitle">Lab 1: Learn the basics of Model Context Protocol and set up your first MCP server</p>
+
+            <section>
+                <h2>Introduction to Model Context Protocol (MCP)</h2>
+                <p>The Model Context Protocol (MCP) is an open standard that provides a universal way to connect AI models and agentic applications to various data sources and tools. It enables AI models to interact with external systems and data, expanding their capabilities beyond what's possible with just prompting.</p>
+                
+                <h3>What is MCP?</h3>
+                <p>MCP follows a client-server model with clear separation of roles. An MCP Host (the AI application or agent) connects via an MCP Client library to one or more MCP Servers. Each server exposes a specific set of capabilities (such as reading files, querying a database, or calling an API) through a standardized protocol.</p>
+                
+                <img src="https://mcp.collabnix.com/assets/images/mcp-architecture-diagram.svg" alt="MCP Architecture Diagram" class="diagram">
+                <p class="image-caption">MCP Architecture showing the Host, Client, and Servers</p>
+                
+                <p>This is why people often refer to MCP as the "USB-C port for AI applications" - it creates a standardized interface for AI models to interact with external tools and data sources.</p>
+
+                <div class="note">
+                    <h4>Key Concept: MCP Components</h4>
+                    <ul>
+                        <li><strong>MCP Host</strong>: The AI application or agent that needs to use external tools</li>
+                        <li><strong>MCP Client</strong>: Library that handles communication between the host and servers</li>
+                        <li><strong>MCP Servers</strong>: Components that expose specific capabilities through the protocol</li>
+                    </ul>
+                </div>
+                
+                <h3>Security Architecture in MCP</h3>
+                <p>By design, the MCP architecture introduces security boundaries: the host and servers communicate only via the MCP protocol, which means security policies can be enforced at the protocol layer. For example, an MCP server can restrict which files or database entries it will return, regardless of what the AI model requests.</p>
+                
+                <p>This clear delineation of components makes it easier to apply the Zero Trust principle (treating each component and request as potentially untrusted until verified).</p>
+                
+                <div class="warning">
+                    <h4>Security Considerations</h4>
+                    <p>When AI assistants gain access to sensitive files, databases, or services via MCP, organizations must ensure those interactions are secure, authenticated, and auditable. MCP should always be implemented with proper authentication, authorization, and monitoring.</p>
+                </div>
+            </section>
+
+            <section id="prerequisites">
+                <h2>Prerequisites</h2>
+                <p>Before you begin, make sure you have the following installed and ready:</p>
+                
+                <ul>
+                    <li>Docker installed on your machine</li>
+                    <li>Basic familiarity with command line interfaces</li>
+                    <li>A text editor of your choice</li>
+                    <li>An API key for Claude (or other AI model that supports MCP)</li>
+                </ul>
+            </section>
+
+            <section id="step1">
+                <h2>Step 1: Setting Up Your Environment</h2>
+                <div class="step">
+                    <h3>Create Your Project Directory</h3>
+                    <p>Start by creating a new directory for your MCP project:</p>
+                    
+                    <pre><code>mkdir my-first-mcp
+cd my-first-mcp</code></pre>
+                    
+                    <h4>Create a Docker Compose File</h4>
+                    <p>Create a <code>docker-compose.yml</code> file in your project directory:</p>
+                    
+                    <pre><code>version: '3'
+services:
+  mcp:
+    image: anthropic/mcp-proxy:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - MCP_API_KEY=${MCP_API_KEY}
+      - CLAUDE_API_KEY=${CLAUDE_API_KEY}
+    volumes:
+      - ./config:/app/config</code></pre>
+                    
+                    <h4>Create Your Configuration Directory</h4>
+                    <p>Create a <code>config</code> directory and a basic tool configuration file:</p>
+                    
+                    <pre><code>mkdir config
+touch config/tools.json</code></pre>
+                    
+                    <h4>Define Your First Tool</h4>
+                    <p>Edit <code>config/tools.json</code> to include a simple time tool:</p>
+                    
+                    <pre><code>{
+  "tools": [
+    {
+      "name": "time",
+      "service": "time",
+      "description": "Gets the current date and time",
+      "schema": {
+        "type": "function",
+        "function": {
+          "name": "time",
+          "description": "Gets the current date and time",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "timezone": {
+                "type": "string",
+                "description": "Optional timezone (e.g., 'UTC', 'America/New_York')"
+              }
+            },
+            "required": []
+          }
+        }
+      }
+    }
+  ]
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="step2">
+                <h2>Step 2: Running Your First MCP Server</h2>
+                <div class="step">
+                    <h3>Start the MCP Server</h3>
+                    <p>Set your API keys as environment variables and start the Docker container:</p>
+                    
+                    <pre><code>export MCP_API_KEY=your_mcp_api_key
+export CLAUDE_API_KEY=your_claude_api_key
+docker-compose up -d</code></pre>
+                    
+                    <h4>Verify the Server is Running</h4>
+                    <p>Check if your MCP server is running correctly:</p>
+                    
+                    <pre><code>curl http://localhost:8080/healthz</code></pre>
+                    
+                    <p>You should see a response indicating the server is healthy.</p>
+                    
+                    <div class="note">
+                        <h4>Troubleshooting Tips</h4>
+                        <ul>
+                            <li>If you encounter connection issues, ensure Docker is running properly</li>
+                            <li>Check that your API keys are correctly set in your environment</li>
+                            <li>Verify that the ports are correctly exposed in your docker-compose file</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="step3">
+                <h2>Step 3: Creating Your First MCP Conversation</h2>
+                <div class="step">
+                    <h3>Using the MCP Server in Your Application</h3>
+                    <p>Now, let's create a simple Python script to interact with your MCP server:</p>
+                    
+                    <pre><code>import requests
+import json
+
+API_KEY = "your_claude_api_key"
+MCP_URL = "http://localhost:8080/v1/messages"
+
+headers = {
+    "x-api-key": API_KEY,
+    "Content-Type": "application/json"
+}
+
+conversation = {
+    "model": "claude-3-opus-20240229",
+    "messages": [
+        {"role": "user", "content": "What time is it right now?"}
+    ],
+    "tools": [
+        {
+            "name": "time",
+            "description": "Gets the current date and time"
+        }
+    ]
+}
+
+response = requests.post(MCP_URL, headers=headers, json=conversation)
+result = response.json()
+print(json.dumps(result, indent=2))</code></pre>
+                    
+                    <h4>Run Your Script</h4>
+                    <p>Save this code to a file named <code>mcp_test.py</code> and run it:</p>
+                    
+                    <pre><code>python mcp_test.py</code></pre>
+                    
+                    <p>You should see a response from Claude that includes the current time, which it retrieved using the time tool via MCP.</p>
+                    
+                    <div class="note">
+                        <h4>Understanding What Happened</h4>
+                        <p>In this example, the AI model recognized the need for current time information and used the time tool to retrieve it. The MCP server handled the tool invocation and returned the result to Claude, which then incorporated it into its response.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>MCP provides a standardized way for AI models to access external tools and data sources</li>
+                    <li>The client-server architecture of MCP creates clear security boundaries</li>
+                    <li>Setting up an MCP server involves configuring Docker, defining tools, and connecting to an AI model</li>
+                    <li>Tools are defined with JSON schemas that specify their parameters and functionality</li>
+                    <li>MCP enables AI models to perform actions they couldn't do on their own, like retrieving real-time data</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Next Steps</h2>
+                <p>Now that you've set up your first MCP server and tool, you can:</p>
+                
+                <ul>
+                    <li>Try adding more tools to your configuration</li>
+                    <li>Experiment with different queries to Claude that would trigger tool use</li>
+                    <li>Move on to Lab 2 to learn about creating custom MCP servers</li>
+                </ul>
+            </section>
+
+            <div class="lab-nav">
+                <a href="../../overview.html" class="lab-nav-prev">Back to MCP Overview</a>
+                <a href="../02-custom-mcp-server/index.html" class="lab-nav-next">Lab 2: Custom MCP Servers</a>
+            </div>
+            
+            <footer class="footer">
+                <p>Model Context Protocol (MCP) Labs</p>
+                <p>Repository: <a href="https://github.com/ajeetraina/mcp-portal">github.com/ajeetraina/mcp-portal</a></p>
+            </footer>
+        </main>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set active nav link
+            const currentPath = window.location.pathname;
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (currentPath.includes(link.getAttribute('href'))) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
