@@ -6,6 +6,18 @@ Welcome to the official community portal for the Model Context Protocol (MCP)!
 
 Model Context Protocol (MCP) is a communication protocol that allows AI models to access external tools. It was introduced by Anthropic and enables Claude to use a wide range of capabilities, from browsing the web to accessing databases and generating images.
 
+## MCP Landscape
+
+We've added a comprehensive Model Context Protocol (MCP) Landscape visualization that maps out the growing ecosystem of MCP clients, servers, and tools.
+
+### Key sections of the landscape include:
+
+- MCP Architecture (Hosts, Clients, Servers)
+- Client Applications (Chat Apps, IDEs, Agent Frameworks)
+- Server Categories (Databases, Collaboration Tools, Web Access, etc.)
+- Infrastructure & Hosting solutions
+- Marketplace and discovery platforms
+
 ## About This Portal
 
 This portal serves as a comprehensive hub for:
@@ -50,6 +62,15 @@ Discover how organizations are using MCP to build powerful AI applications:
 1. Visit the [Getting Started Guide](guides/getting-started.md)
 2. Try the [Interactive MCP Tutorial](labs/01-getting-started/README.md)
 3. Join our [Community Discussions](https://github.com/ajeetraina/mcp-portal/discussions)
+
+## Running the MCP Landscape Locally
+
+To run the MCP Landscape visualization locally:
+
+1. Clone this repository: `git clone https://github.com/ajeetraina/mcp-portal.git`
+2. Install dependencies: `npm install`
+3. Start the development server: `npm run dev`
+4. Open your browser to `http://localhost:3000`
 
 ## Contributing
 
