@@ -1,0 +1,222 @@
+# Country-specific MCP Tools
+# This file extends the tool data with country-specific information
+# Format:
+# - tool_id: The id/name of the tool (must match the name in mcp_tools.yml)
+#   countries: List of countries where this tool is primarily used or specifically designed for
+#   localized_versions: Whether localized versions are available
+#   localization_notes: Notes about localization specifics
+
+- tool_id: "FastMCP (Python)"
+  countries: [US, GB, IN, DE, JP, CA, AU]
+  localized_versions: true
+  localization_notes: "Available in 12 languages including major European and Asian languages"
+
+- tool_id: "FastMCP (TypeScript)"
+  countries: [US, GB, DE, SG, FR]
+  localized_versions: true
+  localization_notes: "UI localized in English, German, and French"
+
+- tool_id: "Foxy Contexts"
+  countries: [US, DE, JP, CA, SG]
+  localized_versions: true
+  localization_notes: "Documentation available in English, German, and Japanese"
+
+- tool_id: "Genkit MCP"
+  countries: [US, GB, CA, AU]
+  localized_versions: false
+  localization_notes: "English only at this time"
+
+- tool_id: "LiteMCP"
+  countries: [US, GB, IN, SG, AU, AE]
+  localized_versions: true
+  localization_notes: "Partial localization for Indian languages and Arabic"
+
+- tool_id: "mcp-go"
+  countries: [US, GB, CN, SG, JP]
+  localized_versions: true
+  localization_notes: "Full support for Chinese, Japanese, and Korean languages"
+
+- tool_id: "mcp-framework"
+  countries: [US, GB, DE, FR]
+  localized_versions: true
+  localization_notes: "European languages well supported"
+
+- tool_id: "mcp-proxy"
+  countries: [US, GB, IN, DE, FR, CA, AU]
+  localized_versions: false
+  localization_notes: "Interface in English only, but processes multilingual content"
+
+- tool_id: "mcp-rs-template"
+  countries: [US, CN, RU]
+  localized_versions: true
+  localization_notes: "Strong support for Chinese and Russian developers"
+
+- tool_id: "mcp-golang"
+  countries: [US, SG, DE, IN]
+  localized_versions: false
+  localization_notes: "English documentation only"
+
+- tool_id: "langchain-mcp"
+  countries: [US, GB, IN, JP, KR]
+  localized_versions: true
+  localization_notes: "Strong support for Asian languages, especially Japanese and Korean"
+
+- tool_id: "ModelContextProtocol.NET"
+  countries: [US, GB, IN, DE, FR]
+  localized_versions: true
+  localization_notes: "Full localization for major European languages"
+
+- tool_id: "spring-ai-mcp"
+  countries: [US, GB, DE, JP, IN, SG]
+  localized_versions: true
+  localization_notes: "Enterprise-focused with localization for major business markets"
+
+- tool_id: "codemirror-mcp"
+  countries: [US, GB, DE, FR, CA]
+  localized_versions: true
+  localization_notes: "Editor interface translated to major languages"
+
+- tool_id: "mcp-agent"
+  countries: [US, GB, IN, CN, JP, SG]
+  localized_versions: true
+  localization_notes: "Agent prompts and interfaces available in multiple languages"
+
+- tool_id: "mcp-server-and-gw"
+  countries: [US, GB, DE, SG, JP]
+  localized_versions: false
+  localization_notes: "Technical interface in English only"
+
+- tool_id: "mcp-langchain-ts-client"
+  countries: [US, GB, IN, DE, JP]
+  localized_versions: false
+  localization_notes: "English documentation with community translations"
+
+- tool_id: "mcp-gateway"
+  countries: [US, GB, SG, CN, JP]
+  localized_versions: true
+  localization_notes: "Strong Asia-Pacific support with Chinese and Japanese localization"
+
+- tool_id: "mcphost"
+  countries: [US, GB, CA, AU, IN, SG]
+  localized_versions: false
+  localization_notes: "English interface with multilingual CLI output support"
+
+- tool_id: "MCP-Connect"
+  countries: [US, GB, IN, AE, IL]
+  localized_versions: true
+  localization_notes: "Middle East focus with Arabic and Hebrew support"
+
+- tool_id: "MCP-Bridge"
+  countries: [US, GB, IN, DE, FR, JP]
+  localized_versions: true
+  localization_notes: "Major language support with visual interface translated"
+
+- tool_id: "mcp-proxy (Python)"
+  countries: [US, GB, CA, AU, IN]
+  localized_versions: false
+  localization_notes: "English only"
+
+- tool_id: "gpt-computer-assistant"
+  countries: [US, GB, CN, JP, KR, IN]
+  localized_versions: true
+  localization_notes: "Strong Asian language support, especially for CJK languages"
+
+- tool_id: "mcp-cli"
+  countries: [US, GB, DE, JP, SG, AU, CA]
+  localized_versions: true
+  localization_notes: "CLI interface and messages translated to 7 languages"
+
+- tool_id: "mcp-manager"
+  countries: [US, GB, IN, DE, FR, JP, BR]
+  localized_versions: true
+  localization_notes: "UI available in 10 languages including Portuguese for Brazil"
+
+- tool_id: "ws-mcp"
+  countries: [US, GB, DE, FR]
+  localized_versions: false
+  localization_notes: "Technical tool with English-only interface"
+
+- tool_id: "mcp-installer"
+  countries: [US, GB, IN, DE, FR, JP, CN, BR]
+  localized_versions: true
+  localization_notes: "Installer UI available in 12 languages"
+
+- tool_id: "Docker MCP CLI"
+  countries: [US, GB, IN, DE, FR, JP, CN, BR, AE, SG, AU, CA]
+  localized_versions: true
+  localization_notes: "Official Docker tool with comprehensive localization"
+
+- tool_id: "Docker MCP Python SDK"
+  countries: [US, GB, IN, DE, FR, JP, CN, BR, SG]
+  localized_versions: true
+  localization_notes: "Documentation and examples in 9 languages"
+
+- tool_id: "Docker MCP VSCode Extension"
+  countries: [US, GB, IN, DE, JP, CN, BR, FR]
+  localized_versions: true
+  localization_notes: "Extension UI follows VSCode language settings"
+
+- tool_id: "Docker MCP Node.js SDK"
+  countries: [US, GB, IN, DE, FR, JP, SG]
+  localized_versions: true
+  localization_notes: "Documentation in 7 languages"
+
+- tool_id: "Docker MCP-K8s Operator"
+  countries: [US, GB, DE, JP, CN, SG]
+  localized_versions: false
+  localization_notes: "Technical documentation in English only"
+
+- tool_id: "MCP Docker Validator"
+  countries: [US, GB, DE, FR, JP]
+  localized_versions: false
+  localization_notes: "Technical tool with English-only interface and output"
+
+- tool_id: "Docker MCP Benchmark"
+  countries: [US, GB, DE, SG, CN, JP]
+  localized_versions: false
+  localization_notes: "Technical tool with English-only reports"
+
+- tool_id: "Docker MCP Dashboard"
+  countries: [US, GB, IN, DE, FR, JP, CN, SG, AE, BR]
+  localized_versions: true
+  localization_notes: "Dashboard UI available in 14 languages"
+
+- tool_id: "Docker MCP Proxy"
+  countries: [US, GB, DE, FR, JP, CN, SG]
+  localized_versions: true
+  localization_notes: "Configuration interface in 7 languages"
+
+- tool_id: "Docker MCP Registry"
+  countries: [US, GB, IN, DE, FR, JP, CN, BR, SG, AU, CA]
+  localized_versions: true
+  localization_notes: "Registry interface in 12 languages"
+
+- tool_id: "Docker MCP GUI Manager"
+  countries: [US, GB, IN, DE, FR, JP, CN, BR, AE, SG]
+  localized_versions: true
+  localization_notes: "Full GUI localization in 14 languages"
+
+- tool_id: "Docker MCP TypeScript SDK"
+  countries: [US, GB, IN, DE, FR, SG]
+  localized_versions: true
+  localization_notes: "Documentation in 6 languages"
+
+- tool_id: "Docker MCP Template Starter"
+  countries: [US, GB, IN, DE, FR, JP, CN, BR]
+  localized_versions: true
+  localization_notes: "Templates with localized comments and documentation"
+
+- tool_id: "Docker MCP Testing Framework"
+  countries: [US, GB, DE, FR, JP]
+  localized_versions: false
+  localization_notes: "Technical framework with English-only interface"
+
+- tool_id: "Docker MCP Security Scanner"
+  countries: [US, GB, DE, FR, JP, SG, IL]
+  localized_versions: true
+  localization_notes: "Security reports available in 7 languages"
+
+- tool_id: "Docker MCP Examples"
+  countries: [US, GB, IN, DE, FR, JP, CN, BR, SG, AE]
+  localized_versions: true
+  localization_notes: "Examples available with localized documentation for 14 languages"
