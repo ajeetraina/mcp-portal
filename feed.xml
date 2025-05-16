@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://mcp.collabnix.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mcp.collabnix.com/" rel="alternate" type="text/html" /><updated>2025-05-16T08:43:03+00:00</updated><id>https://mcp.collabnix.com/feed.xml</id><title type="html">MCP Community Portal</title><subtitle>A community-driven collection of Dockerized Model Context Protocol servers</subtitle><entry><title type="html">Introduction to Model Context Protocol (MCP)</title><link href="https://mcp.collabnix.com/getting-started/2025/05/01/introduction-to-mcp.html" rel="alternate" type="text/html" title="Introduction to Model Context Protocol (MCP)" /><published>2025-05-01T00:00:00+00:00</published><updated>2025-05-01T00:00:00+00:00</updated><id>https://mcp.collabnix.com/getting-started/2025/05/01/introduction-to-mcp</id><content type="html" xml:base="https://mcp.collabnix.com/getting-started/2025/05/01/introduction-to-mcp.html"><![CDATA[<p>The Model Context Protocol (MCP) is changing how AI assistants interact with external tools and services. In this introductory guide, we’ll explore what MCP is, how it works, and why it’s transforming AI applications.</p>
+
+<h2 id="what-is-mcp">What is MCP?</h2>
+
+<p>Model Context Protocol (MCP) is an open protocol designed by Anthropic that enables AI assistants to interact with external tools and data sources in a standardized way. At its core, MCP provides a structured communication framework between AI models and various tools, allowing models like Claude to access real-time information, execute actions, and deliver more useful responses.</p>
+
+<p>Think of MCP as a bridge connecting AI models to an ecosystem of specialized tools—web browsers, database connectors, image generators, and much more. This connectivity vastly extends what an AI assistant can do beyond its pre-trained knowledge.</p>
+
+<h2 id="how-mcp-works">How MCP Works</h2>
+
+<p>MCP operates on a simple but powerful client-server architecture:</p>
+
+<ol>
+  <li><strong>The Tool Provider</strong>: Defines capabilities by exposing a JSON schema that describes what a tool can do</li>
+  <li><strong>The AI Assistant</strong>: Claude or another LLM discovers available tools and decides when to use them</li>
+  <li><strong>The Communication Protocol</strong>: Standardized messages between the AI and tools</li>
+  <li><strong>The Results Integration</strong>: How the AI incorporates tool responses into its answers</li>
+</ol>
+
+<p>This architecture allows AI to maintain context while leveraging specialized external resources when needed.</p>
+
+<h2 id="core-components-of-mcp">Core Components of MCP</h2>
+
+<p>An MCP implementation typically consists of:</p>
+
+<ul>
+  <li><strong>MCP Servers</strong>: Docker containers or services that implement specific functionalities</li>
+  <li><strong>Tool Definitions</strong>: JSON Schema descriptions of what each tool can do</li>
+  <li><strong>Authentication</strong>: Methods to secure communication between components</li>
+  <li><strong>Response Handlers</strong>: Code that processes and incorporates tool outputs</li>
+</ul>
+
+<p>Docker has partnered with Anthropic to build and maintain container images for MCP servers, available on Docker Hub under the <code class="language-plaintext highlighter-rouge">mcp/</code> namespace. This containerization approach makes MCP tools easy to deploy, scale, and secure.</p>
+
+<h2 id="why-mcp-matters">Why MCP Matters</h2>
+
+<p>The introduction of MCP represents a significant advancement in AI capabilities for several reasons:</p>
+
+<ul>
+  <li><strong>Current Information</strong>: AI can access real-time data instead of relying solely on training data</li>
+  <li><strong>Specialized Capabilities</strong>: Models can leverage purpose-built tools for specific tasks</li>
+  <li><strong>Reduced Hallucination</strong>: Access to factual data sources reduces incorrect responses</li>
+  <li><strong>Complex Workflows</strong>: AI can orchestrate multi-step processes using different tools</li>
+  <li><strong>Customization</strong>: Developers can extend AI capabilities in domain-specific ways</li>
+</ul>
+
+<p>These benefits make MCP-enabled AI assistants far more practical for real-world applications where accuracy, specialization, and up-to-date information are essential.</p>
+
+<h2 id="mcp-vs-other-approaches">MCP vs. Other Approaches</h2>
+
+<p>Before MCP, developers had several approaches to extending AI capabilities:</p>
+
+<ul>
+  <li><strong>Custom APIs</strong>: Building one-off integrations between models and services</li>
+  <li><strong>Prompt Engineering</strong>: Crafting elaborate prompts that guide AI behavior</li>
+  <li><strong>Retrieval-Augmented Generation (RAG)</strong>: Adding document retrieval to enhance responses</li>
+  <li><strong>Function Calling</strong>: Model-specific approaches to tool usage</li>
+</ul>
+
+<p>MCP builds upon these approaches but provides a more standardized, extensible framework that works across different models and services. It’s designed as an open protocol rather than a proprietary solution.</p>
+
+<h2 id="getting-started-with-mcp">Getting Started with MCP</h2>
+
+<p>Ready to start experimenting with MCP? Here’s a simple example using Docker:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># docker-compose.yml</span>
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">time</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/time</span>
+  <span class="na">fetch</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/fetch</span>
+  <span class="na">fs</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/filesystem</span>
+    <span class="na">command</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">/rootfs</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">.:/rootfs</span>
+</code></pre></div></div>
+
+<p>With this configuration, you can use Docker’s Ask Gordon or another Claude interface to interact with these MCP tools. For example, you could ask “What time is it in Tokyo?” and the AI would use the time tool to give you the current time.</p>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<p>As you begin exploring MCP, consider these next steps:</p>
+
+<ol>
+  <li><a href="/labs/01-getting-started/README.html">Try our Getting Started Lab</a> for a hands-on introduction</li>
+  <li><a href="/categories/mcp-servers/">Explore available MCP servers</a> to see what tools you can use</li>
+  <li><a href="/labs/02-custom-mcp-server/README.html">Learn how to build custom MCP servers</a> for specialized needs</li>
+  <li><a href="https://github.com/ajeetraina/mcp-portal/discussions">Join our community discussions</a> to share ideas and ask questions</li>
+</ol>
+
+<p>MCP is still evolving, and the community is actively developing new tools, patterns, and applications. We’re excited to see what you’ll build with this powerful protocol!</p>]]></content><author><name>Ajeet Singh Raina</name></author><category term="getting-started" /><category term="introduction" /><category term="basics" /><category term="tutorial" /><summary type="html"><![CDATA[The Model Context Protocol (MCP) is changing how AI assistants interact with external tools and services. In this introductory guide, we’ll explore what MCP is, how it works, and why it’s transforming AI applications.]]></summary></entry><entry><title type="html">GitHub MCP Server, Docker, and Claude Desktop</title><link href="https://mcp.collabnix.com/tutorials/mcp/github/2025/04/09/github-mcp-server-docker-and-claude-desktop.html" rel="alternate" type="text/html" title="GitHub MCP Server, Docker, and Claude Desktop" /><published>2025-04-09T00:00:00+00:00</published><updated>2025-04-09T00:00:00+00:00</updated><id>https://mcp.collabnix.com/tutorials/mcp/github/2025/04/09/github-mcp-server-docker-and-claude-desktop</id><content type="html" xml:base="https://mcp.collabnix.com/tutorials/mcp/github/2025/04/09/github-mcp-server-docker-and-claude-desktop.html"><![CDATA[<p>In today’s fast-paced dynamic development landscape, managing repositories and performing file operations on GitHub can often become a tedious chore. What if you could automate and simplify these tasks with just a single tool? This brings us to GitHub MCP Server.</p>
+
+<h2 id="what-is-github-mcp-server">What is GitHub MCP Server?</h2>
+
+<p>Model Context Protocol (MCP) is an open protocol that standardizes how applications provide context to LLMs. Think of MCP like a USB-C port for AI applications. Just as USB-C provides a standardized way to connect your devices to various peripherals and accessories, MCP provides a standardized way to connect AI models to different data sources and tools.</p>
+
+<p>GitHub MCP Server is an innovative server designed to handle file operations, repository management, advanced search, and much more via the GitHub API. In this blog post, we’ll walk you through what GitHub MCP Server offers, demonstrate a simple use case, and show you how to get started with a live demo.</p>
+
+<h2 id="key-features-and-tools">Key Features and Tools</h2>
+
+<p>Here’s a quick look at some of the powerful operations MCP Server supports:</p>
+
+<ul>
+  <li><strong>File Operations</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">create_or_update_file</code>: Create or update a single file in a repository</li>
+      <li><code class="language-plaintext highlighter-rouge">push_files_content</code>: Push multiple files (using direct content) in a single commit</li>
+      <li><code class="language-plaintext highlighter-rouge">push_files_from_path</code>: Push files from filesystem paths</li>
+    </ul>
+  </li>
+  <li><strong>Advanced Search Capabilities</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">search_repositories</code></li>
+      <li><code class="language-plaintext highlighter-rouge">search_code</code></li>
+      <li><code class="language-plaintext highlighter-rouge">search_issues</code></li>
+      <li><code class="language-plaintext highlighter-rouge">search_users</code></li>
+    </ul>
+  </li>
+  <li><strong>Repository Operations</strong>: Create issues, pull requests, branch creation, and more</li>
+</ul>
+
+<p>For example, the <code class="language-plaintext highlighter-rouge">create_or_update_file</code> function accepts inputs such as repository owner, repository name, file path, content, commit message, and branch name, and returns details about the file and the commit. This ensures you have full control over your Git operations without manually managing Git commands.</p>
+
+<h2 id="a-quick-demo-running-github-mcp-server">A Quick Demo: Running GitHub MCP Server</h2>
+
+<h3 id="pre-requisites">Pre-requisites</h3>
+
+<ul>
+  <li>Docker Desktop</li>
+  <li>GitHub Account</li>
+  <li>Claude Desktop</li>
+</ul>
+
+<h3 id="step-1-install-docker-desktop">Step 1: Install Docker Desktop</h3>
+
+<p>Download and install Docker Desktop using <a href="https://www.docker.com/products/docker-desktop">this link</a>.</p>
+
+<h3 id="step-2-create-a-github-account-and-personal-access-token">Step 2: Create a GitHub Account and Personal Access Token</h3>
+
+<p>To get started with GitHub MCP Server, follow these steps to set up your Personal Access Token:</p>
+
+<ol>
+  <li>Navigate to GitHub Settings &gt; Developer settings &gt; Personal access tokens.</li>
+  <li>Choose the repositories you want the token to access (public, all, or selected).</li>
+  <li>For full control over private repositories, create a token with the <code class="language-plaintext highlighter-rouge">repo</code> scope. Alternatively, if you’re only dealing with public repositories, select the <code class="language-plaintext highlighter-rouge">public_repo</code> scope.</li>
+  <li>Copy your newly generated token.</li>
+</ol>
+
+<p><img src="/assets/images/github-token.png" alt="GitHub Personal Access Token Screenshot" /></p>
+
+<h3 id="step-3-install-claude-desktop">Step 3: Install Claude Desktop</h3>
+
+<p>Follow the instructions provided by Claude Desktop to install it on your system.</p>
+
+<h3 id="step-4-configure-github-mcp-server-with-docker">Step 4: Configure GitHub MCP Server with Docker</h3>
+
+<p>You can run MCP Server with Docker using the following configuration. This setup is designed to integrate with tools like Claude Desktop, but it works perfectly on its own as well.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"github"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"docker"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"run"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"-i"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"--rm"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"-e"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"GITHUB_PERSONAL_ACCESS_TOKEN"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mcp/github"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"env"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"GITHUB_PERSONAL_ACCESS_TOKEN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXX"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Replace <code class="language-plaintext highlighter-rouge">XXX</code> with the GitHub Personal Access Token you generated.</p>
+
+<h3 id="step-5-verify-mcp-tools-availability">Step 5: Verify MCP Tools Availability</h3>
+
+<p>Ensure that all MCP tools are available and correctly configured in Claude Desktop.</p>
+
+<h3 id="step-6-start-with-the-prompt">Step 6: Start with the Prompt</h3>
+
+<p>Here are some examples to get you started:</p>
+
+<h4 id="example-1">Example #1</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>You're a developer. Add the following and create a new repo with the following guidelines:
+
+Create a clone of the repo
+https://github.com/dockersamples/catalog-service-node
+to your personal repository
+https://github.com/ajeetraina/catalog-service-node-java
+
+The repo is built using NodeJS and React with a couple of services; replace it with Java or Spring Boot.
+
+Commit the changes at each step with meaningful comments.
+Create a Git Graph using mermaid.js syntax and include it in the README file.
+Write test cases and publish the results.
+Feel free to ask questions until you're clear with the objective.
+</code></pre></div></div>
+
+<h4 id="example-2">Example #2</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I have a repo called
+https://github.com/ajeetraina/bme680-jetson-neo4j
+that fetches sensor data (temperature, pressure, and humidity) and sends it to Neo4j. 
+Can you refer to the repo, simulate the values, and send them to my Neo4j graph database? 
+Get me some 20-30 entries.
+</code></pre></div></div>
+
+<p>You’ll see that a new repo is created—a clone of the existing repo with all the required files. You might require the following Claude config file for the second example:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"github"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"docker"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"run"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"-i"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"--rm"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"-e"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"GITHUB_PERSONAL_ACCESS_TOKEN"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mcp/github"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"env"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"GITHUB_PERSONAL_ACCESS_TOKEN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXXXXXXX00fhaWf"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"neo4j"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"npx"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"@alanse/mcp-neo4j-server"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"env"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"NEO4J_URI"</span><span class="p">:</span><span class="w"> </span><span class="s2">"neo4j://localhost:7687"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"NEO4J_USERNAME"</span><span class="p">:</span><span class="w"> </span><span class="s2">"neo4j"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"NEO4J_PASSWORD"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXXX"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="why-use-github-mcp-server">Why Use GitHub MCP Server?</h2>
+
+<p>GitHub MCP Server was designed with the busy developer in mind. Here are a few reasons why it’s a game-changer:</p>
+
+<ul>
+  <li><strong>Efficiency</strong>: Automate repetitive GitHub operations and streamline your workflow.</li>
+  <li><strong>Reliability</strong>: With robust error handling and clear messaging, you’ll know exactly what went wrong when issues arise.</li>
+  <li><strong>Versatility</strong>: Whether you need to manage repositories, push files in bulk, or perform advanced searches, GitHub MCP Server has you covered.</li>
+</ul>
+
+<p>By integrating GitHub MCP Server into your development pipeline, you can focus on writing code rather than managing the intricacies of GitHub interactions.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Managing GitHub operations doesn’t have to be a cumbersome process. With GitHub MCP Server, you have a powerful tool at your fingertips to automate repository management, file operations, and advanced searches—all while preserving Git history and ensuring robust error handling.</p>
+
+<p>Ready to simplify your GitHub workflow? Check out the GitHub MCP Server documentation, follow the demo steps above, and start optimizing your workflow today.</p>]]></content><author><name>Ajeet Singh Raina</name></author><category term="tutorials" /><category term="mcp" /><category term="github" /><summary type="html"><![CDATA[In today’s fast-paced dynamic development landscape, managing repositories and performing file operations on GitHub can often become a tedious chore. What if you could automate and simplify these tasks with just a single tool? This brings us to GitHub MCP Server.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://mcp.collabnix.com/assets/images/github-mcp-server.png" /><media:content medium="image" url="https://mcp.collabnix.com/assets/images/github-mcp-server.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Connecting PostgreSQL to Claude Desktop with MCP: A Step-by-Step Guide</title><link href="https://mcp.collabnix.com/tutorials/mcp/database/2025/03/29/postgresql-model-context-protocol-mcp-and-claude-desktop.html" rel="alternate" type="text/html" title="Connecting PostgreSQL to Claude Desktop with MCP: A Step-by-Step Guide" /><published>2025-03-29T00:00:00+00:00</published><updated>2025-03-29T00:00:00+00:00</updated><id>https://mcp.collabnix.com/tutorials/mcp/database/2025/03/29/postgresql-model-context-protocol-mcp-and-claude-desktop</id><content type="html" xml:base="https://mcp.collabnix.com/tutorials/mcp/database/2025/03/29/postgresql-model-context-protocol-mcp-and-claude-desktop.html"><![CDATA[<h2 id="introduction">Introduction</h2>
+
+<p>The Model Context Protocol (MCP) is revolutionizing how AI assistants interact with external tools and services. In this tutorial, we’ll explore how to connect PostgreSQL databases to Claude Desktop using the PostgreSQL MCP Server, enabling Claude to directly query and analyze your database without writing a single line of code. This powerful integration opens up new possibilities for data analysis, database administration, and AI-assisted exploration of your data.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>Before we begin, make sure you have the following installed:</p>
+
+<ul>
+  <li>Docker Desktop</li>
+  <li>Claude Desktop application</li>
+  <li>A PostgreSQL database (either local or remote)</li>
+  <li>Basic knowledge of SQL and database concepts</li>
+</ul>
+
+<h2 id="step-1-understanding-the-postgresql-mcp-server">Step 1: Understanding the PostgreSQL MCP Server</h2>
+
+<p>The PostgreSQL MCP Server acts as a bridge between Claude Desktop and your PostgreSQL database. It allows Claude to:</p>
+
+<ul>
+  <li>Execute SQL queries against your database</li>
+  <li>Create, read, update, and delete data</li>
+  <li>Analyze tables, indexes, and other database objects</li>
+  <li>Generate data visualizations and reports</li>
+</ul>
+
+<p>All of this happens through natural language requests, with the MCP server handling the translation between your instructions and the actual SQL queries.</p>
+
+<h2 id="step-2-creating-the-mcp-configuration-file">Step 2: Creating the MCP Configuration File</h2>
+
+<p>First, create a new file named <code class="language-plaintext highlighter-rouge">gordon-mcp.yml</code> with the following content:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">postgres</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">mcp/postgres</span>
+    <span class="na">command</span><span class="pi">:</span> <span class="s">postgresql://username:password@host:port/database</span>
+</code></pre></div></div>
+
+<p>Replace the following placeholders:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">username</code>: Your PostgreSQL username</li>
+  <li><code class="language-plaintext highlighter-rouge">password</code>: Your PostgreSQL password</li>
+  <li><code class="language-plaintext highlighter-rouge">host</code>: The hostname or IP address of your PostgreSQL server</li>
+  <li><code class="language-plaintext highlighter-rouge">port</code>: The port number (usually 5432)</li>
+  <li><code class="language-plaintext highlighter-rouge">database</code>: The name of your database</li>
+</ul>
+
+<blockquote>
+  <p><strong>Security Note</strong>: Never commit this file with real credentials to a public repository. Consider using environment variables or a secrets manager for production environments.</p>
+</blockquote>
+
+<h2 id="step-3-starting-the-mcp-server">Step 3: Starting the MCP Server</h2>
+
+<p>Open a terminal and navigate to the directory containing your <code class="language-plaintext highlighter-rouge">gordon-mcp.yml</code> file. Start Claude Desktop and ensure it’s properly configured to use MCP servers.</p>
+
+<p>When Claude Desktop starts up, it will automatically detect the MCP configuration file and connect to the PostgreSQL MCP server, which in turn connects to your database.</p>
+
+<h2 id="step-4-interacting-with-your-database">Step 4: Interacting with Your Database</h2>
+
+<p>Now you can start interacting with your PostgreSQL database through Claude. Here are some examples of what you can ask:</p>
+
+<h3 id="basic-data-queries">Basic Data Queries</h3>
+
+<p>You can ask Claude to query your database using natural language:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Show me the top 10 customers by total purchase amount.
+</code></pre></div></div>
+
+<p>Claude will use the PostgreSQL MCP server to translate this into an appropriate SQL query, execute it, and return the results.</p>
+
+<h3 id="schema-analysis">Schema Analysis</h3>
+
+<p>You can ask Claude to analyze your database schema:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>What tables exist in the database and how are they related?
+</code></pre></div></div>
+
+<p>Claude will retrieve the schema information and present it in an easy-to-understand format.</p>
+
+<h3 id="data-visualization">Data Visualization</h3>
+
+<p>Claude can even generate data visualizations based on your database:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Create a bar chart showing monthly sales for the past year.
+</code></pre></div></div>
+
+<p>The PostgreSQL MCP server will execute the necessary queries, and Claude will format the data into a visual representation.</p>
+
+<h2 id="step-5-advanced-postgresql-operations">Step 5: Advanced PostgreSQL Operations</h2>
+
+<p>The PostgreSQL MCP server isn’t limited to simple queries. You can also perform more advanced operations:</p>
+
+<h3 id="performance-analysis">Performance Analysis</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Identify slow-running queries in my database and suggest improvements.
+</code></pre></div></div>
+
+<p>Claude can analyze query performance and provide optimization suggestions.</p>
+
+<h3 id="schema-design">Schema Design</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>I need to store user profile data including name, email, and preferences. Suggest a normalized table structure.
+</code></pre></div></div>
+
+<p>Claude can help design database schemas based on your requirements.</p>
+
+<h3 id="data-transformation">Data Transformation</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Convert all datetime fields in the orders table to UTC timezone.
+</code></pre></div></div>
+
+<p>Claude can generate and execute the SQL needed for data transformations.</p>
+
+<h2 id="security-considerations">Security Considerations</h2>
+
+<p>When connecting Claude to your PostgreSQL database, consider these security best practices:</p>
+
+<ol>
+  <li><strong>Create a read-only user</strong> for query-only access where appropriate</li>
+  <li><strong>Limit database access</strong> to only the necessary tables and schemas</li>
+  <li><strong>Use connection pooling</strong> to manage database connections efficiently</li>
+  <li><strong>Monitor query logs</strong> to track what’s being executed</li>
+  <li><strong>Use a secure connection string</strong> with proper authentication</li>
+</ol>
+
+<h2 id="example-analyzing-e-commerce-data">Example: Analyzing E-Commerce Data</h2>
+
+<p>Let’s walk through a practical example. Imagine you have an e-commerce database with tables for customers, products, orders, and order_items.</p>
+
+<p>You could ask Claude:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>What products have the highest profit margin but aren't selling well in the last quarter?
+</code></pre></div></div>
+
+<p>Claude would work with the PostgreSQL MCP server to:</p>
+
+<ol>
+  <li>Join the relevant tables</li>
+  <li>Calculate profit margins</li>
+  <li>Compare with sales volumes</li>
+  <li>Filter for the last quarter</li>
+  <li>Return the results in a readable format</li>
+</ol>
+
+<p>This type of complex analysis would normally require writing complex SQL queries, but with Claude and MCP, you can simply ask for what you need in plain language.</p>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>If you encounter issues with your PostgreSQL MCP connection:</p>
+
+<ul>
+  <li><strong>Connection errors</strong>: Verify your PostgreSQL server is running and accessible</li>
+  <li><strong>Authentication failures</strong>: Double-check your username and password</li>
+  <li><strong>Permission denied</strong>: Ensure your PostgreSQL user has appropriate permissions</li>
+  <li><strong>Query timeout</strong>: Consider optimizing your database or breaking queries into smaller parts</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Connecting PostgreSQL to Claude Desktop using the MCP server transforms how you interact with your databases. Instead of writing complex SQL queries or building custom interfaces, you can simply have a conversation with Claude about your data. This makes database analysis more accessible, faster, and more intuitive.</p>
+
+<p>As MCP technology continues to evolve, we can expect even more powerful integrations between AI assistants and database systems. The PostgreSQL MCP server is just the beginning of a new paradigm in AI-assisted data analysis.</p>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<p>Now that you’ve connected PostgreSQL to Claude Desktop using MCP, consider exploring these related topics:</p>
+
+<ul>
+  <li><a href="/docs/tutorials/custom-mcp-server">Building custom MCP servers</a> for specialized database operations</li>
+  <li><a href="/docs/tutorials/mcp-data-visualization">Creating data visualization dashboards</a> with Claude and MCP</li>
+  <li><a href="/docs/labs/advanced-mcp-combinations">Combining database operations with other MCP servers</a> for powerful workflows</li>
+</ul>]]></content><author><name>Ajeet Raina</name></author><category term="Tutorials" /><category term="MCP" /><category term="Database" /><category term="postgresql" /><category term="model-context-protocol" /><category term="mcp" /><category term="claude" /><category term="ai" /><category term="database" /><summary type="html"><![CDATA[Introduction]]></summary></entry></feed>
