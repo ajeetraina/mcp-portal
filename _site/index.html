@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources.">
+  <meta name="keywords" content="docker, mcp, model, context, protocol, servers, tools, community">
+  <title>Home - MCP Community Portal</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/images/docker-logo.svg">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
+  <link rel="stylesheet" href="/assets/css/home.css">
+  <link rel="stylesheet" href="/assets/css/lab-styles.css">
+  <link rel="stylesheet" href="/assets/css/code-fix.css">
+  <link rel="stylesheet" href="/assets/css/banner-fix.css">
+  <link rel="stylesheet" href="/assets/css/image-fix.css">
+  <link rel="stylesheet" href="/assets/css/heading-fix.css">
+  <link rel="stylesheet" href="/assets/css/header-fix.css">
+  
+  <!-- Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Home | MCP Community Portal</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Home" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A community-driven collection of Dockerized Model Context Protocol servers" />
+<meta property="og:description" content="A community-driven collection of Dockerized Model Context Protocol servers" />
+<link rel="canonical" href="http://0.0.0.0:4000/" />
+<meta property="og:url" content="http://0.0.0.0:4000/" />
+<meta property="og:site_name" content="MCP Community Portal" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Home" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","description":"A community-driven collection of Dockerized Model Context Protocol servers","headline":"Home","name":"MCP Community Portal","url":"http://0.0.0.0:4000/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <a href="/">
+          <h1>MCP Community Portal</h1>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="/servers-table.html"><i class="fas fa-server"></i> Servers</a></li>
+          <li><a href="/tools.html"><i class="fas fa-tools"></i> Tools</a></li>
+          <li><a href="/docs/labs-and-tutorials"><i class="fas fa-flask"></i> Labs</a></li>
+          <li>
+            <a href="/docs/ask-gordon">
+              <i class="fas fa-robot"></i> Ask Gordon
+              <span class="new-badge">NEW</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+.new-badge {
+  display: inline-block;
+  background-color: #FF5722;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  margin-left: 6px;
+  vertical-align: middle;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+</style>
+  
+  <main>
+    <section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="hero-title">Docker & Model Context Protocol</h1>
+      <p class="hero-description">
+        Explore Docker's integration with the Model Context Protocol (MCP), offering containerized MCP servers that enable AI assistants to access external tools and data sources.
+      </p>
+      <div class="hero-cta">
+        <a href="#mcp-servers" class="btn btn-primary">
+          <i class="fas fa-server"></i> Explore MCP Servers
+        </a>
+        <a href="/tools.html" class="btn btn-secondary">
+          <i class="fas fa-tools"></i> Browse MCP Tools
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-server"></i>
+        </div>
+        <h3 class="feature-title">MCP Servers</h3>
+        <p class="feature-description">
+          Discover containerized MCP servers available on Docker Hub under the mcp/ namespace, providing AI assistants with specialized capabilities.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-tools"></i>
+        </div>
+        <h3 class="feature-title">Ask Gordon</h3>
+        <p class="feature-description">
+          Learn how to use Docker's Ask Gordon CLI assistant with MCP servers through simple Docker Compose configuration.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-book"></i>
+        </div>
+        <h3 class="feature-title">Documentation</h3>
+        <p class="feature-description">
+          Access comprehensive guides on configuring and using Docker-based MCP servers with various AI assistants.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-code-branch"></i>
+        </div>
+        <h3 class="feature-title">Community</h3>
+        <p class="feature-description">
+          Join the community and contribute to the growing ecosystem of Docker MCP servers and tools.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-mcp">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Docker & Model Context Protocol</h2>
+    </div>
+    <div class="about-content">
+      <p>The <strong>Model Context Protocol (MCP)</strong> is an open protocol designed by Anthropic that enables AI assistants such as Claude to interact with external tools and data sources in a standardized way.</p>
+      
+      <p><strong>Docker has partnered with Anthropic</strong> to build and maintain container images for MCP servers, available on Docker Hub under the <code>mcp/</code> namespace. This partnership brings several benefits:</p>
+      
+      <ul class="about-list">
+        <li><i class="fas fa-check"></i> <strong>Containerized MCP Servers:</strong> Run MCP servers as containers with proper isolation and security</li>
+        <li><i class="fas fa-check"></i> <strong>Ask Gordon Integration:</strong> Use Docker's CLI AI assistant with MCP servers through gordon-mcp.yml</li>
+        <li><i class="fas fa-check"></i> <strong>Docker Compose Configuration:</strong> Leverage Docker Compose for easy setup with bind mounts and environment variables</li>
+        <li><i class="fas fa-check"></i> <strong>Official Repository:</strong> Access verified MCP server images from Docker Hub</li>
+        <li><i class="fas fa-check"></i> <strong>Customizable Access:</strong> Control which resources MCP servers can access through container configuration</li>
+      </ul>
+      
+      <div class="code-example">
+        <h4>Quick Start with Ask Gordon:</h4>
+        <pre><code># Create gordon-mcp.yml
+services:
+  time:
+    image: mcp/time
+  fetch:
+    image: mcp/fetch
+  fs:
+    image: mcp/filesystem
+    command:
+      - /rootfs
+    volumes:
+      - .:/rootfs</code></pre>
+        <p>Then simply run: <code>docker ai 'what time is it in Tokyo?'</code></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mcp-servers" class="mcp-servers">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">MCP Servers on Docker Hub</h2>
+      <p class="section-description">
+        Browse the collection of MCP servers available as Docker containers.
+      </p>
+    </div>
+    
+    <div class="filter-container">
+      <div class="filter-row">
+        <div class="filter-group">
+          <label for="search-input" class="filter-label">Search</label>
+          <input type="text" id="search-input" class="filter-input" placeholder="Search by name...">
+        </div>
+        
+        <div class="filter-group">
+          <label for="category-filter" class="filter-label">Filter by Category</label>
+          <select id="category-filter" class="filter-select">
+            <option value="">All Categories</option>
+            <option value="working">Working Servers</option>
+            <option value="untested">Untested Servers</option>
+            <option value="unsupported">Unsupported Servers</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="sort-select" class="filter-label">Sort by</label>
+          <select id="sort-select" class="filter-select">
+            <option value="a-z">A to Z</option>
+            <option value="z-a">Z to A</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="view-toggle">
+        <span class="active"><i class="fas fa-th-large"></i> Card View</span>
+        <a href="/servers-table.html" class="btn btn-secondary"><i class="fas fa-table"></i> Table View</a>
+      </div>
+      
+      <div class="active-filters"></div>
+      
+      <button id="clear-filters" class="btn" style="display: none;">
+        <i class="fas fa-times"></i> Clear All Filters
+      </button>
+    </div>
+    
+    <div class="mcp-grid">
+      <!-- Working Servers -->
+      
+        
+          <div class="mcp-card" data-name="time server" data-category="working">
+            <div class="card-header">
+              <h3 class="card-title">Time Server</h3>
+              <div class="card-meta">
+                <span class="server-status success">Working</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">Provides date and time capabilities</p>
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/time" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/time" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="mcp-card" data-name="fetch server" data-category="working">
+            <div class="card-header">
+              <h3 class="card-title">Fetch Server</h3>
+              <div class="card-meta">
+                <span class="server-status success">Working</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">Enables web browsing and content retrieval</p>
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/fetch" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/fetch" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="mcp-card" data-name="filesystem server" data-category="working">
+            <div class="card-header">
+              <h3 class="card-title">Filesystem Server</h3>
+              <div class="card-meta">
+                <span class="server-status success">Working</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">Provides filesystem access within mounted directories</p>
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/filesystem" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/filesystem" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="mcp-card" data-name="postgresql server" data-category="working">
+            <div class="card-header">
+              <h3 class="card-title">PostgreSQL Server</h3>
+              <div class="card-meta">
+                <span class="server-status success">Working</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">Connects to PostgreSQL databases</p>
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/postgres" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/postgres" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="mcp-card" data-name="git server" data-category="working">
+            <div class="card-header">
+              <h3 class="card-title">Git Server</h3>
+              <div class="card-meta">
+                <span class="server-status success">Working</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">Provides Git operations</p>
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/git" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/git" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="mcp-card" data-name="sqlite server" data-category="working">
+            <div class="card-header">
+              <h3 class="card-title">SQLite Server</h3>
+              <div class="card-meta">
+                <span class="server-status success">Working</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">Enables SQLite database operations</p>
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/sqlite" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/sqlite" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="mcp-card" data-name="github server" data-category="working">
+            <div class="card-header">
+              <h3 class="card-title">GitHub Server</h3>
+              <div class="card-meta">
+                <span class="server-status success">Working</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">Interacts with GitHub repositories and resources</p>
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/github" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/github" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+      
+      
+      <!-- Untested Servers -->
+      
+        
+          <div class="mcp-card" data-name="brave search server" data-category="untested">
+            <div class="card-header">
+              <h3 class="card-title">Brave Search Server</h3>
+              <div class="card-meta">
+                <span class="server-status warning">Untested</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">Performs searches using Brave Search</p>
+              
+                <p class="server-requirements"><strong>Note:</strong> Requires API token</p>
+              
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/brave-search" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/brave-search" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="mcp-card" data-name="google drive server" data-category="untested">
+            <div class="card-header">
+              <h3 class="card-title">Google Drive Server</h3>
+              <div class="card-meta">
+                <span class="server-status warning">Untested</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">Accesses Google Drive files and folders</p>
+              
+                <p class="server-requirements"><strong>Note:</strong> Requires Google authentication</p>
+              
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/gdrive" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/gdrive" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="mcp-card" data-name="slack server" data-category="untested">
+            <div class="card-header">
+              <h3 class="card-title">Slack Server</h3>
+              <div class="card-meta">
+                <span class="server-status warning">Untested</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">Interacts with Slack workspaces</p>
+              
+                <p class="server-requirements"><strong>Note:</strong> Requires Slack API token</p>
+              
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/slack" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/slack" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="mcp-card" data-name="google maps server" data-category="untested">
+            <div class="card-header">
+              <h3 class="card-title">Google Maps Server</h3>
+              <div class="card-meta">
+                <span class="server-status warning">Untested</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">Provides location and mapping services</p>
+              
+                <p class="server-requirements"><strong>Note:</strong> Requires Google Maps API token</p>
+              
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/google-maps" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/google-maps" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="mcp-card" data-name="gitlab server" data-category="untested">
+            <div class="card-header">
+              <h3 class="card-title">GitLab Server</h3>
+              <div class="card-meta">
+                <span class="server-status warning">Untested</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">Interacts with GitLab repositories and resources</p>
+              
+                <p class="server-requirements"><strong>Note:</strong> Requires GitLab authentication</p>
+              
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/gitlab" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/gitlab" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="mcp-card" data-name="everything server" data-category="untested">
+            <div class="card-header">
+              <h3 class="card-title">Everything Server</h3>
+              <div class="card-meta">
+                <span class="server-status warning">Untested</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">A multi-tool server with various capabilities</p>
+              
+                <p class="server-requirements"><strong>Note:</strong> May require specific configuration</p>
+              
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/everything" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/everything" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="mcp-card" data-name="aws knowledge base retrieval server" data-category="untested">
+            <div class="card-header">
+              <h3 class="card-title">AWS Knowledge Base Retrieval Server</h3>
+              <div class="card-meta">
+                <span class="server-status warning">Untested</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">Retrieves information from AWS knowledge bases</p>
+              
+                <p class="server-requirements"><strong>Note:</strong> Requires AWS credentials</p>
+              
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/aws-kb-retrieval-server" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/aws-kb-retrieval-server" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="mcp-card" data-name="sentry server" data-category="untested">
+            <div class="card-header">
+              <h3 class="card-title">Sentry Server</h3>
+              <div class="card-meta">
+                <span class="server-status warning">Untested</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">Interacts with Sentry error monitoring</p>
+              
+                <p class="server-requirements"><strong>Note:</strong> Requires Sentry authentication</p>
+              
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/sentry" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/sentry" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+      
+      
+      <!-- Unsupported Servers -->
+      
+        
+          <div class="mcp-card" data-name="sequential thinking server" data-category="unsupported">
+            <div class="card-header">
+              <h3 class="card-title">Sequential Thinking Server</h3>
+              <div class="card-meta">
+                <span class="server-status danger">Unsupported</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">Provides structured thinking capabilities</p>
+              
+                <p class="server-issue"><strong>Issue:</strong> The tool description is too long for Gordon to process</p>
+              
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/sequentialthinking" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/sequentialthinking" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="mcp-card" data-name="puppeteer server" data-category="unsupported">
+            <div class="card-header">
+              <h3 class="card-title">Puppeteer Server</h3>
+              <div class="card-meta">
+                <span class="server-status danger">Unsupported</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">Browser automation and screenshot capabilities</p>
+              
+                <p class="server-issue"><strong>Issue:</strong> Returns images that Gordon cannot currently handle (Gordon only processes text responses)</p>
+              
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/puppeteer" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/puppeteer" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="mcp-card" data-name="everart server" data-category="unsupported">
+            <div class="card-header">
+              <h3 class="card-title">Everart Server</h3>
+              <div class="card-meta">
+                <span class="server-status danger">Unsupported</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">Image generation capabilities</p>
+              
+                <p class="server-issue"><strong>Issue:</strong> Returns images that Gordon cannot currently handle (Gordon only processes text responses)</p>
+              
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/everart" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/everart" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+          <div class="mcp-card" data-name="memory server" data-category="unsupported">
+            <div class="card-header">
+              <h3 class="card-title">Memory Server</h3>
+              <div class="card-meta">
+                <span class="server-status danger">Unsupported</span>
+              </div>
+            </div>
+            
+            <div class="card-body">
+              <div class="card-icon">
+                <i class="fab fa-docker"></i>
+              </div>
+              <p class="card-description">Persistent memory capabilities for conversational context</p>
+              
+                <p class="server-issue"><strong>Issue:</strong> Cannot be configured to use a custom path for its knowledge base</p>
+              
+            </div>
+            
+            <div class="card-footer">
+              <div class="card-links">
+                <a href="https://hub.docker.com/r/mcp/memory" class="btn btn-docker" target="_blank" rel="noopener">
+                  <i class="fab fa-docker"></i> Docker Hub
+                </a>
+              </div>
+              
+              <div class="card-copy">
+                <button class="btn btn-copy" data-clipboard-text="docker pull mcp/memory" title="Copy Docker pull command">
+                  <i class="fas fa-copy"></i> Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        
+      
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Want to contribute to the Docker MCP ecosystem?</h2>
+    <p>Add your MCP server or tool to this collection by submitting a pull request. We welcome all community contributions!</p>
+    <div class="cta-buttons">
+      <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" class="btn btn-primary" target="_blank">
+        <i class="fas fa-code-branch"></i> How to Contribute
+      </a>
+      <a href="https://github.com/ajeetraina/docker-mcp-portal" class="btn btn-secondary" target="_blank">
+        <i class="fab fa-github"></i> GitHub Repository
+      </a>
+    </div>
+  </div>
+</section>
+
+  </main>
+  
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>Docker MCP Community Portal</h3>
+        <p>A community-driven resource for Docker Model Context Protocol.</p>
+        <p>&copy; 2025 MCP Community Portal. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal" target="_blank">
+              <i class="fab fa-github"></i> GitHub Repository
+            </a>
+          </li>
+          <li>
+            <a href="https://collabnix.com" target="_blank">
+              <i class="fas fa-globe"></i> Collabnix Community
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" target="_blank">
+              <i class="fas fa-code-branch"></i> Contribute to MCP Portal
+            </a>
+          </li>
+          <li>
+            <a href="https://hub.docker.com/u/mcp" target="_blank">
+              <i class="fab fa-docker"></i> MCP on Docker Hub
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+  <!-- ClipboardJS for copy functionality -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+  
+  <!-- Syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  
+  <!-- Custom scripts -->
+  <script src="/assets/js/filter.js"></script>
+  <script src="/assets/js/code-formatter.js"></script>
+  
+  <script>
+    // Initialize clipboard.js
+    document.addEventListener('DOMContentLoaded', function() {
+      var clipboard = new ClipboardJS('.btn-copy');
+      
+      clipboard.on('success', function(e) {
+        var button = e.trigger;
+        var originalText = button.innerHTML;
+        
+        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        button.classList.add('copied');
+        
+        setTimeout(function() {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+        
+        e.clearSelection();
+      });
+      
+      // Initialize syntax highlighting
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+</body>
+</html>
