@@ -1,6 +1,0 @@
----
-layout: country
-title: MCP in Germany
-country_code: DE
-permalink: /country/de/
----
