@@ -1,0 +1,376 @@
+---
+layout: with-sidebar
+---
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-meta">
+      <time class="post-date" datetime="{{ page.date }}">
+        {{ page.date | date: "%B %d, %Y" }}
+      </time>
+      
+      {% if page.author %}
+        <span class="post-author">
+          <i class="fas fa-user"></i> {{ page.author }}
+        </span>
+      {% endif %}
+      
+      {% if page.categories.size > 0 %}
+        <span class="post-categories">
+          <i class="fas fa-folder"></i>
+          {% for category in page.categories %}
+            <a href="{{ '/categories/' | append: category | downcase | relative_url }}">{{ category }}</a>{% unless forloop.last %}, {% endunless %}
+          {% endfor %}
+        </span>
+      {% endif %}
+    </div>
+  </header>
+  
+  <div class="post-content">
+    {{ content }}
+  </div>
+  
+  {% if page.tags.size > 0 %}
+    <div class="post-tags">
+      <i class="fas fa-tags"></i>
+      {% for tag in page.tags %}
+        <span class="post-tag">{{ tag }}</span>
+      {% endfor %}
+    </div>
+  {% endif %}
+  
+  <div class="post-share">
+    <span class="share-label">Share:</span>
+    <div class="share-buttons">
+      <a href="https://twitter.com/intent/tweet?text={{ page.title | uri_escape }}&url={{ site.url }}{{ page.url | relative_url }}" target="_blank" rel="noopener" class="share-twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ page.url | relative_url }}&title={{ page.title | uri_escape }}" target="_blank" rel="noopener" class="share-linkedin">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url | relative_url }}" target="_blank" rel="noopener" class="share-facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </div>
+  </div>
+  
+  <div class="post-navigation">
+    <div class="post-navigation-previous">
+      {% if page.previous.url %}
+        <a href="{{ page.previous.url | relative_url }}" class="prev-post">
+          <i class="fas fa-arrow-left"></i>
+          <span>
+            <small>Previous</small>
+            <strong>{{ page.previous.title }}</strong>
+          </span>
+        </a>
+      {% endif %}
+    </div>
+    
+    <div class="post-navigation-next">
+      {% if page.next.url %}
+        <a href="{{ page.next.url | relative_url }}" class="next-post">
+          <span>
+            <small>Next</small>
+            <strong>{{ page.next.title }}</strong>
+          </span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</article>
+
+<style>
+  /* Post styles */
+  .post {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .post-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-gray);
+  }
+  
+  .post-title {
+    font-size: 2.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  
+  .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  .post-meta a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  
+  .post-meta a:hover {
+    text-decoration: underline;
+  }
+  
+  .post-meta i {
+    margin-right: 0.4rem;
+  }
+  
+  .post-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 3rem;
+  }
+  
+  .post-content h2 {
+    font-size: 1.8rem;
+    margin: 2.5rem 0 1.25rem;
+    color: var(--color-secondary);
+  }
+  
+  .post-content h3 {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+    color: var(--color-secondary);
+  }
+  
+  .post-content h4 {
+    font-size: 1.25rem;
+    margin: 1.75rem 0 0.75rem;
+    color: var(--color-secondary);
+  }
+  
+  .post-content p {
+    margin-bottom: 1.5rem;
+  }
+  
+  .post-content ul, .post-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+  }
+  
+  .post-content li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .post-content blockquote {
+    border-left: 4px solid var(--color-primary);
+    padding: 0.75rem 1.5rem;
+    margin: 1.5rem 0;
+    background-color: var(--color-primary-light);
+    font-style: italic;
+  }
+  
+  .post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    margin: 1.5rem 0;
+  }
+  
+  .post-content pre {
+    background-color: #282c34;
+    border-radius: var(--border-radius);
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+  }
+  
+  .post-content code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9em;
+  }
+  
+  .post-content p code {
+    background-color: #f1f1f1;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    color: var(--color-secondary);
+  }
+  
+  .post-content a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  
+  .post-content a:hover {
+    text-decoration: underline;
+  }
+  
+  .post-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+  
+  .post-content th, .post-content td {
+    padding: 0.75rem;
+    border: 1px solid var(--color-gray);
+  }
+  
+  .post-content th {
+    background-color: var(--color-secondary-light);
+    font-weight: 600;
+    text-align: left;
+  }
+  
+  .post-content tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+  
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    margin: 2rem 0;
+  }
+  
+  .post-tag {
+    background-color: rgba(13, 183, 237, 0.1);
+    color: var(--color-primary);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  
+  .post-share {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: var(--color-secondary-light);
+    border-radius: var(--border-radius);
+  }
+  
+  .share-label {
+    font-weight: 600;
+    margin-right: 1rem;
+    color: var(--color-secondary);
+  }
+  
+  .share-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .share-buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: white;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  
+  .share-buttons a:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+  
+  .share-twitter {
+    background-color: #1da1f2;
+  }
+  
+  .share-linkedin {
+    background-color: #0077b5;
+  }
+  
+  .share-facebook {
+    background-color: #4267B2;
+  }
+  
+  .post-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-gray);
+  }
+  
+  .post-navigation a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 1rem;
+    background-color: white;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-gray);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    max-width: 48%;
+    color: var(--color-text);
+  }
+  
+  .post-navigation a:hover {
+    background-color: var(--color-secondary-light);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+  }
+  
+  .post-navigation span {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .post-navigation small {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .post-navigation strong {
+    font-weight: 600;
+    color: var(--color-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+  }
+  
+  .post-navigation-previous a i {
+    margin-right: 0.75rem;
+  }
+  
+  .post-navigation-next a i {
+    margin-left: 0.75rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .post-title {
+      font-size: 2rem;
+    }
+    
+    .post-navigation {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .post-navigation a {
+      max-width: 100%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .post-title {
+      font-size: 1.75rem;
+    }
+    
+    .post-content {
+      font-size: 1rem;
+    }
+  }
+</style>
