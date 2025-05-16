@@ -1,275 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources.">
-  <meta name="keywords" content="docker, mcp, model, context, protocol, servers, tools, community">
-  <title>MCP Blog - MCP Community Portal</title>
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/assets/images/docker-logo.svg">
-  
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <link rel="stylesheet" href="/assets/css/tools.css">
-  <link rel="stylesheet" href="/assets/css/home.css">
-  <link rel="stylesheet" href="/assets/css/lab-styles.css">
-  <link rel="stylesheet" href="/assets/css/code-fix.css">
-  <link rel="stylesheet" href="/assets/css/banner-fix.css">
-  <link rel="stylesheet" href="/assets/css/image-fix.css">
-  <link rel="stylesheet" href="/assets/css/heading-fix.css">
-  <link rel="stylesheet" href="/assets/css/header-fix.css">
-  <link rel="stylesheet" href="/assets/css/github-stars.css">
-  <link rel="stylesheet" href="/assets/css/docker-downloads.css">
-  <link rel="stylesheet" href="/assets/css/sidebar.css">
-  <link rel="stylesheet" href="/assets/css/content-fix.css">
-  
-  <!-- Syntax Highlighting -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
-  
-  <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>MCP Blog | MCP Community Portal</title>
-<meta name="generator" content="Jekyll v4.3.4" />
-<meta property="og:title" content="MCP Blog" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="A community-driven collection of Dockerized Model Context Protocol servers" />
-<meta property="og:description" content="A community-driven collection of Dockerized Model Context Protocol servers" />
-<link rel="canonical" href="https://mcp.collabnix.com/blog/" />
-<meta property="og:url" content="https://mcp.collabnix.com/blog/" />
-<meta property="og:site_name" content="MCP Community Portal" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="MCP Blog" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"A community-driven collection of Dockerized Model Context Protocol servers","headline":"MCP Blog","url":"https://mcp.collabnix.com/blog/"}</script>
-<!-- End Jekyll SEO tag -->
+---
+layout: with-sidebar
+title: MCP Blog
+---
 
-</head>
-<body>
-  <header class="site-header">
-  <div class="container">
-    <div class="header-content">
-      <div class="logo">
-        <a href="/">
-          <h1>MCP Community Portal</h1>
-        </a>
-      </div>
-      <nav class="main-nav">
-        <ul>
-          <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
-          <li><a href="/categories/getting-started"><i class="fas fa-rocket"></i> Getting Started</a></li>
-          <li><a href="/categories/mcp-servers"><i class="fas fa-server"></i> Servers</a></li>
-          <li><a href="/categories/mcp-tools"><i class="fas fa-tools"></i> Tools</a></li>
-          <li><a href="/labs/01-getting-started/README.html"><i class="fas fa-flask"></i> Labs</a></li>
-          <li><a href="/blog/"><i class="fas fa-blog"></i> Blog</a></li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-</header>
-  
-  <div class="main-container">
-    <aside class="sidebar">
-      <div class="sidebar-content">
-        <div class="sidebar-header">
-          <h3>Categories</h3>
-        </div>
-        <div class="sidebar-nav">
-          <ul class="sidebar-menu">
-            
-              <li class="menu-item ">
-                <a href="/categories/getting-started/">
-                  <i class="fas fa-rocket"></i>
-                  Getting Started
-                </a>
-                
-              </li>
-            
-              <li class="menu-item ">
-                <a href="/categories/mcp-servers/">
-                  <i class="fas fa-server"></i>
-                  MCP Servers
-                </a>
-                
-                  <ul class="submenu">
-                    
-                      <li class="submenu-item ">
-                        <a href="/categories/mcp-servers/working/">Working Servers</a>
-                      </li>
-                    
-                      <li class="submenu-item ">
-                        <a href="/categories/mcp-servers/untested/">Untested Servers</a>
-                      </li>
-                    
-                      <li class="submenu-item ">
-                        <a href="/categories/mcp-servers/unsupported/">Unsupported Servers</a>
-                      </li>
-                    
-                  </ul>
-                
-              </li>
-            
-              <li class="menu-item ">
-                <a href="/categories/mcp-tools/">
-                  <i class="fas fa-tools"></i>
-                  MCP Tools
-                </a>
-                
-                  <ul class="submenu">
-                    
-                      <li class="submenu-item ">
-                        <a href="/categories/mcp-tools/authentication/">Authentication</a>
-                      </li>
-                    
-                      <li class="submenu-item ">
-                        <a href="/categories/mcp-tools/data-processing/">Data Processing</a>
-                      </li>
-                    
-                      <li class="submenu-item ">
-                        <a href="/categories/mcp-tools/external-apis/">External APIs</a>
-                      </li>
-                    
-                  </ul>
-                
-              </li>
-            
-              <li class="menu-item ">
-                <a href="/categories/use-cases/">
-                  <i class="fas fa-lightbulb"></i>
-                  Use Cases
-                </a>
-                
-              </li>
-            
-              <li class="menu-item ">
-                <a href="/categories/deployment/">
-                  <i class="fas fa-cloud-upload-alt"></i>
-                  Deployment
-                </a>
-                
-                  <ul class="submenu">
-                    
-                      <li class="submenu-item ">
-                        <a href="/categories/deployment/docker-compose/">Docker Compose</a>
-                      </li>
-                    
-                      <li class="submenu-item ">
-                        <a href="/categories/deployment/kubernetes/">Kubernetes</a>
-                      </li>
-                    
-                      <li class="submenu-item ">
-                        <a href="/categories/deployment/cloud/">Cloud Services</a>
-                      </li>
-                    
-                  </ul>
-                
-              </li>
-            
-              <li class="menu-item ">
-                <a href="/categories/tutorials/">
-                  <i class="fas fa-book"></i>
-                  Tutorials
-                </a>
-                
-              </li>
-            
-              <li class="menu-item ">
-                <a href="/categories/advanced/">
-                  <i class="fas fa-graduation-cap"></i>
-                  Advanced Topics
-                </a>
-                
-                  <ul class="submenu">
-                    
-                      <li class="submenu-item ">
-                        <a href="/categories/advanced/security/">Security</a>
-                      </li>
-                    
-                      <li class="submenu-item ">
-                        <a href="/categories/advanced/performance/">Performance</a>
-                      </li>
-                    
-                      <li class="submenu-item ">
-                        <a href="/categories/advanced/scaling/">Scaling</a>
-                      </li>
-                    
-                  </ul>
-                
-              </li>
-            
-          </ul>
-        </div>
-        
-        <div class="sidebar-header">
-          <h3>Labs</h3>
-        </div>
-        <div class="sidebar-nav">
-          <ul class="sidebar-menu">
-            <li class="menu-item">
-              <a href="/labs/01-getting-started/README.html">
-                <i class="fas fa-rocket"></i>
-                Getting Started with MCP
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/labs/02-custom-mcp-server/README.html">
-                <i class="fas fa-wrench"></i>
-                Building Custom MCP Servers
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/labs/03-database-integration/README.html">
-                <i class="fas fa-database"></i>
-                Database Integration
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/labs/04-business-automation/README.html">
-                <i class="fas fa-cogs"></i>
-                Business Process Automation
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/labs/05-rag-document-qa/README.html">
-                <i class="fas fa-search"></i>
-                RAG Document Q&A
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/labs/06-multimodal-ai/README.html">
-                <i class="fas fa-image"></i>
-                Multimodal AI Applications
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/labs/07-building-ai-agents/README.html">
-                <i class="fas fa-robot"></i>
-                Building AI Agents
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="/labs/08-ask-gordon/README.html">
-                <i class="fas fa-robot"></i>
-                Ask Gordon
-                <span class="menu-badge">NEW</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </aside>
-    
-    <main class="content-with-sidebar">
-      <div class="blog-container">
+<div class="blog-container">
   <header class="blog-header">
     <h1 class="blog-title">MCP Community Blog</h1>
     <p class="blog-description">Latest news, tutorials, and insights about the Model Context Protocol ecosystem</p>
@@ -277,106 +11,37 @@
   
   <div class="blog-content">
     <div class="post-grid">
-      
+      {% for post in site.posts %}
         <div class="post-card">
           <div class="post-card-header">
             <h3 class="post-card-title">
-              <a href="/getting-started/2025/05/01/introduction-to-mcp.html">Introduction to Model Context Protocol (MCP)</a>
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
             </h3>
-            <time class="post-card-date" datetime="2025-05-01 00:00:00 +0000">
-              May 01, 2025
+            <time class="post-card-date" datetime="{{ post.date }}">
+              {{ post.date | date: "%B %d, %Y" }}
             </time>
-            
+            {% if post.author %}
               <span class="post-card-author">
-                <i class="fas fa-user"></i> Ajeet Singh Raina
+                <i class="fas fa-user"></i> {{ post.author }}
               </span>
-            
+            {% endif %}
           </div>
           <div class="post-card-excerpt">
-            The Model Context Protocol (MCP) is changing how AI assistants interact with external tools and services. In this introductory guide, we’ll explore what MCP is, how it works, and why...
+            {{ post.excerpt | strip_html | truncatewords: 30 }}
           </div>
           <div class="post-card-footer">
-            <a href="/getting-started/2025/05/01/introduction-to-mcp.html" class="post-card-link">Read more</a>
-            
+            <a href="{{ post.url | relative_url }}" class="post-card-link">Read more</a>
+            {% if post.categories.size > 0 %}
               <div class="post-card-categories">
                 <i class="fas fa-folder"></i>
-                
-                  <a href="/categories/getting-started" class="post-category">getting-started</a>
-                
+                {% for category in post.categories %}
+                  <a href="{{ '/categories/' | append: category | downcase | relative_url }}" class="post-category">{{ category }}</a>{% unless forloop.last %}, {% endunless %}
+                {% endfor %}
               </div>
-            
+            {% endif %}
           </div>
         </div>
-      
-        <div class="post-card">
-          <div class="post-card-header">
-            <h3 class="post-card-title">
-              <a href="/tutorials/mcp/github/2025/04/09/github-mcp-server-docker-and-claude-desktop.html">GitHub MCP Server, Docker, and Claude Desktop</a>
-            </h3>
-            <time class="post-card-date" datetime="2025-04-09 00:00:00 +0000">
-              April 09, 2025
-            </time>
-            
-              <span class="post-card-author">
-                <i class="fas fa-user"></i> Ajeet Singh Raina
-              </span>
-            
-          </div>
-          <div class="post-card-excerpt">
-            In today’s fast-paced dynamic development landscape, managing repositories and performing file operations on GitHub can often become a tedious chore. What if you could automate and simplify these tasks with...
-          </div>
-          <div class="post-card-footer">
-            <a href="/tutorials/mcp/github/2025/04/09/github-mcp-server-docker-and-claude-desktop.html" class="post-card-link">Read more</a>
-            
-              <div class="post-card-categories">
-                <i class="fas fa-folder"></i>
-                
-                  <a href="/categories/tutorials" class="post-category">tutorials</a>, 
-                
-                  <a href="/categories/mcp" class="post-category">mcp</a>, 
-                
-                  <a href="/categories/github" class="post-category">github</a>
-                
-              </div>
-            
-          </div>
-        </div>
-      
-        <div class="post-card">
-          <div class="post-card-header">
-            <h3 class="post-card-title">
-              <a href="/tutorials/mcp/database/2025/03/29/postgresql-model-context-protocol-mcp-and-claude-desktop.html">Connecting PostgreSQL to Claude Desktop with MCP: A Step-by-Step Guide</a>
-            </h3>
-            <time class="post-card-date" datetime="2025-03-29 00:00:00 +0000">
-              March 29, 2025
-            </time>
-            
-              <span class="post-card-author">
-                <i class="fas fa-user"></i> Ajeet Raina
-              </span>
-            
-          </div>
-          <div class="post-card-excerpt">
-            Introduction
-
-          </div>
-          <div class="post-card-footer">
-            <a href="/tutorials/mcp/database/2025/03/29/postgresql-model-context-protocol-mcp-and-claude-desktop.html" class="post-card-link">Read more</a>
-            
-              <div class="post-card-categories">
-                <i class="fas fa-folder"></i>
-                
-                  <a href="/categories/tutorials" class="post-category">Tutorials</a>, 
-                
-                  <a href="/categories/mcp" class="post-category">MCP</a>, 
-                
-                  <a href="/categories/database" class="post-category">Database</a>
-                
-              </div>
-            
-          </div>
-        </div>
-      
+      {% endfor %}
     </div>
   </div>
 </div>
@@ -545,111 +210,3 @@
     }
   }
 </style>
-    </main>
-  </div>
-  
-  <footer class="site-footer">
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-info">
-        <h3>Docker MCP Community Portal</h3>
-        <p>A community-driven resource for Docker Model Context Protocol.</p>
-        <p>&copy; 2025 MCP Community Portal. All rights reserved.</p>
-      </div>
-      <div class="footer-links">
-        <h4>Resources</h4>
-        <ul>
-          <li>
-            <a href="https://github.com/ajeetraina/docker-mcp-portal" target="_blank">
-              <i class="fab fa-github"></i> GitHub Repository
-            </a>
-          </li>
-          <li>
-            <a href="https://collabnix.com" target="_blank">
-              <i class="fas fa-globe"></i> Collabnix Community
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" target="_blank">
-              <i class="fas fa-code-branch"></i> Contribute to MCP Portal
-            </a>
-          </li>
-          <li>
-            <a href="https://hub.docker.com/u/mcp" target="_blank">
-              <i class="fab fa-docker"></i> MCP on Docker Hub
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</footer>
-  
-  <!-- ClipboardJS for copy functionality -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
-  
-  <!-- Syntax highlighting -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-  
-  <!-- Custom scripts -->
-  <script src="/assets/js/filter.js"></script>
-  <script src="/assets/js/github-stars.js"></script>
-  <script src="/assets/js/docker-downloads.js"></script>
-  <script src="/assets/js/code-formatter.js"></script>
-  <script src="/assets/js/sidebar.js"></script>
-  
-  <script>
-    // Initialize clipboard.js
-    document.addEventListener('DOMContentLoaded', function() {
-      var clipboard = new ClipboardJS('.btn-copy');
-      
-      clipboard.on('success', function(e) {
-        var button = e.trigger;
-        var originalText = button.innerHTML;
-        
-        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
-        button.classList.add('copied');
-        
-        setTimeout(function() {
-          button.innerHTML = originalText;
-          button.classList.remove('copied');
-        }, 2000);
-        
-        e.clearSelection();
-      });
-      
-      // Initialize syntax highlighting
-      document.querySelectorAll('pre code').forEach((el) => {
-        hljs.highlightElement(el);
-      });
-    });
-  </script>
-
-<style>
-  .menu-badge {
-    display: inline-block;
-    background-color: #FF5722;
-    color: white;
-    font-size: 0.7rem;
-    font-weight: bold;
-    padding: 0.15rem 0.4rem;
-    border-radius: 3px;
-    margin-left: 6px;
-    vertical-align: middle;
-    animation: pulse 1.5s infinite;
-  }
-
-  @keyframes pulse {
-    0% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.7;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-</style>
-</body>
-</html>
