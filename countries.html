@@ -1,9 +1,82 @@
----
-layout: default
-title: MCP by Country
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A community-driven collection of Docker Model Context Protocol (MCP) servers, tools, and resources.">
+  <meta name="keywords" content="docker, mcp, model, context, protocol, servers, tools, community">
+  <title>MCP by Country - MCP Community Portal</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/images/docker-logo.svg">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/tools.css">
+  <link rel="stylesheet" href="/assets/css/home.css">
+  <link rel="stylesheet" href="/assets/css/lab-styles.css">
+  <link rel="stylesheet" href="/assets/css/code-fix.css">
+  <link rel="stylesheet" href="/assets/css/banner-fix.css">
+  <link rel="stylesheet" href="/assets/css/image-fix.css">
+  <link rel="stylesheet" href="/assets/css/heading-fix.css">
+  <link rel="stylesheet" href="/assets/css/header-fix.css">
+  <link rel="stylesheet" href="/assets/css/github-stars.css">
+  <link rel="stylesheet" href="/assets/css/docker-downloads.css">
+  
+  <!-- Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>MCP by Country | MCP Community Portal</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="MCP by Country" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A community-driven collection of Dockerized Model Context Protocol servers" />
+<meta property="og:description" content="A community-driven collection of Dockerized Model Context Protocol servers" />
+<link rel="canonical" href="https://mcp.collabnix.com/countries.html" />
+<meta property="og:url" content="https://mcp.collabnix.com/countries.html" />
+<meta property="og:site_name" content="MCP Community Portal" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="MCP by Country" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A community-driven collection of Dockerized Model Context Protocol servers","headline":"MCP by Country","url":"https://mcp.collabnix.com/countries.html"}</script>
+<!-- End Jekyll SEO tag -->
 
-<section class="page-header">
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <a href="/">
+          <h1>MCP Community Portal</h1>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="/categories/getting-started"><i class="fas fa-rocket"></i> Getting Started</a></li>
+          <li><a href="/categories/mcp-servers"><i class="fas fa-server"></i> Servers</a></li>
+          <li><a href="/categories/mcp-tools"><i class="fas fa-tools"></i> Tools</a></li>
+          <li><a href="/labs/01-getting-started/README.html"><i class="fas fa-flask"></i> Labs</a></li>
+          <li><a href="/blog/"><i class="fas fa-blog"></i> Blog</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+  
+  <main>
+    <section class="page-header">
   <div class="container">
     <h1 class="page-title">MCP by Country</h1>
     <p class="page-description">
@@ -53,75 +126,977 @@ title: MCP by Country
   </div>
   
   <div class="countries-grid">
-    {% for country in site.data.country_info %}
+    
       <div class="country-card" 
-           data-name="{{ country.name | downcase }}" 
-           data-region="{{ country.region | downcase }}"
-           data-support="{{ country.support_level | downcase }}">
+           data-name="united states" 
+           data-region="north america"
+           data-support="full">
         <div class="card-header">
           <h3 class="card-title">
-            <i class="flag-icon flag-icon-{{ country.flag_icon }}"></i> 
-            {{ country.name }}
+            <i class="flag-icon flag-icon-us"></i> 
+            United States
           </h3>
           <div class="card-meta">
             <span class="country-region">
-              <i class="fas fa-globe-americas"></i> {{ country.region }}
+              <i class="fas fa-globe-americas"></i> North America
             </span>
-            <span class="support-level support-{{ country.support_level }}">
-              <i class="fas fa-check-circle"></i> {{ country.support_level | capitalize }} Support
+            <span class="support-level support-full">
+              <i class="fas fa-check-circle"></i> Full Support
             </span>
           </div>
         </div>
         
         <div class="card-body">
-          <p class="card-description">{{ country.description }}</p>
+          <p class="card-description">Comprehensive MCP support with official documentation and community resources.</p>
           
-          {% if country.regulations %}
+          
           <div class="country-regulations">
             <h4><i class="fas fa-gavel"></i> Regulations</h4>
-            <p>{{ country.regulations }}</p>
+            <p>NIST guidelines for AI systems integration</p>
           </div>
-          {% endif %}
           
-          {% if country.custom_tools %}
+          
+          
           <div class="country-tools">
             <h4><i class="fas fa-tools"></i> Country-Specific Tools</h4>
             <ul>
-              {% for tool in country.custom_tools %}
-                <li>{{ tool }}</li>
-              {% endfor %}
+              
+                <li>mcp-compliance-us</li>
+              
+                <li>us-gov-mcp-toolkit</li>
+              
             </ul>
           </div>
-          {% endif %}
+          
           
           <div class="tool-availability">
             <h4><i class="fas fa-laptop-code"></i> Available Tools</h4>
             <div class="tool-count">
-              {% assign tool_count = 0 %}
-              {% for tool_entry in site.data.mcp_tools_country %}
-                {% if tool_entry.countries contains country.code %}
-                  {% assign tool_count = tool_count | plus: 1 %}
-                {% endif %}
-              {% endfor %}
-              <span class="badge">{{ tool_count }}</span> MCP tools available
+              
+              
+              <span class="badge">43</span> MCP tools available
             </div>
           </div>
         </div>
         
         <div class="card-footer">
           <div class="card-links">
-            {% if country.community_link %}
-            <a href="{{ country.community_link }}" class="btn btn-primary" target="_blank" rel="noopener">
+            
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/discussions/us" class="btn btn-primary" target="_blank" rel="noopener">
               <i class="fas fa-users"></i> Community
             </a>
-            {% endif %}
-            <a href="{{ '/country/' | append: country.code | downcase | relative_url }}" class="btn btn-secondary">
+            
+            <a href="/country/us" class="btn btn-secondary">
               <i class="fas fa-info-circle"></i> Details
             </a>
           </div>
         </div>
       </div>
-    {% endfor %}
+    
+      <div class="country-card" 
+           data-name="united kingdom" 
+           data-region="europe"
+           data-support="full">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="flag-icon flag-icon-gb"></i> 
+            United Kingdom
+          </h3>
+          <div class="card-meta">
+            <span class="country-region">
+              <i class="fas fa-globe-americas"></i> Europe
+            </span>
+            <span class="support-level support-full">
+              <i class="fas fa-check-circle"></i> Full Support
+            </span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <p class="card-description">Full MCP support with UK-specific governance guidelines integration.</p>
+          
+          
+          <div class="country-regulations">
+            <h4><i class="fas fa-gavel"></i> Regulations</h4>
+            <p>UK AI governance framework compatibility</p>
+          </div>
+          
+          
+          
+          <div class="country-tools">
+            <h4><i class="fas fa-tools"></i> Country-Specific Tools</h4>
+            <ul>
+              
+                <li>uk-gov-compliant-mcp</li>
+              
+            </ul>
+          </div>
+          
+          
+          <div class="tool-availability">
+            <h4><i class="fas fa-laptop-code"></i> Available Tools</h4>
+            <div class="tool-count">
+              
+              
+              <span class="badge">40</span> MCP tools available
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="card-links">
+            
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/discussions/uk" class="btn btn-primary" target="_blank" rel="noopener">
+              <i class="fas fa-users"></i> Community
+            </a>
+            
+            <a href="/country/gb" class="btn btn-secondary">
+              <i class="fas fa-info-circle"></i> Details
+            </a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="country-card" 
+           data-name="india" 
+           data-region="asia"
+           data-support="full">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="flag-icon flag-icon-in"></i> 
+            India
+          </h3>
+          <div class="card-meta">
+            <span class="country-region">
+              <i class="fas fa-globe-americas"></i> Asia
+            </span>
+            <span class="support-level support-full">
+              <i class="fas fa-check-circle"></i> Full Support
+            </span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <p class="card-description">Rapidly growing MCP community with support for Indic languages and India-specific integrations.</p>
+          
+          
+          <div class="country-regulations">
+            <h4><i class="fas fa-gavel"></i> Regulations</h4>
+            <p>Digital India AI compliance framework</p>
+          </div>
+          
+          
+          
+          <div class="country-tools">
+            <h4><i class="fas fa-tools"></i> Country-Specific Tools</h4>
+            <ul>
+              
+                <li>bharat-mcp-tools</li>
+              
+                <li>indic-language-mcp-support</li>
+              
+            </ul>
+          </div>
+          
+          
+          <div class="tool-availability">
+            <h4><i class="fas fa-laptop-code"></i> Available Tools</h4>
+            <div class="tool-count">
+              
+              
+              <span class="badge">26</span> MCP tools available
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="card-links">
+            
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/discussions/india" class="btn btn-primary" target="_blank" rel="noopener">
+              <i class="fas fa-users"></i> Community
+            </a>
+            
+            <a href="/country/in" class="btn btn-secondary">
+              <i class="fas fa-info-circle"></i> Details
+            </a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="country-card" 
+           data-name="germany" 
+           data-region="europe"
+           data-support="full">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="flag-icon flag-icon-de"></i> 
+            Germany
+          </h3>
+          <div class="card-meta">
+            <span class="country-region">
+              <i class="fas fa-globe-americas"></i> Europe
+            </span>
+            <span class="support-level support-full">
+              <i class="fas fa-check-circle"></i> Full Support
+            </span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <p class="card-description">Strong focus on data privacy and industrial applications with MCP integrations for German manufacturing.</p>
+          
+          
+          <div class="country-regulations">
+            <h4><i class="fas fa-gavel"></i> Regulations</h4>
+            <p>GDPR and German AI Act compliance tools</p>
+          </div>
+          
+          
+          
+          <div class="country-tools">
+            <h4><i class="fas fa-tools"></i> Country-Specific Tools</h4>
+            <ul>
+              
+                <li>gdpr-mcp-compliance</li>
+              
+                <li>german-industry-mcp</li>
+              
+            </ul>
+          </div>
+          
+          
+          <div class="tool-availability">
+            <h4><i class="fas fa-laptop-code"></i> Available Tools</h4>
+            <div class="tool-count">
+              
+              
+              <span class="badge">32</span> MCP tools available
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="card-links">
+            
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/discussions/germany" class="btn btn-primary" target="_blank" rel="noopener">
+              <i class="fas fa-users"></i> Community
+            </a>
+            
+            <a href="/country/de" class="btn btn-secondary">
+              <i class="fas fa-info-circle"></i> Details
+            </a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="country-card" 
+           data-name="japan" 
+           data-region="asia"
+           data-support="full">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="flag-icon flag-icon-jp"></i> 
+            Japan
+          </h3>
+          <div class="card-meta">
+            <span class="country-region">
+              <i class="fas fa-globe-americas"></i> Asia
+            </span>
+            <span class="support-level support-full">
+              <i class="fas fa-check-circle"></i> Full Support
+            </span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <p class="card-description">Specialized MCP implementations for Japanese enterprise systems with full localization support.</p>
+          
+          
+          <div class="country-regulations">
+            <h4><i class="fas fa-gavel"></i> Regulations</h4>
+            <p>APPI compliance for MCP implementations</p>
+          </div>
+          
+          
+          
+          <div class="country-tools">
+            <h4><i class="fas fa-tools"></i> Country-Specific Tools</h4>
+            <ul>
+              
+                <li>jp-localized-mcp</li>
+              
+                <li>kanji-mcp-support</li>
+              
+            </ul>
+          </div>
+          
+          
+          <div class="tool-availability">
+            <h4><i class="fas fa-laptop-code"></i> Available Tools</h4>
+            <div class="tool-count">
+              
+              
+              <span class="badge">29</span> MCP tools available
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="card-links">
+            
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/discussions/japan" class="btn btn-primary" target="_blank" rel="noopener">
+              <i class="fas fa-users"></i> Community
+            </a>
+            
+            <a href="/country/jp" class="btn btn-secondary">
+              <i class="fas fa-info-circle"></i> Details
+            </a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="country-card" 
+           data-name="canada" 
+           data-region="north america"
+           data-support="full">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="flag-icon flag-icon-ca"></i> 
+            Canada
+          </h3>
+          <div class="card-meta">
+            <span class="country-region">
+              <i class="fas fa-globe-americas"></i> North America
+            </span>
+            <span class="support-level support-full">
+              <i class="fas fa-check-circle"></i> Full Support
+            </span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <p class="card-description">Bilingual MCP support with specific tools for Canadian governmental and financial sectors.</p>
+          
+          
+          <div class="country-regulations">
+            <h4><i class="fas fa-gavel"></i> Regulations</h4>
+            <p>Canadian AI governance framework</p>
+          </div>
+          
+          
+          
+          <div class="country-tools">
+            <h4><i class="fas fa-tools"></i> Country-Specific Tools</h4>
+            <ul>
+              
+                <li>bilingual-mcp-tools</li>
+              
+            </ul>
+          </div>
+          
+          
+          <div class="tool-availability">
+            <h4><i class="fas fa-laptop-code"></i> Available Tools</h4>
+            <div class="tool-count">
+              
+              
+              <span class="badge">10</span> MCP tools available
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="card-links">
+            
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/discussions/canada" class="btn btn-primary" target="_blank" rel="noopener">
+              <i class="fas fa-users"></i> Community
+            </a>
+            
+            <a href="/country/ca" class="btn btn-secondary">
+              <i class="fas fa-info-circle"></i> Details
+            </a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="country-card" 
+           data-name="australia" 
+           data-region="oceania"
+           data-support="full">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="flag-icon flag-icon-au"></i> 
+            Australia
+          </h3>
+          <div class="card-meta">
+            <span class="country-region">
+              <i class="fas fa-globe-americas"></i> Oceania
+            </span>
+            <span class="support-level support-full">
+              <i class="fas fa-check-circle"></i> Full Support
+            </span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <p class="card-description">Comprehensive MCP support with focus on ethical AI integration and natural resource sector applications.</p>
+          
+          
+          <div class="country-regulations">
+            <h4><i class="fas fa-gavel"></i> Regulations</h4>
+            <p>Australian AI Ethics Framework compatibility</p>
+          </div>
+          
+          
+          
+          <div class="country-tools">
+            <h4><i class="fas fa-tools"></i> Country-Specific Tools</h4>
+            <ul>
+              
+                <li>aus-compliant-mcp</li>
+              
+            </ul>
+          </div>
+          
+          
+          <div class="tool-availability">
+            <h4><i class="fas fa-laptop-code"></i> Available Tools</h4>
+            <div class="tool-count">
+              
+              
+              <span class="badge">9</span> MCP tools available
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="card-links">
+            
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/discussions/australia" class="btn btn-primary" target="_blank" rel="noopener">
+              <i class="fas fa-users"></i> Community
+            </a>
+            
+            <a href="/country/au" class="btn btn-secondary">
+              <i class="fas fa-info-circle"></i> Details
+            </a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="country-card" 
+           data-name="brazil" 
+           data-region="south america"
+           data-support="partial">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="flag-icon flag-icon-br"></i> 
+            Brazil
+          </h3>
+          <div class="card-meta">
+            <span class="country-region">
+              <i class="fas fa-globe-americas"></i> South America
+            </span>
+            <span class="support-level support-partial">
+              <i class="fas fa-check-circle"></i> Partial Support
+            </span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <p class="card-description">Growing MCP adoption with Portuguese language support and LGPD-compliant implementations.</p>
+          
+          
+          <div class="country-regulations">
+            <h4><i class="fas fa-gavel"></i> Regulations</h4>
+            <p>LGPD compliance tools</p>
+          </div>
+          
+          
+          
+          <div class="country-tools">
+            <h4><i class="fas fa-tools"></i> Country-Specific Tools</h4>
+            <ul>
+              
+                <li>portuguese-mcp-interface</li>
+              
+            </ul>
+          </div>
+          
+          
+          <div class="tool-availability">
+            <h4><i class="fas fa-laptop-code"></i> Available Tools</h4>
+            <div class="tool-count">
+              
+              
+              <span class="badge">10</span> MCP tools available
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="card-links">
+            
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/discussions/brazil" class="btn btn-primary" target="_blank" rel="noopener">
+              <i class="fas fa-users"></i> Community
+            </a>
+            
+            <a href="/country/br" class="btn btn-secondary">
+              <i class="fas fa-info-circle"></i> Details
+            </a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="country-card" 
+           data-name="singapore" 
+           data-region="asia"
+           data-support="full">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="flag-icon flag-icon-sg"></i> 
+            Singapore
+          </h3>
+          <div class="card-meta">
+            <span class="country-region">
+              <i class="fas fa-globe-americas"></i> Asia
+            </span>
+            <span class="support-level support-full">
+              <i class="fas fa-check-circle"></i> Full Support
+            </span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <p class="card-description">Strong fintech-focused MCP implementations with government digital initiative support.</p>
+          
+          
+          <div class="country-regulations">
+            <h4><i class="fas fa-gavel"></i> Regulations</h4>
+            <p>PDPA and Singapore AI governance compatibility</p>
+          </div>
+          
+          
+          
+          <div class="country-tools">
+            <h4><i class="fas fa-tools"></i> Country-Specific Tools</h4>
+            <ul>
+              
+                <li>sg-fintech-mcp</li>
+              
+            </ul>
+          </div>
+          
+          
+          <div class="tool-availability">
+            <h4><i class="fas fa-laptop-code"></i> Available Tools</h4>
+            <div class="tool-count">
+              
+              
+              <span class="badge">23</span> MCP tools available
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="card-links">
+            
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/discussions/singapore" class="btn btn-primary" target="_blank" rel="noopener">
+              <i class="fas fa-users"></i> Community
+            </a>
+            
+            <a href="/country/sg" class="btn btn-secondary">
+              <i class="fas fa-info-circle"></i> Details
+            </a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="country-card" 
+           data-name="france" 
+           data-region="europe"
+           data-support="full">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="flag-icon flag-icon-fr"></i> 
+            France
+          </h3>
+          <div class="card-meta">
+            <span class="country-region">
+              <i class="fas fa-globe-americas"></i> Europe
+            </span>
+            <span class="support-level support-full">
+              <i class="fas fa-check-circle"></i> Full Support
+            </span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <p class="card-description">Comprehensive MCP support with specialized tools for French public sector and enterprise systems.</p>
+          
+          
+          <div class="country-regulations">
+            <h4><i class="fas fa-gavel"></i> Regulations</h4>
+            <p>French Digital Ethics Framework alignment</p>
+          </div>
+          
+          
+          
+          <div class="country-tools">
+            <h4><i class="fas fa-tools"></i> Country-Specific Tools</h4>
+            <ul>
+              
+                <li>french-mcp-toolkit</li>
+              
+            </ul>
+          </div>
+          
+          
+          <div class="tool-availability">
+            <h4><i class="fas fa-laptop-code"></i> Available Tools</h4>
+            <div class="tool-count">
+              
+              
+              <span class="badge">23</span> MCP tools available
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="card-links">
+            
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/discussions/france" class="btn btn-primary" target="_blank" rel="noopener">
+              <i class="fas fa-users"></i> Community
+            </a>
+            
+            <a href="/country/fr" class="btn btn-secondary">
+              <i class="fas fa-info-circle"></i> Details
+            </a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="country-card" 
+           data-name="china" 
+           data-region="asia"
+           data-support="community">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="flag-icon flag-icon-cn"></i> 
+            China
+          </h3>
+          <div class="card-meta">
+            <span class="country-region">
+              <i class="fas fa-globe-americas"></i> Asia
+            </span>
+            <span class="support-level support-community">
+              <i class="fas fa-check-circle"></i> Community Support
+            </span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <p class="card-description">Community-driven MCP adaptations with specialized support for Chinese language processing and local cloud services.</p>
+          
+          
+          <div class="country-regulations">
+            <h4><i class="fas fa-gavel"></i> Regulations</h4>
+            <p>Chinese regulations for API services</p>
+          </div>
+          
+          
+          
+          <div class="country-tools">
+            <h4><i class="fas fa-tools"></i> Country-Specific Tools</h4>
+            <ul>
+              
+                <li>cn-mcp-framework</li>
+              
+                <li>chinese-nlp-mcp</li>
+              
+            </ul>
+          </div>
+          
+          
+          <div class="tool-availability">
+            <h4><i class="fas fa-laptop-code"></i> Available Tools</h4>
+            <div class="tool-count">
+              
+              
+              <span class="badge">17</span> MCP tools available
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="card-links">
+            
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/discussions/china" class="btn btn-primary" target="_blank" rel="noopener">
+              <i class="fas fa-users"></i> Community
+            </a>
+            
+            <a href="/country/cn" class="btn btn-secondary">
+              <i class="fas fa-info-circle"></i> Details
+            </a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="country-card" 
+           data-name="south korea" 
+           data-region="asia"
+           data-support="partial">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="flag-icon flag-icon-kr"></i> 
+            South Korea
+          </h3>
+          <div class="card-meta">
+            <span class="country-region">
+              <i class="fas fa-globe-americas"></i> Asia
+            </span>
+            <span class="support-level support-partial">
+              <i class="fas fa-check-circle"></i> Partial Support
+            </span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <p class="card-description">Growing MCP ecosystem with strong focus on Korean language support and integration with local tech giants.</p>
+          
+          
+          <div class="country-regulations">
+            <h4><i class="fas fa-gavel"></i> Regulations</h4>
+            <p>K-ISMS compliance guidelines</p>
+          </div>
+          
+          
+          
+          <div class="country-tools">
+            <h4><i class="fas fa-tools"></i> Country-Specific Tools</h4>
+            <ul>
+              
+                <li>korean-mcp-tools</li>
+              
+            </ul>
+          </div>
+          
+          
+          <div class="tool-availability">
+            <h4><i class="fas fa-laptop-code"></i> Available Tools</h4>
+            <div class="tool-count">
+              
+              
+              <span class="badge">2</span> MCP tools available
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="card-links">
+            
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/discussions/korea" class="btn btn-primary" target="_blank" rel="noopener">
+              <i class="fas fa-users"></i> Community
+            </a>
+            
+            <a href="/country/kr" class="btn btn-secondary">
+              <i class="fas fa-info-circle"></i> Details
+            </a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="country-card" 
+           data-name="israel" 
+           data-region="middle east"
+           data-support="partial">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="flag-icon flag-icon-il"></i> 
+            Israel
+          </h3>
+          <div class="card-meta">
+            <span class="country-region">
+              <i class="fas fa-globe-americas"></i> Middle East
+            </span>
+            <span class="support-level support-partial">
+              <i class="fas fa-check-circle"></i> Partial Support
+            </span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <p class="card-description">Active MCP community focused on cybersecurity and AI startups with multilingual support.</p>
+          
+          
+          <div class="country-regulations">
+            <h4><i class="fas fa-gavel"></i> Regulations</h4>
+            <p>Israeli privacy regulations</p>
+          </div>
+          
+          
+          
+          <div class="country-tools">
+            <h4><i class="fas fa-tools"></i> Country-Specific Tools</h4>
+            <ul>
+              
+                <li>hebrew-arabic-mcp</li>
+              
+            </ul>
+          </div>
+          
+          
+          <div class="tool-availability">
+            <h4><i class="fas fa-laptop-code"></i> Available Tools</h4>
+            <div class="tool-count">
+              
+              
+              <span class="badge">2</span> MCP tools available
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="card-links">
+            
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/discussions/israel" class="btn btn-primary" target="_blank" rel="noopener">
+              <i class="fas fa-users"></i> Community
+            </a>
+            
+            <a href="/country/il" class="btn btn-secondary">
+              <i class="fas fa-info-circle"></i> Details
+            </a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="country-card" 
+           data-name="united arab emirates" 
+           data-region="middle east"
+           data-support="partial">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="flag-icon flag-icon-ae"></i> 
+            United Arab Emirates
+          </h3>
+          <div class="card-meta">
+            <span class="country-region">
+              <i class="fas fa-globe-americas"></i> Middle East
+            </span>
+            <span class="support-level support-partial">
+              <i class="fas fa-check-circle"></i> Partial Support
+            </span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <p class="card-description">Rapidly growing MCP adoption with Arabic language support and smart city integration tools.</p>
+          
+          
+          <div class="country-regulations">
+            <h4><i class="fas fa-gavel"></i> Regulations</h4>
+            <p>UAE AI Principles framework</p>
+          </div>
+          
+          
+          
+          <div class="country-tools">
+            <h4><i class="fas fa-tools"></i> Country-Specific Tools</h4>
+            <ul>
+              
+                <li>arabic-mcp-support</li>
+              
+            </ul>
+          </div>
+          
+          
+          <div class="tool-availability">
+            <h4><i class="fas fa-laptop-code"></i> Available Tools</h4>
+            <div class="tool-count">
+              
+              
+              <span class="badge">6</span> MCP tools available
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="card-links">
+            
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/discussions/uae" class="btn btn-primary" target="_blank" rel="noopener">
+              <i class="fas fa-users"></i> Community
+            </a>
+            
+            <a href="/country/ae" class="btn btn-secondary">
+              <i class="fas fa-info-circle"></i> Details
+            </a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="country-card" 
+           data-name="south africa" 
+           data-region="africa"
+           data-support="community">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="flag-icon flag-icon-za"></i> 
+            South Africa
+          </h3>
+          <div class="card-meta">
+            <span class="country-region">
+              <i class="fas fa-globe-americas"></i> Africa
+            </span>
+            <span class="support-level support-community">
+              <i class="fas fa-check-circle"></i> Community Support
+            </span>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <p class="card-description">Emerging MCP community with focus on multilingual African language support and solutions for developing markets.</p>
+          
+          
+          <div class="country-regulations">
+            <h4><i class="fas fa-gavel"></i> Regulations</h4>
+            <p>POPIA compliance guidance</p>
+          </div>
+          
+          
+          
+          <div class="country-tools">
+            <h4><i class="fas fa-tools"></i> Country-Specific Tools</h4>
+            <ul>
+              
+                <li>african-language-mcp</li>
+              
+            </ul>
+          </div>
+          
+          
+          <div class="tool-availability">
+            <h4><i class="fas fa-laptop-code"></i> Available Tools</h4>
+            <div class="tool-count">
+              
+              
+              <span class="badge">0</span> MCP tools available
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="card-links">
+            
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/discussions/southafrica" class="btn btn-primary" target="_blank" rel="noopener">
+              <i class="fas fa-users"></i> Community
+            </a>
+            
+            <a href="/country/za" class="btn btn-secondary">
+              <i class="fas fa-info-circle"></i> Details
+            </a>
+          </div>
+        </div>
+      </div>
+    
   </div>
 </section>
 
@@ -448,3 +1423,83 @@ title: MCP by Country
     // This would typically be added after including the necessary libraries
   });
 </script>
+
+  </main>
+  
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>Docker MCP Community Portal</h3>
+        <p>A community-driven resource for Docker Model Context Protocol.</p>
+        <p>&copy; 2025 MCP Community Portal. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal" target="_blank">
+              <i class="fab fa-github"></i> GitHub Repository
+            </a>
+          </li>
+          <li>
+            <a href="https://collabnix.com" target="_blank">
+              <i class="fas fa-globe"></i> Collabnix Community
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" target="_blank">
+              <i class="fas fa-code-branch"></i> Contribute to MCP Portal
+            </a>
+          </li>
+          <li>
+            <a href="https://hub.docker.com/u/mcp" target="_blank">
+              <i class="fab fa-docker"></i> MCP on Docker Hub
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+  <!-- ClipboardJS for copy functionality -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+  
+  <!-- Syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  
+  <!-- Custom scripts -->
+  <script src="/assets/js/filter.js"></script>
+  <script src="/assets/js/github-stars.js"></script>
+  <script src="/assets/js/docker-downloads.js"></script>
+  <script src="/assets/js/code-formatter.js"></script>
+  
+  <script>
+    // Initialize clipboard.js
+    document.addEventListener('DOMContentLoaded', function() {
+      var clipboard = new ClipboardJS('.btn-copy');
+      
+      clipboard.on('success', function(e) {
+        var button = e.trigger;
+        var originalText = button.innerHTML;
+        
+        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        button.classList.add('copied');
+        
+        setTimeout(function() {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+        
+        e.clearSelection();
+      });
+      
+      // Initialize syntax highlighting
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+</body>
+</html>
