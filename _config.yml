@@ -1,0 +1,60 @@
+# Site settings
+title: MCP Community Portal
+description: A community-driven collection of Dockerized Model Context Protocol servers
+baseurl: "" # Empty for local development
+url: "https://mcp.collabnix.com" # Production URL
+github_username: ajeetraina
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+safe: true
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:path/
+  labs:
+    output: true
+    permalink: /:collection/:path/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+  - scope:
+      path: "categories"
+    values:
+      layout: "category"
+  - scope:
+      path: "_posts"
+    values:
+      layout: "post"
+  - scope:
+      path: "labs"
+    values:
+      layout: "with-sidebar"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .github
+  - CONTRIBUTING.md
+  - LICENSE
+  
+# Configure sass
+sass:
+  style: compressed
+
+# Make sure data files get processed
+data_dir: _data
