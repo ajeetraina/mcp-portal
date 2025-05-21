@@ -5,14 +5,14 @@ working_servers:
   description: Provides date and time capabilities
   example_usage: "services:\n  time:\n    image: mcp/time\n"
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/time
-  stars: 12268
+  stars: 12295
 - id: fetch
   name: Fetch Server
   image: mcp/fetch
   description: Enables web browsing and content retrieval
   example_usage: "services:\n  fetch:\n    image: mcp/fetch\n"
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/fetch
-  stars: 12268
+  stars: 12295
 - id: filesystem
   name: Filesystem Server
   image: mcp/filesystem
@@ -20,7 +20,7 @@ working_servers:
   example_usage: "services:\n  fs:\n    image: mcp/filesystem\n    command:\n    \
     \  - /rootfs\n    volumes:\n      - .:/rootfs\n"
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/filesystem
-  stars: 12268
+  stars: 12295
 - id: postgres
   name: PostgreSQL Server
   image: mcp/postgres
@@ -28,7 +28,7 @@ working_servers:
   example_usage: "services:\n  postgres:\n    image: mcp/postgres\n    environment:\n\
     \      - PG_CONNECTION_STRING=postgres://user:password@host:port/database\n"
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/postgres
-  stars: 12268
+  stars: 12295
 - id: git
   name: Git Server
   image: mcp/git
@@ -36,7 +36,7 @@ working_servers:
   example_usage: "services:\n  git:\n    image: mcp/git\n    volumes:\n      - .:/workspace\n\
     \    working_dir: /workspace\n"
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/git
-  stars: 12268
+  stars: 12295
 - id: sqlite
   name: SQLite Server
   image: mcp/sqlite
@@ -44,7 +44,7 @@ working_servers:
   example_usage: "services:\n  sqlite:\n    image: mcp/sqlite\n    volumes:\n    \
     \  - .:/data\n"
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/sqlite
-  stars: 12268
+  stars: 12295
 - id: github
   name: GitHub Server
   image: mcp/github
@@ -52,7 +52,7 @@ working_servers:
   example_usage: "services:\n  github:\n    image: mcp/github\n    environment:\n\
     \      - GITHUB_TOKEN=${GITHUB_TOKEN}\n"
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/github
-  stars: 12268
+  stars: 12295
 untested_servers:
 - id: brave-search
   name: Brave Search Server
@@ -62,7 +62,7 @@ untested_servers:
   example_usage: "services:\n  brave-search:\n    image: mcp/brave-search\n    environment:\n\
     \      - BRAVE_API_KEY=${BRAVE_API_KEY}\n"
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/brave-search
-  stars: 12268
+  stars: 12295
 - id: gdrive
   name: Google Drive Server
   image: mcp/gdrive
@@ -72,7 +72,7 @@ untested_servers:
     \      - GOOGLE_APPLICATION_CREDENTIALS=/auth/credentials.json\n    volumes:\n\
     \      - ./auth:/auth\n"
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/gdrive
-  stars: 12268
+  stars: 12295
 - id: slack
   name: Slack Server
   image: mcp/slack
@@ -81,7 +81,7 @@ untested_servers:
   example_usage: "services:\n  slack:\n    image: mcp/slack\n    environment:\n  \
     \    - SLACK_TOKEN=${SLACK_TOKEN}\n"
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/slack
-  stars: 12268
+  stars: 12295
 - id: google-maps
   name: Google Maps Server
   image: mcp/google-maps
@@ -90,7 +90,7 @@ untested_servers:
   example_usage: "services:\n  google-maps:\n    image: mcp/google-maps\n    environment:\n\
     \      - GOOGLE_MAPS_API_KEY=${GOOGLE_MAPS_API_KEY}\n"
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/google-maps
-  stars: 12268
+  stars: 12295
 - id: gitlab
   name: GitLab Server
   image: mcp/gitlab
@@ -99,7 +99,7 @@ untested_servers:
   example_usage: "services:\n  gitlab:\n    image: mcp/gitlab\n    environment:\n\
     \      - GITLAB_TOKEN=${GITLAB_TOKEN}\n"
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/gitlab
-  stars: 12268
+  stars: 12295
 - id: everything
   name: Everything Server
   image: mcp/everything
@@ -107,7 +107,7 @@ untested_servers:
   requirements: May require specific configuration
   example_usage: "services:\n  everything:\n    image: mcp/everything\n"
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/everything
-  stars: 12268
+  stars: 12295
 - id: aws-kb-retrieval-server
   name: AWS Knowledge Base Retrieval Server
   image: mcp/aws-kb-retrieval-server
@@ -116,7 +116,7 @@ untested_servers:
   example_usage: "services:\n  aws-kb:\n    image: mcp/aws-kb-retrieval-server\n \
     \   environment:\n      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}\n      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}\n"
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/aws-kb-retrieval-server
-  stars: 12268
+  stars: 12295
 - id: sentry
   name: Sentry Server
   image: mcp/sentry
@@ -125,7 +125,7 @@ untested_servers:
   example_usage: "services:\n  sentry:\n    image: mcp/sentry\n    environment:\n\
     \      - SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}\n"
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/sentry
-  stars: 12268
+  stars: 12295
 unsupported_servers:
 - id: sequentialthinking
   name: Sequential Thinking Server
@@ -133,7 +133,7 @@ unsupported_servers:
   description: Provides structured thinking capabilities
   issue: The tool description is too long for Gordon to process
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/sequentialthinking
-  stars: 12268
+  stars: 12295
 - id: puppeteer
   name: Puppeteer Server
   image: mcp/puppeteer
@@ -141,7 +141,7 @@ unsupported_servers:
   issue: Returns images that Gordon cannot currently handle (Gordon only processes
     text responses)
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/puppeteer
-  stars: 12268
+  stars: 12295
 - id: everart
   name: Everart Server
   image: mcp/everart
@@ -149,11 +149,11 @@ unsupported_servers:
   issue: Returns images that Gordon cannot currently handle (Gordon only processes
     text responses)
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/everart
-  stars: 12268
+  stars: 12295
 - id: memory
   name: Memory Server
   image: mcp/memory
   description: Persistent memory capabilities for conversational context
   issue: Cannot be configured to use a custom path for its knowledge base
   docs_url: https://github.com/anthropics/anthropic-cookbook/tree/main/mcp/servers/memory
-  stars: 12268
+  stars: 12295
