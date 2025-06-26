@@ -1,82 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Stay updated with the latest developments, tutorials, and insights about Model Context Protocol (MCP)">
-  <meta name="keywords" content="docker, mcp, model, context, protocol, servers, tools, community">
-  <title>MCP News - Latest Updates in Model Context Protocol - MCP Community Portal</title>
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/assets/images/docker-logo.svg">
-  
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <link rel="stylesheet" href="/assets/css/tools.css">
-  <link rel="stylesheet" href="/assets/css/home.css">
-  <link rel="stylesheet" href="/assets/css/lab-styles.css">
-  <link rel="stylesheet" href="/assets/css/code-fix.css">
-  <link rel="stylesheet" href="/assets/css/banner-fix.css">
-  <link rel="stylesheet" href="/assets/css/image-fix.css">
-  <link rel="stylesheet" href="/assets/css/heading-fix.css">
-  <link rel="stylesheet" href="/assets/css/header-fix.css">
-  <link rel="stylesheet" href="/assets/css/github-stars.css">
-  <link rel="stylesheet" href="/assets/css/docker-downloads.css">
-  
-  <!-- Syntax Highlighting -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
-  
-  <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>MCP News - Latest Updates in Model Context Protocol | MCP Community Portal</title>
-<meta name="generator" content="Jekyll v4.3.4" />
-<meta property="og:title" content="MCP News - Latest Updates in Model Context Protocol" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="Stay updated with the latest developments, tutorials, and insights about Model Context Protocol (MCP)" />
-<meta property="og:description" content="Stay updated with the latest developments, tutorials, and insights about Model Context Protocol (MCP)" />
-<link rel="canonical" href="https://mcp.collabnix.com/" />
-<meta property="og:url" content="https://mcp.collabnix.com/" />
-<meta property="og:site_name" content="MCP Community Portal" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="MCP News - Latest Updates in Model Context Protocol" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"Stay updated with the latest developments, tutorials, and insights about Model Context Protocol (MCP)","headline":"MCP News - Latest Updates in Model Context Protocol","name":"MCP Community Portal","url":"https://mcp.collabnix.com/"}</script>
-<!-- End Jekyll SEO tag -->
+---
+layout: default
+title: MCP News - Latest Updates in Model Context Protocol
+description: Stay updated with the latest developments, tutorials, and insights about Model Context Protocol (MCP)
+---
 
-</head>
-<body>
-  <header class="site-header">
-  <div class="container">
-    <div class="header-content">
-      <div class="logo">
-        <a href="/">
-          <h1>MCP Community Portal</h1>
-        </a>
-      </div>
-      <nav class="main-nav">
-        <ul>
-          <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
-          <li><a href="/categories/getting-started"><i class="fas fa-rocket"></i> Getting Started</a></li>
-          <li><a href="/categories/mcp-servers"><i class="fas fa-server"></i> Servers</a></li>
-          <li><a href="/categories/mcp-tools"><i class="fas fa-tools"></i> Tools</a></li>
-          <li><a href="/labs/01-getting-started/README.html"><i class="fas fa-flask"></i> Labs</a></li>
-          <li><a href="/blog/"><i class="fas fa-blog"></i> Blog</a></li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-</header>
-  
-  <main>
-    <div class="blog-container">
+<div class="blog-container">
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-content">
@@ -84,11 +12,11 @@
             <p class="hero-subtitle">Your go-to source for Model Context Protocol updates, tutorials, and community insights</p>
             <div class="hero-stats">
                 <div class="stat">
-                    <span class="stat-number">3</span>
+                    <span class="stat-number">{{ site.posts.size }}</span>
                     <span class="stat-label">Articles</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-number">7</span>
+                    <span class="stat-number">{{ site.categories.size }}</span>
                     <span class="stat-label">Categories</span>
                 </div>
                 <div class="stat">
@@ -100,30 +28,30 @@
     </section>
 
     <!-- Featured Article -->
-    
+    {% assign featured_post = site.posts.first %}
     <section class="featured-section">
         <h2 class="section-title">Featured Article</h2>
         <article class="featured-article">
             <div class="featured-content">
                 <div class="featured-meta">
-                    <span class="featured-category">GETTING-STARTED</span>
-                    <time class="featured-date">May 01, 2025</time>
+                    <span class="featured-category">{{ featured_post.categories.first | upcase }}</span>
+                    <time class="featured-date">{{ featured_post.date | date: "%B %d, %Y" }}</time>
                 </div>
                 <h3 class="featured-title">
-                    <a href="/getting-started/2025/05/01/introduction-to-mcp.html">Introduction to Model Context Protocol (MCP)</a>
+                    <a href="{{ featured_post.url | relative_url }}">{{ featured_post.title }}</a>
                 </h3>
-                <p class="featured-excerpt">The Model Context Protocol (MCP) is changing how AI assistants interact with external tools and services. In this introductory guide, we’ll explore what MCP is, how it works, and why it’s transform...</p>
+                <p class="featured-excerpt">{{ featured_post.excerpt | strip_html | truncate: 200 }}</p>
                 <div class="featured-author">
                     <div class="author-info">
-                        <span class="author-name">Ajeet Singh Raina</span>
-                        <span class="author-role">Developer</span>
+                        <span class="author-name">{{ featured_post.author | default: "MCP Team" }}</span>
+                        <span class="author-role">{{ featured_post.author_role | default: "Developer" }}</span>
                     </div>
-                    <a href="/getting-started/2025/05/01/introduction-to-mcp.html" class="read-more-btn">Read Article</a>
+                    <a href="{{ featured_post.url | relative_url }}" class="read-more-btn">Read Article</a>
                 </div>
             </div>
             <div class="featured-image">
-                <img src="/assets/images/default-mcp.jpg" 
-                     alt="Introduction to Model Context Protocol (MCP)" loading="lazy">
+                <img src="{{ featured_post.image | default: '/assets/images/default-mcp.jpg' | relative_url }}" 
+                     alt="{{ featured_post.title }}" loading="lazy">
             </div>
         </article>
     </section>
@@ -136,46 +64,26 @@
         </div>
         
         <div class="news-grid">
-            
+            {% for post in site.posts limit:6 offset:1 %}
             <article class="news-card">
                 <div class="news-card-image">
-                    <img src="/assets/images/github-mcp-server.png" 
-                         alt="GitHub MCP Server, Docker, and Claude Desktop" loading="lazy">
-                    <div class="news-card-category">TUTORIALS</div>
+                    <img src="{{ post.image | default: '/assets/images/default-mcp.jpg' | relative_url }}" 
+                         alt="{{ post.title }}" loading="lazy">
+                    <div class="news-card-category">{{ post.categories.first | upcase }}</div>
                 </div>
                 <div class="news-card-content">
-                    <time class="news-card-date">Apr 09, 2025</time>
+                    <time class="news-card-date">{{ post.date | date: "%b %d, %Y" }}</time>
                     <h3 class="news-card-title">
-                        <a href="/tutorials/mcp/github/2025/04/09/github-mcp-server-docker-and-claude-desktop.html">GitHub MCP Server, Docker, and Claude Desktop</a>
+                        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
                     </h3>
-                    <p class="news-card-excerpt">In today’s fast-paced dynamic development landscape, managing repositories and performing file operations on GitHub c...</p>
+                    <p class="news-card-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
                     <div class="news-card-footer">
-                        <span class="news-card-author">Ajeet Singh Raina</span>
-                        <span class="news-card-read-time">5 min read</span>
+                        <span class="news-card-author">{{ post.author | default: "MCP Team" }}</span>
+                        <span class="news-card-read-time">{{ post.content | strip_html | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
                     </div>
                 </div>
             </article>
-            
-            <article class="news-card">
-                <div class="news-card-image">
-                    <img src="/assets/images/default-mcp.jpg" 
-                         alt="Connecting PostgreSQL to Claude Desktop with MCP: A Step-by-Step Guide" loading="lazy">
-                    <div class="news-card-category">TUTORIALS</div>
-                </div>
-                <div class="news-card-content">
-                    <time class="news-card-date">Mar 29, 2025</time>
-                    <h3 class="news-card-title">
-                        <a href="/tutorials/mcp/database/2025/03/29/postgresql-model-context-protocol-mcp-and-claude-desktop.html">Connecting PostgreSQL to Claude Desktop with MCP: A Step-by-Step Guide</a>
-                    </h3>
-                    <p class="news-card-excerpt">Introduction
-</p>
-                    <div class="news-card-footer">
-                        <span class="news-card-author">Ajeet Raina</span>
-                        <span class="news-card-read-time">5 min read</span>
-                    </div>
-                </div>
-            </article>
-            
+            {% endfor %}
         </div>
     </section>
 
@@ -183,86 +91,32 @@
     <section class="categories-section">
         <h2 class="section-title">Explore by Category</h2>
         <div class="categories-grid">
-            
-            
-            
-            
+            {% assign sorted_categories = site.categories | sort %}
+            {% for category in sorted_categories limit:6 %}
+            {% assign category_name = category[0] %}
+            {% assign category_posts = category[1] %}
             <div class="category-card">
                 <div class="category-icon">
-                    
+                    {% case category_name %}
+                    {% when 'tutorials' %}
+                        📚
+                    {% when 'news' %}
+                        📰
+                    {% when 'guides' %}
+                        🧭
+                    {% when 'development' %}
+                        💻
+                    {% when 'community' %}
+                        👥
+                    {% else %}
                         🔧
-                    
+                    {% endcase %}
                 </div>
-                <h3 class="category-title">Database</h3>
-                <p class="category-count">1 articles</p>
-                <a href="/categories/database" class="category-link">Explore →</a>
+                <h3 class="category-title">{{ category_name | capitalize }}</h3>
+                <p class="category-count">{{ category_posts | size }} articles</p>
+                <a href="/categories/{{ category_name | slugify }}" class="category-link">Explore →</a>
             </div>
-            
-            
-            
-            <div class="category-card">
-                <div class="category-icon">
-                    
-                        🔧
-                    
-                </div>
-                <h3 class="category-title">Mcp</h3>
-                <p class="category-count">1 articles</p>
-                <a href="/categories/mcp" class="category-link">Explore →</a>
-            </div>
-            
-            
-            
-            <div class="category-card">
-                <div class="category-icon">
-                    
-                        🔧
-                    
-                </div>
-                <h3 class="category-title">Tutorials</h3>
-                <p class="category-count">1 articles</p>
-                <a href="/categories/tutorials" class="category-link">Explore →</a>
-            </div>
-            
-            
-            
-            <div class="category-card">
-                <div class="category-icon">
-                    
-                        🔧
-                    
-                </div>
-                <h3 class="category-title">Getting-started</h3>
-                <p class="category-count">1 articles</p>
-                <a href="/categories/getting-started" class="category-link">Explore →</a>
-            </div>
-            
-            
-            
-            <div class="category-card">
-                <div class="category-icon">
-                    
-                        🔧
-                    
-                </div>
-                <h3 class="category-title">Github</h3>
-                <p class="category-count">1 articles</p>
-                <a href="/categories/github" class="category-link">Explore →</a>
-            </div>
-            
-            
-            
-            <div class="category-card">
-                <div class="category-icon">
-                    
-                        🔧
-                    
-                </div>
-                <h3 class="category-title">Mcp</h3>
-                <p class="category-count">1 articles</p>
-                <a href="/categories/mcp" class="category-link">Explore →</a>
-            </div>
-            
+            {% endfor %}
         </div>
     </section>
 
@@ -854,82 +708,3 @@
     }
 }
 </style>
-  </main>
-  
-  <footer class="site-footer">
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-info">
-        <h3>Docker MCP Community Portal</h3>
-        <p>A community-driven resource for Docker Model Context Protocol.</p>
-        <p>&copy; 2025 MCP Community Portal. All rights reserved.</p>
-      </div>
-      <div class="footer-links">
-        <h4>Resources</h4>
-        <ul>
-          <li>
-            <a href="https://github.com/ajeetraina/docker-mcp-portal" target="_blank">
-              <i class="fab fa-github"></i> GitHub Repository
-            </a>
-          </li>
-          <li>
-            <a href="https://collabnix.com" target="_blank">
-              <i class="fas fa-globe"></i> Collabnix Community
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" target="_blank">
-              <i class="fas fa-code-branch"></i> Contribute to MCP Portal
-            </a>
-          </li>
-          <li>
-            <a href="https://hub.docker.com/u/mcp" target="_blank">
-              <i class="fab fa-docker"></i> MCP on Docker Hub
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</footer>
-  
-  <!-- ClipboardJS for copy functionality -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
-  
-  <!-- Syntax highlighting -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-  
-  <!-- Custom scripts -->
-  <script src="/assets/js/filter.js"></script>
-  <script src="/assets/js/github-stars.js"></script>
-  <script src="/assets/js/docker-downloads.js"></script>
-  <script src="/assets/js/code-formatter.js"></script>
-  
-  <script>
-    // Initialize clipboard.js
-    document.addEventListener('DOMContentLoaded', function() {
-      var clipboard = new ClipboardJS('.btn-copy');
-      
-      clipboard.on('success', function(e) {
-        var button = e.trigger;
-        var originalText = button.innerHTML;
-        
-        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
-        button.classList.add('copied');
-        
-        setTimeout(function() {
-          button.innerHTML = originalText;
-          button.classList.remove('copied');
-        }, 2000);
-        
-        e.clearSelection();
-      });
-      
-      // Initialize syntax highlighting
-      document.querySelectorAll('pre code').forEach((el) => {
-        hljs.highlightElement(el);
-      });
-    });
-  </script>
-</body>
-</html>
