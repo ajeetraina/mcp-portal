@@ -1,0 +1,53 @@
+/* Fix for page titles with white backgrounds */
+
+/* Target all page titles */
+.page-title {
+  color: white !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  background: transparent !important;
+  -webkit-text-fill-color: white !important;
+}
+
+/* Fix specifically for the servers table view page */
+section.page-header {
+  position: relative;
+}
+
+section.page-header .page-title {
+  position: relative;
+  z-index: 2;
+  color: white !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  background: transparent !important;
+  -webkit-text-fill-color: white !important;
+}
+
+section.page-header .page-description {
+  position: relative;
+  z-index: 2;
+  color: white !important;
+}
+
+/* Fix for any gradient text that might be causing issues */
+h1, h2, h3, h4, h5, h6 {
+  background-clip: text !important;
+}
+
+/* Sometimes text with gradients can appear with white backgrounds */
+.gradient-text {
+  background: transparent !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+/* Fix for hero section titles */
+.hero-title {
+  color: var(--color-secondary) !important;
+  background: transparent !important;
+}
+
+/* Fix for section titles */
+.section-title {
+  color: var(--color-secondary) !important;
+  background: transparent !important;
+}

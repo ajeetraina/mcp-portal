@@ -1,0 +1,109 @@
+---
+layout: default
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/lab-styles.css' | relative_url }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="lab-container">
+  <div class="lab-header">
+    <h1>{{ page.title }}</h1>
+    <div class="lab-description">{{ page.description }}</div>
+  </div>
+
+  <div class="lab-meta">
+    {% if page.difficulty %}
+    <div class="lab-meta-item">
+      <i class="fas fa-signal"></i>
+      <span class="lab-meta-label">Difficulty:</span>
+      <span>{{ page.difficulty }}</span>
+    </div>
+    {% endif %}
+    
+    {% if page.time %}
+    <div class="lab-meta-item">
+      <i class="far fa-clock"></i>
+      <span class="lab-meta-label">Time to complete:</span>
+      <span>{{ page.time }}</span>
+    </div>
+    {% endif %}
+    
+    {% if page.author %}
+    <div class="lab-meta-item">
+      <i class="fas fa-user"></i>
+      <span class="lab-meta-label">Author:</span>
+      <span>{{ page.author }}</span>
+    </div>
+    {% endif %}
+    
+    {% if page.last_updated %}
+    <div class="lab-meta-item">
+      <i class="fas fa-calendar-alt"></i>
+      <span class="lab-meta-label">Last updated:</span>
+      <span>{{ page.last_updated }}</span>
+    </div>
+    {% endif %}
+  </div>
+
+  {{ content }}
+
+  <div class="lab-nav">
+    {% if page.prev_lab %}
+    <a href="{{ page.prev_lab | relative_url }}" class="lab-nav-button lab-nav-prev">
+      <i class="fas fa-arrow-left"></i> Previous Lab
+    </a>
+    {% else %}
+    <div></div>
+    {% endif %}
+    
+    {% if page.next_lab %}
+    <a href="{{ page.next_lab | relative_url }}" class="lab-nav-button lab-nav-next">
+      Next Lab <i class="fas fa-arrow-right"></i>
+    </a>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  // Add copy buttons to code blocks
+  document.addEventListener('DOMContentLoaded', function() {
+    const codeBlocks = document.querySelectorAll('pre');
+    codeBlocks.forEach(function(codeBlock, index) {
+      // Create code header
+      const header = document.createElement('div');
+      header.className = 'code-header';
+      
+      // Add file name or code type if available
+      const code = codeBlock.querySelector('code');
+      let language = '';
+      if (code && code.className) {
+        const classes = code.className.split(' ');
+        for (const cls of classes) {
+          if (cls.startsWith('language-')) {
+            language = cls.replace('language-', '');
+            break;
+          }
+        }
+      }
+      
+      header.innerHTML = `<span>${language || 'bash'}</span>`;
+      
+      // Add copy button
+      const button = document.createElement('button');
+      button.className = 'copy-button';
+      button.innerHTML = '<i class="far fa-copy"></i> Copy';
+      button.addEventListener('click', function() {
+        const text = codeBlock.querySelector('code').innerText;
+        navigator.clipboard.writeText(text).then(function() {
+          button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(function() {
+            button.innerHTML = '<i class="far fa-copy"></i> Copy';
+          }, 2000);
+        });
+      });
+      
+      header.appendChild(button);
+      codeBlock.parentNode.insertBefore(header, codeBlock);
+    });
+  });
+</script>
