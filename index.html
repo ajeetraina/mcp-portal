@@ -1,706 +1,710 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Model Context Protocol (MCP) Learning Roadmap</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    <style>
-        :root {
-            --color-primary: #5551ff;
-            --color-beginner: #4CAF50;
-            --color-intermediate: #2196F3;
-            --color-advanced: #9C27B0;
-            --color-expert: #F44336;
-            --color-text: #333;
-            --color-text-light: #666;
-            --color-background: #fff;
-            --color-card: #f8f8f8;
-            --color-card-border: #eaeaea;
-            --color-note: #FFF9C4;
-            --color-note-border: #FFC107;
-        }
+---
+layout: default
+title: MCP News - Latest Updates in Model Context Protocol
+description: Stay updated with the latest developments, tutorials, and insights about Model Context Protocol (MCP)
+---
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--color-text);
-            background-color: var(--color-background);
-            padding: 0;
-            margin: 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--color-text);
-        }
-
-        h2 {
-            font-size: 2rem;
-            margin: 2.5rem 0 1.5rem;
-            color: var(--color-text);
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            margin: 2rem 0 1rem;
-            color: var(--color-text);
-        }
-
-        h4 {
-            font-size: 1.2rem;
-            margin: 1.5rem 0 0.75rem;
-            color: var(--color-text);
-        }
-
-        p {
-            margin-bottom: 1rem;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--color-text-light);
-        }
-
-        .roadmap-container {
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .roadmap-svg {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .stages {
-            margin-top: 3rem;
-        }
-
-        .stage {
-            margin-bottom: 3rem;
-            border-radius: 8px;
-            padding: 2rem;
-            background-color: var(--color-card);
-            border-left: 5px solid var(--color-primary);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .stage-beginner {
-            border-left-color: var(--color-beginner);
-        }
-
-        .stage-intermediate {
-            border-left-color: var(--color-intermediate);
-        }
-
-        .stage-advanced {
-            border-left-color: var(--color-advanced);
-        }
-
-        .stage-expert {
-            border-left-color: var(--color-expert);
-        }
-
-        .stage-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .stage-timeline {
-            background-color: rgba(0, 0, 0, 0.05);
-            padding: 0.25rem 0.75rem;
-            border-radius: 16px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .topics {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .topic {
-            background-color: white;
-            border: 1px solid var(--color-card-border);
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .topic:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        }
-
-        .topic h4 {
-            margin-top: 0;
-            margin-bottom: 0.5rem;
-            color: var(--color-primary);
-        }
-
-        .topic p {
-            color: var(--color-text-light);
-            font-size: 0.9rem;
-        }
-
-        .exercise {
-            background-color: #e8f4f8;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .exercise h4 {
-            margin-top: 0;
-            color: #0277bd;
-            margin-bottom: 0.5rem;
-        }
-
-        .resources {
-            margin-top: 3rem;
-        }
-
-        .resource-group {
-            margin-bottom: 2rem;
-        }
-
-        .note {
-            background-color: var(--color-note);
-            border: 1px solid var(--color-note-border);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        footer {
-            margin-top: 4rem;
-            padding: 2rem 0;
-            text-align: center;
-            color: var(--color-text-light);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--color-card-border);
-        }
-
-        .github-link {
-            display: inline-block;
-            margin-top: 1rem;
-            color: var(--color-primary);
-            text-decoration: none;
-        }
-
-        .github-link:hover {
-            text-decoration: underline;
-        }
-
-        .legend {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .legend-color {
-            width: 16px;
-            height: 16px;
-            border-radius: 4px;
-        }
-
-        .color-beginner {
-            background-color: var(--color-beginner);
-        }
-
-        .color-intermediate {
-            background-color: var(--color-intermediate);
-        }
-
-        .color-advanced {
-            background-color: var(--color-advanced);
-        }
-
-        .color-expert {
-            background-color: var(--color-expert);
-        }
-
-        .cta {
-            text-align: center;
-            margin: 3rem 0;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--color-primary);
-            color: white;
-            text-decoration: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: background-color 0.2s;
-        }
-
-        .btn:hover {
-            background-color: #4440cc;
-        }
-
-        /* Added styles for clickable SVG elements */
-        .clickable-rect {
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-        
-        .clickable-rect:hover {
-            opacity: 0.9;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            .topics {
-                grid-template-columns: 1fr;
-            }
-
-            .stage {
-                padding: 1.5rem;
-            }
-
-            .stage-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Model Context Protocol (MCP) Learning Roadmap</h1>
-            <p class="subtitle">A comprehensive path from beginner to expert in MCP development</p>
-        </header>
-
-        <div class="legend">
-            <div class="legend-item">
-                <div class="legend-color color-beginner"></div>
-                <span>Beginner</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color color-intermediate"></div>
-                <span>Intermediate</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color color-advanced"></div>
-                <span>Advanced</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color color-expert"></div>
-                <span>Expert</span>
+<div class="blog-container">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">MCP News</h1>
+            <p class="hero-subtitle">Your go-to source for Model Context Protocol updates, tutorials, and community insights</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">{{ site.posts.size }}</span>
+                    <span class="stat-label">Articles</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">{{ site.categories.size }}</span>
+                    <span class="stat-label">Categories</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">MCP Servers</span>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="roadmap-container">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 3500" class="roadmap-svg">
-                <!-- Path -->
-                <path d="M600,300 L600,3300" stroke="#5551ff" stroke-width="4" fill="none" />
-                
-                <!-- Stage 1 -->
-                <a href="#stage1">
-                    <rect x="300" y="300" width="600" height="120" rx="15" ry="15" fill="#4CAF50" class="clickable-rect" />
-                    <text x="600" y="350" font-size="24px" font-weight="600" text-anchor="middle" fill="white">Stage 1: Foundation (Day 0-30)</text>
-                    <text x="600" y="380" font-size="14px" text-anchor="middle" fill="#f8f8f8">Understanding the basics of MCP and setting up your environment</text>
-                </a>
-                
-                <!-- Foundation Topics -->
-                <a href="labs/01-getting-started/index.html">
-                    <rect x="300" y="450" width="180" height="100" rx="8" ry="8" stroke="#4CAF50" stroke-width="2" fill="white" class="clickable-rect" />
-                    <text x="390" y="490" font-size="16px" font-weight="500" text-anchor="middle">MCP Introduction</text>
-                    <text x="390" y="510" font-size="12px" text-anchor="middle" fill="#666">Core concepts &amp; terminology</text>
-                </a>
-                <line x1="390" y1="450" x2="390" y2="420" stroke="#ccc" stroke-width="2" />
-                <line x1="390" y1="420" x2="600" y2="420" stroke="#ccc" stroke-width="2" />
-                
-                <a href="labs/01-getting-started/index.html#step1">
-                    <rect x="510" y="450" width="180" height="100" rx="8" ry="8" stroke="#4CAF50" stroke-width="2" fill="white" class="clickable-rect" />
-                    <text x="600" y="490" font-size="16px" font-weight="500" text-anchor="middle">Environment Setup</text>
-                    <text x="600" y="510" font-size="12px" text-anchor="middle" fill="#666">Docker, API keys &amp; configs</text>
-                </a>
-                <line x1="600" y1="450" x2="600" y2="420" stroke="#ccc" stroke-width="2" />
-                
-                <a href="labs/01-getting-started/index.html#step2">
-                    <rect x="720" y="450" width="180" height="100" rx="8" ry="8" stroke="#4CAF50" stroke-width="2" fill="white" class="clickable-rect" />
-                    <text x="810" y="490" font-size="16px" font-weight="500" text-anchor="middle">First MCP Server</text>
-                    <text x="810" y="510" font-size="12px" text-anchor="middle" fill="#666">Running basic examples</text>
-                </a>
-                <line x1="810" y1="450" x2="810" y2="420" stroke="#ccc" stroke-width="2" />
-                <line x1="810" y1="420" x2="600" y2="420" stroke="#ccc" stroke-width="2" />
-                
-                <!-- Stage 2 -->
-                <a href="#stage2">
-                    <rect x="300" y="600" width="600" height="120" rx="15" ry="15" fill="#4CAF50" class="clickable-rect" />
-                    <text x="600" y="650" font-size="24px" font-weight="600" text-anchor="middle" fill="white">Stage 2: Basic Implementation (Day 31-60)</text>
-                    <text x="600" y="680" font-size="14px" text-anchor="middle" fill="#f8f8f8">Building simple tools and understanding protocol details</text>
-                </a>
-                
-                <!-- Basic Implementation Topics -->
-                <a href="labs/02-custom-mcp-server/index.html">
-                    <rect x="300" y="750" width="180" height="100" rx="8" ry="8" stroke="#4CAF50" stroke-width="2" fill="white" class="clickable-rect" />
-                    <text x="390" y="790" font-size="16px" font-weight="500" text-anchor="middle">MCP Protocol Details</text>
-                    <text x="390" y="810" font-size="12px" text-anchor="middle" fill="#666">Messages, schemas &amp; parsing</text>
-                </a>
-                <line x1="390" y1="750" x2="390" y2="720" stroke="#ccc" stroke-width="2" />
-                <line x1="390" y1="720" x2="600" y2="720" stroke="#ccc" stroke-width="2" />
-                
-                <a href="labs/02-custom-mcp-server/index.html">
-                    <rect x="510" y="750" width="180" height="100" rx="8" ry="8" stroke="#4CAF50" stroke-width="2" fill="white" class="clickable-rect" />
-                    <text x="600" y="790" font-size="16px" font-weight="500" text-anchor="middle">Custom Tools</text>
-                    <text x="600" y="810" font-size="12px" text-anchor="middle" fill="#666">Building simple tools</text>
-                </a>
-                <line x1="600" y1="750" x2="600" y2="720" stroke="#ccc" stroke-width="2" />
-                
-                <a href="labs/02-custom-mcp-server/index.html">
-                    <rect x="720" y="750" width="180" height="100" rx="8" ry="8" stroke="#4CAF50" stroke-width="2" fill="white" class="clickable-rect" />
-                    <text x="810" y="790" font-size="16px" font-weight="500" text-anchor="middle">Tool Integration</text>
-                    <text x="810" y="810" font-size="12px" text-anchor="middle" fill="#666">Connecting tools to Claude</text>
-                </a>
-                <line x1="810" y1="750" x2="810" y2="720" stroke="#ccc" stroke-width="2" />
-                <line x1="810" y1="720" x2="600" y2="720" stroke="#ccc" stroke-width="2" />
-                
-                <!-- Stage 3 -->
-                <a href="#stage3">
-                    <rect x="300" y="900" width="600" height="120" rx="15" ry="15" fill="#2196F3" class="clickable-rect" />
-                    <text x="600" y="950" font-size="24px" font-weight="600" text-anchor="middle" fill="white">Stage 3: Intermediate Development (Day 61-120)</text>
-                    <text x="600" y="980" font-size="14px" text-anchor="middle" fill="#f8f8f8">Creating more complex tools and improving user experience</text>
-                </a>
-                
-                <!-- And so on for all the stages... -->
-                
-                <!-- The rest of the SVG content is intentionally abbreviated to keep the response concise -->
-                
-            </svg>
-        </div>
+    <!-- Featured Article -->
+    {% assign featured_post = site.posts.first %}
+    <section class="featured-section">
+        <h2 class="section-title">Featured Article</h2>
+        <article class="featured-article">
+            <div class="featured-content">
+                <div class="featured-meta">
+                    <span class="featured-category">{{ featured_post.categories.first | upcase }}</span>
+                    <time class="featured-date">{{ featured_post.date | date: "%B %d, %Y" }}</time>
+                </div>
+                <h3 class="featured-title">
+                    <a href="{{ featured_post.url | relative_url }}">{{ featured_post.title }}</a>
+                </h3>
+                <p class="featured-excerpt">{{ featured_post.excerpt | strip_html | truncate: 200 }}</p>
+                <div class="featured-author">
+                    <div class="author-info">
+                        <span class="author-name">{{ featured_post.author | default: "MCP Team" }}</span>
+                        <span class="author-role">{{ featured_post.author_role | default: "Developer" }}</span>
+                    </div>
+                    <a href="{{ featured_post.url | relative_url }}" class="read-more-btn">Read Article</a>
+                </div>
+            </div>
+            <div class="featured-image">
+                <img src="{{ featured_post.image | default: '/assets/images/default-mcp.jpg' | relative_url }}" 
+                     alt="{{ featured_post.title }}" loading="lazy">
+            </div>
+        </article>
+    </section>
 
-        <div class="cta">
-            <a href="labs/01-getting-started/index.html" class="btn">Start Your MCP Journey</a>
-        </div>
-
-        <div class="stages">
-            <div id="stage1" class="stage stage-beginner">
-                <div class="stage-header">
-                    <h2>Stage 1: Foundation</h2>
-                    <span class="stage-timeline">Day 0-30</span>
-                </div>
-                <p>Understanding the basics of MCP and setting up your development environment.</p>
-                
-                <div class="topics">
-                    <a href="labs/01-getting-started/index.html" class="topic">
-                        <h4>MCP Introduction</h4>
-                        <p>Core concepts and terminology, the MCP architecture, and how AI models interact with external tools.</p>
-                    </a>
-                    <a href="labs/01-getting-started/index.html#step1" class="topic">
-                        <h4>Environment Setup</h4>
-                        <p>Docker installation, API keys configuration, and understanding the necessary configuration files.</p>
-                    </a>
-                    <a href="labs/01-getting-started/index.html#step2" class="topic">
-                        <h4>First MCP Server</h4>
-                        <p>Running the basic MCP proxy server, testing with simple built-in tools, and troubleshooting.</p>
-                    </a>
-                </div>
-                
-                <div class="exercise">
-                    <h4>Practical Exercise</h4>
-                    <p>Set up a basic MCP environment and run a simple conversation using the time tool.</p>
-                </div>
-            </div>
-            
-            <div id="stage2" class="stage stage-beginner">
-                <div class="stage-header">
-                    <h2>Stage 2: Basic Implementation</h2>
-                    <span class="stage-timeline">Day 31-60</span>
-                </div>
-                <p>Building simple tools and understanding protocol details.</p>
-                
-                <div class="topics">
-                    <a href="labs/02-custom-mcp-server/index.html" class="topic">
-                        <h4>MCP Protocol Details</h4>
-                        <p>Message formats, request and response structures, JSON Schema for tool definitions.</p>
-                    </a>
-                    <a href="labs/02-custom-mcp-server/index.html" class="topic">
-                        <h4>Custom Tools</h4>
-                        <p>Building simple tools like weather, calculator, and basic web search functionality.</p>
-                    </a>
-                    <a href="labs/02-custom-mcp-server/index.html" class="topic">
-                        <h4>Tool Integration</h4>
-                        <p>Connecting tools to Claude, prompting tool use, and handling outputs.</p>
-                    </a>
-                </div>
-                
-                <div class="exercise">
-                    <h4>Practical Exercise</h4>
-                    <p>Build a custom tool that retrieves information from a public API and integrate it with Claude.</p>
-                </div>
-            </div>
-            
-            <div id="stage3" class="stage stage-intermediate">
-                <div class="stage-header">
-                    <h2>Stage 3: Intermediate Development</h2>
-                    <span class="stage-timeline">Day 61-120</span>
-                </div>
-                <p>Creating more complex tools and improving user experience.</p>
-                
-                <div class="topics">
-                    <a href="labs/03-database-integration/index.html" class="topic">
-                        <h4>Database Integration</h4>
-                        <p>Connecting to SQL and NoSQL databases, creating data query and analysis tools.</p>
-                    </a>
-                    <a href="labs/03-database-integration/index.html" class="topic">
-                        <h4>Stateful Tools</h4>
-                        <p>Managing session state, implementing context awareness, and user session management.</p>
-                    </a>
-                    <a href="labs/03-database-integration/index.html" class="topic">
-                        <h4>Error Handling</h4>
-                        <p>Robust error handling strategies, graceful failure modes, and debugging techniques.</p>
-                    </a>
-                    <a href="labs/05-rag-document-qa/index.html" class="topic">
-                        <h4>RAG Implementation</h4>
-                        <p>Vector databases integration, document embedding and retrieval for Q&A systems.</p>
-                    </a>
-                    <a href="labs/03-database-integration/index.html" class="topic">
-                        <h4>Authentication</h4>
-                        <p>Securing MCP servers, API key management, and role-based access control.</p>
-                    </a>
-                    <a href="labs/06-multimodal-ai/index.html" class="topic">
-                        <h4>Multimodal Tools</h4>
-                        <p>Image and audio processing, document analysis, and visualization generation.</p>
-                    </a>
-                </div>
-                
-                <div class="exercise">
-                    <h4>Practical Exercise</h4>
-                    <p>Build a RAG system that allows Claude to answer questions from your document collection.</p>
-                </div>
-            </div>
-            
-            <div id="stage4" class="stage stage-advanced">
-                <div class="stage-header">
-                    <h2>Stage 4: Advanced Applications</h2>
-                    <span class="stage-timeline">Day 121-210</span>
-                </div>
-                <p>Building complex systems and optimization techniques.</p>
-                
-                <div class="topics">
-                    <a href="labs/07-building-ai-agents/index.html" class="topic">
-                        <h4>AI Agents</h4>
-                        <p>Autonomous agent architectures, tool-using agents, and multi-step reasoning.</p>
-                    </a>
-                    <a href="labs/04-business-automation/index.html" class="topic">
-                        <h4>Business Automation</h4>
-                        <p>Workflow integration, CRM/ERP connections, and business process automation.</p>
-                    </a>
-                    <a href="labs/07-building-ai-agents/index.html" class="topic">
-                        <h4>Performance Optimization</h4>
-                        <p>Caching strategies, parallel tool execution, and resource management.</p>
-                    </a>
-                    <a href="labs/07-building-ai-agents/index.html" class="topic">
-                        <h4>Chain-of-Thought</h4>
-                        <p>Complex reasoning systems, step-by-step problem solving, and self-correction.</p>
-                    </a>
-                    <a href="labs/07-building-ai-agents/index.html" class="topic">
-                        <h4>Kubernetes Deployment</h4>
-                        <p>Containerization, orchestration, and high-availability configurations.</p>
-                    </a>
-                    <a href="labs/04-business-automation/index.html" class="topic">
-                        <h4>Custom API Gateways</h4>
-                        <p>Specialized API proxies, request routing, and rate limiting.</p>
-                    </a>
-                </div>
-                
-                <div class="exercise">
-                    <h4>Practical Exercise</h4>
-                    <p>Build an autonomous agent system that can accomplish complex multi-step tasks using multiple tools.</p>
-                </div>
-            </div>
-            
-            <div id="stage5" class="stage stage-expert">
-                <div class="stage-header">
-                    <h2>Stage 5: Expert Implementation</h2>
-                    <span class="stage-timeline">Day 211-300</span>
-                </div>
-                <p>Production-grade systems and advanced architectures.</p>
-                
-                <div class="topics">
-                    <a href="labs/07-building-ai-agents/index.html" class="topic">
-                        <h4>Multi-Agent Systems</h4>
-                        <p>Collaborative AI architectures, agent communication, and orchestration frameworks.</p>
-                    </a>
-                    <a href="labs/04-business-automation/index.html" class="topic">
-                        <h4>Enterprise Security</h4>
-                        <p>Compliance frameworks, data governance, audit logging, and privacy techniques.</p>
-                    </a>
-                    <a href="labs/04-business-automation/index.html" class="topic">
-                        <h4>Real-time Data Processing</h4>
-                        <p>Streaming data integration, real-time analytics, and event-driven architectures.</p>
-                    </a>
-                    <a href="labs/07-building-ai-agents/index.html" class="topic">
-                        <h4>Domain-Specific Assistants</h4>
-                        <p>Industry-specialized systems, domain adaptation, and vertical-specific tools.</p>
-                    </a>
-                    <a href="labs/07-building-ai-agents/index.html" class="topic">
-                        <h4>MCP Protocol Extension</h4>
-                        <p>Custom protocol enhancements, extended functionality, and backward compatibility.</p>
-                    </a>
-                    <a href="labs/07-building-ai-agents/index.html" class="topic">
-                        <h4>Global-scale Deployment</h4>
-                        <p>Multi-region architecture, global load balancing, and disaster recovery.</p>
-                    </a>
-                </div>
-                
-                <div class="exercise">
-                    <h4>Practical Exercise</h4>
-                    <p>Design and implement a domain-specific assistant with specialized tools for a particular industry.</p>
-                </div>
-            </div>
-            
-            <div id="stage6" class="stage stage-expert">
-                <div class="stage-header">
-                    <h2>Stage 6: Mastery</h2>
-                    <span class="stage-timeline">Day 301+</span>
-                </div>
-                <p>Contributing to the ecosystem and pushing boundaries.</p>
-                
-                <div class="topics">
-                    <a href="https://github.com/ajeetraina/mcp-portal/discussions" class="topic">
-                        <h4>Contributing to MCP</h4>
-                        <p>Open source development, protocol improvements, and community participation.</p>
-                    </a>
-                    <a href="https://github.com/ajeetraina/mcp-portal/discussions" class="topic">
-                        <h4>Advanced Research</h4>
-                        <p>Novel MCP applications, extending protocol capabilities, and academic collaboration.</p>
-                    </a>
-                    <a href="https://github.com/ajeetraina/mcp-portal/discussions" class="topic">
-                        <h4>MCP Ecosystem</h4>
-                        <p>Building reusable libraries, creating tool frameworks, and developing standards.</p>
-                    </a>
-                </div>
-                
-                <div class="exercise">
-                    <h4>Practical Exercise</h4>
-                    <p>Contribute to the MCP open source ecosystem or develop a novel application that pushes boundaries.</p>
-                </div>
-            </div>
+    <!-- Latest News Grid -->
+    <section class="news-grid-section">
+        <div class="section-header">
+            <h2 class="section-title">Latest News</h2>
+            <a href="/blog" class="view-all-btn">View All Articles</a>
         </div>
         
-        <div class="resources">
-            <h2>Recommended Learning Resources</h2>
-            
-            <div class="resource-group">
-                <h3>Official Documentation</h3>
-                <p>Comprehensive references and guides for MCP development:</p>
-                <ul>
-                    <li>Anthropic MCP Documentation</li>
-                    <li>Claude API Documentation</li>
-                    <li>Tool Schema References</li>
-                    <li>Best Practices Guides</li>
-                </ul>
+        <div class="news-grid">
+            {% for post in site.posts limit:6 offset:1 %}
+            <article class="news-card">
+                <div class="news-card-image">
+                    <img src="{{ post.image | default: '/assets/images/default-mcp.jpg' | relative_url }}" 
+                         alt="{{ post.title }}" loading="lazy">
+                    <div class="news-card-category">{{ post.categories.first | upcase }}</div>
+                </div>
+                <div class="news-card-content">
+                    <time class="news-card-date">{{ post.date | date: "%b %d, %Y" }}</time>
+                    <h3 class="news-card-title">
+                        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                    </h3>
+                    <p class="news-card-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+                    <div class="news-card-footer">
+                        <span class="news-card-author">{{ post.author | default: "MCP Team" }}</span>
+                        <span class="news-card-read-time">{{ post.content | strip_html | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <h2 class="section-title">Explore by Category</h2>
+        <div class="categories-grid">
+            {% assign sorted_categories = site.categories | sort %}
+            {% for category in sorted_categories limit:6 %}
+            {% assign category_name = category[0] %}
+            {% assign category_posts = category[1] %}
+            <div class="category-card">
+                <div class="category-icon">
+                    {% case category_name %}
+                    {% when 'tutorials' %}
+                        📚
+                    {% when 'news' %}
+                        📰
+                    {% when 'guides' %}
+                        🧭
+                    {% when 'development' %}
+                        💻
+                    {% when 'community' %}
+                        👥
+                    {% else %}
+                        🔧
+                    {% endcase %}
+                </div>
+                <h3 class="category-title">{{ category_name | capitalize }}</h3>
+                <p class="category-count">{{ category_posts | size }} articles</p>
+                <a href="/categories/{{ category_name | slugify }}" class="category-link">Explore →</a>
             </div>
-            
-            <div class="resource-group">
-                <h3>Labs & Workshops</h3>
-                <p>Hands-on learning opportunities:</p>
-                <ul>
-                    <li><a href="labs/01-getting-started/index.html">Getting Started with MCP</a></li>
-                    <li><a href="labs/02-custom-mcp-server/index.html">Building Custom MCP Servers</a></li>
-                    <li><a href="labs/03-database-integration/index.html">Database Integration</a></li>
-                    <li><a href="labs/04-business-automation/index.html">Business Process Automation</a></li>
-                    <li><a href="labs/05-rag-document-qa/index.html">Retrieval-Augmented Generation</a></li>
-                    <li><a href="labs/06-multimodal-ai/index.html">Multimodal AI Applications</a></li>
-                    <li><a href="labs/07-building-ai-agents/index.html">Building Autonomous AI Agents</a></li>
-                </ul>
-            </div>
-            
-            <div class="resource-group">
-                <h3>Community Resources</h3>
-                <p>Learn from the MCP developer community:</p>
-                <ul>
-                    <li><a href="https://github.com/ajeetraina/mcp-portal/discussions">Community Discussions</a></li>
-                    <li>Code Samples and Templates</li>
-                    <li>Case Studies</li>
-                </ul>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="quick-actions-section">
+        <div class="quick-actions-content">
+            <h2 class="section-title">Get Started with MCP</h2>
+            <p class="section-subtitle">New to Model Context Protocol? Start your journey with these essential resources.</p>
+            <div class="quick-actions-grid">
+                <a href="/labs/01-getting-started/" class="action-card">
+                    <div class="action-icon">🚀</div>
+                    <h3>Getting Started</h3>
+                    <p>Learn the basics and set up your first MCP server</p>
+                </a>
+                <a href="/docs" class="action-card">
+                    <div class="action-icon">📖</div>
+                    <h3>Documentation</h3>
+                    <p>Comprehensive guides and API references</p>
+                </a>
+                <a href="/tools" class="action-card">
+                    <div class="action-icon">🛠️</div>
+                    <h3>Tools & Servers</h3>
+                    <p>Browse available MCP servers and tools</p>
+                </a>
+                <a href="/community" class="action-card">
+                    <div class="action-icon">💬</div>
+                    <h3>Community</h3>
+                    <p>Join discussions and connect with other developers</p>
+                </a>
             </div>
         </div>
-        
-        <div class="note">
-            <h3>Time Commitment Guidance</h3>
-            <p>Your learning journey will vary based on prior experience and specific project requirements:</p>
-            <ul>
-                <li><strong>Beginner stages (1-2):</strong> Approximately 10 hours per week</li>
-                <li><strong>Intermediate stage (3):</strong> Approximately 15 hours per week</li>
-                <li><strong>Advanced stages (4-6):</strong> Approximately 20 hours per week</li>
-            </ul>
-            <p>Remember that practical experience is key - aim to build real projects at each stage to solidify your learning.</p>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="newsletter-section">
+        <div class="newsletter-content">
+            <h2>Stay Updated</h2>
+            <p>Get the latest MCP news, tutorials, and community updates delivered to your inbox.</p>
+            <form class="newsletter-form" action="#" method="post">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <p class="newsletter-privacy">We respect your privacy. Unsubscribe at any time.</p>
         </div>
-        
-        <div class="cta">
-            <a href="labs/01-getting-started/index.html" class="btn">Begin Your MCP Journey</a>
-        </div>
-    </div>
+    </section>
+</div>
+
+<style>
+:root {
+    --color-primary: #5551ff;
+    --color-secondary: #f8f9fa;
+    --color-accent: #4CAF50;
+    --color-text: #2c3e50;
+    --color-text-light: #6c757d;
+    --color-border: #e9ecef;
+    --color-background: #ffffff;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.15);
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+}
+
+.blog-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    padding: 4rem 0;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #667eea 100%);
+    margin: -2rem -1rem 3rem -1rem;
+    color: white;
+    border-radius: 0 0 24px 24px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #fff, #e8f4f8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 0.5rem;
+}
+
+/* Featured Section */
+.featured-section {
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: var(--color-text);
+}
+
+.featured-article {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 3rem;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    padding: 2.5rem;
+    transition: var(--transition);
+}
+
+.featured-article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+}
+
+.featured-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.featured-category {
+    background: var(--color-primary);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.featured-date {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+}
+
+.featured-title a {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-text);
+    text-decoration: none;
+    line-height: 1.3;
+}
+
+.featured-title a:hover {
+    color: var(--color-primary);
+}
+
+.featured-excerpt {
+    color: var(--color-text-light);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 1.5rem 0;
+}
+
+.featured-author {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.author-name {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.author-role {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    margin-left: 0.5rem;
+}
+
+.read-more-btn {
+    background: var(--color-primary);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.read-more-btn:hover {
+    background: #4440cc;
+    transform: translateY(-2px);
+}
+
+.featured-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+}
+
+.featured-image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.featured-article:hover .featured-image img {
+    transform: scale(1.05);
+}
+
+/* News Grid */
+.news-grid-section {
+    margin-bottom: 4rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.view-all-btn {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--color-primary);
+    border-radius: 25px;
+    transition: var(--transition);
+}
+
+.view-all-btn:hover {
+    background: var(--color-primary);
+    color: white;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.news-card {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.news-card-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.news-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.news-card:hover .news-card-image img {
+    transform: scale(1.05);
+}
+
+.news-card-category {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: var(--color-primary);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.news-card-content {
+    padding: 1.5rem;
+}
+
+.news-card-date {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.news-card-title a {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-text);
+    text-decoration: none;
+    line-height: 1.4;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.news-card-title a:hover {
+    color: var(--color-primary);
+}
+
+.news-card-excerpt {
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.news-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.9rem;
+}
+
+.news-card-author {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.news-card-read-time {
+    color: var(--color-text-light);
+}
+
+/* Categories Section */
+.categories-section {
+    margin-bottom: 4rem;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.category-card {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.category-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+}
+
+.category-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.category-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+}
+
+.category-count {
+    color: var(--color-text-light);
+    margin-bottom: 1rem;
+}
+
+.category-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.category-link:hover {
+    color: #4440cc;
+}
+
+/* Quick Actions */
+.quick-actions-section {
+    background: var(--color-secondary);
+    padding: 3rem 2rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.section-subtitle {
+    color: var(--color-text-light);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.action-card {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    color: var(--color-text);
+    text-align: center;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    color: var(--color-text);
+}
+
+.action-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.action-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+}
+
+.action-card p {
+    color: var(--color-text-light);
+    line-height: 1.5;
+}
+
+/* Newsletter */
+.newsletter-section {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #667eea 100%);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.newsletter-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.newsletter-content p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto 1rem auto;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+}
+
+.newsletter-form button {
+    background: white;
+    color: var(--color-primary);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.newsletter-form button:hover {
+    background: var(--color-secondary);
+}
+
+.newsletter-privacy {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
     
-    <footer>
-        <p>Model Context Protocol (MCP) Learning Roadmap</p>
-        <p>Based on the MCP Portal and designed to evolve as the MCP ecosystem grows</p>
-        <a href="https://github.com/ajeetraina/mcp-portal" class="github-link">View on GitHub</a>
-    </footer>
+    .hero-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .featured-article {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem;
+    }
+    
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+        max-width: 300px;
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
-    <script>
-        // Add smooth scrolling to page anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+@media (max-width: 480px) {
+    .blog-container {
+        padding: 0 0.5rem;
+    }
+    
+    .hero-section {
+        margin: -2rem -0.5rem 3rem -0.5rem;
+        padding: 2rem 1rem;
+    }
+    
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
