@@ -1,6 +1,0 @@
----
-layout: country
-title: MCP in United States
-country_code: US
-permalink: /country/us/
----
