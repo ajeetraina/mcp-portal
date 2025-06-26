@@ -1,0 +1,12 @@
+**/.Trash
+**/.trash
+.Trash
+.trash
+~/.Trash
+/Users/*/.Trash
+.DS_Store
+node_modules
+__pycache__
+*.pyc
+.git
+.github

@@ -1,0 +1,407 @@
+---
+layout: default
+title: All Articles - MCP News
+description: Browse all articles about Model Context Protocol (MCP), tutorials, guides, and community insights
+permalink: /blog/
+---
+
+<div class="blog-index-container">
+    <header class="blog-header">
+        <h1 class="blog-title">All Articles</h1>
+        <p class="blog-subtitle">Explore our complete collection of MCP articles, tutorials, and insights</p>
+        
+        <!-- Filter Options -->
+        <div class="blog-filters">
+            <button class="filter-btn active" data-filter="all">All Posts</button>
+            {% assign sorted_categories = site.categories | sort %}
+            {% for category in sorted_categories limit:5 %}
+            <button class="filter-btn" data-filter="{{ category[0] | slugify }}">{{ category[0] | capitalize }}</button>
+            {% endfor %}
+        </div>
+    </header>
+
+    <!-- Posts Grid -->
+    <div class="posts-grid" id="posts-grid">
+        {% for post in site.posts %}
+        <article class="post-card" data-categories="{{ post.categories | join: ' ' | slugify }}">
+            <div class="post-card-image">
+                <img src="{{ post.image | default: '/assets/images/default-mcp.jpg' | relative_url }}" 
+                     alt="{{ post.title }}" loading="lazy">
+                <div class="post-card-category">{{ post.categories.first | upcase }}</div>
+            </div>
+            <div class="post-card-content">
+                <time class="post-card-date">{{ post.date | date: "%B %d, %Y" }}</time>
+                <h2 class="post-card-title">
+                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                </h2>
+                <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+                <div class="post-card-meta">
+                    <span class="post-card-author">{{ post.author | default: "MCP Team" }}</span>
+                    <span class="post-card-read-time">{{ post.content | strip_html | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
+                </div>
+                <div class="post-card-tags">
+                    {% for category in post.categories limit:3 %}
+                    <span class="post-tag">{{ category }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+
+    <!-- Load More Button -->
+    <div class="load-more-section">
+        <button class="load-more-btn" id="load-more">Load More Articles</button>
+    </div>
+</div>
+
+<style>
+.blog-index-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.blog-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.blog-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+}
+
+.blog-subtitle {
+    font-size: 1.2rem;
+    color: var(--color-text-light);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.blog-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: white;
+    border: 2px solid var(--color-border);
+    color: var(--color-text);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.post-card {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.post-card-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.post-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.post-card:hover .post-card-image img {
+    transform: scale(1.05);
+}
+
+.post-card-category {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: var(--color-primary);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.post-card-content {
+    padding: 1.5rem;
+}
+
+.post-card-date {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.post-card-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.post-card-title a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.post-card-title a:hover {
+    color: var(--color-primary);
+}
+
+.post-card-excerpt {
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.post-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.post-card-author {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.post-card-read-time {
+    color: var(--color-text-light);
+}
+
+.post-card-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.post-tag {
+    background: var(--color-secondary);
+    color: var(--color-text);
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.load-more-section {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.load-more-btn {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1rem;
+}
+
+.load-more-btn:hover {
+    background: #4440cc;
+    transform: translateY(-2px);
+}
+
+.load-more-btn:disabled {
+    background: var(--color-text-light);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .blog-title {
+        font-size: 2.2rem;
+    }
+    
+    .posts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .blog-filters {
+        gap: 0.5rem;
+    }
+    
+    .filter-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-index-container {
+        padding: 1rem 0.5rem;
+    }
+    
+    .post-card-content {
+        padding: 1rem;
+    }
+    
+    .post-card-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+}
+
+/* Filter Animation */
+.post-card.fade-out {
+    opacity: 0.3;
+    transform: scale(0.95);
+}
+
+.post-card.fade-in {
+    opacity: 1;
+    transform: scale(1);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const postCards = document.querySelectorAll('.post-card');
+    const loadMoreBtn = document.getElementById('load-more');
+    let visiblePosts = 6;
+    const postsPerLoad = 6;
+
+    // Initially hide posts beyond the first 6
+    function showInitialPosts() {
+        postCards.forEach((card, index) => {
+            if (index >= visiblePosts) {
+                card.style.display = 'none';
+            }
+        });
+        
+        if (postCards.length <= visiblePosts) {
+            loadMoreBtn.style.display = 'none';
+        }
+    }
+
+    // Filter functionality
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Update active button
+            filterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+
+            const filter = this.dataset.filter;
+            let visibleCount = 0;
+
+            postCards.forEach(card => {
+                const categories = card.dataset.categories;
+                
+                if (filter === 'all' || categories.includes(filter)) {
+                    if (visibleCount < visiblePosts) {
+                        card.style.display = 'block';
+                        card.classList.remove('fade-out');
+                        card.classList.add('fade-in');
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                } else {
+                    card.style.display = 'none';
+                    card.classList.add('fade-out');
+                    card.classList.remove('fade-in');
+                }
+            });
+
+            // Reset visible posts counter and update load more button
+            const totalMatchingPosts = Array.from(postCards).filter(card => {
+                const categories = card.dataset.categories;
+                return filter === 'all' || categories.includes(filter);
+            }).length;
+
+            if (totalMatchingPosts <= visiblePosts) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'block';
+            }
+        });
+    });
+
+    // Load more functionality
+    loadMoreBtn.addEventListener('click', function() {
+        const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+        let newlyVisible = 0;
+        let totalVisible = 0;
+
+        postCards.forEach(card => {
+            const categories = card.dataset.categories;
+            const shouldShow = activeFilter === 'all' || categories.includes(activeFilter);
+            
+            if (shouldShow) {
+                if (card.style.display !== 'none') {
+                    totalVisible++;
+                } else if (newlyVisible < postsPerLoad) {
+                    card.style.display = 'block';
+                    card.classList.remove('fade-out');
+                    card.classList.add('fade-in');
+                    newlyVisible++;
+                    totalVisible++;
+                }
+            }
+        });
+
+        // Check if all matching posts are visible
+        const totalMatchingPosts = Array.from(postCards).filter(card => {
+            const categories = card.dataset.categories;
+            return activeFilter === 'all' || categories.includes(activeFilter);
+        }).length;
+
+        if (totalVisible >= totalMatchingPosts) {
+            loadMoreBtn.style.display = 'none';
+        }
+    });
+
+    // Initialize
+    showInitialPosts();
+});
+</script>

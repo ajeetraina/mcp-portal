@@ -1,0 +1,47 @@
+<div class="lab-sidebar">
+    <div class="lab-sidebar-header">
+        <h3><i class="fas fa-flask"></i> Lab Navigation</h3>
+    </div>
+    <ul class="lab-sidebar-menu">
+        <li {% if page.url contains 'mcp-101-lab' %}class="active"{% endif %}>
+            <a href="{{ '/docs/labs/mcp-101-lab' | relative_url }}">
+                <span class="lab-number">1</span>
+                <span class="lab-title">First Steps with Docker MCP</span>
+            </a>
+        </li>
+        <li {% if page.url contains 'research-assistant-lab' %}class="active"{% endif %}>
+            <a href="{{ '/docs/labs/research-assistant-lab' | relative_url }}">
+                <span class="lab-number">2</span>
+                <span class="lab-title">Building a Research Assistant</span>
+            </a>
+        </li>
+        <li {% if page.url contains 'database-operations-lab' %}class="active"{% endif %}>
+            <a href="{{ '/docs/labs/database-operations-lab' | relative_url }}">
+                <span class="lab-number">3</span>
+                <span class="lab-title">Database Operations</span>
+            </a>
+        </li>
+        <li {% if page.url contains 'production-deployment-lab' %}class="active"{% endif %}>
+            <a href="{{ '/docs/labs/production-deployment-lab' | relative_url }}">
+                <span class="lab-number">4</span>
+                <span class="lab-title">Production Deployment</span>
+            </a>
+        </li>
+    </ul>
+    <div class="lab-sidebar-section">
+        <h4>Tutorials</h4>
+        <ul class="lab-sidebar-menu">
+            <li {% if page.url contains 'custom-mcp-server' %}class="active"{% endif %}>
+                <a href="{{ '/docs/tutorials/custom-mcp-server' | relative_url }}">
+                    <i class="fas fa-book"></i>
+                    <span class="lab-title">Building Custom MCP Servers</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="lab-sidebar-footer">
+        <a href="{{ '/docs/labs-and-tutorials' | relative_url }}" class="all-labs-link">
+            <i class="fas fa-th-list"></i> View All Labs
+        </a>
+    </div>
+</div>
