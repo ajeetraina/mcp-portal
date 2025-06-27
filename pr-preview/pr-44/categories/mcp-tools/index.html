@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tools and libraries that work with the Model Context Protocol">
+  <meta name="keywords" content="docker, mcp, model, context, protocol, servers, tools, community">
+  <title>MCP Tools - MCP Community Portal</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/pr-preview/pr-44/assets/images/docker-logo.svg">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/pr-preview/pr-44/assets/css/main.css">
+  <link rel="stylesheet" href="/pr-preview/pr-44/assets/css/tools.css">
+  <link rel="stylesheet" href="/pr-preview/pr-44/assets/css/home.css">
+  <link rel="stylesheet" href="/pr-preview/pr-44/assets/css/lab-styles.css">
+  <link rel="stylesheet" href="/pr-preview/pr-44/assets/css/code-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-44/assets/css/banner-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-44/assets/css/image-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-44/assets/css/heading-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-44/assets/css/header-fix.css">
+  <link rel="stylesheet" href="/pr-preview/pr-44/assets/css/github-stars.css">
+  <link rel="stylesheet" href="/pr-preview/pr-44/assets/css/docker-downloads.css">
+  <link rel="stylesheet" href="/pr-preview/pr-44/assets/css/sidebar.css">
+  <link rel="stylesheet" href="/pr-preview/pr-44/assets/css/content-fix.css">
+  
+  <!-- Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>MCP Tools | MCP Community Portal</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="MCP Tools" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Tools and libraries that work with the Model Context Protocol" />
+<meta property="og:description" content="Tools and libraries that work with the Model Context Protocol" />
+<link rel="canonical" href="https://mcp.collabnix.com/pr-preview/pr-44/categories/mcp-tools/" />
+<meta property="og:url" content="https://mcp.collabnix.com/pr-preview/pr-44/categories/mcp-tools/" />
+<meta property="og:site_name" content="MCP Community Portal" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="MCP Tools" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Tools and libraries that work with the Model Context Protocol","headline":"MCP Tools","url":"https://mcp.collabnix.com/pr-preview/pr-44/categories/mcp-tools/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+  <header class="site-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <a href="/pr-preview/pr-44/">
+          <h1>MCP Community Portal</h1>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/pr-preview/pr-44/"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="/pr-preview/pr-44/categories/getting-started"><i class="fas fa-rocket"></i> Getting Started</a></li>
+          <li><a href="/pr-preview/pr-44/categories/mcp-servers"><i class="fas fa-server"></i> Servers</a></li>
+          <li><a href="/pr-preview/pr-44/categories/mcp-tools"><i class="fas fa-tools"></i> Tools</a></li>
+          <li><a href="/pr-preview/pr-44/labs/01-getting-started/README.html"><i class="fas fa-flask"></i> Labs</a></li>
+          <li><a href="/pr-preview/pr-44/blog/"><i class="fas fa-blog"></i> Blog</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+  
+  <div class="main-container">
+    <aside class="sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-header">
+          <h3>Categories</h3>
+        </div>
+        <div class="sidebar-nav">
+          <ul class="sidebar-menu">
+            
+              <li class="menu-item ">
+                <a href="/pr-preview/pr-44/categories/getting-started/">
+                  <i class="fas fa-rocket"></i>
+                  Getting Started
+                </a>
+                
+              </li>
+            
+              <li class="menu-item ">
+                <a href="/pr-preview/pr-44/categories/mcp-servers/">
+                  <i class="fas fa-server"></i>
+                  MCP Servers
+                </a>
+                
+                  <ul class="submenu">
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-44/categories/mcp-servers/working/">Working Servers</a>
+                      </li>
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-44/categories/mcp-servers/untested/">Untested Servers</a>
+                      </li>
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-44/categories/mcp-servers/unsupported/">Unsupported Servers</a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li class="menu-item active">
+                <a href="/pr-preview/pr-44/categories/mcp-tools/">
+                  <i class="fas fa-tools"></i>
+                  MCP Tools
+                </a>
+                
+                  <ul class="submenu">
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-44/categories/mcp-tools/authentication/">Authentication</a>
+                      </li>
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-44/categories/mcp-tools/data-processing/">Data Processing</a>
+                      </li>
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-44/categories/mcp-tools/external-apis/">External APIs</a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li class="menu-item ">
+                <a href="/pr-preview/pr-44/categories/use-cases/">
+                  <i class="fas fa-lightbulb"></i>
+                  Use Cases
+                </a>
+                
+              </li>
+            
+              <li class="menu-item ">
+                <a href="/pr-preview/pr-44/categories/deployment/">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                  Deployment
+                </a>
+                
+                  <ul class="submenu">
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-44/categories/deployment/docker-compose/">Docker Compose</a>
+                      </li>
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-44/categories/deployment/kubernetes/">Kubernetes</a>
+                      </li>
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-44/categories/deployment/cloud/">Cloud Services</a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li class="menu-item ">
+                <a href="/pr-preview/pr-44/categories/tutorials/">
+                  <i class="fas fa-book"></i>
+                  Tutorials
+                </a>
+                
+              </li>
+            
+              <li class="menu-item ">
+                <a href="/pr-preview/pr-44/categories/advanced/">
+                  <i class="fas fa-graduation-cap"></i>
+                  Advanced Topics
+                </a>
+                
+                  <ul class="submenu">
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-44/categories/advanced/security/">Security</a>
+                      </li>
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-44/categories/advanced/performance/">Performance</a>
+                      </li>
+                    
+                      <li class="submenu-item ">
+                        <a href="/pr-preview/pr-44/categories/advanced/scaling/">Scaling</a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+          </ul>
+        </div>
+        
+        <div class="sidebar-header">
+          <h3>Labs</h3>
+        </div>
+        <div class="sidebar-nav">
+          <ul class="sidebar-menu">
+            <li class="menu-item">
+              <a href="/pr-preview/pr-44/labs/01-getting-started/README.html">
+                <i class="fas fa-rocket"></i>
+                Getting Started with MCP
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/pr-preview/pr-44/labs/02-custom-mcp-server/README.html">
+                <i class="fas fa-wrench"></i>
+                Building Custom MCP Servers
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/pr-preview/pr-44/labs/03-database-integration/README.html">
+                <i class="fas fa-database"></i>
+                Database Integration
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/pr-preview/pr-44/labs/04-business-automation/README.html">
+                <i class="fas fa-cogs"></i>
+                Business Process Automation
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/pr-preview/pr-44/labs/05-rag-document-qa/README.html">
+                <i class="fas fa-search"></i>
+                RAG Document Q&A
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/pr-preview/pr-44/labs/06-multimodal-ai/README.html">
+                <i class="fas fa-image"></i>
+                Multimodal AI Applications
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/pr-preview/pr-44/labs/07-building-ai-agents/README.html">
+                <i class="fas fa-robot"></i>
+                Building AI Agents
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/pr-preview/pr-44/labs/08-ask-gordon/README.html">
+                <i class="fas fa-robot"></i>
+                Ask Gordon
+                <span class="menu-badge">NEW</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+    
+    <main class="content-with-sidebar">
+      <div class="category-content">
+  <header class="category-header">
+    <h1 class="category-title">MCP Tools</h1>
+    
+      <p class="category-description">Tools and libraries that work with the Model Context Protocol</p>
+    
+  </header>
+  
+  <div class="category-body">
+    <h1 id="mcp-tools">MCP Tools</h1>
+
+<p>MCP tools are libraries, frameworks, and utilities that help developers work with the Model Context Protocol. These tools enhance the capabilities of AI assistants by providing standardized interfaces to various services and data sources.</p>
+
+<h2 id="tool-categories">Tool Categories</h2>
+
+<p>MCP tools can be categorized based on their functionality:</p>
+
+<h3 id="authentication">Authentication</h3>
+
+<p>Authentication tools handle security and access control for MCP interactions, ensuring that only authorized users and applications can access specific resources.</p>
+
+<ul>
+  <li><strong>Token Management</strong>: Tools for generating, validating, and refreshing authentication tokens</li>
+  <li><strong>API Key Handling</strong>: Utilities for managing API keys securely</li>
+  <li><strong>Permission Controls</strong>: Systems to define and enforce access permissions</li>
+</ul>
+
+<h3 id="data-processing">Data Processing</h3>
+
+<p>Data processing tools help AI assistants work with various data formats and sources, transforming and analyzing information as needed.</p>
+
+<ul>
+  <li><strong>Data Parsers</strong>: Tools for parsing different data formats (JSON, CSV, XML, etc.)</li>
+  <li><strong>Data Transformation</strong>: Utilities for converting between data formats</li>
+  <li><strong>Data Analysis</strong>: Libraries for performing data analysis and extracting insights</li>
+</ul>
+
+<h3 id="external-apis">External APIs</h3>
+
+<p>External API tools provide integrations with third-party services and platforms, allowing AI assistants to access a wide range of functionality.</p>
+
+<ul>
+  <li><strong>API Wrappers</strong>: Standardized interfaces to popular APIs</li>
+  <li><strong>Service Connectors</strong>: Tools for connecting to external services</li>
+  <li><strong>Protocol Adapters</strong>: Utilities for adapting between different API protocols</li>
+</ul>
+
+<h2 id="popular-mcp-tools">Popular MCP Tools</h2>
+
+<div class="tools-grid">
+  
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">FastMCP (Python)</h3>
+          <div class="tool-meta">
+            <span class="tool-category">framework</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">A high-level framework for building MCP servers in Python</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">FastMCP (TypeScript)</h3>
+          <div class="tool-meta">
+            <span class="tool-category">framework</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">A high-level framework for building MCP servers in TypeScript</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">Foxy Contexts</h3>
+          <div class="tool-meta">
+            <span class="tool-category">framework</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Golang library to write MCP Servers declaratively with functional testing included</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">Genkit MCP</h3>
+          <div class="tool-meta">
+            <span class="tool-category">framework</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Provides integration between Genkit and the Model Context Protocol (MCP)</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">LiteMCP</h3>
+          <div class="tool-meta">
+            <span class="tool-category">framework</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">A high-level framework for building MCP servers in JavaScript/TypeScript</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">mcp-go</h3>
+          <div class="tool-meta">
+            <span class="tool-category">framework</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Golang SDK for building MCP Servers and Clients</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">mcp-framework</h3>
+          <div class="tool-meta">
+            <span class="tool-category">framework</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Fast and elegant TypeScript framework for building MCP servers</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">mcp-proxy</h3>
+          <div class="tool-meta">
+            <span class="tool-category">utility</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">A TypeScript SSE proxy for MCP servers that use stdio transport</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">mcp-rs-template</h3>
+          <div class="tool-meta">
+            <span class="tool-category">framework</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">MCP CLI server template for Rust</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">mcp-golang</h3>
+          <div class="tool-meta">
+            <span class="tool-category">framework</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Golang framework for building MCP Servers, focused on type safety</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">langchain-mcp</h3>
+          <div class="tool-meta">
+            <span class="tool-category">integration</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Provides MCP tool calling support in LangChain, allowing for the integration of MCP tools into LangChain workflows</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">ModelContextProtocol.NET</h3>
+          <div class="tool-meta">
+            <span class="tool-category">framework</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">A C# SDK for building MCP servers on .NET 9 with NativeAOT compatibility</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">spring-ai-mcp</h3>
+          <div class="tool-meta">
+            <span class="tool-category">framework</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Java SDK and Spring Framework integration for building MCP client and MCP servers with various, plugable, transport options</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">codemirror-mcp</h3>
+          <div class="tool-meta">
+            <span class="tool-category">extension</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">CodeMirror extension that implements the Model Context Protocol (MCP) for resource mentions and prompt commands</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">mcp-agent</h3>
+          <div class="tool-meta">
+            <span class="tool-category">framework</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Build effective agents with MCP servers using simple, composable patterns</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">mcp-server-and-gw</h3>
+          <div class="tool-meta">
+            <span class="tool-category">utility</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">An MCP stdio to HTTP SSE transport gateway with example server and MCP client</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">mcp-langchain-ts-client</h3>
+          <div class="tool-meta">
+            <span class="tool-category">integration</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Use MCP provided tools in LangChain.js</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">mcp-gateway</h3>
+          <div class="tool-meta">
+            <span class="tool-category">utility</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">A gateway demo for MCP SSE Server</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">mcphost</h3>
+          <div class="tool-meta">
+            <span class="tool-category">cli</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">A CLI host application that enables Large Language Models (LLMs) to interact with external tools through the Model Context Protocol (MCP)</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">MCP-Connect</h3>
+          <div class="tool-meta">
+            <span class="tool-category">utility</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">A tiny tool that enables cloud-based AI services to access local Stdio based MCP servers by HTTP/HTTPS requests</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">MCP-Bridge</h3>
+          <div class="tool-meta">
+            <span class="tool-category">utility</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">An openAI middleware proxy to use MCP in any existing openAI compatible client</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">mcp-proxy (Python)</h3>
+          <div class="tool-meta">
+            <span class="tool-category">utility</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">An MCP stdio to SSE transport gateway</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">gpt-computer-assistant</h3>
+          <div class="tool-meta">
+            <span class="tool-category">framework</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Framework to build vertical AI agent</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">mcp-cli</h3>
+          <div class="tool-meta">
+            <span class="tool-category">cli</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">CLI tool for testing MCP servers</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">mcp-manager</h3>
+          <div class="tool-meta">
+            <span class="tool-category">utility</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Simple Web UI to install and manage MCP servers for Claude Desktop App</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">ws-mcp</h3>
+          <div class="tool-meta">
+            <span class="tool-category">utility</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Wrap MCP servers with a WebSocket (for use with kibitz)</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">mcp-installer</h3>
+          <div class="tool-meta">
+            <span class="tool-category">utility</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">An MCP server that installs other MCP servers for you</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">Docker MCP CLI</h3>
+          <div class="tool-meta">
+            <span class="tool-category">cli</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Command-line interface for working with Docker Model Context Protocol servers, allowing users to manage MCP servers and execute context-aware commands.</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">Docker MCP Python SDK</h3>
+          <div class="tool-meta">
+            <span class="tool-category">library</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Official Python SDK for interacting with Docker Model Context Protocol servers, making it easy to build Docker-aware AI applications in Python.</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">Docker MCP VSCode Extension</h3>
+          <div class="tool-meta">
+            <span class="tool-category">extension</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Visual Studio Code extension for Docker MCP, providing seamless integration with Docker MCP servers directly from your code editor.</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">Docker MCP Node.js SDK</h3>
+          <div class="tool-meta">
+            <span class="tool-category">library</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Node.js SDK for integrating with Docker Model Context Protocol servers in JavaScript and TypeScript applications.</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">Docker MCP-K8s Operator</h3>
+          <div class="tool-meta">
+            <span class="tool-category">integration</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Kubernetes operator for managing Docker Model Context Protocol servers in Kubernetes clusters, providing seamless integration with K8s ecosystem.</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">MCP Docker Validator</h3>
+          <div class="tool-meta">
+            <span class="tool-category">testing</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Tool for validating Docker Model Context Protocol server implementations against the official specification to ensure compatibility.</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">Docker MCP Benchmark</h3>
+          <div class="tool-meta">
+            <span class="tool-category">testing</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Benchmarking suite for Docker Model Context Protocol servers to measure performance, latency, and throughput under various workloads.</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">Docker MCP Dashboard</h3>
+          <div class="tool-meta">
+            <span class="tool-category">monitoring</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Web-based dashboard for monitoring and managing Docker Model Context Protocol servers with visualization and metrics.</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">Docker MCP Proxy</h3>
+          <div class="tool-meta">
+            <span class="tool-category">networking</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Proxy server that enables routing and load balancing between multiple Docker MCP servers, with authentication and rate limiting support.</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">Docker MCP Registry</h3>
+          <div class="tool-meta">
+            <span class="tool-category">registry</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Central registry for discovering and sharing Docker Model Context Protocol servers with versioning and dependency management.</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">Docker MCP GUI Manager</h3>
+          <div class="tool-meta">
+            <span class="tool-category">desktop</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Desktop application for installing, configuring, and managing Docker Model Context Protocol servers with a user-friendly interface.</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">Docker MCP TypeScript SDK</h3>
+          <div class="tool-meta">
+            <span class="tool-category">library</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">TypeScript SDK for building Docker Model Context Protocol servers and clients with strong typing and modern JavaScript features.</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">Docker MCP Template Starter</h3>
+          <div class="tool-meta">
+            <span class="tool-category">template</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Template project for quickly bootstrapping new Docker Model Context Protocol server implementations with best practices and examples.</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">Docker MCP Testing Framework</h3>
+          <div class="tool-meta">
+            <span class="tool-category">testing</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Comprehensive testing framework for Docker Model Context Protocol servers with mocks, fixtures, and assertion utilities.</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">Docker MCP Security Scanner</h3>
+          <div class="tool-meta">
+            <span class="tool-category">security</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Security scanning tool for Docker Model Context Protocol servers to identify vulnerabilities, configuration issues, and compliance violations.</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+      <div class="tool-card">
+        <div class="tool-header">
+          <h3 class="tool-title">Docker MCP Examples</h3>
+          <div class="tool-meta">
+            <span class="tool-category">examples</span>
+          </div>
+        </div>
+        
+        <div class="tool-body">
+          <div class="tool-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <p class="tool-description">Collection of example Docker Model Context Protocol servers and implementations showcasing different use cases and integration patterns.</p>
+        </div>
+        
+        <div class="tool-footer">
+          
+          
+          
+        </div>
+      </div>
+    
+  
+</div>
+
+<h2 id="integrating-mcp-tools">Integrating MCP Tools</h2>
+
+<p>To integrate MCP tools into your project, you’ll typically follow these steps:</p>
+
+<ol>
+  <li><strong>Install the Tool</strong>: Add the tool to your project using your preferred package manager.</li>
+  <li><strong>Configure the Tool</strong>: Set up the tool with appropriate credentials and configuration.</li>
+  <li><strong>Define Tool Schema</strong>: Create a JSON Schema that describes the tool’s capabilities.</li>
+  <li><strong>Implement API Handlers</strong>: Develop handlers for the tool’s API endpoints.</li>
+  <li><strong>Test the Integration</strong>: Thoroughly test the integration to ensure it works as expected.</li>
+</ol>
+
+<h2 id="developing-custom-mcp-tools">Developing Custom MCP Tools</h2>
+
+<p>You can develop your own custom MCP tools to address specific needs. Here’s a general approach:</p>
+
+<ol>
+  <li><strong>Define the Tool Purpose</strong>: Clearly define what your tool will do and how it will integrate with MCP.</li>
+  <li><strong>Design the API</strong>: Design a clean, intuitive API that follows MCP guidelines.</li>
+  <li><strong>Implement the Tool</strong>: Develop the tool using your preferred language and framework.</li>
+  <li><strong>Test with Claude</strong>: Test your tool with Claude or another MCP-compatible AI assistant.</li>
+  <li><strong>Document and Share</strong>: Create comprehensive documentation and share your tool with the community.</li>
+</ol>
+
+<p>For detailed guidance on developing custom MCP tools, check out the <a href="/labs/02-custom-mcp-server/README.html">Building Custom MCP Servers</a> lab.</p>
+
+<h2 id="contributing">Contributing</h2>
+
+<p>If you’ve developed an MCP tool that you’d like to share with the community, we welcome your contributions! Check out the <a href="https://github.com/ajeetraina/mcp-portal/blob/main/CONTRIBUTING.md">Contributing Guidelines</a> for information on how to submit your tool to this collection.</p>
+
+<style>
+/* Tools Grid Styles */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.tool-card {
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-top: 4px solid var(--color-primary);
+}
+
+.tool-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.tool-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--color-gray);
+}
+
+.tool-title {
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+
+.tool-meta {
+  display: flex;
+  font-size: 0.85rem;
+  color: #777;
+  align-items: center;
+}
+
+.tool-category {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: rgba(13, 183, 237, 0.1);
+  color: var(--color-primary);
+}
+
+.tool-body {
+  padding: 1.5rem;
+  flex-grow: 1;
+}
+
+.tool-icon {
+  float: right;
+  margin: 0 0 1rem 1rem;
+  font-size: 2.5rem;
+  color: rgba(13, 183, 237, 0.15);
+}
+
+.tool-description {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+.tool-footer {
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--color-gray);
+  display: flex;
+  gap: 1rem;
+  background-color: var(--color-secondary-light);
+}
+
+.btn-github {
+  background-color: #24292e;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-github:hover {
+  background-color: #000;
+  color: white;
+}
+
+.btn-website {
+  background-color: #6c757d;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-website:hover {
+  background-color: #5a6268;
+  color: white;
+}
+
+.no-tools-message {
+  background-color: var(--color-secondary-light);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tool-footer {
+    flex-wrap: wrap;
+  }
+}
+</style>
+
+
+  </div>
+  
+  
+</div>
+
+<style>
+  /* Category styles */
+  .category-content {
+    width: 100%;
+  }
+  
+  .category-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-gray);
+  }
+  
+  .category-title {
+    font-size: 2.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 0.75rem;
+  }
+  
+  .category-description {
+    font-size: 1.15rem;
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  .category-body {
+    margin-bottom: 3rem;
+  }
+  
+  /* Post list styles */
+  .post-list {
+    margin-top: 2rem;
+  }
+  
+  .post-list-title {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-gray);
+  }
+  
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  
+  .post-card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+  }
+  
+  .post-card-header {
+    padding: 1.5rem 1.5rem 0.75rem;
+  }
+  
+  .post-card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+  
+  .post-card-title a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .post-card-title a:hover {
+    color: var(--color-primary);
+  }
+  
+  .post-card-date {
+    display: block;
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 0.75rem;
+  }
+  
+  .post-card-excerpt {
+    padding: 0 1.5rem;
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    flex-grow: 1;
+  }
+  
+  .post-card-footer {
+    padding: 1.25rem 1.5rem;
+    border-top: 1px solid var(--color-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-secondary-light);
+  }
+  
+  .post-card-link {
+    color: var(--color-primary);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .post-card-link:hover {
+    text-decoration: underline;
+  }
+  
+  .post-card-link::after {
+    content: '\f054';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .post-card-tags {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .post-tag {
+    background-color: rgba(13, 183, 237, 0.1);
+    color: var(--color-primary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .category-title {
+      font-size: 2rem;
+    }
+    
+    .post-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .category-title {
+      font-size: 1.75rem;
+    }
+    
+    .category-description {
+      font-size: 1rem;
+    }
+  }
+</style>
+    </main>
+  </div>
+  
+  <footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>Docker MCP Community Portal</h3>
+        <p>A community-driven resource for Docker Model Context Protocol.</p>
+        <p>&copy; 2025 MCP Community Portal. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal" target="_blank">
+              <i class="fab fa-github"></i> GitHub Repository
+            </a>
+          </li>
+          <li>
+            <a href="https://collabnix.com" target="_blank">
+              <i class="fas fa-globe"></i> Collabnix Community
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/ajeetraina/docker-mcp-portal/blob/main/CONTRIBUTING.md" target="_blank">
+              <i class="fas fa-code-branch"></i> Contribute to MCP Portal
+            </a>
+          </li>
+          <li>
+            <a href="https://hub.docker.com/u/mcp" target="_blank">
+              <i class="fab fa-docker"></i> MCP on Docker Hub
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  
+  <!-- ClipboardJS for copy functionality -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+  
+  <!-- Syntax highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  
+  <!-- Custom scripts -->
+  <script src="/pr-preview/pr-44/assets/js/filter.js"></script>
+  <script src="/pr-preview/pr-44/assets/js/github-stars.js"></script>
+  <script src="/pr-preview/pr-44/assets/js/docker-downloads.js"></script>
+  <script src="/pr-preview/pr-44/assets/js/code-formatter.js"></script>
+  <script src="/pr-preview/pr-44/assets/js/sidebar.js"></script>
+  
+  <script>
+    // Initialize clipboard.js
+    document.addEventListener('DOMContentLoaded', function() {
+      var clipboard = new ClipboardJS('.btn-copy');
+      
+      clipboard.on('success', function(e) {
+        var button = e.trigger;
+        var originalText = button.innerHTML;
+        
+        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        button.classList.add('copied');
+        
+        setTimeout(function() {
+          button.innerHTML = originalText;
+          button.classList.remove('copied');
+        }, 2000);
+        
+        e.clearSelection();
+      });
+      
+      // Initialize syntax highlighting
+      document.querySelectorAll('pre code').forEach((el) => {
+        hljs.highlightElement(el);
+      });
+    });
+  </script>
+
+<style>
+  .menu-badge {
+    display: inline-block;
+    background-color: #FF5722;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    margin-left: 6px;
+    vertical-align: middle;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+</style>
+</body>
+</html>

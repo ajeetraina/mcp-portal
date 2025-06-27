@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singapore MCP Servers - Global MCP Server Directory</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">MCP Portal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/roadmap/">Learning Roadmap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/directory/">Global MCP Server Directory</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/docs/">Documentation</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="container mt-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/directory/">Directory</a></li>
+                <li class="breadcrumb-item"><a href="/directory/countries/">Countries</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Singapore</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Country Header -->
+    <header class="container mt-4">
+        <div class="country-header">
+            <img src="../assets/images/flags/sg.svg" alt="Singapore Flag" class="country-flag-large" onerror="this.src='https://flagcdn.com/sg.svg'">
+            <h1>Singapore MCP Servers</h1>
+        </div>
+        <p class="lead">Explore MCP servers providing data and services specific to Singapore</p>
+    </header>
+
+    <!-- Server List -->
+    <section class="container my-5">
+        <div class="card mb-5" id="sg-lta">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h2 class="h3 mb-0">Singapore LTA MCP Server</h2>
+                <span class="server-status active">Active</span>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <!-- Basic Info -->
+                    <div class="col-md-8">
+                        <p class="card-text">Facilitates real-time access to Singapore's Land Transport Authority (LTA) transportation data, offering insights into bus arrivals, train services, traffic conditions, and more through integration with the LTA DataMall API.</p>
+                        
+                        <div class="mb-4">
+                            <h5>Features</h5>
+                            <ul class="feature-list">
+                                <li>Get current bus arrival times by bus stop ID</li>
+                                <li>Retrieve traffic incidents and road closures</li>
+                                <li>Check MRT/LRT station crowding levels</li>
+                                <li>Find parking availability in public car parks</li>
+                                <li>Get estimated travel times on expressways</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Metadata -->
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <p><strong>Category:</strong> <span class="category-badge">Transportation</span></p>
+                                <p><strong>Developer:</strong> <a href="https://github.com/arjunkmrm" target="_blank">arjunkmrm</a></p>
+                                <p><strong>Last Updated:</strong> April 15, 2025</p>
+                                <p><strong>Rating:</strong> <span class="star-rating">?????</span> 4.2</p>
+                                <div class="d-grid gap-2">
+                                    <a href="https://github.com/arjunkmrm/mcp-sg-lta" target="_blank" class="btn btn-sm btn-outline-primary">Source Code</a>
+                                    <a href="https://glama.ai/mcp/servers/@arjunkmrm/mcp-sg-lta" target="_blank" class="btn btn-sm btn-outline-secondary">Documentation</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Installation -->
+                <div class="mb-4">
+                    <h5>Installation</h5>
+                    <div class="code-container">
+                        <pre><code>{
+  "mcpServers": {
+    "lta": {
+      "command": "npx",
+      "args": ["-y", "arjunkmrm/mcp-sg-lta"],
+      "env": { 
+        "LTA_API_KEY": "YOUR-API-KEY" 
+      }
+    }
+  }
+}</code></pre>
+                    </div>
+                    <div class="alert alert-info mt-2">
+                        <small><strong>Note:</strong> You'll need to obtain an API key from the <a href="https://datamall.lta.gov.sg/content/datamall/en/request-for-api.html" target="_blank">LTA DataMall</a>.</small>
+                    </div>
+                </div>
+
+                <!-- Example Usage -->
+                <div class="mb-4">
+                    <h5>Example Queries</h5>
+                    <div class="card">
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">"When will bus 65 arrive at stop 83139?"</li>
+                                <li class="list-group-item">"Are there any traffic incidents on the PIE?"</li>
+                                <li class="list-group-item">"How crowded is Orchard MRT station right now?"</li>
+                                <li class="list-group-item">"Is there parking available at Jewel Changi Airport?"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Additional Server Cards would go here -->
+        <div class="alert alert-info text-center">
+            Know of another Singapore MCP server? <a href="/CONTRIBUTING.md">Contribute it to the directory</a>!
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="container">
+            <p class="mb-0">Global MCP Server Directory &copy; 2025 | <a href="https://github.com/ajeetraina/mcp-portal" class="text-white">GitHub</a></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/directory.js"></script>
+</body>
+</html>

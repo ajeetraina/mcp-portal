@@ -1,0 +1,117 @@
+{
+  "countries": [
+    {
+      "name": "Singapore",
+      "code": "sg",
+      "flag": "sg.svg",
+      "continent": "Asia",
+      "servers": [
+        {
+          "id": "sg-lta",
+          "name": "Singapore LTA",
+          "category": "Transportation",
+          "description": "Facilitates real-time access to Singapore's Land Transport Authority (LTA) transportation data, offering insights into bus arrivals, train services, traffic conditions, and more through integration with the LTA DataMall API.",
+          "installation": "npx -y arjunkmrm/mcp-sg-lta",
+          "config": {
+            "mcpServers": {
+              "lta": {
+                "command": "npx",
+                "args": ["-y", "arjunkmrm/mcp-sg-lta"],
+                "env": {
+                  "LTA_API_KEY": "YOUR-API-KEY"
+                }
+              }
+            }
+          },
+          "features": [
+            "Get current bus arrival times by bus stop ID",
+            "Retrieve traffic incidents and road closures",
+            "Check MRT/LRT station crowding levels",
+            "Find parking availability in public car parks",
+            "Get estimated travel times on expressways"
+          ],
+          "repository": "https://github.com/arjunkmrm/mcp-sg-lta",
+          "documentation": "https://glama.ai/mcp/servers/@arjunkmrm/mcp-sg-lta",
+          "requiresAuth": true,
+          "authType": "API Key",
+          "dateAdded": "2025-01-15",
+          "lastUpdated": "2025-04-15",
+          "rating": 4.2
+        }
+      ]
+    },
+    {
+      "name": "United States",
+      "code": "us",
+      "flag": "us.svg",
+      "continent": "North America",
+      "servers": [
+        {
+          "id": "us-nps",
+          "name": "US National Park Service",
+          "category": "Government",
+          "description": "Facilitates retrieval of National Park Services data using the NPS API, allowing users to list national parks by state and access detailed information about specific parks.",
+          "features": [
+            "List all national parks in the US",
+            "Filter parks by state or region",
+            "Get detailed information about specific parks",
+            "Check park facilities and visitor centers",
+            "Retrieve current alerts and conditions"
+          ],
+          "requiresAuth": true,
+          "authType": "API Key",
+          "dateAdded": "2025-02-10",
+          "lastUpdated": "2025-03-25",
+          "rating": 4.7
+        },
+        {
+          "id": "us-weather",
+          "name": "US Weather Service",
+          "category": "Weather",
+          "description": "Provides comprehensive weather data for US locations through integration with the National Weather Service API.",
+          "features": [
+            "Current weather conditions by location",
+            "Detailed forecasts for 7 days",
+            "Severe weather alerts and warnings",
+            "Historical weather data",
+            "Climate analytics and trends"
+          ],
+          "requiresAuth": true,
+          "authType": "API Key",
+          "dateAdded": "2024-11-05",
+          "lastUpdated": "2025-04-02",
+          "rating": 4.9
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "transportation",
+      "name": "Transportation",
+      "icon": "?",
+      "count": 35,
+      "description": "Servers providing transportation-related data like public transit, traffic, and travel planning."
+    },
+    {
+      "id": "government",
+      "name": "Government",
+      "icon": "??",
+      "count": 28,
+      "description": "Servers providing access to government data, services, and information resources."
+    },
+    {
+      "id": "weather",
+      "name": "Weather",
+      "icon": "??",
+      "count": 22,
+      "description": "Servers providing weather data, forecasts, and alerts for various locations."
+    }
+  ],
+  "metadata": {
+    "lastUpdated": "2025-05-11",
+    "totalCountries": 25,
+    "totalServers": 142,
+    "totalCategories": 18
+  }
+}

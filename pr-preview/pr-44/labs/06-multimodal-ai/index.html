@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 6: Building Multimodal AI Applications with MCP | Model Context Protocol Portal</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <style>
+        :root {
+            --color-primary: #5551ff;
+            --color-beginner: #4CAF50;
+            --color-intermediate: #2196F3;
+            --color-advanced: #9C27B0;
+            --color-expert: #F44336;
+            --color-text: #333;
+            --color-text-light: #666;
+            --color-background: #fff;
+            --color-card: #f8f8f8;
+            --color-card-border: #eaeaea;
+            --color-note: #FFF9C4;
+            --color-note-border: #FFC107;
+            --color-code-bg: #f5f7ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-background);
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background-color: var(--color-card);
+            padding: 2rem;
+            border-right: 1px solid var(--color-card-border);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .content {
+            flex: 1;
+            padding: 2rem;
+            margin-left: 280px;
+            max-width: calc(100% - 280px);
+        }
+
+        .nav-logo {
+            display: block;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .nav-logo h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-primary);
+        }
+
+        .nav-logo p {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        .nav-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-section h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .nav-items {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: background-color 0.2s;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(85, 81, 255, 0.1);
+        }
+
+        .nav-link.active {
+            background-color: var(--color-primary);
+            color: white;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: var(--color-text);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--color-card-border);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 1.75rem 0 0.75rem;
+            color: var(--color-text);
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.5rem;
+            color: var(--color-text);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul, ol {
+            margin: 0 0 1rem 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.9em;
+            background-color: var(--color-code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+        }
+
+        pre {
+            background-color: var(--color-code-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--color-card-border);
+            padding-left: 1rem;
+            margin-left: 0;
+            margin-bottom: 1.5rem;
+            color: var(--color-text-light);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            border: 1px solid var(--color-card-border);
+        }
+
+        th {
+            background-color: var(--color-card);
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .note {
+            background-color: var(--color-note);
+            border: 1px solid var(--color-note-border);
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .note-title {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .banner {
+            background-color: var(--color-advanced);
+            color: white;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 2rem;
+        }
+
+        .banner h2 {
+            color: white;
+            border-bottom: none;
+            margin: 0 0 0.5rem 0;
+            padding: 0;
+        }
+
+        .banner p {
+            margin-bottom: 0;
+        }
+
+        .footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--color-card-border);
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+        }
+
+        .lab-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--color-card-border);
+        }
+
+        .lab-nav a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--color-primary);
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .lab-nav a:hover {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .lab-nav-prev:before {
+            content: "← ";
+        }
+
+        .lab-nav-next:after {
+            content: " →";
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 240px;
+            }
+            
+            .content {
+                margin-left: 240px;
+                max-width: calc(100% - 240px);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid var(--color-card-border);
+                padding: 1rem;
+            }
+            
+            .content {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 1rem;
+            }
+            
+            .nav-logo {
+                margin-bottom: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="nav-logo">
+                <a href="/">
+                    <h2>MCP Portal</h2>
+                    <p>Model Context Protocol</p>
+                </a>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Getting Started</h3>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="../01-getting-started/index.html" class="nav-link">Lab 1: Getting Started</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../02-custom-mcp-server/index.html" class="nav-link">Lab 2: Custom MCP Server</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Intermediate</h3>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="../03-database-integration/index.html" class="nav-link">Lab 3: Database Integration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../04-business-automation/index.html" class="nav-link">Lab 4: Business Automation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../05-rag-document-qa/index.html" class="nav-link">Lab 5: RAG Document Q&A</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Advanced</h3>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="../06-multimodal-ai/index.html" class="nav-link active">Lab 6: Multimodal AI</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../07-building-ai-agents/index.html" class="nav-link">Lab 7: Building AI Agents</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Resources</h3>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Learning Roadmap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/ajeetraina/mcp-portal" class="nav-link">GitHub Repository</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/ajeetraina/mcp-portal/discussions" class="nav-link">Community Discussions</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        
+        <main class="content">
+            <div class="banner">
+                <h2>Advanced Level</h2>
+                <p>Estimated Time: 240 minutes</p>
+            </div>
+
+            <div id="lab-content">
+                <h1>Lab 6: Building Multimodal AI Applications with MCP</h1>
+                <p>This lab demonstrates how to create multimodal AI applications by extending Claude's capabilities with image generation, processing, and analysis using MCP.</p>
+
+                <h2 id="prerequisites">Prerequisites</h2>
+                <ul>
+                    <li>Docker and Docker Compose</li>
+                    <li>Basic understanding of image processing</li>
+                    <li>Familiarity with multimodal AI concepts</li>
+                </ul>
+
+                <h2 id="introduction">Introduction</h2>
+                <p>Multimodal AI applications combine different types of data and media, such as text, images, and audio. While Claude is primarily a text-based model, MCP allows us to extend its capabilities to handle multimodal interactions. In this lab, you'll build a system that enables Claude to:</p>
+                <ol>
+                    <li>Generate images based on text descriptions</li>
+                    <li>Analyze and extract data from images</li>
+                    <li>Edit and manipulate images</li>
+                    <li>Create visual insights from data</li>
+                </ol>
+
+                <div class="note">
+                    <span class="note-title">Multimodal AI</span>
+                    <p>Multimodal AI systems can process and generate information across different modalities, such as text, images, audio, and video. By connecting Claude to specialized services through MCP, we can create a powerful multimodal application that combines Claude's language capabilities with visual understanding and generation.</p>
+                </div>
+
+                <h2 id="step1">Step 1: Project Setup</h2>
+                <p>Create a new project directory:</p>
+                <pre><code class="language-bash">mkdir mcp-multimodal
+cd mcp-multimodal
+mkdir -p config services/{image-generation,image-analysis,image-editing,data-visualization}</code></pre>
+
+                <h2 id="step2">Step 2: Image Generation Service</h2>
+                <p>Create an image generation service using Stable Diffusion in <code>services/image-generation/app.py</code>. This will handle text-to-image generation.</p>
+
+                <h2 id="step3">Step 3: Image Analysis Service</h2>
+                <p>Create an image analysis service with OCR and object detection in <code>services/image-analysis/app.py</code>. This will extract text and identify objects in images.</p>
+
+                <h2 id="step4">Step 4: Data Visualization Service</h2>
+                <p>Create a data visualization service in <code>services/data-visualization/app.py</code>. This will generate charts and graphs from data.</p>
+
+                <h2 id="step5">Step 5: Multimodal Server</h2>
+                <p>Create a server that integrates all services in <code>services/multimodal-server/app.py</code>. This will be the main interface for MCP.</p>
+
+                <h2 id="step6">Step 6: MCP Configuration</h2>
+                <p>Create a <code>config/tools.json</code> file to connect MCP with the multimodal services:</p>
+                <pre><code class="language-json">{
+  "tools": [
+    {
+      "name": "multimodal",
+      "service": "multimodal-server:5000",
+      "description": "A multimodal AI service that can generate, analyze, and visualize images and data",
+      "schema": {
+        "type": "object",
+        "functions": [
+          {
+            "name": "generate_image",
+            "description": "Generate an image based on a text description using Stable Diffusion",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "prompt": {
+                  "type": "string",
+                  "description": "Text description of the image to generate"
+                },
+                "negative_prompt": {
+                  "type": "string",
+                  "description": "Things to avoid in the image (optional)"
+                },
+                "width": {
+                  "type": "integer",
+                  "description": "Width of the generated image (default: 512)",
+                  "default": 512
+                },
+                "height": {
+                  "type": "integer",
+                  "description": "Height of the generated image (default: 512)",
+                  "default": 512
+                },
+                "num_inference_steps": {
+                  "type": "integer",
+                  "description": "Number of denoising steps (higher = better quality but slower)",
+                  "default": 50
+                },
+                "guidance_scale": {
+                  "type": "number",
+                  "description": "How closely to follow the prompt (higher = more adherence)",
+                  "default": 7.5
+                }
+              },
+              "required": ["prompt"]
+            },
+            "path": "/multimodal/generate-image"
+          },
+          {
+            "name": "analyze_image",
+            "description": "Analyze an image for text (OCR) or objects",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "image_url": {
+                  "type": "string",
+                  "description": "URL of the image to analyze"
+                },
+                "image_data": {
+                  "type": "string",
+                  "description": "Base64-encoded image data (alternative to image_url)"
+                },
+                "analysis_type": {
+                  "type": "string",
+                  "enum": ["ocr", "objects"],
+                  "description": "Type of analysis to perform: 'ocr' for text extraction, 'objects' for object detection",
+                  "default": "objects"
+                }
+              },
+              "anyOf": [
+                { "required": ["image_url"] },
+                { "required": ["image_data"] }
+              ]
+            },
+            "path": "/multimodal/analyze-image"
+          },
+          {
+            "name": "visualize_data",
+            "description": "Create a data visualization (chart or graph)",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "description": "Data to visualize (can be object with key-value pairs or array of objects)"
+                },
+                "visualization_type": {
+                  "type": "string",
+                  "enum": ["bar", "line", "pie"],
+                  "description": "Type of visualization to create",
+                  "default": "bar"
+                },
+                "title": {
+                  "type": "string",
+                  "description": "Title for the visualization",
+                  "default": "Data Visualization"
+                },
+                "x_label": {
+                  "type": "string",
+                  "description": "Label for x-axis (for bar and line charts)",
+                  "default": "X Axis"
+                },
+                "y_label": {
+                  "type": "string",
+                  "description": "Label for y-axis (for bar and line charts)",
+                  "default": "Y Axis"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "Color for the visualization",
+                  "default": "blue"
+                }
+              },
+              "required": ["data"]
+            },
+            "path": "/multimodal/visualize-data"
+          },
+          {
+            "name": "process_workflow",
+            "description": "Run a complex multimodal workflow combining multiple operations",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "workflow_type": {
+                  "type": "string",
+                  "enum": ["generate-and-analyze", "analyze-and-visualize"],
+                  "description": "Type of workflow to run"
+                },
+                "prompt": {
+                  "type": "string",
+                  "description": "Text description for image generation (for generate-and-analyze workflow)"
+                },
+                "image_url": {
+                  "type": "string",
+                  "description": "URL of image to analyze (for analyze-and-visualize workflow)"
+                },
+                "image_data": {
+                  "type": "string",
+                  "description": "Base64-encoded image data (for analyze-and-visualize workflow)"
+                },
+                "analysis_type": {
+                  "type": "string",
+                  "enum": ["ocr", "objects"],
+                  "description": "Type of analysis to perform",
+                  "default": "objects"
+                },
+                "visualization_type": {
+                  "type": "string",
+                  "enum": ["bar", "line", "pie"],
+                  "description": "Type of visualization to create",
+                  "default": "bar"
+                }
+              },
+              "required": ["workflow_type"],
+              "allOf": [
+                {
+                  "if": {
+                    "properties": { "workflow_type": { "const": "generate-and-analyze" } }
+                  },
+                  "then": {
+                    "required": ["prompt"]
+                  }
+                },
+                {
+                  "if": {
+                    "properties": { "workflow_type": { "const": "analyze-and-visualize" } }
+                  },
+                  "then": {
+                    "anyOf": [
+                      { "required": ["image_url"] },
+                      { "required": ["image_data"] }
+                    ]
+                  }
+                }
+              ]
+            },
+            "path": "/multimodal/process-workflow"
+          }
+        ]
+      }
+    }
+  ]
+}</code></pre>
+
+                <h2 id="step7">Step 7: Set Up Docker Compose</h2>
+                <p>Create a <code>docker-compose.yml</code> file to orchestrate all services:</p>
+                <pre><code class="language-yaml">version: '3'
+services:
+  image-generation:
+    build: ./services/image-generation
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./data/images:/app/images
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+  
+  image-analysis:
+    build: ./services/image-analysis
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./data/uploads:/app/uploads
+  
+  data-visualization:
+    build: ./services/data-visualization
+    ports:
+      - "5003:5003"
+    volumes:
+      - ./data/visualizations:/app/visualizations
+  
+  multimodal-server:
+    build: ./services/multimodal-server
+    ports:
+      - "5000:5000"
+    depends_on:
+      - image-generation
+      - image-analysis
+      - data-visualization
+  
+  mcp-proxy:
+    image: anthropic/mcp-proxy:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - MCP_API_KEY=${MCP_API_KEY}
+      - CLAUDE_API_KEY=${CLAUDE_API_KEY}
+    volumes:
+      - ./config:/app/config
+    depends_on:
+      - multimodal-server</code></pre>
+
+                <h2 id="step8">Step 8: Create Data Directories</h2>
+                <p>Set up directories for data persistence:</p>
+                <pre><code class="language-bash">mkdir -p data/{images,uploads,visualizations}</code></pre>
+
+                <h2 id="step9">Step 9: Starting the Services</h2>
+                <p>Start the multimodal system:</p>
+                <pre><code class="language-bash">export MCP_API_KEY=your_mcp_api_key
+export CLAUDE_API_KEY=your_claude_api_key
+docker-compose up --build</code></pre>
+
+                <h2 id="step10">Step 10: Testing with Claude</h2>
+                <p>Here's a Python script to test image generation with Claude:</p>
+                <pre><code class="language-python">import requests
+import json
+
+API_KEY = "your_claude_api_key"
+MCP_URL = "http://localhost:8080/v1/messages"
+
+headers = {
+    "x-api-key": API_KEY,
+    "Content-Type": "application/json"
+}
+
+# Test image generation
+conversation = {
+    "model": "claude-3-opus-20240229",
+    "messages": [
+        {"role": "user", "content": "Can you generate an image of a futuristic city with flying cars?"}
+    ],
+    "tools": [
+        {
+            "name": "multimodal",
+            "description": "A multimodal AI service that can generate, analyze, and visualize images and data"
+        }
+    ]
+}
+
+response = requests.post(MCP_URL, headers=headers, json=conversation)
+result = response.json()
+print(json.dumps(result, indent=2))</code></pre>
+
+                <div class="note">
+                    <span class="note-title">GPU Requirements</span>
+                    <p>The image generation service using Stable Diffusion requires a GPU for efficient operation. If you don't have a GPU, you can modify the system to use cloud-based image generation APIs like DALL-E or Midjourney instead of running Stable Diffusion locally.</p>
+                </div>
+
+                <h2 id="multimodal-workflows">Multimodal Workflows</h2>
+
+                <h3>Image Generation Workflow</h3>
+                <ol>
+                    <li>User asks Claude to create an image</li>
+                    <li>Claude calls the <code>generate_image</code> function with a detailed prompt</li>
+                    <li>The multimodal server forwards the request to the image generation service</li>
+                    <li>The generated image is returned as base64-encoded data</li>
+                    <li>Claude describes the image and provides it to the user</li>
+                </ol>
+
+                <h3>Image Analysis Workflow</h3>
+                <ol>
+                    <li>User provides an image URL or uploads an image</li>
+                    <li>Claude calls the <code>analyze_image</code> function with the image data</li>
+                    <li>The multimodal server forwards the request to the image analysis service</li>
+                    <li>The analysis results (objects detected or text extracted) are returned</li>
+                    <li>Claude summarizes the analysis results for the user</li>
+                </ol>
+
+                <h3>Data Visualization Workflow</h3>
+                <ol>
+                    <li>User provides data or asks Claude to visualize analysis results</li>
+                    <li>Claude calls the <code>visualize_data</code> function with the formatted data</li>
+                    <li>The multimodal server forwards the request to the data visualization service</li>
+                    <li>The visualization image is returned as base64-encoded data</li>
+                    <li>Claude presents the visualization and explains the insights</li>
+                </ol>
+
+                <h3>Combined Workflows</h3>
+                <p>Using the <code>process_workflow</code> function, Claude can perform complex operations:</p>
+                <ul>
+                    <li><strong>Generate and Analyze</strong>: Create an image and then detect objects or extract text from it</li>
+                    <li><strong>Analyze and Visualize</strong>: Extract data from an image and create a chart of the results</li>
+                </ul>
+
+                <h2 id="business-applications">Business Applications</h2>
+                <p>Multimodal AI systems can be applied to numerous business use cases:</p>
+                <ol>
+                    <li><strong>Content Creation</strong>: Generate custom images for marketing, presentations, and websites</li>
+                    <li><strong>Document Processing</strong>: Extract and summarize text from scanned documents</li>
+                    <li><strong>Visual Search</strong>: Find products by image or analyze product photos</li>
+                    <li><strong>Data Visualization</strong>: Create custom charts and graphs from business data</li>
+                    <li><strong>Quality Control</strong>: Detect defects or anomalies in product images</li>
+                    <li><strong>Medical Imaging</strong>: Assist in analyzing medical images (with appropriate safeguards)</li>
+                    <li><strong>Retail Analysis</strong>: Analyze shelf photos for product placement and inventory</li>
+                    <li><strong>Real Estate</strong>: Generate or enhance property images for listings</li>
+                </ol>
+
+                <h2 id="next-steps">Next Steps</h2>
+                <ul>
+                    <li>Add image editing capabilities (resize, crop, filter)</li>
+                    <li>Implement face detection and recognition</li>
+                    <li>Add audio processing for complete multimodal experience</li>
+                    <li>Create a web interface for easy interaction</li>
+                    <li>Implement more advanced workflows combining multiple services</li>
+                    <li>Add support for video processing and analysis</li>
+                    <li>Integrate with external multimodal APIs (DALL-E, Midjourney)</li>
+                    <li>Implement fine-tuned models for specific domains</li>
+                </ul>
+            </div>
+            
+            <div class="lab-nav">
+                <a href="../05-rag-document-qa/index.html" class="lab-nav-prev">Lab 5: RAG Document Q&A</a>
+                <a href="../07-building-ai-agents/index.html" class="lab-nav-next">Lab 7: Building AI Agents</a>
+            </div>
+            
+            <footer class="footer">
+                <p>Model Context Protocol (MCP) Portal</p>
+                <p>Repository: <a href="https://github.com/ajeetraina/mcp-portal">github.com/ajeetraina/mcp-portal</a></p>
+            </footer>
+        </main>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Highlight code blocks
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+            
+            // Set active nav link
+            const currentPath = window.location.pathname;
+            document.querySelectorAll('.nav-link').forEach(link => {
+                if (currentPath.includes(link.getAttribute('href'))) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
