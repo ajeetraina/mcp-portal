@@ -1,0 +1,70 @@
+# MCP Portal Categories
+- id: getting-started
+  name: Getting Started
+  icon: rocket
+  url: /categories/getting-started/
+  description: Essential information for beginners to the Model Context Protocol
+  
+- id: mcp-servers
+  name: MCP Servers
+  icon: server
+  url: /categories/mcp-servers/
+  description: Explore Docker's container images for MCP servers
+  children:
+    - name: Working Servers
+      url: /categories/mcp-servers/working/
+    - name: Untested Servers
+      url: /categories/mcp-servers/untested/
+    - name: Unsupported Servers
+      url: /categories/mcp-servers/unsupported/
+      
+- id: mcp-tools
+  name: MCP Tools
+  icon: tools
+  url: /categories/mcp-tools/
+  description: Tools and libraries that work with the Model Context Protocol
+  children:
+    - name: Authentication
+      url: /categories/mcp-tools/authentication/
+    - name: Data Processing
+      url: /categories/mcp-tools/data-processing/
+    - name: External APIs
+      url: /categories/mcp-tools/external-apis/
+    
+- id: use-cases
+  name: Use Cases
+  icon: lightbulb
+  url: /categories/use-cases/
+  description: Real-world applications and scenarios using MCP
+  
+- id: deployment
+  name: Deployment
+  icon: cloud-upload-alt
+  url: /categories/deployment/
+  description: Guides for deploying MCP in different environments
+  children:
+    - name: Docker Compose
+      url: /categories/deployment/docker-compose/
+    - name: Kubernetes
+      url: /categories/deployment/kubernetes/
+    - name: Cloud Services
+      url: /categories/deployment/cloud/
+    
+- id: tutorials
+  name: Tutorials
+  icon: book
+  url: /categories/tutorials/
+  description: Step-by-step guides for working with MCP
+  
+- id: advanced
+  name: Advanced Topics
+  icon: graduation-cap
+  url: /categories/advanced/
+  description: Advanced concepts and techniques for MCP power users
+  children:
+    - name: Security
+      url: /categories/advanced/security/
+    - name: Performance
+      url: /categories/advanced/performance/
+    - name: Scaling
+      url: /categories/advanced/scaling/
