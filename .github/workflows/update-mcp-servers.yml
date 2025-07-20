@@ -26,6 +26,6 @@ jobs:
       - name: Run update script
         run: python scripts/update_mcp_servers_github_only.py
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPO_OWNER: ${{ github.repository_owner }}
           GITHUB_REPO_NAME: ${{ github.event.repository.name }}
