@@ -47,12 +47,18 @@ title: MCP Tools Table View
               {% endfor %}
             </td>
             <td class="server-stars" data-github-url="{{ tool.github_url }}">
-              <span class="star-count"><i class="fas fa-star"></i> <span class="star-number"></span></span>
+              {% if tool.github_url %}
+                <span class="star-count"><i class="fas fa-star"></i> <span class="star-number">...</span></span>
+              {% else %}
+                <span class="star-count"><i class="fas fa-star"></i> <span class="star-number">N/A</span></span>
+              {% endif %}
             </td>
             <td class="server-links">
-              <a href="{{ tool.github_url }}" class="btn-small" target="_blank" rel="noopener">
-                <i class="fab fa-github"></i>
-              </a>
+              {% if tool.github_url %}
+                <a href="{{ tool.github_url }}" class="btn-small" target="_blank" rel="noopener">
+                  <i class="fab fa-github"></i>
+                </a>
+              {% endif %}
             </td>
             <td class="server-date">{{ tool.added_date }}</td>
           </tr>
@@ -284,39 +290,3 @@ title: MCP Tools Table View
     }
   }
 </style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const starCells = document.querySelectorAll('.server-stars');
-
-    starCells.forEach(cell => {
-      const githubUrl = cell.dataset.githubUrl;
-      const starNumberSpan = cell.querySelector('.star-number');
-
-      if (githubUrl) {
-        fetch(`https://api.github.com/repos/${getRepoPath(githubUrl)}`)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error(`GitHub API request failed for ${githubUrl}`);
-            }
-            return response.json();
-          })
-          .then(data => {
-            starNumberSpan.textContent = data.stargazers_count;
-          })
-          .catch(error => {
-            console.error(error);
-            starNumberSpan.textContent = 'N/A';
-          });
-      } else {
-        starNumberSpan.textContent = 'N/A';
-      }
-    });
-  });
-
-  function getRepoPath(githubUrl) {
-    const url = new URL(githubUrl);
-    const pathParts = url.pathname.split('/').filter(part => part);
-    return `${pathParts[0]}/${pathParts[1]}`;
-  }
-</script>
